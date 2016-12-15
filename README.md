@@ -1,4 +1,13 @@
-# コーポレートサイト用 PHPメールフォーム
+# OZN-Form（仮）
+
+コーポレートサイト用 汎用PHPメールフォーム
+
+## PHPバージョン
+開発時バージョン：PHP5.6  
+リリース前検証：PHP5.3, 5.6, 7.0
+
+## 依存ライブラリ
+PHPMailer | [https://github.com/PHPMailer/PHPMailer](https://github.com/PHPMailer/PHPMailer)
 
 ## ↓ 仕様メモ
 
