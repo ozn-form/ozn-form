@@ -2,9 +2,12 @@
 
 コーポレートサイト用 汎用PHPメールフォーム
 
-## 対象PHPバージョン
-開発時検証：PHP5.6, 7.0
-リリース対象：PHP5.3 - 7.1 [開発時の検証結果 5.3は外れるかも…]
+## PHPバージョン
+開発時バージョン：PHP5.6  
+リリース前検証：PHP5.3, 5.6, 7.0
+
+## 依存ライブラリ
+PHPMailer | [https://github.com/PHPMailer/PHPMailer](https://github.com/PHPMailer/PHPMailer)
 
 ## ↓ 仕様メモ
 
