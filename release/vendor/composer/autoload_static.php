@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit4f9eeeaeaaeb00adefa2ddc4f448a41a
+class ComposerStaticInit5e3b8a5416f4504a561bfcae34be7b3a
 {
     public static $classMap = array (
         'EasyPeasyICS' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
@@ -20,7 +20,7 @@ class ComposerStaticInit4f9eeeaeaaeb00adefa2ddc4f448a41a
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->classMap = ComposerStaticInit4f9eeeaeaaeb00adefa2ddc4f448a41a::$classMap;
+            $loader->classMap = ComposerStaticInit5e3b8a5416f4504a561bfcae34be7b3a::$classMap;
 
         }, null, ClassLoader::class);
     }

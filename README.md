@@ -1,13 +1,41 @@
 # OZN-Form（仮）
 
-コーポレートサイト用 汎用PHPメールフォーム
+コーポレートサイト用 汎用PHPメールフォーム  
+下記記載事項は未実装未決定です。こうする予定という感じで…
 
 ## PHPバージョン
 開発時バージョン：PHP5.6  
 リリース前検証：PHP5.3, 5.6, 7.0
 
 ## 依存ライブラリ
+
+### PHP
 PHPMailer | [https://github.com/PHPMailer/PHPMailer](https://github.com/PHPMailer/PHPMailer)
+
+### フロントエンド
+gulp | [http://gulpjs.com/](http://gulpjs.com/)
+## ファイル構成
+
+|ディレクトリ構成|説明|
+|---------------|----|
+|ozn-form | プロジェクトルート|
+|├ document | ドキュメント用ディレクトリ| 
+|├ release | 配布用コード ディレクトリ|
+|│ ├ lib | OznFrom ライブラリ用ディレクトリ|
+|│ ├ js | OznForm Javascript ディレクトリ|
+|│ ├ css | OznForm StyleSheet ディレクトリ|
+|│ ├ vendor | Comporser ライブラリ ディレクトリ|  
+|│ ├ index.html | ダミーインデックス|
+|│ └ ozn-form.php | OznForm 実行ファイル（インクルード用）|
+|├ node_modules | Node.js ライブラリ用ディレクトリ|
+
+
+## 使い方
+
+1. ozn-form/release ディレクトリをコピーしてサイトに配置
+2. フォーム設定ファイルを作成
+3. フォームファイル（例：step1.php）などに下記PHPコードをコピー＆ペースト
+4. Let's Fun!!
 
 ## ↓ 仕様メモ
 
