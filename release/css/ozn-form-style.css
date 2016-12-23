@@ -1,0 +1,11 @@
+.ozn-form-valid {
+    background: #e3f6e2;
+}
+
+.ozn-form-invalid {
+    background: #f8ded9;
+}
+
+.ozn-form-errors {
+    color: #8c0608;
+}

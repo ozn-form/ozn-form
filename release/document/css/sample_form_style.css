@@ -1,0 +1,35 @@
+.container {
+    max-width: 920px;
+}
+
+nav.navbar {
+    min-height: 40px;
+}
+
+.navbar-brand {
+    height: 40px;
+    padding: 10px 15px;
+}
+
+.navbar-nav > li > a {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+body {
+    padding-top: 50px;
+}
+
+.alert .checkbox {
+    padding: 0;
+    margin: 0;
+}
+
+.required {
+    font-size: x-small;
+    color: #8c0608;
+}
+
+.actions {
+    margin-bottom: 5em;
+}

@@ -6,6 +6,16 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit5e3b8a5416f4504a561bfcae34be7b3a
 {
+    public static $prefixesPsr0 = array (
+        'V' => 
+        array (
+            'Valitron' => 
+            array (
+                0 => __DIR__ . '/..' . '/vlucas/valitron/src',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'EasyPeasyICS' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
         'PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',
@@ -20,6 +30,7 @@ class ComposerStaticInit5e3b8a5416f4504a561bfcae34be7b3a
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixesPsr0 = ComposerStaticInit5e3b8a5416f4504a561bfcae34be7b3a::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit5e3b8a5416f4504a561bfcae34be7b3a::$classMap;
 
         }, null, ClassLoader::class);

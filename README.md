@@ -10,7 +10,8 @@
 ## 依存ライブラリ
 
 ### PHP
-PHPMailer | [https://github.com/PHPMailer/PHPMailer](https://github.com/PHPMailer/PHPMailer)
+PHPMailer - メール送信 | [https://github.com/PHPMailer/PHPMailer](https://github.com/PHPMailer/PHPMailer)  
+Valitron - 入力値検証 | [https://github.com/vlucas/valitron](https://github.com/vlucas/valitron)
 
 ### フロントエンド
 gulp | [http://gulpjs.com/](http://gulpjs.com/)

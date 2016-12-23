@@ -1,0 +1,55 @@
+{
+
+  "form_name": "sample1",
+
+  "pages": {
+
+    "index": {
+      "role": "form",
+      "forms": {
+
+        "title": {
+          "label": "お問い合わせ内容",
+          "validates": ["required"]
+        },
+        "mail_body": {
+          "label": "お問い合わせ詳細",
+          "validates": ["required"]
+        },
+        "customer_name": {
+          "label": "お名前",
+          "validates": ["required"]
+        },
+        "customer_kana": {
+          "label": "ふりがな"
+        },
+        "zip-code": {
+          "label": "郵便番号",
+          "validates": ["required"]
+        },
+        "address1": {
+          "label": "住所１（番地まで）",
+          "validates": ["required"]
+        },
+        "address2": {
+          "label": "住所２（建物名など）"
+        },
+        "privacy": {
+          "label": "個人情報の取り扱い",
+          "validates": ["accepted"]
+        },
+        "materials": {
+          "label": "資料送付",
+          "validates": ["required"],
+          "error_messages": {
+            "required": "資料送付の必要/不必要を選択してください"
+          }
+        }
+      }
+    },
+
+    "confirm": {
+      "role": "confirm"
+    }
+  }
+}
