@@ -71,7 +71,8 @@ jQuery(function ($) {
                 $form_el
                     .removeClass('ozn-form-valid')
                     .addClass('ozn-form-invalid');
-                apendErrorMessages($form_el, response.errors[form_name]);
+
+                apendErrorMessages($form_el, response.errors[form_name], form_config);
             }
         });
 
@@ -84,10 +85,22 @@ jQuery(function ($) {
      * @param $el <フォーム要素>
      * @param msg <エラーメッセージ>
      */
-    function apendErrorMessages($el, msg) {
+    function apendErrorMessages($el, msg, form_config) {
 
-        // ToDo: エラーメッセージ用HTMLテンプレートがある場合の実装をする
-        $el.before('<div class="' + $el.attr('name').replace('[]', '') + ' ozn-form-errors">' + msg.join('<br />') + '</div>');
+        var form_name = $el.attr('name');
+        var template  = $('<div>' + msg.join('<br />') + '</div>');
+
+        // エラー位置の指定があれば基準要素を置換
+        if(form_config.error_message_position) {
+            $el = $(form_config.error_message_position);
+        }
+
+        // エラーメッセージテンプレートがあればデフォルトテンプレートを置換
+        if(form_config.error_message_template) {
+            template = $(form_config.error_message_template.replace('<% messages %>', msg.join('<br />')));
+        }
+
+        $el.before(template.addClass(form_name.replace('[]', '') + ' ozn-form-errors'));
     }
 
 });

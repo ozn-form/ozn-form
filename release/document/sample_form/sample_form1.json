@@ -46,6 +46,8 @@
         "survey[]": {
           "label": "アンケート",
           "validates": ["required"],
+          "error_message_position": ".surveys",
+          "error_message_template": "<div class=\"col-sm-12\"><% messages %></div>",
           "error_messages": {
             "required": "どれか１つ回答をお願いします"
           }
