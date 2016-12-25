@@ -18,7 +18,10 @@ $return_data = array(
 
 if(isset($_POST['validate'])) {
 
-    $v = new \Valitron\Validator(array($_POST['name'] => $_POST['value']));
+    $value = (isset($_POST['value']) ? $_POST['value'] : '');
+
+    $v = new \Valitron\Validator(array($_POST['name'] => $value));
+
 
     foreach ($_POST['validate'] as $validate) {
         if (isset($_POST['error_messages']) && isset($_POST['error_messages'][$validate])) {

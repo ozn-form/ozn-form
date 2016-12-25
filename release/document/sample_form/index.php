@@ -149,6 +149,27 @@
         </div>
 
         <hr>
+
+        <div class="row">
+            <h5 class="col-sm-12">アンケート<span class="required">（必須）</span></h5>
+            <div class="col-sm-12" style="text-indent: 0.5em;">
+                <label class="checkbox-inline">
+                    <input name="survey[]" type="checkbox" value="項目1"> 項目1
+                </label>
+                <label class="checkbox-inline">
+                    <input name="survey[]" type="checkbox" value="項目2"> 項目2
+                </label>
+                <label class="checkbox-inline">
+                    <input name="survey[]" type="checkbox" value="項目3"> 項目3
+                </label>
+                <label class="checkbox-inline">
+                    <input name="survey[]" type="checkbox" value="項目4"> 項目4
+                </label>
+            </div>
+
+        </div>
+
+        <hr>
         <div class="checkbox">
             <label style="text-indent: 1em;">
                 <input name="privacy" type="checkbox"> 個人情報の取り扱いに同意する<span class="required">（必須）</span>

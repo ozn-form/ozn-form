@@ -1,6 +1,7 @@
 {
 
   "form_name": "sample1",
+  "form_root": "http://localhost:8080/document/sample_form/index.php",
 
   "pages": {
 
@@ -34,15 +35,26 @@
         "address2": {
           "label": "住所２（建物名など）"
         },
-        "privacy": {
-          "label": "個人情報の取り扱い",
-          "validates": ["accepted"]
-        },
+
         "materials": {
           "label": "資料送付",
           "validates": ["required"],
           "error_messages": {
             "required": "資料送付の必要/不必要を選択してください"
+          }
+        },
+        "survey[]": {
+          "label": "アンケート",
+          "validates": ["required"],
+          "error_messages": {
+            "required": "どれか１つ回答をお願いします"
+          }
+        },
+        "privacy": {
+          "label": "個人情報の取り扱い",
+          "validates": ["required"],
+          "error_messages": {
+            "required": "個人情報の取り扱いに同意願います"
           }
         }
       }
