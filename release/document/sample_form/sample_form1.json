@@ -39,15 +39,38 @@
         "materials": {
           "label": "資料送付",
           "validates": ["required"],
+          "error_message_position": ".materials",
+          "error_message_template": "<div class=\"col-sm-12\"><% messages %></div>",
           "error_messages": {
-            "required": "資料送付の必要/不必要を選択してください"
+            "required": "送付する資料を選んでください"
           }
         },
+
+        "shipping-zip-code1": {
+          "label": "送付先 郵便番号（３桁）",
+          "validates": ["required"],
+          "error_message_position": ".shipping-zip-area",
+          "error_message_template": "<div class=\"col-sm-12\"><% messages %></div>"
+        },
+        "shipping-zip-code2": {
+          "label": "送付先 郵便番号（４桁）",
+          "validates": ["required"],
+          "error_message_position": ".shipping-zip-area",
+          "error_message_template": "<div class=\"col-sm-12\"><% messages %></div>"
+        },
+        "shipping-address1": {
+          "label": "送付先 住所１（番地まで）",
+          "validates": ["required"]
+        },
+        "shipping-address2": {
+          "label": "送付先 住所２（建物名など）"
+        },
+
         "survey[]": {
           "label": "アンケート",
           "validates": ["required"],
           "error_message_position": ".surveys",
-          "error_message_template": "<div class=\"col-sm-12\"><% messages %></div>",
+          "error_message_template": "<div class=\"col-sm-12\"><div class=\"alert alert-danger\"><% messages %></div></div>",
           "error_messages": {
             "required": "どれか１つ回答をお願いします"
           }

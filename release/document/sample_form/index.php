@@ -122,29 +122,52 @@
         <div class="row">
             <div class="form-group col-sm-3 col-xs-6">
                 <label for="zip-code">郵便番号<span class="required">（必須）</span></label>
-                <input type="text" name="zip-code" id="zip-code" class="form-control" placeholder="例）432-3332">
+                <input type="text" name="zip-code" id="zip-code" class="form-control" placeholder="例）432-3332" data-oznform-zip="addr1">
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-sm-7">
                 <label for="address1">住所１（番地まで）<span class="required">（必須）</span></label>
-                <input type="text" name="address1" id="address1" class="form-control" placeholder="例）愛知県名古屋市中村区11-1">
+                <input type="text" name="address1" id="address1" class="form-control" data-oznform-address="addr1" placeholder="例）愛知県名古屋市中村区11-1">
             </div>
             <div class="form-group col-sm-5">
                 <label for="address2">住所２（建物名など）</label>
                 <input type="text" name="address2" id="address2" class="form-control" placeholder="例）第一ビル 5F">
             </div>
         </div>
-        
+
+        <hr>
+
         <div class="row">
-            <div class="form-group col-sm-4">
+            <div class="form-group col-sm-4 materials">
                 <label for="materials">資料送付<span class="required">（必須）</span></label>
                 <select name="materials" id="materials" class="form-control">
                     <option value="">選択してください</option>
-                    <option value="必要">必要</option>
-                    <option value="不要">不要</option>
+                    <option value="資料A">資料A</option>
+                    <option value="資料B">資料B</option>
+                    <option value="資料C">資料C</option>
                 </select>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="form-group col-sm-12 col-xs-12 form-inline shipping-zip-area">
+                <label for="shipping-zip-code1">郵便番号<span class="required">（必須）</span></label><br>
+                <input type="text" name="shipping-zip-code1" id="shipping-zip-code1" class="form-control" placeholder="例）432" data-oznform-zip="address2"> -
+                <input type="text" name="shipping-zip-code2" id="shipping-zip-code2" class="form-control" placeholder="例）3332" data-oznform-zip="address2">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-sm-7">
+                <label for="address1">住所１（番地まで）<span class="required">（必須）</span></label>
+                <input type="text" name="shipping-address1" id="shipping-address1" class="form-control" data-oznform-address="address2" placeholder="例）愛知県名古屋市中村区11-1">
+            </div>
+            <div class="form-group col-sm-5">
+                <label for="address2">住所２（建物名など）</label>
+                <input type="text" name="shipping-address2" id="shipping-address2" class="form-control" placeholder="例）第一ビル 5F">
             </div>
         </div>
 

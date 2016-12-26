@@ -1,5 +1,7 @@
 <?php namespace OznForm;
 
+require_once dirname(__FILE__) . '/vendor/autoload.php';
+
 require_once dirname(__FILE__) . '/lib/MailSender.class.php';
 require_once dirname(__FILE__) . '/lib/FormConfig.class.php';
 require_once dirname(__FILE__) . '/lib/FormError.class.php';
@@ -48,6 +50,12 @@ if($forms) {
     $forms_json = '{}';
 }
 
+$page_role_scripts = '';
+
+if($page_role == 'form') {
+    $page_role_scripts .= '<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>';
+}
+
 // <head>に出力するscriptタグを設定
 $ozn_form_scripts = <<<HTML
 
@@ -57,6 +65,7 @@ $ozn_form_scripts = <<<HTML
         OznForm.vurl  = "$document_path/ozn-form-validation.php";
         OznForm.forms = $forms_json;
     </script>
+    $page_role_scripts
     <script src="$document_path/js/ozn-form-init.js"></script>
 
 HTML;

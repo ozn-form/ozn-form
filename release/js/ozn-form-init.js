@@ -12,6 +12,7 @@ jQuery(function ($) {
         })
     });
 
+    // 送信時の入力値検証
     $('form').submit(function () {
 
         var is_valid = true;
@@ -29,6 +30,55 @@ jQuery(function ($) {
 
         return is_valid;
     });
+
+    /**
+     * ajaxzip3 の適用
+     *
+     * data-oznform-zip="keyword" 郵便番号フィールドの指定
+     * data-oznform-pref="keyword" 都道府県入力フィールドの指定
+     * data-oznform-address="keyword" 住所入力フィールドの指定
+     *
+     * ※ keyword を同じにすることにより各フィールドの関連付けを行う
+     * ※ 都道府県入力フィールドが存在しない場合には、住所入力フィールドに全ての住所を入力する
+     */
+    (function () {
+
+        // フォームキーワードを抽出して複数フォームの住所補完に対応
+        var keywords = [];
+
+        $('input[data-oznform-zip]').each(function () {
+           keywords.push($(this).data('oznformZip'))
+        });
+
+        if(keywords.length > 0) {
+
+            $.each($.unique(keywords), function () {
+                var keyword = this;
+
+                var $zip_fields = $('input[data-oznform-zip="'+keyword+'"]');
+                var pref_elem_name = $('input[data-oznform-pref="'+keyword+'"]').attr('name');
+                var addr_elem_name = $('input[data-oznform-address="'+keyword+'"]').attr('name');
+
+                if(!pref_elem_name) {pref_elem_name = addr_elem_name;}
+
+                if($zip_fields.length == 1) {
+                    $zip_fields.on('keyup', function () {
+                        AjaxZip3.zip2addr(this, '', pref_elem_name, addr_elem_name);
+                    });
+                } else {
+                    $($zip_fields[1]).on('keyup', function () {
+                        AjaxZip3.zip2addr($($zip_fields[0]).attr('name'), $($zip_fields[1]).attr('name'), pref_elem_name, addr_elem_name);
+                    });
+                }
+
+
+
+                // console.log(keyword, $zip_fields, pref_elem_name, addr_elem_name);
+
+            });
+        }
+    }());
+
 
     /**
      * フォーム入力値検証
