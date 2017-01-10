@@ -25,8 +25,16 @@ gulp | [http://gulpjs.com/](http://gulpjs.com/)
 account: oznform@gmail.com  
 password: nNeT7FYANyWtDX
 
-## ファイル構成
 
+## テスト実行について
+
+1. PHPビルドインサーバー起動（ドキュメントルートはreleaseディレクトリ）  
+/usr/bin/php -S localhost:8080 -t /path/to/ozn-form/release/
+
+2.ブラウザで下記URLにアクセス  
+http://localhost:8080/document/sample_form/index.php
+
+## ファイル構成（下記は旧構成、後で更新します…）
 
 |ディレクトリ構成|説明|
 |---------------|----|
