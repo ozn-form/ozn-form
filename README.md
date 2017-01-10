@@ -11,11 +11,22 @@
 
 ### PHP
 PHPMailer - メール送信 | [https://github.com/PHPMailer/PHPMailer](https://github.com/PHPMailer/PHPMailer)  
-Valitron - 入力値検証 | [https://github.com/vlucas/valitron](https://github.com/vlucas/valitron)
+Valitron - 入力値検証 | [https://github.com/vlucas/valitron](https://github.com/vlucas/valitron)  
+oauth2-client - OAuth接続クライアント | [https://github.com/thephpleague/oauth2-client](https://github.com/thephpleague/oauth2-client)  
+oauth2-google - Google XOAuth接続クライアント | [https://github.com/thephpleague/oauth2-google](https://github.com/thephpleague/oauth2-google)  
 
 ### フロントエンド
 gulp | [http://gulpjs.com/](http://gulpjs.com/)
+
+
+## 認証情報
+### テスト送信用Googleアカウント
+
+account: oznform@gmail.com  
+password: nNeT7FYANyWtDX
+
 ## ファイル構成
+
 
 |ディレクトリ構成|説明|
 |---------------|----|
