@@ -33,7 +33,7 @@ class FormConfig
     }
 
     /**
-     * 設定ファイルの検証を行う
+     * ToDo: 設定ファイルの検証を行う メソッド実装
      */
     public function verifyConfig()
     {
@@ -41,20 +41,80 @@ class FormConfig
     }
 
 
-
+    /**
+     * フォーム名を返す
+     *
+     * @return string <フォーム名>
+     */
     public function formName()
     {
         return $this->config_raw['form_name'];
     }
 
+    public function formRoot()
+    {
+        return $this->config_raw['form_root'];
+    }
+
+    /**
+     * ページの役割を返す
+     * @note
+     *  form    : フォーム入力ページ
+     *  confirm : 入力内容確認ページ
+     *  mailsend : メール送信処理（＆完了画面）
+     *
+     * @param $page_name
+     *
+     * @return string <ページの役割名>
+     */
     public function pageRole($page_name)
     {
         return $this->config_raw['pages'][$page_name]['role'];
     }
 
+    /**
+     * ページのフォーム情報を返す
+     *
+     * @param $page_name
+     *
+     * @return mixed
+     */
     public function pageForms($page_name)
     {
         return $this->config_raw['pages'][$page_name]['forms'];
+    }
+
+    public function prevPageName($page_name) {
+
+        $prev_key = false;
+
+        foreach ($this->config_raw['pages'] as $key => $page) {
+            if($page_name == $key) {break;}
+            $prev_key = $key;
+        }
+
+        return $prev_key;
+    }
+
+    public function prevPageForms($page_name)
+    {
+
+        $prev_page = $this->prevPageName($page_name);
+
+        if($prev_page && isset($this->config_raw['pages'][$prev_page]['forms'])) {
+            return $this->config_raw['pages'][$prev_page]['forms'];
+        } else {
+            return array();
+        }
+
+
+
+    }
+
+
+    public function mail()
+    {
+        return $this->config_raw['mail'];
     }
 
 

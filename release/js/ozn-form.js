@@ -1,5 +1,7 @@
 jQuery(function ($) {
 
+    OznForm.utilities.setSessionData(OznForm.page_data);
+
     // リアルタイム入力値検証
     $.each(Object.keys(OznForm.forms), function () {
 
@@ -13,23 +15,32 @@ jQuery(function ($) {
     });
 
     // 送信時の入力値検証
-    $('form').submit(function () {
+    $('form').submit(validateAllForms);
 
-        var is_valid = true;
+    // ToDo: 未検証フォームがなかった場合どうなるかテストする
+    function validateAllForms() {
+
+        var $this = $(this);
+        var ajax_validations = [];
 
         $.each(Object.keys(OznForm.forms), function () {
             var form_name = this;
             var $form_el  = $('[name="'+form_name+'"]');
 
-            if(! $form_el.hasClass('ozn-form-valid') && OznForm.forms[form_name]['validates']) {
-                if(!validFormValue(form_name, OznForm.forms[form_name])) {
-                    is_valid = false;
-                }
+            if((! $form_el.hasClass('ozn-form-valid')) && OznForm.forms[form_name]['validates']) {
+                ajax_validations.push(validFormValue(form_name, OznForm.forms[form_name]));
             }
         });
 
-        return is_valid;
-    });
+        // 可変数のDeferredを並列実行させる
+        $.when.apply($, ajax_validations)
+            .done(function() {
+                $this.off('submit', validateAllForms);
+                $this.submit();
+            });
+
+        return false;
+    }
 
     /**
      * ajaxzip3 の適用
@@ -70,11 +81,6 @@ jQuery(function ($) {
                         AjaxZip3.zip2addr($($zip_fields[0]).attr('name'), $($zip_fields[1]).attr('name'), pref_elem_name, addr_elem_name);
                     });
                 }
-
-
-
-                // console.log(keyword, $zip_fields, pref_elem_name, addr_elem_name);
-
             });
         }
     }());
@@ -86,6 +92,8 @@ jQuery(function ($) {
      * @param form_config
      */
     function validFormValue(form_name, form_config) {
+
+        var dInner = new $.Deferred;
 
         var $form_el = $('[name="'+form_name+'"]');
 
@@ -101,9 +109,15 @@ jQuery(function ($) {
             post_data.value = $form_el.filter(':checked').val();
         }
 
-        var is_valid = false;
+        $.ajax(
+            {
+                type: 'post',
+                url: OznForm.vurl,
+                data: post_data,
+                timeout: 10000
+            }
 
-        $.post(OznForm.vurl, post_data, function (data) {
+        ).done(function (data) {
 
             var response = $.parseJSON(data);
 
@@ -111,11 +125,11 @@ jQuery(function ($) {
 
             if(response.valid) {
 
-                is_valid = true;
-
                 $form_el
                     .removeClass('ozn-form-invalid')
                     .addClass('ozn-form-valid');
+
+                dInner.resolve();
 
             } else {
                 $form_el
@@ -123,11 +137,16 @@ jQuery(function ($) {
                     .addClass('ozn-form-invalid');
 
                 apendErrorMessages($form_el, response.errors[form_name], form_config);
+
+                dInner.reject();
             }
+        })
+
+        .fail(function () {
+            dInner.reject();
         });
 
-        return is_valid;
-
+        return dInner.promise();
     }
 
     /**

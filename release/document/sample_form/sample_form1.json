@@ -1,7 +1,22 @@
 {
 
   "form_name": "sample1",
-  "form_root": "http://localhost:8080/document/sample_form/index.php",
+  "form_root": "/document/sample_form/index.php",
+
+  "mail": {
+
+    "auto_reply": false,
+
+    "send_by": "Gmail SMTP",
+
+    "admin_mail_to": "oznform+admin_mail@gmail.com",
+    "from_name": "OznFormテスト送信者",
+    "from_address": "oznform@gmail.com",
+
+    "customer_address_form_name": "email",
+
+    "redirect_to": ""
+  },
 
   "pages": {
 
@@ -22,7 +37,8 @@
           "validates": ["required"]
         },
         "customer_kana": {
-          "label": "ふりがな"
+          "label": "ふりがな",
+          "validates": ["kanaOnly"]
         },
         "zip-code": {
           "label": "郵便番号",
@@ -34,6 +50,16 @@
         },
         "address2": {
           "label": "住所２（建物名など）"
+        },
+
+        "tel": {
+          "label": "電話番号",
+          "validates": ["tel"]
+        },
+
+        "email": {
+          "label": "メールアドレス",
+          "validates": ["required", "email"]
         },
 
         "materials": {
@@ -87,6 +113,10 @@
 
     "confirm": {
       "role": "confirm"
+    },
+
+    "complete": {
+      "role": "mailsend"
     }
   }
 }

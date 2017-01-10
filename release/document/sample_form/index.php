@@ -12,12 +12,11 @@
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>OznFrom - サンプルフォーム</title>
+    <title>Ozn-Form - サンプルフォーム</title>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -47,7 +46,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">OznFrom</a>
+            <a class="navbar-brand" href="#">Ozn-Form</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -65,47 +64,48 @@
         <h1>お問い合わせ</h1>
     </div>
 
-    <div class="row">
-
-        <div class="col-sm-4">
-            <div class="radio-inline">
-                <label>
-                    <input type="radio" name="title" id="title1" value="業務内容について" checked>
-                    業務内容について
-                </label>
-            </div>
-        </div>
-
-        <div class="col-sm-4">
-            <div class="radio-inline">
-                <label>
-                    <input type="radio" name="title" id="title2" value="採用について">
-                    採用について
-                </label>
-            </div>
-        </div>
-
-        <div class="col-sm-4">
-            <div class="radio-inline">
-                <label>
-                    <input type="radio" name="title" id="title3" value="その他">
-                    その他
-                </label>
-            </div>
-        </div>
-    </div>
-
-
-    <hr>
-
-    <div class="form-group">
-        <label for="mail_body">お問い合わせ詳細<span class="required">（必須）</span></label>
-        <textarea name="mail_body" id="mail_body" cols="30" rows="10" class="form-control"></textarea>
-    </div>
-
-    <hr>
-
     <form action="confirm.php" method="post">
+
+        <div class="row">
+
+            <div class="col-sm-4">
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="title" id="title1" value="業務内容について" checked>
+                        業務内容について
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="title" id="title2" value="採用について">
+                        採用について
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="title" id="title3" value="その他">
+                        その他
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+        <hr>
+
+        <div class="form-group">
+            <label for="mail_body">お問い合わせ詳細<span class="required">（必須）</span></label>
+            <textarea name="mail_body" id="mail_body" cols="30" rows="10" class="form-control"></textarea>
+        </div>
+
+        <hr>
+
         <div class="row">
 
             <div class="form-group col-sm-5">
@@ -134,6 +134,20 @@
             <div class="form-group col-sm-5">
                 <label for="address2">住所２（建物名など）</label>
                 <input type="text" name="address2" id="address2" class="form-control" placeholder="例）第一ビル 5F">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-sm-4">
+                <label for="tel">電話番号</label>
+                <input type="text" name="tel" id="tel" class="form-control" placeholder="例）1333-31-3234">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-sm-8">
+                <label for="email">メールアドレス<span class="required">（必須）</span></label>
+                <input type="text" name="email" id="email" class="form-control" placeholder="例）xxxx@gmail.jp">
             </div>
         </div>
 
@@ -177,7 +191,7 @@
             <h5 class="col-sm-12">アンケート<span class="required">（必須）</span></h5>
             <div class="col-sm-12 surveys" style="text-indent: 0.5em;">
                 <label class="checkbox-inline">
-                    <input name="survey[]" type="checkbox" value="項目1"> 項目1
+                    <input name="survey[]" type="checkbox" value="<b>項目1"> 項目1
                 </label>
                 <label class="checkbox-inline">
                     <input name="survey[]" type="checkbox" value="項目2"> 項目2

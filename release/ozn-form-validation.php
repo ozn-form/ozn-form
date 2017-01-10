@@ -1,6 +1,8 @@
 <?php namespace OznForm;
 
-require dirname(__FILE__) . '/vendor/autoload.php';
+require_once dirname(__FILE__) . '/vendor/autoload.php';
+
+require_once dirname(__FILE__) . '/lib/custom_validation_rules.php';
 
 // エラーメッセージの設定
 use Valitron\Validator as V;
