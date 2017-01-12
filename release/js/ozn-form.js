@@ -2,6 +2,9 @@ jQuery(function ($) {
 
     OznForm.utilities.setSessionData(OznForm.page_data);
 
+    // エンターキー押下時の送信を無効化する
+    OznForm.utilities.disableEnterKeySubmit();
+
     // リアルタイム入力値検証
     $.each(Object.keys(OznForm.forms), function () {
 

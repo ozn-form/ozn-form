@@ -91,5 +91,19 @@ window.OznForm.utilities = {
                 return String.fromCharCode(tmpStr.charCodeAt(0) - 0xFEE0);
             }
         );
+    },
+
+    /**
+     * input 要素でエンター押下時に送信を無効にする
+     */
+
+    disableEnterKeySubmit: function () {
+        $("input").on("keydown", function(e) {
+            if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
+                return false;
+            } else {
+                return true;
+            }
+        });
     }
 };
