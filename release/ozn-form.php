@@ -12,7 +12,7 @@ require_once dirname(__FILE__) . '/lib/FormError.class.php';
 require_once dirname(__FILE__) . '/lib/FormSession.class.php';
 
 
-$is_debug = true;
+$is_debug = FALSE;
 
 
 /**
@@ -62,27 +62,47 @@ if($page_role == 'form') {
     $session->savePostData($page_name, $config);
 
     // 出力JSタグの定義
-    $forms_json = json_encode($config->pageForms($page_name));
+    $forms_json     = json_encode($config->pageForms($page_name));
     $form_data_json = json_encode($session->getPageData($page_name));
 
-    $ozn_form_scripts = <<<HTML
 
-        <script type="application/javascript">
-            OznForm = {};
-            OznForm.page_role = "$page_role";
-            OznForm.page_data = $form_data_json;
-            OznForm.vurl      = "$document_path/ozn-form-validation.php";
-            OznForm.forms     = $forms_json;
-        </script>
-        <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
-        <script src="$document_path/js/utilities.js"></script>
-        <script src="$document_path/js/ozn-form.js"></script>
-HTML;
+    $ozn_form_javascript = array();
+
+    $ozn_form_javascript[] = '<script type="application/javascript">';
+    $ozn_form_javascript[] = '  OznForm = {};';
+    $ozn_form_javascript[] = '  OznForm.page_role = "'.$page_role.'";';
+    $ozn_form_javascript[] = '  OznForm.page_data = '.$form_data_json.';';
+    $ozn_form_javascript[] = '  OznForm.vurl      = "'.$document_path.'/ozn-form-validation.php";';
+    $ozn_form_javascript[] = '  OznForm.forms     = '.$forms_json.';';
+    $ozn_form_javascript[] = '</script>';
+
+    if($config->ajaxZipOption()) {
+        $ozn_form_javascript[] = '<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>';
+    }
+
+    if($config->jqueryUIOption()) {
+        $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jquery-ui.min.js"></script>';
+        $ozn_form_javascript[] = '<script src="'.$document_path.'/js/datepicker-ja.js"></script>';
+    }
+
+    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/utilities.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/ozn-form.js"></script>';
+
+    $ozn_form_javascript = join("\n", $ozn_form_javascript);
+
+
 
     // 出力CSSタグの定義
-    $ozn_form_styles = <<<HTML
-        <link rel="stylesheet" href="$document_path/css/ozn-form-style.css">
-HTML;
+    $ozn_form_styles = array();
+
+    if($config->jqueryUIOption()) {
+        $ozn_form_styles[] = '<link rel="stylesheet" href="'.$document_path.'/css/jquery-ui.min.css">';
+    }
+
+    $ozn_form_styles[] = '<link rel="stylesheet" href="'.$document_path.'/css/ozn-form-style.css">';
+
+    $ozn_form_styles = join("\n", $ozn_form_styles);
+
 
 
 /**
@@ -97,23 +117,20 @@ HTML;
     // 出力JSタグの定義
     $form_data_json = json_encode($session->getAllPageData());
 
-    $ozn_form_scripts = <<<HTML
+    $ozn_form_javascript = array();
 
-        <script type="application/javascript">
-            OznForm = {};
-            OznForm.page_role = "$page_role";
-            OznForm.page_data = $form_data_json;
-        </script>
-        <script src="$document_path/js/utilities.js"></script>
-        <script src="$document_path/js/ozn-form-confirm.js"></script>
-HTML;
+    $ozn_form_javascript[] = '<script type="application/javascript">';
+    $ozn_form_javascript[] = '  OznForm = {};';
+    $ozn_form_javascript[] = '  OznForm.page_role = "'.$page_role.'";';
+    $ozn_form_javascript[] = '  OznForm.page_data = '.$form_data_json.';';
+    $ozn_form_javascript[] = '</script>';
+    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/utilities.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/ozn-form-confirm.js"></script>';
+
+    $ozn_form_javascript = join("\n", $ozn_form_javascript);
 
     // 出力CSSタグの定義
-    $ozn_form_styles = <<<HTML
-        <link rel="stylesheet" href="$document_path/css/ozn-form-style.css">
-HTML;
-
-
+    $ozn_form_styles = '<link rel="stylesheet" href="'.$document_path.'/css/ozn-form-style.css">';
 
 /**
  * メール送信ページでの処理

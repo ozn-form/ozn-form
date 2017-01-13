@@ -5,6 +5,12 @@ jQuery(function ($) {
     // エンターキー押下時の送信を無効化する
     OznForm.utilities.disableEnterKeySubmit();
 
+    // Datepickerを適用する
+    $('[data-of_datepicker]').each(function () {
+       $(this).datepicker();
+    });
+
+
     // リアルタイム入力値検証
     $.each(Object.keys(OznForm.forms), function () {
 

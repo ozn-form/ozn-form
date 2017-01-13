@@ -72,6 +72,10 @@
           }
         },
 
+        "shipping-date": {
+          "label": "希望配送日"
+        },
+
         "shipping-zip-code1": {
           "label": "送付先 郵便番号（３桁）",
           "validates": ["required"],

@@ -22,11 +22,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <?php echo $ozn_form_styles; ?>
 
-    <link rel="stylesheet" href="../css/sample_form_style.css">
+    <link rel="stylesheet" href="/document/css/sample_form_style.css">
 
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <?php echo $ozn_form_scripts; ?>
+    <?php echo $ozn_form_javascript; ?>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -162,6 +162,10 @@
                     <option value="資料B">資料B</option>
                     <option value="資料C">資料C</option>
                 </select>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="shipping-date">希望配送日</label>
+                <input type="text" name="shipping-date" id="shipping-date" class="form-control" data-of_datepicker = true>
             </div>
         </div>
 

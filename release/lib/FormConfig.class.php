@@ -51,6 +51,10 @@ class FormConfig
         return $this->config_raw['form_name'];
     }
 
+    /**
+     * フォーム初期ページのパスを返す
+     * @return mixed
+     */
     public function formRoot()
     {
         return $this->config_raw['form_root'];
@@ -84,6 +88,7 @@ class FormConfig
         return $this->config_raw['pages'][$page_name]['forms'];
     }
 
+
     public function prevPageName($page_name) {
 
         $prev_key = false;
@@ -106,9 +111,6 @@ class FormConfig
         } else {
             return array();
         }
-
-
-
     }
 
 
@@ -117,5 +119,28 @@ class FormConfig
         return $this->config_raw['mail'];
     }
 
+    /**
+     * jQueryUIが有効か確認
+     * @return bool
+     */
+    public function jqueryUIOption() {
+        if(isset($this->config_raw['jquery-ui']) && $this->config_raw['jquery-ui'] === false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * AjaxZip が有効か確認
+     * @return bool
+     */
+    public function ajaxZipOption() {
+        if(isset($this->config_raw['ajaxzip']) && $this->config_raw['ajaxzip'] === false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
 }
