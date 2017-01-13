@@ -11,11 +11,33 @@
 
 ### PHP
 PHPMailer - メール送信 | [https://github.com/PHPMailer/PHPMailer](https://github.com/PHPMailer/PHPMailer)  
-Valitron - 入力値検証 | [https://github.com/vlucas/valitron](https://github.com/vlucas/valitron)
+Valitron - 入力値検証 | [https://github.com/vlucas/valitron](https://github.com/vlucas/valitron)  
+oauth2-client - OAuth接続クライアント | [https://github.com/thephpleague/oauth2-client](https://github.com/thephpleague/oauth2-client)  
+oauth2-google - Google XOAuth接続クライアント | [https://github.com/thephpleague/oauth2-google](https://github.com/thephpleague/oauth2-google)  
 
 ### フロントエンド
 gulp | [http://gulpjs.com/](http://gulpjs.com/)
-## ファイル構成
+
+
+## 認証情報
+### テスト送信用Googleアカウント
+
+account: oznform@gmail.com  
+password: nNeT7FYANyWtDX
+
+
+## テスト実行について
+
+1. PHPビルドインサーバー起動（ドキュメントルートはreleaseディレクトリ）  
+/usr/bin/php -S localhost:8080 -t /path/to/ozn-form/release/
+
+2. ブラウザで下記URLにアクセス  
+http://localhost:8080/document/sample_form/index.php
+
+
+サンプルフォームは テスト送信用Googleアカウント のSMTP接続で送信しています。
+
+## ファイル構成（下記は旧構成、後で更新します…）
 
 |ディレクトリ構成|説明|
 |---------------|----|
