@@ -145,11 +145,18 @@ if($page_role == 'form') {
 
         // 管理者宛メール送信
 
+        $additional = array();
+
+        $additional[] = '';
+        $additional[] = '- - - - - - - - - - - - - - - - - - - - - - - - -';
+        $additional[] = '送信元エージェント：' . $_SERVER['HTTP_USER_AGENT'];
+        $additional[] = '送信日時：' . date('Y年m月d日 H:i:s');
+
         $mailer->setEnvelope(
             $mail['send_by'],
             '', $mail['admin_mail_to'],
             $mail['from_name'], $mail['from_address'],
-            $admin_mail_title, $admin_mail_body
+            $admin_mail_title, $admin_mail_body . join("\n", $additional)
         );
 
         switch ($mail['send_by']) {
