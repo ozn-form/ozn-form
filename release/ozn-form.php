@@ -196,6 +196,14 @@ if($page_role == 'form') {
 
         }
 
+
+        // リダイレクト先が設定されている場合はリダイレクトして終了
+        if(isset($mail['redirect_to']) && $mail['redirect_to'] != '') {
+            header("Location: {$mail['redirect_to']}");
+            exit();
+        }
+
+
     } else {
         header("Location: {$config->formRoot()}");
         exit();
@@ -205,43 +213,3 @@ if($page_role == 'form') {
     if($is_debug) {
         var_dump('セッション内容', $_SESSION);
     }
-
-
-function setPostData($post, $forms)
-{
-    global $session, $config, $page_name;
-
-    // POSTデータがない場合は処理終了
-    if(empty($_POST)) {return true;}
-
-    // フォーム設定に送信値の検証
-    $v = new \Valitron\Validator($post);
-
-    foreach ($forms as $form_name => $form_config) {
-
-        if(!isset($form_config['validates'])) {continue;}
-
-        $form_name = str_replace('[]', '', $form_name);
-
-        foreach ($form_config['validates'] as $validate) {
-            if (isset($form_config['error_messages']) && isset($form_config['error_messages'][$validate])) {
-                $v->rule($validate, $form_name)->message($form_config['error_messages'][$validate]);
-            } else {
-                $v->rule($validate, $form_name)->label($form_config['label']);
-            }
-        }
-    }
-
-    if($v->validate()) {
-        // 送信値をセッションに保存する
-        $session->savePostData($config->prevPageName($page_name), $_POST, $config->prevPageForms($page_name));
-
-        return true;
-    } else {
-        var_dump($v->errors());
-
-        return false;
-    }
-
-
-}
