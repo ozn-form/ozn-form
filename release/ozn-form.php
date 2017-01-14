@@ -109,7 +109,7 @@ if($page_role == 'form') {
         $ozn_form_styles[] = '<link rel="stylesheet" href="'.$document_path.'/css/jquery-ui.min.css">';
     }
 
-    $ozn_form_styles[] = '<link rel="stylesheet" href="'.$document_path.'/css/ozn-form-style.css">';
+    $ozn_form_styles[] = '<link rel="stylesheet" href="'.$document_path.'/css/ozn-form.min.css">';
 
     $ozn_form_styles = join("\n", $ozn_form_styles);
 
@@ -140,7 +140,7 @@ if($page_role == 'form') {
     $ozn_form_javascript = join("\n", $ozn_form_javascript);
 
     // 出力CSSタグの定義
-    $ozn_form_styles = '<link rel="stylesheet" href="'.$document_path.'/css/ozn-form-style.css">';
+    $ozn_form_styles = '<link rel="stylesheet" href="'.$document_path.'/css/ozn-form.min.css">';
 
 /**
  * メール送信ページでの処理
