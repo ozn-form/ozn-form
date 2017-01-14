@@ -188,4 +188,36 @@ class MailSender {
         $this->send();
     }
 
+
+    /**
+     * メールテンプレート中のタグを入力値で置換
+     */
+    public function replaceMailTemplateTags($page_data, $template)
+    {
+
+        // テンプレートタグ置換
+        foreach ($page_data as $key => $v) {
+            if(is_array($v)) {$v = join('、', $v);}
+            $key = preg_quote($key);
+            $template = preg_replace("/<%\s*$key\s*%>/", $v, $template);
+        }
+
+        // if文処理
+        $template = preg_replace_callback(
+            "/<%%\s*if\.(.+?)\s*%%>(.+)<%%\s*endif\s*%%>(\n{0,1})/",
+            function($matches) {
+
+                global $page_data;
+
+                if($page_data[$matches[1]]) {
+                    return $matches[2].$matches[3];
+                }
+            },
+            $template);
+
+
+
+        return $template;
+    }
+
 }

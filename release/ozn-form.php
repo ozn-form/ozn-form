@@ -152,9 +152,9 @@ if($page_role == 'form') {
 
         $mail   = $config->mail();
         $mailer = new MailSender();
+        $page_data = $session->getAllPageData(FALSE);
 
         // 管理者宛メール送信
-
         $additional = array();
 
         $additional[] = '';
@@ -162,11 +162,16 @@ if($page_role == 'form') {
         $additional[] = '送信元エージェント：' . $_SERVER['HTTP_USER_AGENT'];
         $additional[] = '送信日時：' . date('Y年m月d日 H:i:s');
 
+        // テンプレートタグ置換
+        $admin_mail_title = $mailer->replaceMailTemplateTags($page_data, $admin_mail_title);
+        $admin_mail_body  = $mailer->replaceMailTemplateTags($page_data, $admin_mail_body . join("\n", $additional));
+
+
         $mailer->setEnvelope(
             $mail['send_by'],
             '', $mail['admin_mail_to'],
             $mail['from_name'], $mail['from_address'],
-            $admin_mail_title, $admin_mail_body . join("\n", $additional)
+            $admin_mail_title, $admin_mail_body
         );
 
         switch ($mail['send_by']) {
@@ -184,6 +189,9 @@ if($page_role == 'form') {
 
         // 自動返信メールが有効の時は送信
         if($mail['auto_reply']) {
+
+            $customer_mail_title = $mailer->replaceMailTemplateTags($page_data, $customer_mail_title);
+            $customer_mail_body  = $mailer->replaceMailTemplateTags($page_data, $customer_mail_body);
 
             $mailer->setEnvelope(
                 $mail['send_by'],
@@ -203,7 +211,6 @@ if($page_role == 'form') {
                     $mailer->sendGmailSMTPWithOAuth($gmail_user, $oauth_id, $oauth_secret, $oauth_refresh_token);
                     break;
             }
-
         }
 
 

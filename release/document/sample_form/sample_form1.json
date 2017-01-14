@@ -9,7 +9,7 @@
 
   "mail": {
 
-    "auto_reply": false,
+    "auto_reply": true,
 
     "send_by": "Gmail SMTP",
 

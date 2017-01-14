@@ -42,12 +42,26 @@ $gmail_password = "nNeT7FYANyWtDX";
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // 管理者宛メールタイトル
-$admin_mail_title = 'webより問い合わせがありました';
+$admin_mail_title = 'web：<% customer_name %> 様より、お問い合わせがありました';
 
 // 管理者宛メールテンプレート
 $admin_mail_body = <<< TEXT
 
-    テストメールです
+Webフォームにて <% customer_name %> 様よりお問合せがありました。
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+お名前： <% customer_name %>
+<%% if.customer_kana %%>よみがな： <% customer_kana %><%% endif %%>
+ご住所： 〒<% zip-code %> <% address1 %> <% address2 %>
+<%% if.tel %%>電話番号： <% tel %><%% endif %%>
+メールアドレス： <% email %>
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+資料送付： <% materials %>
+配送希望日： <% shipping-date %>
+送付先ご住所： 〒<% shipping-zip-code1 %>-<% shipping-zip-code2 %> <% shipping-address1 %> <% shipping-address2 %>
+
+アンケート： <% survey[] %>
 
 TEXT;
 
@@ -56,12 +70,27 @@ TEXT;
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // 自動返信メールタイトル
-$customer_mail_title = 'お問合せありがとうございます';
+$customer_mail_title = '<% customer_name %>さま、お問合せありがとうございます';
 
 // 自動返信メールテンプレート
 $customer_mail_body = <<< TEXT
 
-    テストメールです
+下記の通り、承りました。お問合せありがとうございました。
+2〜3営業日以内にお返事いたします。
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+お名前： <% customer_name %>
+<%% if.customer_kana %%>よみがな： <% customer_kana %><%% endif %%>
+ご住所： 〒<% zip-code %> <% address1 %> <% address2 %>
+<%% if.tel %%>電話番号： <% tel %><%% endif %%>
+メールアドレス： <% email %>
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+資料送付： <% materials %>
+配送希望日： <% shipping-date %>
+送付先ご住所： 〒<% shipping-zip-code1 %>-<% shipping-zip-code2 %> <% shipping-address1 %> <% shipping-address2 %>
+
+アンケート： <% survey[] %>
 
 TEXT;
 
