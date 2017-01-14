@@ -10,11 +10,10 @@ jQuery(function ($) {
         $(window).on('beforeunload', showUnloadMessage);
     }
 
+    // ページ離脱時にアラートを表示する
     function showUnloadMessage() {
         return OznForm.unload_message;
     }
-
-
 
     // Datepickerを適用する
     $('[data-of_datepicker]').each(function () {
