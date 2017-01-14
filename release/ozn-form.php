@@ -12,9 +12,6 @@ require_once dirname(__FILE__) . '/lib/FormError.class.php';
 require_once dirname(__FILE__) . '/lib/FormSession.class.php';
 
 
-$is_debug = FALSE;
-
-
 /**
  * 初期処理
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -26,6 +23,14 @@ if(!isset($config_path)) {
 }
 
 $config = new FormConfig($config_path);
+
+
+/**
+ * デバッグフラグ
+ * ・セッション内容の画面表示
+ * ・ページ離脱時のアラート抑止
+ */
+$is_debug = $config->is_debug();
 
 
 /**
@@ -74,6 +79,11 @@ if($page_role == 'form') {
     $ozn_form_javascript[] = '  OznForm.page_data = '.$form_data_json.';';
     $ozn_form_javascript[] = '  OznForm.vurl      = "'.$document_path.'/ozn-form-validation.php";';
     $ozn_form_javascript[] = '  OznForm.forms     = '.$forms_json.';';
+
+    if($config->unload_message() && $is_debug === FALSE) {
+        $ozn_form_javascript[] = '  OznForm.unload_message = '.$config->unload_message().';';
+    }
+
     $ozn_form_javascript[] = '</script>';
 
     if($config->ajaxZipOption()) {

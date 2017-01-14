@@ -40,6 +40,19 @@ class FormConfig
 
     }
 
+    /**
+     * デバッグフラグを返す
+     *
+     * @return bool
+     */
+    public function is_debug() {
+        if(isset($this->config_raw['is_debug']) && $this->config_raw['is_debug'] === true) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
 
     /**
      * フォーム名を返す
@@ -74,6 +87,22 @@ class FormConfig
     public function pageRole($page_name)
     {
         return $this->config_raw['pages'][$page_name]['role'];
+    }
+
+    /**
+     * ページ離脱時のアラートメッセージ
+     *
+     * @note IE/Edge以外はブラウザデフォルトメッセージ（仕様）となる模様
+     *
+     * @return string|bool <設定時JSON(unicodeエンコード済み値)として、未設定の時はFalseを返す>
+     */
+    public function unload_message() {
+
+        if(isset($this->config_raw['unload_message']) && $this->config_raw['unload_message'] != '') {
+            return json_encode($this->config_raw['unload_message']);
+        } else {
+            return false;
+        }
     }
 
     /**

@@ -5,11 +5,21 @@ jQuery(function ($) {
     // エンターキー押下時の送信を無効化する
     OznForm.utilities.disableEnterKeySubmit();
 
+    // 離脱アラートを表示（送信時は解除するため関連実装あり）
+    if(OznForm.unload_message) {
+        $(window).on('beforeunload', showUnloadMessage);
+    }
+
+    function showUnloadMessage() {
+        return OznForm.unload_message;
+    }
+
+
+
     // Datepickerを適用する
     $('[data-of_datepicker]').each(function () {
        $(this).datepicker();
     });
-
 
     // リアルタイム入力値検証
     $.each(Object.keys(OznForm.forms), function () {
@@ -45,6 +55,7 @@ jQuery(function ($) {
         $.when.apply($, ajax_validations)
             .done(function() {
                 $this.off('submit', validateAllForms);
+                $(window).off('beforeunload', showUnloadMessage);
                 $this.submit();
             });
 
