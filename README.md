@@ -16,7 +16,10 @@ oauth2-client - OAuth接続クライアント | [https://github.com/thephpleague
 oauth2-google - Google XOAuth接続クライアント | [https://github.com/thephpleague/oauth2-google](https://github.com/thephpleague/oauth2-google)  
 
 ### フロントエンド
-gulp | [http://gulpjs.com/](http://gulpjs.com/)
+gulp | http://gulpjs.com/
+
+ajaxzip3 - 郵便番号住所検索 | https://github.com/ajaxzip3/ajaxzip3.github.io  
+autokana - ふりがな自動挿入 | https://github.com/harisenbon/autokana
 
 
 ## 認証情報
@@ -42,15 +45,16 @@ http://localhost:8080/document/sample_form/index.php
 |ディレクトリ構成|説明|
 |---------------|----|
 |ozn-form | プロジェクトルート|
-|├ document | ドキュメント用ディレクトリ| 
-|├ release | 配布用コード ディレクトリ|
+|├ assets | 変換前のSassソースなどの置き場所| 
+|├ release | OznForm 実行ファイル群|
+|│ ├ document | ドキュメント。フォーム実行時には不要|
 |│ ├ lib | OznFrom ライブラリ用ディレクトリ|
 |│ ├ js | OznForm Javascript ディレクトリ|
 |│ ├ css | OznForm StyleSheet ディレクトリ|
 |│ ├ vendor | Comporser ライブラリ ディレクトリ|  
 |│ ├ index.html | ダミーインデックス|
-|│ └ ozn-form.php | OznForm 実行ファイル（インクルード用）|
-|├ node_modules | Node.js ライブラリ用ディレクトリ|
+|│ └ ozn-form.php | OznForm 実行ファイル|
+|├ node_modules | Node.js ライブラリ用ディレクトリ（リポジトリには含めていない）|
 
 
 ## 使い方
