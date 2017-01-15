@@ -142,7 +142,7 @@ jQuery(function ($) {
 
 
     /**
-     * suggest.js の適用
+     * domain_suggest.js の適用
      */
     (function () {
 

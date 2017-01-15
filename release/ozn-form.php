@@ -96,7 +96,7 @@ if($page_role == 'form') {
     }
 
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jquery.autoKana.js"></script>';
-    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/suggest.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/domain_suggest.js"></script>';
 
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/utilities.js"></script>';
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/ozn-form.js"></script>';
