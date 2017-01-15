@@ -114,7 +114,15 @@ Suggest.Local.prototype = {
     if (text == '' || text == null) return;
 
     this.hookBeforeSearch(text);
-    var resultList = this._search(text);
+
+    var atmarkIndex = text.indexOf('@');
+    var resultList = [];
+
+    if(atmarkIndex !== -1) {
+        var suggestText = text.substr(atmarkIndex + 1);
+        resultList = this._search(suggestText);
+    }
+
     if (resultList.length != 0) this.createSuggestArea(resultList);
   },
 
@@ -188,7 +196,9 @@ Suggest.Local.prototype = {
   },
 
   setInputText: function(text) {
-    this.input.value = text;
+    var currentText = this.getInputText();
+    var preText = currentText.substr(0, currentText.indexOf('@'));
+    this.input.value = preText + '@' + text;
   },
 
   // key event

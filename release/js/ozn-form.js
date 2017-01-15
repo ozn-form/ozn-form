@@ -148,13 +148,32 @@ jQuery(function ($) {
 
         var $target = $('[data-domein-suggest="true"]');
 
+        // ブラウザの autocomplete 機能をOFF
         $target.attr('autocomplete', 'off');
+
+        // サジェストリスト用の要素を用意
         $target.after('<div id="oznform-suggest" style="display:none;"></div>');
 
         new Suggest.Local(
-            $target.get(0),    // 入力のエレメントID
-            "oznform-suggest", // 補完候補を表示するエリアのID
-            ['@gmail.com', '@yahoo.co.jp'],      // 補完候補の検索対象となる配列
+            $target.get(0),
+            "oznform-suggest",
+            [
+                'gmail.com',
+                'yahoo.co.jp',
+                'hotmail.com',
+                'ezweb.ne.jp',
+                'docomo.ne.jp',
+                'i.softbank.jp',
+                'softbank.ne.jp',
+                'vodafone.ne.jp',
+                'disney.ne.jp',
+                'emnet.ne.jp',
+                'ymobile.ne.jp',
+                'ymobile1.ne.jp',
+                'y-mobile.ne.jp',
+                'pdx.ne.jp',
+                'willcom.com'
+            ],
             {dispMax: 10}); // オプション
     }());
 
