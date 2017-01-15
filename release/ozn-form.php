@@ -95,6 +95,8 @@ if($page_role == 'form') {
         $ozn_form_javascript[] = '<script src="'.$document_path.'/js/datepicker-ja.js"></script>';
     }
 
+    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jquery.autoKana.js"></script>';
+
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/utilities.js"></script>';
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/ozn-form.js"></script>';
 

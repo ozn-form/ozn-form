@@ -106,6 +106,40 @@ jQuery(function ($) {
 
 
     /**
+     * autoruby.js の適用
+     *
+     * data-autoruby="keyword" ふりがな自動入力する元の要素指定
+     * data-autoruby-hiragana="keyword" ふりがな入力する要素の指定
+     * data-autoruby-katakana="keyword" フリガナ入力する要素の指定
+     *
+     * ※ keyword を同じにすることにより各フィールドの関連付けを行う
+     */
+
+    (function () {
+
+        // フォームキーワードを抽出して複数フォームの住所補完に対応
+        var keywords = [];
+
+        $('input[data-autoruby]').each(function () {
+            keywords.push($(this).data('autoruby'));
+
+            $.each(keywords, function () {
+               var keyword = this;
+
+                var $hiragana_ruby = $('input[data-autoruby-hiragana="'+keyword+'"]');
+                var $katakana_ruby = $('input[data-autoruby-katakana="'+keyword+'"]');
+
+                if($hiragana_ruby.length == 1) {
+                    $.fn.autoKana('input[data-autoruby="'+keyword+'"]', 'input[data-autoruby-hiragana="'+keyword+'"]');
+                } else if($katakana_ruby.length = 1) {
+                    $.fn.autoKana('input[data-autoruby="'+keyword+'"]', 'input[data-autoruby-katakana="'+keyword+'"]', {katakana:true});
+                }
+            });
+        });
+    }());
+
+
+    /**
      * フォーム入力値検証
      * @param form_name
      * @param form_config

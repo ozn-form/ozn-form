@@ -110,11 +110,11 @@
 
             <div class="form-group col-sm-5">
                 <label for="customer_name">お名前<span class="required">（必須）</span></label>
-                <input type="text" name="customer_name" class="form-control" id="customer_name" placeholder="例）田中 一郎">
+                <input type="text" name="customer_name" class="form-control" id="customer_name" data-autoruby="customer_name" placeholder="例）田中 一郎">
             </div>
             <div class="form-group col-sm-5">
                 <label for="customer_kana">ふりがな</label>
-                <input type="text" name="customer_kana" class="form-control" id="customer_kana" placeholder="例）たなか いちろう">
+                <input type="text" name="customer_kana" class="form-control" id="customer_kana" data-autoruby-katakana="customer_name" placeholder="例）たなか いちろう">
             </div>
 
         </div>
