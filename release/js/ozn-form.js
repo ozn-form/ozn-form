@@ -15,6 +15,8 @@ jQuery(function ($) {
         return OznForm.unload_message;
     }
 
+
+
     // Datepickerを適用する
     $('[data-of_datepicker]').each(function () {
        $(this).datepicker();
@@ -137,6 +139,26 @@ jQuery(function ($) {
             });
         });
     }());
+
+
+    /**
+     * suggest.js の適用
+     */
+    (function () {
+
+        var $target = $('[data-domein-suggest="true"]');
+
+        $target.attr('autocomplete', 'off');
+        $target.after('<div id="oznform-suggest" style="display:none;"></div>');
+
+        new Suggest.Local(
+            $target.get(0),    // 入力のエレメントID
+            "oznform-suggest", // 補完候補を表示するエリアのID
+            ['@gmail.com', '@yahoo.co.jp'],      // 補完候補の検索対象となる配列
+            {dispMax: 10}); // オプション
+    }());
+
+
 
 
     /**

@@ -147,7 +147,7 @@
         <div class="row">
             <div class="form-group col-sm-8">
                 <label for="email">メールアドレス<span class="required">（必須）</span></label>
-                <input type="text" name="email" id="email" class="form-control" placeholder="例）xxxx@gmail.jp">
+                <input data-domein-suggest="true" type="email" name="email" id="email" class="form-control" placeholder="例）xxxx@gmail.jp">
             </div>
         </div>
 
@@ -165,7 +165,7 @@
             </div>
             <div class="form-group col-sm-4">
                 <label for="shipping-date">希望配送日</label>
-                <input type="text" name="shipping-date" id="shipping-date" class="form-control" data-of_datepicker = true>
+                <input type="text" name="shipping-date" id="shipping-date" class="form-control" data-of_datepicker="true">
             </div>
         </div>
 
