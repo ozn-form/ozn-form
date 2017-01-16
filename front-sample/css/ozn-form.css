@@ -111,7 +111,11 @@ a:hover img, a:focus img { opacity: 0.8; -webkit-transition: all .3s ease-in-out
 .step_bar.step4 li { width: 25%; }
 .step_bar.step5 li { width: 20%; }
 
-input[type="radio"], input[type="checkbox"] { -webkit-transform: scale(1.5); transform: scale(1.5); margin-right: 0.5em; }
+input[type="radio"], input[type="checkbox"] { -webkit-transform: scale(1.5); transform: scale(1.5); margin-right: 3px; }
+
+.check-horizontal label { display: inline-block; margin-right: 10px; }
+
+.check-vertical label { display: block; padding: 5px 0; }
 
 .ozn-form-input { display: inline-block; border: 2px solid #999999; padding: 8px; margin-right: 5px; width: calc(100% - 30px); box-sizing: border-box; }
 .ozn-form-input.w-50 { width: 50%; }

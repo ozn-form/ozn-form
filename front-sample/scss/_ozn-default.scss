@@ -4,7 +4,20 @@ input[type="radio"] ,
 input[type="checkbox"]{
 	-webkit-transform: scale(1.5);
 	transform: scale(1.5);
-	margin-right: 0.5em;
+	margin-right: 3px;
+}
+
+.check-horizontal{
+	label{
+		display: inline-block;
+		margin-right: 10px;
+	}
+}
+.check-vertical{
+	label{
+		display: block;
+		padding: 5px 0;
+	}
 }
 
 .ozn-form-input{

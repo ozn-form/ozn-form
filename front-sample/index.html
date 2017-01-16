@@ -52,6 +52,28 @@
 
 			<table class="ozn-form-inner">
 				<tr>
+					<th>お問い合わせ種別 <span class="ozn-label optional">任意</span></th>
+					<td>
+					<div class="check-horizontal">
+						<label>
+								<input type="radio" name="title" id="title1" value="業務内容について" checked>
+								業務内容について
+						</label>
+
+						<label>
+								<input type="radio" name="title" id="title2" value="採用について">
+								採用について
+						</label>
+
+						<label>
+								<input type="radio" name="title" id="title3" value="その他">
+								その他
+						</label>
+					</div>
+
+					</td>
+				</tr>
+				<tr>
 					<th>企業名・団体名 <span class="ozn-label optional">任意</span></th>
 					<td>
 						<input type="text" name="corporate_name" class="ozn-form-input" id="corporate_name" data-autoruby="corporate_name" placeholder="例）＊＊＊株式会社" autocomplete="organization">
@@ -77,40 +99,29 @@
 						<p class="ozn-notice">日中にご連絡の取りやすい番号をご記入ください。</p>
 					</td>
 				</tr>
+				<tr>
+					<th>チェック項目 <span class="ozn-label optional">任意</span></th>
+					<td>
+					<div class="check-vertical">
+						<label>
+								<input name="survey[]" type="checkbox" value="<b>項目1"> 項目1
+						</label>
+						<label>
+								<input name="survey[]" type="checkbox" value="項目2"> 項目2
+						</label>
+						<label>
+								<input name="survey[]" type="checkbox" value="項目3"> 項目3
+						</label>
+						<label>
+								<input name="survey[]" type="checkbox" value="項目4"> 項目4
+						</label>
+					</div>
+
+					</td>
+				</tr>
 			</table>
 
-        <div class="row">
 
-            <div class="col-sm-4">
-                <div class="radio-inline">
-                    <label>
-                        <input type="radio" name="title" id="title1" value="業務内容について" checked>
-                        業務内容について
-                    </label>
-                </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="radio-inline">
-                    <label>
-                        <input type="radio" name="title" id="title2" value="採用について">
-                        採用について
-                    </label>
-                </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="radio-inline">
-                    <label>
-                        <input type="radio" name="title" id="title3" value="その他">
-                        その他
-                    </label>
-                </div>
-            </div>
-        </div>
-
-
-        <hr>
 
         <div class="form-group">
             <label for="mail_body">お問い合わせ詳細<span class="required">（必須）</span></label>
