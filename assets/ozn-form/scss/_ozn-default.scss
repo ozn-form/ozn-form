@@ -1,15 +1,48 @@
 @charset "utf-8";
 
+.label{
+	cursor: pointer;
+}
+
+input[type="radio"] ,
+input[type="checkbox"]{
+	-webkit-transform: scale(1.5);
+	transform: scale(1.5);
+	margin-right: 0.5em;
+}
+
 .ozn-form-input{
 	display: inline-block;
 	border: 2px solid #999;
-	padding: 5px 8px;
-	width: 98%;
+	padding: 8px;
+	margin-right: 5px;
+	width: calc(100% - 25px);
+	box-sizing: border-box;
 	&.w-50{
 		width: 50%;
 	}
 	&.w-30{
 		width: 30%;
+	}
+	&.pc-50{
+		@media(min-width:641px) {
+			width: 50%;
+		}
+	}
+	&.pc-30{
+		@media(min-width:641px) {
+			width: 30%;
+		}
+	}
+	&.sp-50{
+		@media(max-width:640px) {
+			width: 50%;
+		}
+	}
+	&.sp-30{
+		@media(max-width:640px) {
+			width: 30%;
+		}
 	}
 }
 
@@ -36,20 +69,36 @@
 	padding: 5px 10px;
 	margin-top: 5px;
 	font-weight: bold;
+	box-sizing: border-box;
 }
 
+.ozn-form-icon{
+
+}
+
+.icon-ok{
+	&::before{
+		color: #7BD177;
+	}
+}
+.icon-caution{
+	&::before{
+		color: #E70012;
+	}
+}
 
 
 #oznform-suggest{
   position: absolute;
   background-color: #FFFFFF;
   border: 1px solid #CCCCFF;
-  width: 200px;
+  width: 100%;
   z-index: 1000;
+	box-sizing: border-box;
 
 	div{
     display: block;
-    width: 200px;
+    width: 100%;
     overflow: hidden;
     white-space: nowrap;
 
