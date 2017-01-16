@@ -161,6 +161,7 @@ jQuery(function ($) {
                 'gmail.com',
                 'yahoo.co.jp',
                 'hotmail.com',
+                'outlook.com',
                 'ezweb.ne.jp',
                 'docomo.ne.jp',
                 'i.softbank.jp',
