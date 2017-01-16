@@ -177,6 +177,10 @@ if($page_role == 'form') {
             $admin_mail_title, $admin_mail_body
         );
 
+        // CC.BCC設定
+        $mailer->setCC($mail['admin_mail_cc']);
+        $mailer->setBCC($mail['admin_mail_bcc']);
+
         switch ($mail['send_by']) {
             case 'sendmail':
                 $mailer->sendmail();
@@ -202,6 +206,10 @@ if($page_role == 'form') {
                 $mail['from_name'], $mail['from_address'],
                 $customer_mail_title, $customer_mail_body
             );
+
+            // CC,BCC設定
+            $mailer->setCC($mail['customer_mail_cc']);
+            $mailer->setBCC($mail['customer_mail_bcc']);
 
             switch ($mail['send_by']) {
                 case 'sendmail':

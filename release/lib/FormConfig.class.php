@@ -145,7 +145,14 @@ class FormConfig
 
     public function mail()
     {
-        return $this->config_raw['mail'];
+        $mail_setting = $this->config_raw['mail'];
+
+        if( ! isset($mail_setting['admin_mail_cc'])) {$mail_setting['admin_mail_cc'] = FALSE;}
+        if( ! isset($mail_setting['admin_mail_bcc'])) {$mail_setting['admin_mail_bcc'] = FALSE;}
+        if( ! isset($mail_setting['customer_mail_cc'])) {$mail_setting['customer_mail_cc'] = FALSE;}
+        if( ! isset($mail_setting['customer_mail_bcc'])) {$mail_setting['customer_mail_bcc'] = FALSE;}
+
+        return $mail_setting;
     }
 
     /**
