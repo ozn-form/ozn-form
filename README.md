@@ -77,7 +77,8 @@ http://localhost:8080/document/sample_form/index.php
 * 必須、任意のラベル、入力例を分かりやすく
 * 入力中項目ハイライト
 * 姓名や電話の局番欄は分けない
-* レスポンシブで作成（汎用化を考えるとBootstrapなどメジャーなCSSフレームワーク使用？）
+* レスポンシブで作成 ~~（汎用化を考えるとBootstrapなどメジャーなCSSフレームワーク使用？）~~  
+フレームワークは使わずに独自でスタイル作成。ブレイクポイント640px
 * スマートフォンで使いやすいように
 * 可能なものはautocomplete属性を指定
 
@@ -112,7 +113,7 @@ http://test.event-partners.net/i.php
 
 
 ## 依頼主様のご要望
-* 以下の記事に記載のことを取り入れたい。特に2つ目のエバーライフのフォームは是非参考にしたいとのこと
+* 以下の記事に記載のことを取り入れたい。特に4つ目のエバーライフのフォームは是非参考にしたいとのこと
     * http://digitalidentity.co.jp/service/efo/points.html
     * http://www.webdesign-fan.com/cvr-form
     * https://webkikaku.co.jp/blog/htmlcss/form_js_customize/
