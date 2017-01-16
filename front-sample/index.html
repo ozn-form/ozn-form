@@ -22,38 +22,57 @@
 </head>
 <body>
 
-<header class="container">
-	<p class="site-logo"><img src="http://www.ozonenotes.jp/wp-content/themes/ozonenotes/images/header_title.png" alt=""></p>
+<header class="site-header">
+	<div class="container">
+		<p class="site-logo"><img src="http://www.ozonenotes.jp/wp-content/themes/ozonenotes/images/header_title.png" alt=""></p>
+	</div>
 </header>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Ozn-Form</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li class="active"><a href="#contact">サンプルフォーム</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</nav>
 
 <div class="container">
 
-    <div class="page-header">
-        <h1>お問い合わせ</h1>
-    </div>
+	<div class="page-header">
+		<h1>お問い合わせ</h1>
+	</div>
 
-    <form action="confirm.php" method="post">
+	<div class="step_bar_box">
+		<ol class="step_bar">
+			<li class="current">1. 項目の入力</li>
+			<li>2. 入力内容確認</li>
+			<li>3. 送信完了</li>
+		</ol>
+	</div>
+
+	<div class="ozn-form-container">
+		<form action="confirm.php" method="post">
+
+			<table class="ozn-form-inner">
+				<tr>
+					<th>企業名・団体名 <span class="ozn-label optional">任意</span></th>
+					<td>
+						<input type="text" name="corporate_name" class="ozn-form-input" id="corporate_name" data-autoruby="corporate_name" placeholder="例）＊＊＊株式会社" autocomplete="organization">
+						<p class="ozn-notice">個人のお客様の場合は入力不要です。</p>
+					</td>
+				</tr>
+				<tr>
+					<th>ご担当者様氏名 <span class="ozn-label required">必須</span></th>
+					<td>
+						<input type="text" name="customer_name" class="ozn-form-input" id="customer_name" data-autoruby="customer_name" placeholder="例）山田 太郎" autocomplete="name">
+					</td>
+				</tr>
+				<tr>
+					<th>ご担当者様フリガナ <span class="ozn-label required">必須</span></th>
+					<td>
+						<input type="text" name="customer_kana" class="ozn-form-input ozn-form-valid" id="customer_kana" data-autoruby="customer_kana" placeholder="例）ヤマダ タロウ" autocomplete=""><i class="ozn-form-icon icon-ok"></i>
+					</td>
+				</tr>
+				<tr>
+					<th>電話番号 <span class="ozn-label required">必須</span></th>
+					<td>
+						<input type="text" name="tel" id="tel" class="ozn-form-input ozn-form-invalid" placeholder="例）052-111-2222" autocomplete="tel"><i class="ozn-form-icon icon-caution"></i>
+						<p class="ozn-notice">日中にご連絡の取りやすい番号をご記入ください。</p>
+					</td>
+				</tr>
+			</table>
 
         <div class="row">
 
@@ -214,8 +233,16 @@
             </div>
         </div>
     </form>
+		</div><!-- ozn-form-inner -->
+
 
 </div>
+
+<header class="site-footer">
+	<div class="container">
+		<p class="site-copyright">&copy;2011-2017 ozone notes. All Rights Reserved.</p>
+	</div>
+</header>
 
 </body>
 </html>

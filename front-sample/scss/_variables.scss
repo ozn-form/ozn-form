@@ -1,0 +1,58 @@
+@charset "utf-8";
+// Variables
+
+$primary: #D8CFC6;
+$link: #6C9BC2;
+$sitebg: #FFFFFF;
+$font: #222222;
+
+$tableborder: #A6A6B0;
+$thbg: #EEEEEE;
+$tdbg: #FFFFFF;
+
+$input-border-default: #999999;
+$input-border-focus: #66afe9;
+$input-border-valid: #7BD177;
+$input-border-invalid: #F1161F;
+
+$optional: #5B7FF4;
+$required: #F2393D;
+
+$light-gray: #c9c9c6;
+$lighter-gray: #e9e8ea;
+$dark-gray: #979797;
+$beige: #a89d7c;
+$red: #ff0000;
+
+
+
+// screen
+$screen-sp: 480px;
+$screen-tb: 640px;
+$screen-pc: 940px;
+
+//  Mixins
+@mixin easeing {
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+@mixin vertical-justify {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+@mixin border-radius($size) {
+	-moz-border-radius: $size;
+	-webkit-border-radius: $size;
+	-o-border-radius: $size;
+	border-radius: $size;
+}
+@mixin transform($deg) {
+		-webkit-transform: skew($deg);
+		-moz-transform: skew($deg);
+		-ms-transform: skew($deg);
+		-o-transform: skew($deg);
+	transform: skew($deg);
+}
+
