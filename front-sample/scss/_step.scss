@@ -1,72 +1,77 @@
-//
-.step_bar_box{
-	text-align: center;
-	margin-bottom: 20px;
-	.step_bar {
-		list-style: none;
-		li {
-			line-height: 45px;
-			color: #a6a6a6;
-			font-size: 1.2rem;
-			text-decoration: none;
-			padding: 0 15px 0 20px;
-			background-color: #eee;
-			display: inline-block;
-			margin-bottom: 1px;
-			@media(min-width:$screen-tb+1) {
-				width: 19%;
-				font-size: 1.4rem;
-			}
-			small{
-				font-size: 1.1rem;
-			}
-			&::after {
-				position: relative;
-				display: block;
-				margin-top: -25px;
-				margin-left: auto;
-				margin-right: -25px;
-				height: 22px;
-				width: 20px;
-				content: " ";
-				@include transform(-30deg);
-				background: #eee;
-				border-right: 1px solid white;
-			}
-			&::before {
-				float: right;
-				display: block;
-				margin-bottom: -25px;
-				margin-left: auto;
-				margin-right: -25px;
-				height: 21px;
-				width: 20px;
-				content: " ";
-				@include transform(30deg);
-				background: #eee;
-				border-right: 1px solid white;
-			}
-			&:first-child {
-				padding-left: 15px;
-				@include border-radius(5px 0 0 5px);
-			}
-			&:last-child {
-				padding-left: 20px;
-				padding-right:30px;
-				@include border-radius(0 5px 5px 0);
-			}
-			&:last-child::before {border: 0;background: transparent !important;}
-			&:last-child::after {border: 0;background: transparent !important;}
-			&.current {
-				background: $link;
-				color: #FFF;
-				font-weight: bold;
-				&::before {background: $link;}
-				&::after {background: $link;}
-				&:last-child { margin-right:-35px;}
-				&:last-child::before {border: 0;background: transparent !important;}
-				&:last-child::after {border: 0;background: transparent !important;}
-			}
-		}
-	}
+.step_bar {
+  position: relative;
+  list-style: none;
+  margin: 0 0 1em;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  li {
+		font-size: 1.2rem;
+		color: $light-gray;
+    position: relative;
+    float: left;
+    display: inline-block;
+    line-height: 40px;
+    padding: 0 40px 0 20px;
+    background-color: $lighter-gray;
+    box-sizing: border-box;
+    &:before,
+    &:after {
+      position: absolute;
+      left: -15px;
+      display: block;
+      content: '';
+      background-color: $lighter-gray;
+      border-left: 4px solid #FFF;
+      width: 20px;
+      height: 20px;
+    }
+    &:after {
+      top: 0;
+      @include transform(30deg);
+    }
+    &:before {
+      bottom: 0;
+      @include transform(-30deg);
+    }
+    &:first-child {
+			border-left-radius: 4px;
+      &:before,
+      &:after {
+        content: none;
+      }
+    }
+    &:last-child {
+      border-right-radius: 4px;
+    }
+    &.current {
+      color: #FFF;
+      background-color: $link;
+      &:before,
+      &:after {
+        background-color: $link;
+      }
+    }
+  }
+  &.step2 {
+    li {
+      width: 50%;
+    }
+  }
+  &.step3 {
+    li {
+      width: 33.333%;
+    }
+  }
+  &.step4 {
+    li {
+      width: 25%;
+    }
+  }
+  &.step5 {
+    li {
+      width: 20%;
+    }
+  }
 }
