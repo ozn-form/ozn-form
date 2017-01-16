@@ -35,10 +35,10 @@ gulp.task('build_sass_dev', function () {
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(concat('ozn-form.css'))
-        .pipe(minify())
+//        .pipe(minify())
         .pipe(rename({extname: '.min.css'}))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./release/css/'))
+        .pipe(gulp.dest('./release/css/'));
 });
 
 gulp.task('build_sass_release', function () {
@@ -55,4 +55,11 @@ gulp.task('build_sass_release', function () {
         .pipe(minify())
         .pipe(rename({extname: '.min.css'}))
         .pipe(gulp.dest('./release/css/'))
+});
+
+gulp.task('copy', function() {
+  return gulp.src([
+    './assets/ozn-form/scss/font/*'
+  ])
+  .pipe(gulp.dest('./release/css/font'));
 });
