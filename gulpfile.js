@@ -8,20 +8,27 @@ var minify = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var watch = require('gulp-watch');
+var runSequence = require('run-sequence');
 
 // var browserify = require('browserify');
 // var source = require('vinyl-source-stream');
 
+gulp.task('default', function() {
+	runSequence('watch');
+});
+
 gulp.task('watch', function () {
-   gulp.watch(['./assets/ozn-form/sass/*.sass'], ['build_sass_dev'])
+//   gulp.watch(['./assets/ozn-form/sass/*.sass'], ['build_sass_dev'])
+   gulp.watch(['./assets/ozn-form/scss/*.scss'], ['build_sass_dev'])
 });
 
 
 gulp.task('build_sass_dev', function () {
 
     var files = [
-        './assets/ozn-form/sass/ozn-form.sass',
-        './assets/ozn-form/sass/base.sass'
+//        './assets/ozn-form/sass/ozn-form.sass',
+//        './assets/ozn-form/sass/base.sass'
+        './assets/ozn-form/scss/ozn-form.scss'
     ];
 
     return gulp.src(files)
@@ -37,8 +44,9 @@ gulp.task('build_sass_dev', function () {
 gulp.task('build_sass_release', function () {
 
     var files = [
-        './assets/ozn-form/sass/ozn-form.sass',
-        './assets/ozn-form/sass/base.sass'
+//        './assets/ozn-form/sass/ozn-form.sass',
+//        './assets/ozn-form/sass/base.sass'
+        './assets/ozn-form/scss/ozn-form.scss'
     ];
 
     return gulp.src(files)

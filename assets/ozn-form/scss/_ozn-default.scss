@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+.ozn-form-input{
+	
+}
+
+.ozn-form-input:focus{
+	
+}
+
+.ozn-form-valid{
+	
+	&::after{
+		content: "";
+	}
+}
+
+.ozn-form-invalid{
+	&::after{
+		content: "";
+	}
+}
+
+.ozn-form-errors{
+	
+}
+
+
+
+#oznform-suggest{
+	
+}
