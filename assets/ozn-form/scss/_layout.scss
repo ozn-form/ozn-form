@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+.container{
+	background-color: #D8CFC6;
+	@media(min-width:641px) {
+		max-width: 640px;
+		margin: 0 auto;
+	}
+}
