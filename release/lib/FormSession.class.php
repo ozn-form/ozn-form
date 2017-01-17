@@ -58,6 +58,18 @@ class FormSession
     }
 
     /**
+     * ページのリファラを保存する
+     */
+    public function saveReferer()
+    {
+        if(isset($_SERVER['HTTP_REFERER'])) {
+            $_SESSION['ref'] = $_SERVER['HTTP_REFERER'];
+        } else {
+            $_SESSION['ref'] = 'なし';
+        }
+    }
+
+    /**
      * 特定ページのセッション保存済みデータを返す
      *
      * @param $page_name
@@ -87,16 +99,18 @@ class FormSession
         $all_data = array();
 
         foreach ($_SESSION as $page_data) {
-            foreach ($page_data as $key => $value) {
+            if(is_array($page_data)) {
+                foreach ($page_data as $key => $value) {
 
-                if($sanitize) {
-                    if(is_array($value)) {
-                        $all_data[$key] = array_map(array($this, 'h'), $value);
+                    if($sanitize) {
+                        if(is_array($value)) {
+                            $all_data[$key] = array_map(array($this, 'h'), $value);
+                        } else {
+                            $all_data[$key] = $this->h($value);
+                        }
                     } else {
-                        $all_data[$key] = $this->h($value);
+                        $all_data[$key] = $value;
                     }
-                } else {
-                    $all_data[$key] = $value;
                 }
             }
         }

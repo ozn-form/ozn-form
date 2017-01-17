@@ -63,6 +63,11 @@ $session->start($config->formName());
  */
 if($page_role == 'form') {
 
+    // フォームルートの場合はリファラを保存する
+    if($is_form_root) {
+        $session->saveReferer();
+    }
+
     // POST送信時の送信値検証とセッション保存処理
     $session->savePostData($page_name, $config);
 
@@ -163,6 +168,7 @@ if($page_role == 'form') {
         $additional[] = '';
         $additional[] = '- - - - - - - - - - - - - - - - - - - - - - - - -';
         $additional[] = '送信元エージェント：' . $_SERVER['HTTP_USER_AGENT'];
+        $additional[] = '参照元：' . $_SESSION['ref'];
         $additional[] = '送信日時：' . date('Y年m月d日 H:i:s');
 
         // テンプレートタグ置換
