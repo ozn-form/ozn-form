@@ -1,71 +1,121 @@
 @charset "utf-8";
 
-input[type="radio"] ,
+input[type="radio"],
 input[type="checkbox"]{
 	-webkit-transform: scale(1.5);
 	transform: scale(1.5);
-	margin-right: 0.5em;
+	margin-right: 3px;
 }
 
-.ozn-form-input{
+.ozn-check{
+	&.horizontal{
+		label{
+			display: inline-block;
+			margin-right: 10px;
+		}
+	}
+	&.vertical{
+		label{
+			display: block;
+			padding: 5px 0;
+		}
+	}
+}
+
+.ozn-input{
 	display: inline-block;
-	border: 2px solid #999;
+	box-sizing: border-box;
+	border: 2px solid $input-border-default;
 	padding: 8px;
 	margin-right: 5px;
-	width: calc(100% - 25px);
-	box-sizing: border-box;
+	font-size: 1.6rem;
+	width: calc(100% - 30px);
 	&.w-50{
 		width: 50%;
 	}
 	&.w-30{
 		width: 30%;
 	}
+	&.sp-50{
+	}
+	&.sp-30{
+		@media(max-width:$screen-sp) {
+			width: 30%;
+		}
+	}
+	&.tb-50{
+		@media(min-width:$screen-sp+1) and (max-width:$screen-tb) {
+			width: 50%;
+		}
+	}
+	&.tb-30{
+		@media(min-width:$screen-sp+1) and (max-width:$screen-tb) {
+			width: 30%;
+		}
+	}
 	&.pc-50{
-		@media(min-width:641px) {
+		@media(min-width:$screen-tb+1) {
 			width: 50%;
 		}
 	}
 	&.pc-30{
-		@media(min-width:641px) {
-			width: 30%;
-		}
-	}
-	&.sp-50{
-		@media(max-width:640px) {
-			width: 50%;
-		}
-	}
-	&.sp-30{
-		@media(max-width:640px) {
+		@media(min-width:$screen-tb+1) {
 			width: 30%;
 		}
 	}
 }
 
-.ozn-form-input:focus{
-	border-color: #66afe9;
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+.ozn-label{
+	display: inline-block;
+	float: right;
+	color: #FFF;
+	font-size: 1.3rem;
+	font-weight: normal;
+	letter-spacing: 5px;
+	padding: 2px 5px 2px 10px;
+	@include border-radius(4px);
+	&.optional{
+		background-color: $optional;
+	}
+	&.required{
+		background-color: $required;
+	}
+}
+
+.ozn-input:focus{
+	border-color: $input-border-focus;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba($input-border-focus,.6);
 }
 
 .ozn-form-valid{
-	border-color: #7BD177;
-	background-color: #e3f6e2;
+	border-color: $input-border-valid;
+	background-color: lighten( $input-border-valid, 35% );
 }
 
 .ozn-form-invalid{
-	border-color: #E70012;
-	background-color: #FFCBCD;
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(255,1,1,.6);
+	border-color: $input-border-invalid;
+	background-color: lighten( $input-border-invalid, 45% );
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba($input-border-invalid,.6);
 }
 
 .ozn-form-errors{
-	color: #FFF;
+	color: $input-border-invalid;
+	background-color: lighten( $input-border-invalid, 40% );
 	display: block;
-	background-color: #E70012;
 	padding: 5px 10px;
-	margin-top: 5px;
+	margin: 8px 0 10px;
 	font-weight: bold;
+	font-size: 1.4rem;
 	box-sizing: border-box;
+	&::before{
+		content: "▲";
+	}
+}
+
+.ozn-notice{
+	color: $dark-gray;
+	font-size: 1.4rem;
+	margin-top: 5px;
 }
 
 .ozn-form-icon{
@@ -83,11 +133,52 @@ input[type="checkbox"]{
 	}
 }
 
+.ozn-form-buttons{
+	border: 1px solid #A6A6B0;
+	padding: 15px 20px;
+	margin: 20px auto 40px;
+	overflow: hidden;
+	text-align: center;
+}
+.ozn-btn{
+	display: inline-block;
+	text-decoration: none;
+	font-family: $font-family;
+	border: 1px solid $dark-gray;
+	border-radius: 8px;
+	&.back{
+		@include linear-gradient($btn-back);
+		color: darken($btn-back, 50%);
+		padding: 5px 20px;
+		float: left;
+	}
+	&.submit{
+		color: #FFF;
+		font-weight: bold;
+		padding: 10px 30px;
+		float: right;
+		font-size: 1.8rem;
+		@include linear-gradient($btn-submit);
+		border-color: darken($btn-submit, 10%);
+	}
+}
+@media(max-width:$screen-tb) {
+	.ozn-btn{
+		&.back{
+			float: none;
+		}
+		&.submit{
+			float: none;
+			margin-bottom: 20px;
+		}
+	}
+}
+
 
 #oznform-suggest{
   position: absolute;
   background-color: #FFFFFF;
-  border: 1px solid #CCCCFF;
+  border: 1px solid $light-gray;
   width: 100%;
   z-index: 1000;
 	box-sizing: border-box;
