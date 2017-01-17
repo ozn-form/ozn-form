@@ -117,6 +117,10 @@ class FormConfig
         return $this->config_raw['pages'][$page_name]['forms'];
     }
 
+    public function validationSetting() {
+        return $this->config_raw['validation'];
+    }
+
 
     public function prevPageName($page_name) {
 
