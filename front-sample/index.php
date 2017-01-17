@@ -2,7 +2,7 @@
 	// 設定ファイルのパスを設定
 	$config_path = dirname(__FILE__) . '/' . 'ozn-config.json';
 	// OznForm 実行ファイル読み込み
-	require '../ozn-form/ozn-form.php';
+	require '../release/ozn-form.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,7 +41,7 @@
 	</div>
 
 	<div class="ozn-form-container">
-		<form action="confirm.php" method="post">
+		<form action="./confirm.php" method="post">
 
 			<table class="ozn-form-inner">
 				<tr>
