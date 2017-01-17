@@ -71,14 +71,14 @@
 				<tr>
 					<th>企業名・団体名 <span class="ozn-label optional">任意</span></th>
 					<td>
-						<input type="text" name="corporate_name" class="ozn-input" data-autoruby="corporate_name" placeholder="例）＊＊＊株式会社" autocomplete="organization">
+						<input type="text" name="corporate_name" class="ozn-input" data-autoruby="corporate_name" placeholder="例）sample株式会社" autocomplete="organization">
 						<p class="ozn-notice">個人のお客様の場合は入力不要です。</p>
 					</td>
 				</tr>
 				<tr>
 					<th>企業名・団体名フリガナ <span class="ozn-label optional">任意</span></th>
 					<td>
-						<input type="text" name="corporate_kana" class="ozn-input" data-autoruby="corporate_kana" placeholder="例）＊＊＊株式会社" autocomplete="">
+						<input type="text" name="corporate_kana" class="ozn-input" data-autoruby-katakana="corporate_name" placeholder="例）サンプルカブシキガイシャ" autocomplete="">
 					</td>
 				</tr>
 				<tr>
@@ -90,7 +90,7 @@
 				<tr>
 					<th>ご担当者様フリガナ <span class="ozn-label required">必須</span></th>
 					<td>
-						<input type="text" name="customer_kana" class="ozn-input" id="customer_kana" data-autoruby="customer_kana" placeholder="例）ヤマダ タロウ" autocomplete="">
+						<input type="text" name="customer_kana" class="ozn-input" id="customer_kana" data-autoruby-katakana="customer_name" placeholder="例）ヤマダ タロウ" autocomplete="">
 					</td>
 				</tr>
 				<tr>
@@ -224,9 +224,11 @@
 				<tr>
 					<th>個人情報取り扱いへの同意 <span class="ozn-label required">必須</span></th>
 					<td>
-						<label>
-							<input name="privacy" type="checkbox"> 個人情報の取り扱いに同意する
-						</label>
+						<div class="ozn-check vertical">
+							<label>
+								<input name="privacy" type="checkbox"> 個人情報の取り扱いに同意する
+							</label>
+						</div>
 					</td>
 				</tr>
 			</table>
