@@ -3,7 +3,7 @@
   "is_debug": true,
 
   "form_name": "ozn-sample",
-  "form_root": "/document/sample_form/index.php",
+  "form_root": "/ozn-form-sample/front-sample/index.php",
 
   "unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。",
 
@@ -35,15 +35,19 @@
 
         "title": {
           "label": "お問い合わせ種別",
-          "validates": ["required"]
+          "validates": ["required"],
+          "error_message_position": ".title-error",
+          "error_message_template": "<p><% messages %></p>",
+          "error_messages": {
+            "required": "いずれか1つを選択してください。"
+          }
         },
         "corporate_name": {
-          "label": "企業名・団体名",
-          "validates": ["required"]
+          "label": "企業名・団体名"
         },
         "corporate_kana": {
           "label": "企業名・団体名フリガナ",
-          "validates": ["required", "kanaOnly"]
+          "validates": ["kanaOnly"]
         },
         "customer_name": {
           "label": "ご担当者様氏名",
@@ -72,15 +76,15 @@
           "label": "郵便番号",
           "validates": ["zip"]
         },
-        "prefecture": {
+        "pref": {
           "label": "都道府県",
           "validates": ["required"]
         },
-        "street-address": {
+        "address": {
           "label": "番地まで",
           "validates": ["required"]
         },
-        "address-level4": {
+        "address-building": {
           "label": "建物名等"
         },
 
@@ -88,41 +92,16 @@
           "label": "ご希望納期"
         },
 
+        "survey[]": {
+          "label": "チェック項目"
+        },
+        "materials": {
+          "label": "選択項目"
+        },
+
         "mail_body": {
           "label": "お問い合わせ詳細",
           "validates": ["required"]
-        },
-
-        "materials": {
-          "label": "資料送付",
-          "validates": ["required"],
-          "error_message_position": ".materials",
-          "error_message_template": "<div class=\"col-sm-12\"><% messages %></div>",
-          "error_messages": {
-            "required": "送付する資料を選んでください"
-          }
-        },
-
-
-
-        "shipping-zip-code1": {
-          "label": "送付先 郵便番号（３桁）",
-          "validates": ["required"],
-          "error_message_position": ".shipping-zip-area",
-          "error_message_template": "<div class=\"col-sm-12\"><% messages %></div>"
-        },
-        "shipping-zip-code2": {
-          "label": "送付先 郵便番号（４桁）",
-          "validates": ["required"],
-          "error_message_position": ".shipping-zip-area",
-          "error_message_template": "<div class=\"col-sm-12\"><% messages %></div>"
-        },
-        "shipping-address1": {
-          "label": "送付先 住所１（番地まで）",
-          "validates": ["required"]
-        },
-        "shipping-address2": {
-          "label": "送付先 住所２（建物名など）"
         },
 
         "privacy": {

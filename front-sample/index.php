@@ -1,11 +1,9 @@
-<!--
 <?php
 	// 設定ファイルのパスを設定
 	$config_path = dirname(__FILE__) . '/' . 'ozn-config.json';
 	// OznForm 実行ファイル読み込み
-	require '../../ozn-form.php';
+	require '../ozn-form/ozn-form.php';
 ?>
--->
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,20 +11,16 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width">
-<!--<?php echo $ozn_form_styles; ?>-->
+<?php echo $ozn_form_styles; ?>
 <link rel="stylesheet" href="css/ozn-form.css">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<!--<?php echo $ozn_form_javascript; ?>-->
-<!--[if lt IE 9]><script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
-
+<?php echo $ozn_form_javascript; ?>
+<!--[if lt IE 9]><script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <body>
 
-<header class="site-header">
-	<div class="container">
-		<p class="site-logo"><img src="http://www.ozonenotes.jp/wp-content/themes/ozonenotes/images/header_title.png" alt=""></p>
-	</div>
-</header>
+<?php include('./inc/header.php'); ?>
 
 <div class="container">
 
@@ -72,7 +66,7 @@
 								その他のお問い合わせ
 						</label>
 					</div>
-
+					<div class="title-error"></div>
 					</td>
 				</tr>
 				<tr>
@@ -97,7 +91,7 @@
 				<tr>
 					<th>ご担当者様フリガナ <span class="ozn-label required">必須</span></th>
 					<td>
-						<input type="text" name="customer_kana" class="ozn-input ozn-form-valid" id="customer_kana" data-autoruby="customer_kana" placeholder="例）ヤマダ タロウ" autocomplete=""><i class="ozn-form-icon icon-ok"></i>
+						<input type="text" name="customer_kana" class="ozn-input" id="customer_kana" data-autoruby="customer_kana" placeholder="例）ヤマダ タロウ" autocomplete="">
 					</td>
 				</tr>
 				<tr>
@@ -111,8 +105,7 @@
 				<tr>
 					<th>電話番号 <span class="ozn-label required">必須</span></th>
 					<td>
-						<input type="text" name="tel" class="ozn-input ozn-form-invalid" placeholder="例）052-111-2222" autocomplete="tel-national"><i class="ozn-form-icon icon-caution"></i>
-						<div class="tel ozn-form-errors">電話番号 を入力してください</div>
+						<input type="text" name="tel" class="ozn-input" placeholder="例）052-111-2222" autocomplete="tel-national">
 						<p class="ozn-notice">日中にご連絡の取りやすい番号をご記入ください。</p>
 					</td>
 				</tr>
@@ -127,96 +120,30 @@
 					<td>
 						<dl>
 							<dt>郵便番号</dt>
-							<dd><input type="text" name="zip-code" class="ozn-input pc-30 tb-50" placeholder="例）432-3332" data-oznform-zip="prefecture, street-address" autocomplete="postal-code"></dd>
+							<dd><input type="text" name="zip-code" class="ozn-input pc-30 tb-50" placeholder="例）432-3332" data-oznform-zip="address" autocomplete="postal-code"></dd>
 							<dt>都道府県</dt>
-							<dd>
-								<select name="prefecture" class="ozn-input pc-30 tb-50"  autocomplete="address-level1">
-									<option value="">お選びください</option>
-									<optgroup label="東海">
-									<option value="愛知県">愛知県</option>
-									<option value="静岡県">静岡県</option>
-									<option value="岐阜県">岐阜県</option>
-									<option value="三重県">三重県</option>
-									</optgroup>
-									<optgroup label="北海道・東北">
-									<option value="北海道">北海道</option>
-									<option value="青森県">青森県</option>
-									<option value="秋田県">秋田県</option>
-									<option value="岩手県">岩手県</option>
-									<option value="山形県">山形県</option>
-									<option value="宮城県">宮城県</option>
-									<option value="福島県">福島県</option>
-									</optgroup>
-									<optgroup label="関東">
-									<option value="茨城県">茨城県</option>
-									<option value="栃木県">栃木県</option>
-									<option value="群馬県">群馬県</option>
-									<option value="埼玉県">埼玉県</option>
-									<option value="千葉県">千葉県</option>
-									<option value="東京都">東京都</option>
-									<option value="神奈川県">神奈川県</option>
-									</optgroup>
-									<optgroup label="甲信越・北陸">
-									<option value="山梨県">山梨県</option>
-									<option value="長野県">長野県</option>
-									<option value="新潟県">新潟県</option>
-									<option value="富山県">富山県</option>
-									<option value="石川県">石川県</option>
-									<option value="福井県">福井県</option>
-									</optgroup>
-									<optgroup label="関西">
-									<option value="大阪府">大阪府</option>
-									<option value="兵庫県">兵庫県</option>
-									<option value="京都府">京都府</option>
-									<option value="滋賀県">滋賀県</option>
-									<option value="奈良県">奈良県</option>
-									<option value="和歌山県">和歌山県</option>
-									</optgroup>
-									<optgroup label="中国">
-									<option value="岡山県">岡山県</option>
-									<option value="広島県">広島県</option>
-									<option value="鳥取県">鳥取県</option>
-									<option value="島根県">島根県</option>
-									<option value="山口県">山口県</option>
-									</optgroup>
-									<optgroup label="四国">
-									<option value="徳島県">徳島県</option>
-									<option value="香川県">香川県</option>
-									<option value="愛媛県">愛媛県</option>
-									<option value="高知県">高知県</option>
-									</optgroup>
-									<optgroup label="九州・沖縄">
-									<option value="福岡県">福岡県</option>
-									<option value="佐賀県">佐賀県</option>
-									<option value="長崎県">長崎県</option>
-									<option value="熊本県">熊本県</option>
-									<option value="大分県">大分県</option>
-									<option value="宮崎県">宮崎県</option>
-									<option value="鹿児島県">鹿児島県</option>
-									<option value="沖縄県">沖縄県</option>
-									</optgroup>
-								</select>
+							<dd><input name="pref" class="ozn-input pc-30 tb-50" placeholder="例）愛知県" data-oznform-pref="address" autocomplete="address-level1">
+							<?php //include('./inc/prefecture.php'); ?>
 							</dd>
 							<dt>番地まで</dt>
-							<dd><input type="text" name="street-address" class="ozn-input" data-oznform-address="street-address" placeholder="例）名古屋市中村区＊＊町3丁目11-1" autocomplete="street-address"></dd>
+							<dd><input type="text" name="address" class="ozn-input" data-oznform-address="address" placeholder="例）名古屋市中村区＊＊町3丁目11-1" autocomplete="street-address"></dd>
 							<dt>建物名等</dt>
-							<dd><input type="text" name="address-level4" class="ozn-input" data-oznform-address="address-level4" placeholder="例）＊＊ビル 201号室" autocomplete="address-level4"></dd>
+							<dd><input type="text" name="address-building" class="ozn-input" placeholder="例）＊＊ビル 201号室" autocomplete="address-level4"></dd>
 						</dl>
 					</td>
 				</tr>
 				<tr>
 					<th>ご希望納期 <span class="ozn-label optional">任意</span></th>
 					<td>
-						<input type="text" name="shipping-date" class="ozn-input" data-of_datepicker="true">
+						<input type="text" name="shipping-date" class="ozn-input pc-50 tb-50" data-of_datepicker="true" placeholder="例）2017年10月10日"> <br class="pc-hide tb-hide">までに必要
 					</td>
 				</tr>
-				
 				<tr>
 					<th>チェック項目 <span class="ozn-label optional">任意</span></th>
 					<td>
 					<div class="ozn-check horizontal">
 						<label>
-								<input name="survey[]" type="checkbox" value="<b>項目1"> 項目1
+								<input name="survey[]" type="checkbox" value="項目1"> 項目1
 						</label>
 						<label>
 								<input name="survey[]" type="checkbox" value="項目2"> 項目2
@@ -228,7 +155,24 @@
 								<input name="survey[]" type="checkbox" value="項目4"> 項目4
 						</label>
 					</div>
-
+					</td>
+				</tr>
+				<tr>
+					<th>選択項目 <span class="ozn-label optional">任意</span></th>
+					<td>
+						<select name="materials" class="ozn-input pc-50 tb-50">
+							<option value="">お選びください</option>
+							<optgroup label="お菓子">
+							<option value="ケーキ">ケーキ</option>
+							<option value="クッキー">クッキー</option>
+							<option value="チョコレート">チョコレート</option>
+							</optgroup>
+							<optgroup label="ドリンク">
+							<option value="コーヒー">コーヒー</option>
+							<option value="紅茶">紅茶</option>
+							<option value="オレンジジュース">オレンジジュース</option>
+							</optgroup>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -291,7 +235,6 @@
 
 			<div class="ozn-form-buttons">
 				<button type="submit" class="ozn-btn submit">入力内容の確認へ進む →</button>
-				<a href="#" class="ozn-btn back">← 戻って書き直す</a>
 			</div>
 
 		</form>
@@ -300,11 +243,7 @@
 
 </div>
 
-<footer class="site-footer">
-	<div class="container">
-		<p class="site-copyright">&copy;2011-2017 ozone notes. All Rights Reserved.</p>
-	</div>
-</footer>
+<?php include('./inc/footer.php'); ?>
 
 </body>
 </html>
