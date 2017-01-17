@@ -101,7 +101,7 @@
 
         <div class="form-group">
             <label for="mail_body">お問い合わせ詳細<span class="required">（必須）</span></label>
-            <textarea name="mail_body" id="mail_body" cols="30" rows="10" class="ozn-form-input"></textarea>
+            <textarea name="mail_body" id="mail_body" cols="30" rows="10" class="form-control"></textarea>
         </div>
 
         <hr>
@@ -110,11 +110,11 @@
 
             <div class="form-group col-sm-5">
                 <label for="customer_name">お名前<span class="required">（必須）</span></label>
-                <input type="text" name="customer_name" class="ozn-form-input ozn-form-invalid" id="customer_name" data-autoruby="customer_name" placeholder="例）田中 一郎"><i class="icon-caution"></i>
+                <input type="text" name="customer_name" class="form-control" id="customer_name" data-autoruby="customer_name" placeholder="例）田中 一郎">
             </div>
             <div class="form-group col-sm-5">
                 <label for="customer_kana">ふりがな</label>
-                <input type="text" name="customer_kana" class="ozn-form-input ozn-form-valid" id="customer_kana" data-autoruby-katakana="customer_name" placeholder="例）たなか いちろう"><i class="icon-ok"></i>
+                <input type="text" name="customer_kana" class="form-control" id="customer_kana" data-autoruby-katakana="customer_name" placeholder="例）たなか いちろう">
             </div>
 
         </div>
@@ -122,32 +122,32 @@
         <div class="row">
             <div class="form-group col-sm-3 col-xs-6">
                 <label for="zip-code">郵便番号<span class="required">（必須）</span></label>
-                <input type="text" name="zip-code" id="zip-code" class="ozn-form-input" placeholder="例）432-3332" data-oznform-zip="addr1">
+                <input type="text" name="zip-code" id="zip-code" class="form-control" placeholder="例）432-3332" data-oznform-zip="addr1">
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-sm-7">
                 <label for="address1">住所１（番地まで）<span class="required">（必須）</span></label>
-                <input type="text" name="address1" id="address1" class="ozn-form-input" data-oznform-address="addr1" placeholder="例）愛知県名古屋市中村区11-1">
+                <input type="text" name="address1" id="address1" class="form-control" data-oznform-address="addr1" placeholder="例）愛知県名古屋市中村区11-1">
             </div>
             <div class="form-group col-sm-5">
                 <label for="address2">住所２（建物名など）</label>
-                <input type="text" name="address2" id="address2" class="ozn-form-input" placeholder="例）第一ビル 5F">
+                <input type="text" name="address2" id="address2" class="form-control" placeholder="例）第一ビル 5F">
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-sm-4">
                 <label for="tel">電話番号</label>
-                <input type="text" name="tel" id="tel" class="ozn-form-input" placeholder="例）1333-31-3234">
+                <input type="text" name="tel" id="tel" class="form-control" placeholder="例）1333-31-3234">
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-sm-8">
                 <label for="email">メールアドレス<span class="required">（必須）</span></label>
-                <input data-domein-suggest="true" type="text" name="email" id="email" class="ozn-form-input" placeholder="例）xxxx@gmail.jp">
+                <input data-domein-suggest="true" type="text" name="email" id="email" class="form-control" placeholder="例）xxxx@gmail.jp">
             </div>
         </div>
 
@@ -156,7 +156,7 @@
         <div class="row">
             <div class="form-group col-sm-4 materials">
                 <label for="materials">資料送付<span class="required">（必須）</span></label>
-                <select name="materials" id="materials" class="ozn-form-input form-control">
+                <select name="materials" id="materials" class="form-control">
                     <option value="">選択してください</option>
                     <option value="資料A">資料A</option>
                     <option value="資料B">資料B</option>
@@ -165,7 +165,7 @@
             </div>
             <div class="form-group col-sm-4">
                 <label for="shipping-date">希望配送日</label>
-                <input type="text" name="shipping-date" id="shipping-date" class="ozn-form-input" data-of_datepicker="true">
+                <input type="text" name="shipping-date" id="shipping-date" class="form-control" data-of_datepicker="true">
             </div>
         </div>
 
@@ -173,19 +173,19 @@
         <div class="row">
             <div class="form-group col-sm-12 col-xs-12 form-inline shipping-zip-area">
                 <label for="shipping-zip-code1">郵便番号<span class="required">（必須）</span></label><br>
-                <input type="text" name="shipping-zip-code1" id="shipping-zip-code1" class="ozn-form-input w-30" placeholder="例）432" data-oznform-zip="address2"> -
-                <input type="text" name="shipping-zip-code2" id="shipping-zip-code2" class="ozn-form-input w-30" placeholder="例）3332" data-oznform-zip="address2">
+                <input type="text" name="shipping-zip-code1" id="shipping-zip-code1" class="form-control" placeholder="例）432" data-oznform-zip="address2"> -
+                <input type="text" name="shipping-zip-code2" id="shipping-zip-code2" class="form-control" placeholder="例）3332" data-oznform-zip="address2">
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-sm-7">
                 <label for="address1">住所１（番地まで）<span class="required">（必須）</span></label>
-                <input type="text" name="shipping-address1" id="shipping-address1" class="ozn-form-input" data-oznform-address="address2" placeholder="例）愛知県名古屋市中村区11-1">
+                <input type="text" name="shipping-address1" id="shipping-address1" class="form-control" data-oznform-address="address2" placeholder="例）愛知県名古屋市中村区11-1">
             </div>
             <div class="form-group col-sm-5">
                 <label for="address2">住所２（建物名など）</label>
-                <input type="text" name="shipping-address2" id="shipping-address2" class="ozn-form-input" placeholder="例）第一ビル 5F">
+                <input type="text" name="shipping-address2" id="shipping-address2" class="form-control" placeholder="例）第一ビル 5F">
             </div>
         </div>
 
