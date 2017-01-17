@@ -15,6 +15,13 @@ class MailSender {
 
     }
 
+    /**
+     * PHPMailer 初期化
+     *
+     * @param $send_method
+     *
+     * @throws FormError
+     */
     private function init_mailer($send_method)
     {
         switch ($send_method) {
@@ -59,6 +66,34 @@ class MailSender {
 
         // Set the plain text body
         $this->phpmailer->Body = $body;
+    }
+
+    /**
+     * CCアドレスを設定する
+     *
+     * @param array $addresses <設定したいアドレス>
+     */
+    public function setCC($addresses)
+    {
+        if(is_array($addresses) && ( ! empty($addresses))) {
+            foreach ($addresses as $address) {
+                $this->phpmailer->addCC($address);
+            }
+        }
+    }
+
+    /**
+     * BCCアドレスを設定する
+     *
+     * @param array $addresses <設定したいアドレス>
+     */
+    public function setBCC($addresses)
+    {
+        if(is_array($addresses) && ( ! empty($addresses))) {
+            foreach ($addresses as $address) {
+                $this->phpmailer->addBCC($address);
+            }
+        }
     }
 
     private function send()

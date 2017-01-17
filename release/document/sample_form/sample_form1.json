@@ -14,10 +14,15 @@
     "send_by": "Gmail SMTP",
 
     "admin_mail_to": "oznform+admin_mail@gmail.com",
-    "from_name": "OznFormテスト送信者",
-    "from_address": "oznform@gmail.com",
+    "admin_mail_cc": [],
+    "admin_mail_bcc": [],
 
     "customer_address_form_name": "email",
+    "customer_mail_cc": [],
+    "customer_mail_bcc": ["oznform+for_customer@gmail.com"],
+
+    "from_name": "OznFormテスト送信者",
+    "from_address": "oznform@gmail.com",
 
     "redirect_to": ""
   },
