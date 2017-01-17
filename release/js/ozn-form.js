@@ -217,12 +217,15 @@ jQuery(function ($) {
             var response = $.parseJSON(data);
 
             $('.' + form_name.replace('[]', '') + '.ozn-form-errors').remove();
+            $('.' + form_name.replace('[]', '') + '.ozn-form-icon').remove();
 
             if(response.valid) {
 
                 $form_el
                     .removeClass('ozn-form-invalid')
                     .addClass('ozn-form-valid');
+
+                apendResultIcon($form_el, true);
 
                 dInner.resolve();
 
@@ -232,6 +235,8 @@ jQuery(function ($) {
                     .addClass('ozn-form-invalid');
 
                 apendErrorMessages($form_el, response.errors[form_name], form_config);
+                apendResultIcon($form_el, false);
+
 
                 dInner.reject();
             }
@@ -265,6 +270,21 @@ jQuery(function ($) {
         }
 
         $el.after(template.addClass(form_name.replace('[]', '') + ' ozn-form-errors'));
+    }
+
+
+    function apendResultIcon($el, is_valid) {
+
+        var form_name = $el.attr('name');
+
+        if($.inArray($el.attr('type'), ['checkbox', 'radio']) >= 0) {return 1}
+        if( ! OznForm.vsetting.show_icon) {return 1}
+
+        if(is_valid) {
+            $el.after('<i class="' + form_name.replace('[]', '') + ' ozn-form-icon icon-ok"></i>');
+        } else {
+            $el.after('<i class="' + form_name.replace('[]', '') + ' ozn-form-icon icon-caution"></i>')
+        }
     }
 
 });

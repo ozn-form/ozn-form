@@ -83,6 +83,7 @@ if($page_role == 'form') {
     $ozn_form_javascript[] = '  OznForm.page_role = "'.$page_role.'";';
     $ozn_form_javascript[] = '  OznForm.page_data = '.$form_data_json.';';
     $ozn_form_javascript[] = '  OznForm.vurl      = "'.$document_path.'/ozn-form-validation.php";';
+    $ozn_form_javascript[] = '  OznForm.vsetting  = ' . json_encode($config->validationSetting());
     $ozn_form_javascript[] = '  OznForm.forms     = '.$forms_json.';';
 
     if($config->unload_message() && $is_debug === FALSE) {
