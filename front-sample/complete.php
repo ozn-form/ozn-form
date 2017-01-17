@@ -42,12 +42,11 @@ $gmail_password = "nNeT7FYANyWtDX";
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // 管理者宛メールタイトル
-$admin_mail_title = 'web：<% title %>のお問い合わせがありました';
+$admin_mail_title = '<% title %>のお問い合わせがありました';
 
 // 管理者宛メールテンプレート
 $admin_mail_body = <<< TEXT
-
-Webフォームにて <% customer_name %> 様よりお問合せがありました。
+Webサイトから下記の内容でお問い合わせがありました。
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - -
 <%% if.title %%>お問い合わせ種別： <% title %><%% endif %%>
@@ -59,7 +58,8 @@ Webフォームにて <% customer_name %> 様よりお問合せがありまし�
 <%% if.tel %%>電話番号： <% tel %><%% endif %%>
 <%% if.tel %%>FAX番号： <% fax %><%% endif %%>
 ご住所： <%% if.zip-code %%>〒<% zip-code %><%% endif %%>
-　　　　<% address1 %> <% address2 %>
+　　　　<% pref %> <% address %><%% if.address-building %%>
+　　　　<% address-building %><%% endif %%>
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - -
 <%% if.shipping-date %%>ご希望納期： <% shipping-date %><%% endif %%>
@@ -78,8 +78,8 @@ $customer_mail_title = '＊＊＊へのお問合せありがとうございま�
 
 // 自動返信メールテンプレート
 $customer_mail_body = <<< TEXT
-
-<% customer_name %>様
+<%% if.corporate_name %%><% corporate_name %>
+<%% endif %%><% customer_name %>様
 
 ＊＊＊＊＊＊株式会社へのお問い合わせ、ありがとうございます。
 本メールはメールフォームより送信した内容をお知らせする自動返信メールです。
@@ -95,7 +95,8 @@ $customer_mail_body = <<< TEXT
 <%% if.tel %%>電話番号： <% tel %><%% endif %%>
 <%% if.tel %%>FAX番号： <% fax %><%% endif %%>
 ご住所： <%% if.zip-code %%>〒<% zip-code %><%% endif %%>
-　　　　<% address1 %> <% address2 %>
+　　　　<% pref %> <% address %><%% if.address-building %%>
+　　　　<% address-building %><%% endif %%>
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - -
 <%% if.shipping-date %%>ご希望納期： <% shipping-date %><%% endif %%>
