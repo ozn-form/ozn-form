@@ -113,18 +113,13 @@ TEL：  FAX：
 URL: http://
 =======================================================
 
-
 TEXT;
 
-
 // OznForm 実行ファイル読み込み
-require '../ozn-form/ozn-form.php';
+require '../release/ozn-form.php';
 
+//送信完了画面のHTMLをここから下に記述する。特定ページへリダイレクトする場合は省略可。
 ?>
-
-
-<!-- 送信完了画面のHTMLをここから下に記述する。特定ページへリダイレクトする場合は省略可。 -->
-
 <!DOCTYPE html>
 <html>
 <head>
