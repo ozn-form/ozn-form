@@ -40,7 +40,7 @@
 			<li>2. 内容確認</li>
 			<li>3. 送信完了</li>
 		</ol>
-		<ol class="step_bar step3 tbpc-hide">
+		<ol class="step_bar step3 tb-hide pc-hide">
 			<li class="current">入力</li>
 			<li>確認</li>
 			<li>完了</li>
@@ -52,22 +52,24 @@
 
 			<table class="ozn-form-inner">
 				<tr>
-					<th>お問い合わせ種別 <span class="ozn-label optional">任意</span></th>
+					<th>お問い合わせ種別 <span class="ozn-label required">必須</span></th>
 					<td>
-					<div class="check-horizontal">
+					<div class="ozn-check vertical">
 						<label>
-								<input type="radio" name="title" id="title1" value="業務内容について" checked>
-								業務内容について
+							<input type="radio" name="title" value="見積りのご依頼">
+								見積りのご依頼
 						</label>
-
 						<label>
-								<input type="radio" name="title" id="title2" value="採用について">
-								採用について
+							<input type="radio" name="title" value="製品に関するお問い合わせ">
+								製品に関するお問い合わせ
 						</label>
-
 						<label>
-								<input type="radio" name="title" id="title3" value="その他">
-								その他
+							<input type="radio" name="title" value="求人へのご応募">
+								求人へのご応募
+						</label>
+						<label>
+							<input type="radio" name="title" value="その他のお問い合わせ">
+								その他のお問い合わせ
 						</label>
 					</div>
 
@@ -76,33 +78,143 @@
 				<tr>
 					<th>企業名・団体名 <span class="ozn-label optional">任意</span></th>
 					<td>
-						<input type="text" name="corporate_name" class="ozn-form-input" id="corporate_name" data-autoruby="corporate_name" placeholder="例）＊＊＊株式会社" autocomplete="organization">
+						<input type="text" name="corporate_name" class="ozn-input" data-autoruby="corporate_name" placeholder="例）＊＊＊株式会社" autocomplete="organization">
 						<p class="ozn-notice">個人のお客様の場合は入力不要です。</p>
+					</td>
+				</tr>
+				<tr>
+					<th>企業名・団体名フリガナ <span class="ozn-label optional">任意</span></th>
+					<td>
+						<input type="text" name="corporate_kana" class="ozn-input" data-autoruby="corporate_kana" placeholder="例）＊＊＊株式会社" autocomplete="">
 					</td>
 				</tr>
 				<tr>
 					<th>ご担当者様氏名 <span class="ozn-label required">必須</span></th>
 					<td>
-						<input type="text" name="customer_name" class="ozn-form-input" id="customer_name" data-autoruby="customer_name" placeholder="例）山田 太郎" autocomplete="name">
+						<input type="text" name="customer_name" class="ozn-input" id="customer_name" data-autoruby="customer_name" placeholder="例）山田 太郎" autocomplete="name">
 					</td>
 				</tr>
 				<tr>
 					<th>ご担当者様フリガナ <span class="ozn-label required">必須</span></th>
 					<td>
-						<input type="text" name="customer_kana" class="ozn-form-input ozn-form-valid" id="customer_kana" data-autoruby="customer_kana" placeholder="例）ヤマダ タロウ" autocomplete=""><i class="ozn-form-icon icon-ok"></i>
+						<input type="text" name="customer_kana" class="ozn-input ozn-form-valid" id="customer_kana" data-autoruby="customer_kana" placeholder="例）ヤマダ タロウ" autocomplete=""><i class="ozn-form-icon icon-ok"></i>
+					</td>
+				</tr>
+				<tr>
+					<th>メールアドレス <span class="ozn-label required">必須</span></th>
+					<td>
+						<input data-domein-suggest="true" type="text" name="email" class="ozn-input" placeholder="例）yamada@example.com">
+						<p class="ozn-notice">なるべくPC用のメールアドレスをご記入ください。<br>
+						携帯電話のアドレスの方は、example.com ドメインからのメールを受信できるように設定お願いします。</p>
 					</td>
 				</tr>
 				<tr>
 					<th>電話番号 <span class="ozn-label required">必須</span></th>
 					<td>
-						<input type="text" name="tel" id="tel" class="ozn-form-input ozn-form-invalid" placeholder="例）052-111-2222" autocomplete="tel"><i class="ozn-form-icon icon-caution"></i>
+						<input type="text" name="tel" class="ozn-input ozn-form-invalid" placeholder="例）052-111-2222" autocomplete="tel-national"><i class="ozn-form-icon icon-caution"></i>
+						<div class="tel ozn-form-errors">電話番号 を入力してください</div>
 						<p class="ozn-notice">日中にご連絡の取りやすい番号をご記入ください。</p>
 					</td>
 				</tr>
 				<tr>
+					<th>FAX番号 <span class="ozn-label optional">任意</span></th>
+					<td>
+						<input type="text" name="fax" class="ozn-input" placeholder="例）052-111-3333" autocomplete="fax-national">
+					</td>
+				</tr>
+				<tr>
+					<th>ご住所 <span class="ozn-label required">必須</span></th>
+					<td>
+						<dl>
+							<dt>郵便番号</dt>
+							<dd><input type="text" name="zip-code" class="ozn-input pc-30 tb-50" placeholder="例）432-3332" data-oznform-zip="prefecture, street-address" autocomplete="postal-code"></dd>
+							<dt>都道府県</dt>
+							<dd>
+								<select name="prefecture" class="ozn-input pc-30 tb-50"  autocomplete="address-level1">
+									<option value="">お選びください</option>
+									<optgroup label="東海">
+									<option value="愛知県">愛知県</option>
+									<option value="静岡県">静岡県</option>
+									<option value="岐阜県">岐阜県</option>
+									<option value="三重県">三重県</option>
+									</optgroup>
+									<optgroup label="北海道・東北">
+									<option value="北海道">北海道</option>
+									<option value="青森県">青森県</option>
+									<option value="秋田県">秋田県</option>
+									<option value="岩手県">岩手県</option>
+									<option value="山形県">山形県</option>
+									<option value="宮城県">宮城県</option>
+									<option value="福島県">福島県</option>
+									</optgroup>
+									<optgroup label="関東">
+									<option value="茨城県">茨城県</option>
+									<option value="栃木県">栃木県</option>
+									<option value="群馬県">群馬県</option>
+									<option value="埼玉県">埼玉県</option>
+									<option value="千葉県">千葉県</option>
+									<option value="東京都">東京都</option>
+									<option value="神奈川県">神奈川県</option>
+									</optgroup>
+									<optgroup label="甲信越・北陸">
+									<option value="山梨県">山梨県</option>
+									<option value="長野県">長野県</option>
+									<option value="新潟県">新潟県</option>
+									<option value="富山県">富山県</option>
+									<option value="石川県">石川県</option>
+									<option value="福井県">福井県</option>
+									</optgroup>
+									<optgroup label="関西">
+									<option value="大阪府">大阪府</option>
+									<option value="兵庫県">兵庫県</option>
+									<option value="京都府">京都府</option>
+									<option value="滋賀県">滋賀県</option>
+									<option value="奈良県">奈良県</option>
+									<option value="和歌山県">和歌山県</option>
+									</optgroup>
+									<optgroup label="中国">
+									<option value="岡山県">岡山県</option>
+									<option value="広島県">広島県</option>
+									<option value="鳥取県">鳥取県</option>
+									<option value="島根県">島根県</option>
+									<option value="山口県">山口県</option>
+									</optgroup>
+									<optgroup label="四国">
+									<option value="徳島県">徳島県</option>
+									<option value="香川県">香川県</option>
+									<option value="愛媛県">愛媛県</option>
+									<option value="高知県">高知県</option>
+									</optgroup>
+									<optgroup label="九州・沖縄">
+									<option value="福岡県">福岡県</option>
+									<option value="佐賀県">佐賀県</option>
+									<option value="長崎県">長崎県</option>
+									<option value="熊本県">熊本県</option>
+									<option value="大分県">大分県</option>
+									<option value="宮崎県">宮崎県</option>
+									<option value="鹿児島県">鹿児島県</option>
+									<option value="沖縄県">沖縄県</option>
+									</optgroup>
+								</select>
+							</dd>
+							<dt>番地まで</dt>
+							<dd><input type="text" name="street-address" class="ozn-input" data-oznform-address="street-address" placeholder="例）名古屋市中村区＊＊町3丁目11-1" autocomplete="street-address"></dd>
+							<dt>建物名等</dt>
+							<dd><input type="text" name="address-level4" class="ozn-input" data-oznform-address="address-level4" placeholder="例）＊＊ビル 201号室" autocomplete="address-level4"></dd>
+						</dl>
+					</td>
+				</tr>
+				<tr>
+					<th>ご希望納期 <span class="ozn-label optional">任意</span></th>
+					<td>
+						<input type="text" name="shipping-date" class="ozn-input" data-of_datepicker="true">
+					</td>
+				</tr>
+				
+				<tr>
 					<th>チェック項目 <span class="ozn-label optional">任意</span></th>
 					<td>
-					<div class="check-vertical">
+					<div class="ozn-check horizontal">
 						<label>
 								<input name="survey[]" type="checkbox" value="<b>項目1"> 項目1
 						</label>
@@ -119,137 +231,71 @@
 
 					</td>
 				</tr>
+				<tr>
+					<th>お問い合わせ内容 <span class="ozn-label required">必須</span></th>
+					<td>
+						<textarea name="mail_body" rows="10" class="ozn-input" placeholder="例）＊＊＊＊製品の見積希望"></textarea>
+					</td>
+				</tr>
 			</table>
 
+			<div class="privacy-wrapper">
+				<h2>個人情報の取り扱いについて</h2>
+				<div class="privacy-inner">
+					<p>ozone notes（以下、当事務所）では、個人情報の保護に関する法律を遵守し、個人情報の適切な取り扱いと保護に努めます。</p>
+					<h3>個人情報の収集および利用目的</h3>
+					<p>当事務所では、個人情報の保護に関する法律に基づき、お客様およびご依頼案件に関する個人情報を、下記利用目的の達成に必要な範囲で利用いたします。</p>
+					<ul>
+					<li>Webコンテンツ制作のため</li>
+					<li>お問い合わせ等へのご返答のため</li>
+					<li>見積書・納品書・請求書等の発送のため</li>
+					<li>その他、随時お客様への連絡のため</li>
+					</ul>
+					<h3>個人情報の第三者への提供及び二次使用について</h3>
+					<p>当方では以下の場合において、お預かりした個人情報を第三者へ提供する場合があります。</p>
+					<ul>
+					<li>情報提供者本人の同意がある場合</li>
+					<li>法令に基づき公的機関から情報開示の要請があった場合</li>
+					<li>人命または財産の保護のために必要であり、直ちに本人の同意を得る事が困難である場合</li>
+					<li>お客様の商品発送を請け負う運送業者および当事務所からの委託を受けて業務を行うパートナー会社が情報を必要とする場合</li>
+					<li>ご提供者個人を特定できない状態で開示する場合</li>
+					</ul>
+					<p>上記のいずれかに該当する場合を除き、お客様の承諾無しにお預かりした個人情報を第三者に提供・開示することはございません。</p>
+					<h3>Cookie利用について</h3>
+					<p>当サイトではファーストパーティcookieにより匿名のトラフィックデータを収集しています。<br />
+					収集したデータはマーケティングやSEO等、当事務所業務の品質向上のための分析に利用いたしますが、個人を特定・識別することはいたしません。</p>
+					<h3>個人情報の安全管理について</h3>
+					<p>お客様よりお預かりした個人情報の安全管理は、合理的、組織的、物理的、人的、技術的施策を講じるとともに、当社では関連法令に準じた適切な取扱いを行うことで個人データへの不正な侵入、個人情報の紛失、改竄、漏洩等の危険防止に努めます。</p>
+					<h3>個人情報の訂正、削除について</h3>
+					<p>お客様ご本人の要請があった場合、ご本人を確認した上で個人情報の訂正、削除を適切に行います。</p>
+					<h3>プライバシーポリシーの変更について</h3>
+					<p>プライバシーポリシーの変更を行う際は、当ページへの掲載をもって公表とさせていただきます。</p>
+					<h3>個人情報保護に関するお問い合わせ</h3>
+					<p>個人情報保護に関するお問い合わせや開示、修正、削除のご依頼がある場合は、お問い合わせフォームよりご連絡ください。</p>
+					<p style="text-align: right;">2011年4月1日制定</p>
+					<p style="text-align: right;">2013年7月1日改訂</p>
+				</div>
+			</div>
+			
+			<table class="ozn-form-inner">
+				<tr>
+					<th>個人情報取り扱いへの同意 <span class="ozn-label required">必須</span></th>
+					<td>
+						<label>
+							<input name="privacy" type="checkbox"> 個人情報の取り扱いに同意する
+						</label>
+					</td>
+				</tr>
+			</table>
+			<div class="privacy-error"></div>
 
+			<div class="ozn-form-buttons">
+				<button type="submit" class="ozn-btn submit">入力内容の確認へ進む →</button>
+				<a href="#" class="ozn-btn back">← 戻って書き直す</a>
+			</div>
 
-        <div class="form-group">
-            <label for="mail_body">お問い合わせ詳細<span class="required">（必須）</span></label>
-            <textarea name="mail_body" id="mail_body" cols="30" rows="10" class="form-control"></textarea>
-        </div>
-
-        <hr>
-
-        <div class="row">
-
-            <div class="form-group col-sm-5">
-                <label for="customer_name">お名前<span class="required">（必須）</span></label>
-                <input type="text" name="customer_name" class="form-control" id="customer_name" data-autoruby="customer_name" placeholder="例）田中 一郎">
-            </div>
-            <div class="form-group col-sm-5">
-                <label for="customer_kana">ふりがな</label>
-                <input type="text" name="customer_kana" class="form-control" id="customer_kana" data-autoruby-katakana="customer_name" placeholder="例）たなか いちろう">
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="form-group col-sm-3 col-xs-6">
-                <label for="zip-code">郵便番号<span class="required">（必須）</span></label>
-                <input type="text" name="zip-code" id="zip-code" class="form-control" placeholder="例）432-3332" data-oznform-zip="addr1">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-sm-7">
-                <label for="address1">住所１（番地まで）<span class="required">（必須）</span></label>
-                <input type="text" name="address1" id="address1" class="form-control" data-oznform-address="addr1" placeholder="例）愛知県名古屋市中村区11-1">
-            </div>
-            <div class="form-group col-sm-5">
-                <label for="address2">住所２（建物名など）</label>
-                <input type="text" name="address2" id="address2" class="form-control" placeholder="例）第一ビル 5F">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-sm-4">
-                <label for="tel">電話番号</label>
-                <input type="text" name="tel" id="tel" class="form-control" placeholder="例）1333-31-3234">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-sm-8">
-                <label for="email">メールアドレス<span class="required">（必須）</span></label>
-                <input data-domein-suggest="true" type="text" name="email" id="email" class="form-control" placeholder="例）xxxx@gmail.jp">
-            </div>
-        </div>
-
-        <hr>
-
-        <div class="row">
-            <div class="form-group col-sm-4 materials">
-                <label for="materials">資料送付<span class="required">（必須）</span></label>
-                <select name="materials" id="materials" class="form-control">
-                    <option value="">選択してください</option>
-                    <option value="資料A">資料A</option>
-                    <option value="資料B">資料B</option>
-                    <option value="資料C">資料C</option>
-                </select>
-            </div>
-            <div class="form-group col-sm-4">
-                <label for="shipping-date">希望配送日</label>
-                <input type="text" name="shipping-date" id="shipping-date" class="form-control" data-of_datepicker="true">
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="form-group col-sm-12 col-xs-12 form-inline shipping-zip-area">
-                <label for="shipping-zip-code1">郵便番号<span class="required">（必須）</span></label><br>
-                <input type="text" name="shipping-zip-code1" id="shipping-zip-code1" class="form-control" placeholder="例）432" data-oznform-zip="address2"> -
-                <input type="text" name="shipping-zip-code2" id="shipping-zip-code2" class="form-control" placeholder="例）3332" data-oznform-zip="address2">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-sm-7">
-                <label for="address1">住所１（番地まで）<span class="required">（必須）</span></label>
-                <input type="text" name="shipping-address1" id="shipping-address1" class="form-control" data-oznform-address="address2" placeholder="例）愛知県名古屋市中村区11-1">
-            </div>
-            <div class="form-group col-sm-5">
-                <label for="address2">住所２（建物名など）</label>
-                <input type="text" name="shipping-address2" id="shipping-address2" class="form-control" placeholder="例）第一ビル 5F">
-            </div>
-        </div>
-
-        <hr>
-
-        <div class="row">
-            <h5 class="col-sm-12">アンケート<span class="required">（必須）</span></h5>
-            <div class="col-sm-12 surveys" style="text-indent: 0.5em;">
-                <label class="checkbox-inline">
-                    <input name="survey[]" type="checkbox" value="<b>項目1"> 項目1
-                </label>
-                <label class="checkbox-inline">
-                    <input name="survey[]" type="checkbox" value="項目2"> 項目2
-                </label>
-                <label class="checkbox-inline">
-                    <input name="survey[]" type="checkbox" value="項目3"> 項目3
-                </label>
-                <label class="checkbox-inline">
-                    <input name="survey[]" type="checkbox" value="項目4"> 項目4
-                </label>
-            </div>
-
-        </div>
-
-        <hr>
-        <div class="checkbox">
-            <label style="text-indent: 1em;">
-                <input name="privacy" type="checkbox"> 個人情報の取り扱いに同意する<span class="required">（必須）</span>
-            </label>
-        </div>
-
-        <hr>
-
-        <div class="row actions">
-            <div class="col-sm-6">
-                <button type="submit" class="btn btn-info">確認画面へ</button>
-            </div>
-        </div>
-    </form>
-		</div><!-- ozn-form-inner -->
+		</form>
+	</div><!-- ozn-form-inner -->
 
 
 </div>

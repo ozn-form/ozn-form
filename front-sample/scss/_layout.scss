@@ -12,7 +12,7 @@ html{
 body {
 	width: 100%;
 	height: 100%;
-	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	font-family: $font-family;
 	color: $font;
 	font-size: 1.6rem;
 	background-color: $sitebg;
@@ -57,6 +57,27 @@ a {
 
 .ozn-form-container{
 	padding: 30px 0;
+	p {
+		line-height: 1.6;
+	}
+	ul{
+		margin-bottom: 20px;
+		margin-left: 2rem;
+		list-style: disc;
+		li{
+			line-height: 1.6;
+			ul{
+				margin-top: 10px;
+				}
+			}
+		}
+	ol{
+		margin-bottom: 20px;
+		list-style: decimal;
+		li{
+			line-height: 1.6;
+		}
+	}
 }
 
 .ozn-form-inner{
@@ -71,12 +92,27 @@ a {
 		vertical-align: middle;
 		text-align: left;
 		box-sizing: border-box;
+		min-width: $th-min-width;
 	}
 	td{
 		background-color: $tdbg;
 		border: 1px solid $tableborder;
 		padding: 10px 10px 10px 20px;
 		box-sizing: border-box;
+	}
+	
+	dl{
+		margin-bottom: 10px;
+		dt{
+			clear: left;
+			float: left;
+			width: 20%;
+			padding: 8px 0;
+		}
+		dd{
+			margin-left: calc(21%);
+			margin-bottom: 10px;
+		}
 	}
 }
 @media(max-width:$screen-tb) {
@@ -87,6 +123,7 @@ a {
 		border-bottom: none;
 		tbody, tr, th, td{
 			display: block;
+			overflow: hidden;
 		}
 		th{
 			border-top: none;
@@ -94,27 +131,43 @@ a {
 		td{
 			border-top: none;
 		}
+		dl{
+			dt{
+				float: none;
+				width: auto;
+				padding: 5px 0;
+			}
+			dd{
+				margin-left: 0;
+			}
+		}
 	}
 }
 
+.privacy-wrapper{
+	width: 88%;
+	margin: 0 auto 20px;
+	.privacy-inner{
+		border: 1px solid $light-gray;
+		height: 150px;
+		overflow: auto;
+		padding: 20px;
+		font-size: 1.3rem;
+	}
+}
 
 .sp-hide{
 	@media(max-width:$screen-sp) {
 		display: none;
 	}
 }
-.tbsp-hide{
-	@media(max-width:$screen-sp+1) {
-		display: none;
-	}
-}
-.tbpc-hide{
-	@media(min-width:$screen-sp+1) {
+.tb-hide{
+	@media(min-width:$screen-sp+1) and (max-width:$screen-tb) {
 		display: none;
 	}
 }
 .pc-hide{
-	@media(min-width:$screen-pc+1) {
+	@media(min-width:$screen-tb+1) {
 		display: none;
 	}
 }

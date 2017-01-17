@@ -1,32 +1,35 @@
 @charset "utf-8";
 
-input[type="radio"] ,
+input[type="radio"],
 input[type="checkbox"]{
 	-webkit-transform: scale(1.5);
 	transform: scale(1.5);
 	margin-right: 3px;
 }
 
-.check-horizontal{
-	label{
-		display: inline-block;
-		margin-right: 10px;
+.ozn-check{
+	&.horizontal{
+		label{
+			display: inline-block;
+			margin-right: 10px;
+		}
 	}
-}
-.check-vertical{
-	label{
-		display: block;
-		padding: 5px 0;
+	&.vertical{
+		label{
+			display: block;
+			padding: 5px 0;
+		}
 	}
 }
 
-.ozn-form-input{
+.ozn-input{
 	display: inline-block;
+	box-sizing: border-box;
 	border: 2px solid $input-border-default;
 	padding: 8px;
 	margin-right: 5px;
+	font-size: 1.6rem;
 	width: calc(100% - 30px);
-	box-sizing: border-box;
 	&.w-50{
 		width: 50%;
 	}
@@ -34,9 +37,6 @@ input[type="checkbox"]{
 		width: 30%;
 	}
 	&.sp-50{
-		@media(max-width:$screen-sp) {
-			width: 50%;
-		}
 	}
 	&.sp-30{
 		@media(max-width:$screen-sp) {
@@ -44,12 +44,12 @@ input[type="checkbox"]{
 		}
 	}
 	&.tb-50{
-		@media(max-width:$screen-tb) {
+		@media(min-width:$screen-sp+1) and (max-width:$screen-tb) {
 			width: 50%;
 		}
 	}
 	&.tb-30{
-		@media(max-width:$screen-tb) {
+		@media(min-width:$screen-sp+1) and (max-width:$screen-tb) {
 			width: 30%;
 		}
 	}
@@ -82,7 +82,7 @@ input[type="checkbox"]{
 	}
 }
 
-.ozn-form-input:focus{
+.ozn-input:focus{
 	border-color: $input-border-focus;
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba($input-border-focus,.6);
 }
@@ -101,11 +101,15 @@ input[type="checkbox"]{
 .ozn-form-errors{
 	color: #FFF;
 	display: block;
-	background-color: #E70012;
+	background-color: $input-border-invalid;
 	padding: 5px 10px;
-	margin-top: 5px;
+	margin: 8px 0 10px;
 	font-weight: bold;
+	font-size: 1.4rem;
 	box-sizing: border-box;
+	&::before{
+		content: "▲";
+	}
 }
 
 .ozn-notice{
@@ -129,11 +133,52 @@ input[type="checkbox"]{
 	}
 }
 
+.ozn-form-buttons{
+	border: 1px solid #A6A6B0;
+	padding: 15px 20px;
+	margin: 20px auto 40px;
+	overflow: hidden;
+	text-align: center;
+}
+.ozn-btn{
+	display: inline-block;
+	text-decoration: none;
+	font-family: $font-family;
+	border: 1px solid $dark-gray;
+	border-radius: 8px;
+	&.back{
+		@include linear-gradient($btn-back);
+		color: darken($btn-back, 50%);
+		padding: 5px 20px;
+		float: left;
+	}
+	&.submit{
+		color: #FFF;
+		font-weight: bold;
+		padding: 10px 30px;
+		float: right;
+		font-size: 1.8rem;
+		@include linear-gradient($btn-submit);
+		border-color: darken($btn-submit, 10%);
+	}
+}
+@media(max-width:$screen-tb) {
+	.ozn-btn{
+		&.back{
+			float: none;
+		}
+		&.submit{
+			float: none;
+			margin-bottom: 20px;
+		}
+	}
+}
+
 
 #oznform-suggest{
   position: absolute;
   background-color: #FFFFFF;
-  border: 1px solid #CCCCFF;
+  border: 1px solid $light-gray;
   width: 100%;
   z-index: 1000;
 	box-sizing: border-box;

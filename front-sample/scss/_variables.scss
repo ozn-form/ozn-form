@@ -1,6 +1,8 @@
 @charset "utf-8";
 // Variables
 
+$font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+
 $primary: #D8CFC6;
 $link: #6C9BC2;
 $sitebg: #FFFFFF;
@@ -9,6 +11,7 @@ $font: #222222;
 $tableborder: #A6A6B0;
 $thbg: #EEEEEE;
 $tdbg: #FFFFFF;
+$th-min-width: 33%;
 
 $input-border-default: #999999;
 $input-border-focus: #66afe9;
@@ -18,12 +21,12 @@ $input-border-invalid: #F1161F;
 $optional: #5B7FF4;
 $required: #F2393D;
 
+$btn-back: #999999;
+$btn-submit: #c61316;
+
 $light-gray: #c9c9c6;
 $lighter-gray: #e9e8ea;
 $dark-gray: #979797;
-$beige: #a89d7c;
-$red: #ff0000;
-
 
 
 // screen
@@ -54,5 +57,10 @@ $screen-pc: 940px;
 		-ms-transform: skew($deg);
 		-o-transform: skew($deg);
 	transform: skew($deg);
+}
+@mixin linear-gradient($color) {
+	background-image: -moz-linear-gradient( 90deg, rgba($color,1) 0%, rgba($color,0.5) 100%);
+	background-image: -webkit-linear-gradient( 90deg, rgba($color,1) 0%, rgba($color,0.5) 100%);
+	background-image: -ms-linear-gradient( 90deg, rgba($color,1) 0%, rgba($color,0.5) 100%);
 }
 
