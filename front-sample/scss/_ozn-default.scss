@@ -99,9 +99,9 @@ input[type="checkbox"]{
 }
 
 .ozn-form-errors{
-	color: #FFF;
+	color: $input-border-invalid;
+	background-color: lighten( $input-border-invalid, 40% );
 	display: block;
-	background-color: $input-border-invalid;
 	padding: 5px 10px;
 	margin: 8px 0 10px;
 	font-weight: bold;

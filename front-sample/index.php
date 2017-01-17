@@ -97,7 +97,7 @@
 				<tr>
 					<th>メールアドレス <span class="ozn-label required">必須</span></th>
 					<td>
-						<input data-domein-suggest="true" type="text" name="email" class="ozn-input" placeholder="例）yamada@example.com">
+						<input data-domein-suggest="true" type="email" name="email" class="ozn-input" placeholder="例）yamada@example.com">
 						<p class="ozn-notice">なるべくPC用のメールアドレスをご記入ください。<br>
 						携帯電話のアドレスの方は、example.com ドメインからのメールを受信できるように設定お願いします。</p>
 					</td>
@@ -105,14 +105,14 @@
 				<tr>
 					<th>電話番号 <span class="ozn-label required">必須</span></th>
 					<td>
-						<input type="text" name="tel" class="ozn-input" placeholder="例）052-111-2222" autocomplete="tel-national">
+						<input type="tel" name="tel" class="ozn-input" style="ime-mode:inactive;" placeholder="例）052-111-2222" autocomplete="tel-national">
 						<p class="ozn-notice">日中にご連絡の取りやすい番号をご記入ください。</p>
 					</td>
 				</tr>
 				<tr>
 					<th>FAX番号 <span class="ozn-label optional">任意</span></th>
 					<td>
-						<input type="text" name="fax" class="ozn-input" placeholder="例）052-111-3333" autocomplete="fax-national">
+						<input type="tel" name="fax" class="ozn-input" style="ime-mode:inactive;" placeholder="例）052-111-3333" autocomplete="fax-national">
 					</td>
 				</tr>
 				<tr>
@@ -120,7 +120,7 @@
 					<td>
 						<dl>
 							<dt>郵便番号</dt>
-							<dd><input type="text" name="zip-code" class="ozn-input pc-30 tb-50" placeholder="例）432-3332" data-oznform-zip="address" autocomplete="postal-code"></dd>
+							<dd><input type="text" name="zip-code" class="ozn-input pc-30 tb-50" style="ime-mode:inactive;" placeholder="例）432-3332" data-oznform-zip="address" autocomplete="postal-code"></dd>
 							<dt>都道府県</dt>
 							<dd><input name="pref" class="ozn-input pc-30 tb-50" placeholder="例）愛知県" data-oznform-pref="address" autocomplete="address-level1">
 							<?php //include('./inc/prefecture.php'); ?>
