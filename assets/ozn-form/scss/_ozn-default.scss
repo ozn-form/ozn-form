@@ -8,6 +8,9 @@ input[type="checkbox"]{
 }
 
 .ozn-check{
+	width: calc(100% - 30px);
+	padding: 5px 15px;
+	box-sizing: border-box;
 	&.horizontal{
 		label{
 			display: inline-block;
