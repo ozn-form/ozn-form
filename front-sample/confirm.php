@@ -2,7 +2,7 @@
 	// 設定ファイルのパスを設定
 	$config_path = dirname(__FILE__) . '/' . 'ozn-config.json';
 	// OznForm 実行ファイル読み込み
-	require '../ozn-form/ozn-form.php';
+	require '../release/ozn-form.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -66,7 +66,7 @@
 			</tr>
 			<tr data-if="customer_kana">
 				<th>ご担当者様フリガナ <span class="ozn-label required">必須</span></th>
-				<td data-insert="corporate_kana"></td>
+				<td data-insert="customer_kana"></td>
 			</tr>
 			<tr data-if="email">
 				<th>メールアドレス <span class="ozn-label required">必須</span></th>
@@ -86,12 +86,12 @@
 					<dl>
 						<dt data-if="zip-code">郵便番号</dt>
 						<dd data-if="zip-code">〒<span data-insert="zip-code"></span></dd>
-						<dt data-if="prefecture">都道府県</dt>
-						<dd data-if="prefecture"><span data-insert="prefecture"></span></dd>
-						<dt data-if="street-address">番地まで</dt>
-						<dd><span data-insert="street-address"></span></dd>
-						<dt data-if="address-level4">建物名等</dt>
-						<dd><span data-insert="address-level4"></span></dd>
+						<dt data-if="pref">都道府県</dt>
+						<dd data-if="pref"><span data-insert="pref"></span></dd>
+						<dt data-if="address">番地まで</dt>
+						<dd><span data-insert="address"></span></dd>
+						<dt data-if="address-building">建物名等</dt>
+						<dd><span data-insert="address-building"></span></dd>
 					</dl>
 				</td>
 			</tr>
@@ -114,8 +114,8 @@
 		</table>
 
 		<div class="ozn-form-buttons">
-			<a href="./index.php" class="ozn-btn submit">この内容で送信する →</a>
-			<a href="./complete.php" class="ozn-btn back">← 戻って書き直す</a>
+			<a href="./complete.php" class="ozn-btn submit">この内容で送信する →</a>
+			<a href="./index.php" class="ozn-btn back">← 戻って書き直す</a>
 		</div>
 
 	</div><!-- ozn-form-inner -->

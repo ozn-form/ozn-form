@@ -80,6 +80,10 @@ a {
 	}
 }
 
+.ozn-form-lead{
+	margin-bottom: 20px;
+}
+
 .ozn-form-inner{
 	width: 100%;
 	margin-bottom: 20px;
@@ -139,6 +143,15 @@ a {
 			}
 			dd{
 				margin-left: 0;
+			}
+		}
+	}
+}
+.ozn-form-confirm{
+	.ozn-form-inner{
+		dl{
+			dt{
+				padding: 0;
 			}
 		}
 	}
