@@ -47,75 +47,68 @@
 			<p>下記の入力内容に間違いが無ければ、一番下の「この内容で送信する」ボタンを押し、送信を完了してください。</p>
 		</div>
 
-		<table class="ozn-form-inner">
-			<tr data-if="title">
-				<th>お問い合わせ種別 <span class="ozn-label required">必須</span></th>
-				<td data-insert="title"></td>
-			</tr>
-			<tr data-if="corporate_name">
-				<th>企業名・団体名 <span class="ozn-label optional">任意</span></th>
-				<td data-insert="corporate_name"></td>
-			</tr>
-			<tr data-if="corporate_kana">
-				<th>企業名・団体名フリガナ <span class="ozn-label optional">任意</span></th>
-				<td data-insert="corporate_kana"></td>
-			</tr>
-			<tr data-if="customer_name">
-				<th>ご担当者様氏名 <span class="ozn-label required">必須</span></th>
-				<td data-insert="customer_name"></td>
-			</tr>
-			<tr data-if="customer_kana">
-				<th>ご担当者様フリガナ <span class="ozn-label required">必須</span></th>
-				<td data-insert="customer_kana"></td>
-			</tr>
-			<tr data-if="email">
-				<th>メールアドレス <span class="ozn-label required">必須</span></th>
-				<td data-insert="email"></td>
-			</tr>
-			<tr data-if="tel">
-				<th>電話番号 <span class="ozn-label required">必須</span></th>
-				<td data-insert="tel"></td>
-			</tr>
-			<tr data-if="fax">
-				<th>FAX番号 <span class="ozn-label optional">任意</span></th>
-				<td data-insert="fax"></td>
-			</tr>
-			<tr>
-				<th>ご住所 <span class="ozn-label required">必須</span></th>
-				<td>
-					<dl>
-						<dt data-if="zip-code">郵便番号</dt>
-						<dd data-if="zip-code">〒<span data-insert="zip-code"></span></dd>
-						<dt data-if="pref">都道府県</dt>
-						<dd data-if="pref"><span data-insert="pref"></span></dd>
-						<dt data-if="address">番地まで</dt>
-						<dd><span data-insert="address"></span></dd>
-						<dt data-if="address-building">建物名等</dt>
-						<dd><span data-insert="address-building"></span></dd>
-					</dl>
-				</td>
-			</tr>
-			<tr data-if="shipping-date">
-				<th>ご希望納期 <span class="ozn-label optional">任意</span></th>
-				<td><span data-insert="shipping-date"></span> <br class="pc-hide tb-hide">までに必要</td>
-			</tr>
-			<tr data-if="survey[]">
-				<th>チェック項目 <span class="ozn-label optional">任意</span></th>
-				<td data-insert="survey[]"></td>
-			</tr>
-			<tr data-if="materials">
-				<th>選択項目 <span class="ozn-label optional">任意</span></th>
-				<td data-insert="materials"></td>
-			</tr>
-			<tr data-if="mail_body">
-				<th>お問い合わせ内容 <span class="ozn-label required">必須</span></th>
-				<td data-insert="mail_body"></td>
-			</tr>
-		</table>
+		<div class="ozn-form-inner">
+			<div class="tr" data-if="title">
+				<div class="th">お問い合わせ種別 <span class="ozn-label required">必須</span></div>
+				<div class="td" data-insert="title"></div>
+			</div>
+			<div class="tr" data-if="corporate_name">
+				<div class="th">企業名・団体名 <span class="ozn-label optional">任意</span></div>
+				<div class="td" data-insert="corporate_name"></div>
+			</div>
+			<div class="tr" data-if="corporate_kana">
+				<div class="th">企業名・団体名フリガナ <span class="ozn-label optional">任意</span></div>
+				<div class="td" data-insert="corporate_kana"></div>
+			</div>
+			<div class="tr" data-if="customer_name">
+				<div class="th">ご担当者様氏名 <span class="ozn-label required">必須</span></div>
+				<div class="td" data-insert="customer_name"></div>
+			</div>
+			<div class="tr" data-if="customer_kana">
+				<div class="th">ご担当者様フリガナ <span class="ozn-label required">必須</span></div>
+				<div class="td" data-insert="customer_kana"></div>
+			</div>
+			<div class="tr" data-if="email">
+				<div class="th">メールアドレス <span class="ozn-label required">必須</span></div>
+				<div class="td" data-insert="email"></div>
+			</div>
+			<div class="tr" data-if="tel">
+				<div class="th">電話番号 <span class="ozn-label required">必須</span></div>
+				<div class="td" data-insert="tel"></div>
+			</div>
+			<div class="tr" data-if="fax">
+				<div class="th">FAX番号 <span class="ozn-label optional">任意</span></div>
+				<div class="td" data-insert="fax"></div>
+			</div>
+			<div class="tr">
+				<div class="th">ご住所 <span class="ozn-label required">必須</span></div>
+				<div class="td">
+					<span data-if="zip-code">〒<span data-insert="zip-code"></span><br></span>
+					<span data-insert="pref"></span><span data-insert="address"></span>
+					<span data-if="address-building"><br><span data-insert="address-building"></span></span>
+				</div>
+			</div>
+			<div class="tr" data-if="shipping-date">
+				<div class="th">ご希望納期 <span class="ozn-label optional">任意</span></div>
+				<div class="td"><span data-insert="shipping-date"></span> <br class="pc-hide tb-hide">までに必要</div>
+			</div>
+			<div class="tr" data-if="survey[]">
+				<div class="th">チェック項目 <span class="ozn-label optional">任意</span></div>
+				<div class="td" data-insert="survey[]"></div>
+			</div>
+			<div class="tr" data-if="materials">
+				<div class="th">選択項目 <span class="ozn-label optional">任意</span></div>
+				<div class="td" data-insert="materials"></div>
+			</div>
+			<div class="tr" data-if="mail_body">
+				<div class="th">お問い合わせ内容 <span class="ozn-label required">必須</span></div>
+				<div class="td" data-insert="mail_body"></div>
+			</div>
+		</div>
 
 		<div class="ozn-form-buttons">
-			<a href="./complete.php" class="ozn-btn submit">この内容で送信する →</a>
-			<a href="./index.php" class="ozn-btn back">← 戻って書き直す</a>
+			<span><a href="./complete.php" class="ozn-btn submit">この内容で送信する →</a></span>
+			<span><a href="./index.php" class="ozn-btn back">← 戻って書き直す</a></span>
 		</div>
 
 	</div><!-- ozn-form-inner -->

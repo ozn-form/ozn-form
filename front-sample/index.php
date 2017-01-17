@@ -43,10 +43,10 @@
 	<div class="ozn-form-container">
 		<form action="./confirm.php" method="post">
 
-			<table class="ozn-form-inner">
-				<tr>
-					<th>お問い合わせ種別 <span class="ozn-label required">必須</span></th>
-					<td>
+			<div class="ozn-form-inner">
+				<div class="tr">
+					<div class="th">お問い合わせ種別 <span class="ozn-label required">必須</span></div>
+					<div class="td">
 					<div class="ozn-check vertical">
 						<label>
 							<input type="radio" name="title" value="見積りのご依頼">
@@ -66,57 +66,57 @@
 						</label>
 					</div>
 					<div class="title-error"></div>
-					</td>
-				</tr>
-				<tr>
-					<th>企業名・団体名 <span class="ozn-label optional">任意</span></th>
-					<td>
+					</div>
+				</div>
+				<div class="tr">
+					<div class="th">企業名・団体名 <span class="ozn-label optional">任意</span></div>
+					<div class="td">
 						<input type="text" name="corporate_name" class="ozn-input" data-autoruby="corporate_name" placeholder="例）sample株式会社" autocomplete="organization">
 						<p class="ozn-notice">個人のお客様の場合は入力不要です。</p>
-					</td>
-				</tr>
-				<tr>
-					<th>企業名・団体名フリガナ <span class="ozn-label optional">任意</span></th>
-					<td>
+					</div>
+				</div>
+				<div class="tr">
+					<div class="th">企業名・団体名フリガナ <span class="ozn-label optional">任意</span></div>
+					<div class="td">
 						<input type="text" name="corporate_kana" class="ozn-input" data-autoruby-katakana="corporate_name" placeholder="例）サンプルカブシキガイシャ" autocomplete="">
-					</td>
-				</tr>
-				<tr>
-					<th>ご担当者様氏名 <span class="ozn-label required">必須</span></th>
-					<td>
+					</div>
+				</div>
+				<div class="tr">
+					<div class="th">ご担当者様氏名 <span class="ozn-label required">必須</span></div>
+					<div class="td">
 						<input type="text" name="customer_name" class="ozn-input" id="customer_name" data-autoruby="customer_name" placeholder="例）山田 太郎" autocomplete="name">
-					</td>
-				</tr>
-				<tr>
-					<th>ご担当者様フリガナ <span class="ozn-label required">必須</span></th>
-					<td>
+					</div>
+				</div>
+				<div class="tr">
+					<div class="th">ご担当者様フリガナ <span class="ozn-label required">必須</span></div>
+					<div class="td">
 						<input type="text" name="customer_kana" class="ozn-input" id="customer_kana" data-autoruby-katakana="customer_name" placeholder="例）ヤマダ タロウ" autocomplete="">
-					</td>
-				</tr>
-				<tr>
-					<th>メールアドレス <span class="ozn-label required">必須</span></th>
-					<td>
+					</div>
+				</div>
+				<div class="tr">
+					<div class="th">メールアドレス <span class="ozn-label required">必須</span></div>
+					<div class="td">
 						<input data-domein-suggest="true" type="email" name="email" class="ozn-input" placeholder="例）yamada@example.com">
 						<p class="ozn-notice">なるべくPC用のメールアドレスをご記入ください。<br>
 						携帯電話のアドレスの方は、example.com ドメインからのメールを受信できるように設定お願いします。</p>
-					</td>
-				</tr>
-				<tr>
-					<th>電話番号 <span class="ozn-label required">必須</span></th>
-					<td>
+					</div>
+				</div>
+				<div class="tr">
+					<div class="th">電話番号 <span class="ozn-label required">必須</span></div>
+					<div class="td">
 						<input type="tel" name="tel" class="ozn-input" style="ime-mode:inactive;" placeholder="例）052-111-2222" autocomplete="tel-national">
 						<p class="ozn-notice">日中にご連絡の取りやすい番号をご記入ください。</p>
-					</td>
-				</tr>
-				<tr>
-					<th>FAX番号 <span class="ozn-label optional">任意</span></th>
-					<td>
+					</div>
+				</div>
+				<div class="tr">
+					<div class="th">FAX番号 <span class="ozn-label optional">任意</span></div>
+					<div class="td">
 						<input type="tel" name="fax" class="ozn-input" style="ime-mode:inactive;" placeholder="例）052-111-3333" autocomplete="fax-national">
-					</td>
-				</tr>
-				<tr>
-					<th>ご住所 <span class="ozn-label required">必須</span></th>
-					<td>
+					</div>
+				</div>
+				<div class="tr">
+					<div class="th">ご住所 <span class="ozn-label required">必須</span></div>
+					<div class="td">
 						<dl>
 							<dt>郵便番号</dt>
 							<dd><input type="text" name="zip-code" class="ozn-input pc-30 tb-50" style="ime-mode:inactive;" placeholder="例）432-3332" data-oznform-zip="address" autocomplete="postal-code"></dd>
@@ -129,17 +129,17 @@
 							<dt>建物名等</dt>
 							<dd><input type="text" name="address-building" class="ozn-input" placeholder="例）＊＊ビル 201号室" autocomplete="address-level4"></dd>
 						</dl>
-					</td>
-				</tr>
-				<tr>
-					<th>ご希望納期 <span class="ozn-label optional">任意</span></th>
-					<td>
+					</div>
+				</div>
+				<div class="tr">
+					<div class="th">ご希望納期 <span class="ozn-label optional">任意</span></div>
+					<div class="td">
 						<input type="text" name="shipping-date" class="ozn-input pc-50 tb-50" data-of_datepicker="true" placeholder="例）2017年10月10日"> <br class="pc-hide tb-hide">までに必要
-					</td>
-				</tr>
-				<tr>
-					<th>チェック項目 <span class="ozn-label optional">任意</span></th>
-					<td>
+					</div>
+				</div>
+				<div class="tr">
+					<div class="th">チェック項目 <span class="ozn-label optional">任意</span></div>
+					<div class="td">
 					<div class="ozn-check horizontal">
 						<label>
 								<input name="survey[]" type="checkbox" value="項目1"> 項目1
@@ -154,11 +154,11 @@
 								<input name="survey[]" type="checkbox" value="項目4"> 項目4
 						</label>
 					</div>
-					</td>
-				</tr>
-				<tr>
-					<th>選択項目 <span class="ozn-label optional">任意</span></th>
-					<td>
+					</div>
+				</div>
+				<div class="tr">
+					<div class="th">選択項目 <span class="ozn-label optional">任意</span></div>
+					<div class="td">
 						<select name="materials" class="ozn-input pc-50 tb-50">
 							<option value="">お選びください</option>
 							<optgroup label="お菓子">
@@ -172,15 +172,15 @@
 							<option value="オレンジジュース">オレンジジュース</option>
 							</optgroup>
 						</select>
-					</td>
-				</tr>
-				<tr>
-					<th>お問い合わせ内容 <span class="ozn-label required">必須</span></th>
-					<td>
+					</div>
+				</div>
+				<div class="tr">
+					<div class="th">お問い合わせ内容 <span class="ozn-label required">必須</span></div>
+					<div class="td">
 						<textarea name="mail_body" rows="10" class="ozn-input" placeholder="例）＊＊＊＊製品の見積希望"></textarea>
-					</td>
-				</tr>
-			</table>
+					</div>
+				</div>
+			</div>
 
 			<div class="privacy-wrapper">
 				<h2>個人情報の取り扱いについて</h2>
@@ -220,18 +220,18 @@
 				</div>
 			</div>
 			
-			<table class="ozn-form-inner">
-				<tr>
-					<th>個人情報取り扱いへの同意 <span class="ozn-label required">必須</span></th>
-					<td>
+			<div class="ozn-form-inner">
+				<div class="tr">
+					<div class="th">個人情報取り扱いへの同意 <span class="ozn-label required">必須</span></div>
+					<div class="td">
 						<div class="ozn-check vertical">
 							<label>
 								<input name="privacy" type="checkbox"> 個人情報の取り扱いに同意する
 							</label>
 						</div>
-					</td>
-				</tr>
-			</table>
+					</div>
+				</div>
+			</div>
 			<div class="privacy-error"></div>
 
 			<div class="ozn-form-buttons">

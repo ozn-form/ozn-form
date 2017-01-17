@@ -84,24 +84,40 @@ a {
 .ozn-form-inner{
 	width: 100%;
 	margin-bottom: 20px;
-	border: 1px solid $tableborder;
+	border-top: 1px solid $tableborder;
 	box-sizing: border-box;
-	th{
+	.th{
+		overflow: hidden;
 		background-color: $thbg;
-		border: 1px solid $tableborder;
+		border-left: 1px solid $tableborder;
+		border-right: 1px solid $tableborder;
+		border-bottom: 1px solid $tableborder;
 		padding: 10px 20px;
 		vertical-align: middle;
 		text-align: left;
 		box-sizing: border-box;
 		min-width: $th-min-width;
 	}
-	td{
+	.td{
+		overflow: hidden;
 		background-color: $tdbg;
-		border: 1px solid $tableborder;
+		border-right: 1px solid $tableborder;
+		border-bottom: 1px solid $tableborder;
 		padding: 10px 10px 10px 20px;
 		box-sizing: border-box;
 	}
-	
+	@media(min-width:$screen-tb+1) {
+		display: table;
+		.tr{
+			display: table-row;
+		}
+		.th{
+			display: table-cell;
+		}
+		.td{
+			display: table-cell;
+		}
+	}
 	dl{
 		margin-bottom: 10px;
 		dt{
@@ -118,19 +134,10 @@ a {
 }
 @media(max-width:$screen-tb) {
 	.ozn-form-inner{
-		display: block;
-		border-left: none;
-		border-right: none;
-		border-bottom: none;
-		tbody, tr, th, td{
-			display: block;
-			overflow: hidden;
-		}
-		th{
-			border-top: none;
-		}
-		td{
-			border-top: none;
+		.td{
+			border-left: 1px solid $tableborder;
+			padding-top: 20px;
+			padding-bottom: 20px;
 		}
 		dl{
 			dt{

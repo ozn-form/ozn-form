@@ -144,6 +144,11 @@ input[type="checkbox"]{
 	margin: 20px auto 40px;
 	overflow: hidden;
 	text-align: center;
+	@media(max-width:$screen-tb) {
+		span{
+			display: block;
+		}
+	}
 }
 .ozn-btn{
 	display: inline-block;
@@ -154,6 +159,7 @@ input[type="checkbox"]{
 	&.back{
 		@include linear-gradient($btn-back);
 		color: darken($btn-back, 50%);
+		font-size: 1.3rem;
 		padding: 5px 20px;
 		float: left;
 	}
@@ -177,7 +183,7 @@ input[type="checkbox"]{
 	.ozn-form-confirm{
 	.ozn-btn{
 		&.submit{
-			float: none;
+			margin-bottom: 30px;
 			}
 		}
 	}
