@@ -15,8 +15,6 @@ jQuery(function ($) {
         return OznForm.unload_message;
     }
 
-
-
     // Datepickerを適用する
     $('[data-of_datepicker]').each(function () {
        $(this).datepicker();
@@ -30,6 +28,8 @@ jQuery(function ($) {
         $('[name="'+form_name+'"]').on('blur', function () {
             if(OznForm.forms[form_name]['validates']) {
                 validFormValue(form_name, OznForm.forms[form_name]);
+            } else {
+                setVaildMark($(this));
             }
         })
     });
@@ -49,6 +49,8 @@ jQuery(function ($) {
 
             if((! $form_el.hasClass('ozn-form-valid')) && OznForm.forms[form_name]['validates']) {
                 ajax_validations.push(validFormValue(form_name, OznForm.forms[form_name]));
+            } else if( ! OznForm.forms[form_name]['validates']) {
+                setVaildMark($form_el);
             }
         });
 
@@ -235,23 +237,12 @@ jQuery(function ($) {
 
             if(response.valid) {
 
-                $form_el
-                    .removeClass('ozn-form-invalid')
-                    .addClass('ozn-form-valid');
-
-                apendResultIcon($form_el, true);
-
+                setVaildMark($form_el);
                 dInner.resolve();
 
             } else {
-                $form_el
-                    .removeClass('ozn-form-valid')
-                    .addClass('ozn-form-invalid');
 
-                apendErrorMessages($form_el, response.errors[form_name], form_config);
-                apendResultIcon($form_el, false);
-
-
+                setInvalidMark($form_el, response.errors[form_name], form_config);
                 dInner.reject();
             }
         })
@@ -261,6 +252,27 @@ jQuery(function ($) {
         });
 
         return dInner.promise();
+    }
+
+    /**
+     * フォームを検証OKの表示にする
+     * @param $form_el
+     */
+    function setVaildMark($form_el) {
+        $form_el
+            .removeClass('ozn-form-invalid')
+            .addClass('ozn-form-valid');
+
+        apendResultIcon($form_el, true);
+    }
+
+    function setInvalidMark($form_el, $error_message, form_config) {
+        $form_el
+            .removeClass('ozn-form-valid')
+            .addClass('ozn-form-invalid');
+
+        apendErrorMessages($form_el, $error_message, form_config);
+        apendResultIcon($form_el, false);
     }
 
     /**
