@@ -157,6 +157,9 @@ if($page_role == 'form') {
  */
 } else if($page_role == 'mailsend') {
 
+    // 出力CSSタグの定義
+    $ozn_form_styles = '<link rel="stylesheet" href="'.$document_path.'/css/ozn-form.min.css">';
+
     if($session->verifyFormDate()) {
 
         $mail   = $config->mail();
