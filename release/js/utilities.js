@@ -57,23 +57,7 @@ window.OznForm.utilities = {
         }
     },
 
-    /**
-     * 指定されている項目の全角英数を半角に変換する
-     * @param step
-     */
-    toHalf: function (step) {
 
-        var self = this;
-
-        $.each(mano.items[step], function (name, item) {
-            if (item.hasOwnProperty('to_half') && item.to_half) {
-                var $el = $('input[name="' + name + '"]');
-                var half = self.toHalfWidth($el.val());
-
-                $el.val(half);
-            }
-        });
-    },
 
 
     /**
@@ -91,6 +75,8 @@ window.OznForm.utilities = {
                 return String.fromCharCode(tmpStr.charCodeAt(0) - 0xFEE0);
             }
         );
+
+        return halfVal;
     },
 
     /**

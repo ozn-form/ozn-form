@@ -93,7 +93,7 @@ if($page_role == 'form') {
     $ozn_form_javascript[] = '</script>';
 
     if($config->ajaxZipOption()) {
-        $ozn_form_javascript[] = '<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>';
+        $ozn_form_javascript[] = '<script src="'.$document_path.'/js/ajaxzip3.js"></script>';
     }
 
     if($config->jqueryUIOption()) {
