@@ -199,11 +199,16 @@ jQuery(function ($) {
 
         var dInner = new $.Deferred;
 
-        var $form_el = $('[name="'+form_name+'"]');
+        var $form_el   = $('[name="'+form_name+'"]');
+        var form_value = $form_el.val();
+
+        if($form_el.prop("nodeName") == 'INPUT') {
+            form_value = OznForm.utilities.toHalfWidth(form_value);
+        }
 
         var post_data = {
             name: form_name,
-            value: $form_el.val(),
+            value: form_value,
             label: form_config.label,
             error_messages: form_config.error_messages,
             validate: form_config.validates
