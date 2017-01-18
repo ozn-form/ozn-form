@@ -193,7 +193,7 @@
 
         <div class="row">
             <h5 class="col-sm-12">アンケート<span class="required">（必須）</span></h5>
-            <div class="col-sm-12 surveys" style="text-indent: 0.5em;">
+            <div class="ozn-check col-sm-12 surveys" style="text-indent: 0.5em;">
                 <label class="checkbox-inline">
                     <input name="survey[]" type="checkbox" value="<b>項目1"> 項目1
                 </label>

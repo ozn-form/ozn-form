@@ -204,8 +204,19 @@ jQuery(function ($) {
         var $form_el   = $('[name="'+form_name+'"]');
         var form_value = $form_el.val();
 
-        if($form_el.prop("nodeName") == 'INPUT') {
+        // ラジオボタン・チェックボックスの時は、チェックされているデータを送信する
+        if($.inArray($form_el.attr('type'), ['radio', 'checkbox']) >= 0 ) {
+            form_value = $form_el.filter(':checked').val();
+
+        // その他の input 要素の時は全角を半角に変換して送信する
+        } else if ($form_el.prop("nodeName") == 'INPUT') {
             form_value = OznForm.utilities.toHalfWidth(form_value);
+
+            // フォームのユーザ入力値を半角変換済みの値に修正
+            // ※ 設定で明示的に false を指定した場合はスキップ
+            if(form_config.to_half !== false) {
+                $form_el.val(form_value);
+            }
         }
 
         var post_data = {
@@ -215,10 +226,6 @@ jQuery(function ($) {
             error_messages: form_config.error_messages,
             validate: form_config.validates
         };
-
-        if($.inArray($form_el.attr('type'), ['radio', 'checkbox']) >= 0 ) {
-            post_data.value = $form_el.filter(':checked').val();
-        }
 
         $.ajax(
             {
