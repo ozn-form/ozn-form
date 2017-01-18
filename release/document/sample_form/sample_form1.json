@@ -8,7 +8,8 @@
   "unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。",
 
   "validation": {
-    "show_icon": true
+    "show_icon": true,
+    "shift_scroll_position": -50
   },
 
   "mail": {

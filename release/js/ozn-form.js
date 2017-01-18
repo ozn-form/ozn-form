@@ -43,6 +43,8 @@ jQuery(function ($) {
         var $this = $(this);
         var ajax_validations = [];
 
+        var counter = 1;
+
         $.each(Object.keys(OznForm.forms), function () {
             var form_name = this;
             var $form_el  = $('[name="'+form_name+'"]');
@@ -58,6 +60,17 @@ jQuery(function ($) {
                 $this.off('submit', validateAllForms);
                 $(window).off('beforeunload', showUnloadMessage);
                 $this.submit();
+            }).fail(function () {
+
+                // 検証失敗したフォームまでスクロールバック
+                var top_error_position = $('.ozn-form-invalid').eq(0).offset().top;
+
+                console.log(top_error_position);
+
+                $("html,body").animate({
+                    scrollTop : top_error_position + OznForm.vsetting.shift_scroll_position
+                });
+
             });
 
         return false;
