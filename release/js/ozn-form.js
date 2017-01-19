@@ -266,20 +266,36 @@ jQuery(function ($) {
      * @param $form_el
      */
     function setVaildMark($form_el) {
-        $form_el
-            .removeClass('ozn-form-invalid')
-            .addClass('ozn-form-valid');
-
+        addResultClass($form_el, true);
         apendResultIcon($form_el, true);
     }
 
     function setInvalidMark($form_el, $error_message, form_config) {
-        $form_el
-            .removeClass('ozn-form-valid')
-            .addClass('ozn-form-invalid');
-
+        addResultClass($form_el, false);
         apendErrorMessages($form_el, $error_message, form_config);
         apendResultIcon($form_el, false);
+    }
+
+    /**
+     * 検証結果に応じてクラスを付与する
+     * @param $el
+     * @param is_valid
+     */
+    function addResultClass($el, is_valid) {
+
+        // 対象要素がチェックボックスやラジオボタンの時は、ozn-check要素にクラスを追加する
+        if($.inArray($el.attr('type'), ['checkbox', 'radio']) >= 0) {
+            var $ozn_check = $el.closest('.ozn-check');
+            if($ozn_check.length > 0) {$el = $ozn_check}
+        }
+
+        if(is_valid) {
+            $el.removeClass('ozn-form-invalid')
+               .addClass('ozn-form-valid');
+        } else {
+            $el.removeClass('ozn-form-valid')
+               .addClass('ozn-form-invalid');
+        }
     }
 
     /**
