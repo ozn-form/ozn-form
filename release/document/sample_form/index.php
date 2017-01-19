@@ -212,7 +212,7 @@
 
         <hr>
         <div class="checkbox">
-            <label style="text-indent: 1em;">
+            <label class="ozn-check" style="text-indent: 1em;">
                 <input name="privacy" type="checkbox"> 個人情報の取り扱いに同意する<span class="required">（必須）</span>
             </label>
         </div>

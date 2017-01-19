@@ -286,6 +286,7 @@ jQuery(function ($) {
      * エラーメッセージをページに挿入
      * @param $el <フォーム要素>
      * @param msg <エラーメッセージ>
+     * @param form_config <フォーム設定>
      */
     function apendErrorMessages($el, msg, form_config) {
 
@@ -295,6 +296,11 @@ jQuery(function ($) {
         // エラー位置の指定があれば基準要素を置換
         if(form_config.error_message_position) {
             $el = $(form_config.error_message_position);
+
+        // 対象要素がチェックボックスやラジオボタンの時は、ozn-checkをデフォルトとする
+        } else if($.inArray($el.attr('type'), ['checkbox', 'radio']) >= 0) {
+            var $ozn_check = $el.closest('.ozn-check');
+            if($ozn_check.length > 0) {$el = $ozn_check}
         }
 
         // エラーメッセージテンプレートがあればデフォルトテンプレートを置換
@@ -306,12 +312,24 @@ jQuery(function ($) {
     }
 
 
+    /**
+     * 検証結果に応じたアイコン要素を挿入する
+     *
+     * @param {jQuery}  $el
+     * @param {boolean} is_valid
+     * @returns {number}
+     */
     function apendResultIcon($el, is_valid) {
 
         var form_name = $el.attr('name');
 
-        if($.inArray($el.attr('type'), ['checkbox', 'radio']) >= 0) {return 1}
         if( ! OznForm.vsetting.show_icon) {return 1}
+
+        // 対象要素がチェックボックスやラジオボタンの時は、ozn-check要素の後ろにアイコン追加する
+        if($.inArray($el.attr('type'), ['checkbox', 'radio']) >= 0) {
+            var $ozn_check = $el.closest('.ozn-check');
+            if($ozn_check.length > 0) {$el = $ozn_check}
+        }
 
         if(is_valid) {
             $el.after('<i class="' + form_name.replace('[]', '') + ' ozn-form-icon icon-ok"></i>');
@@ -319,5 +337,4 @@ jQuery(function ($) {
             $el.after('<i class="' + form_name.replace('[]', '') + ' ozn-form-icon icon-caution"></i>')
         }
     }
-
 });
