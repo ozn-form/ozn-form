@@ -27,13 +27,13 @@
 		<h1>お問い合わせ</h1>
 	</div>
 
-	<div class="step_bar_box">
-		<ol class="step_bar step3 sp-hide">
+	<div class="ozn-form-stepbar-wrapper">
+		<ol class="ozn-form-stepbar step3 sp-hide">
 			<li class="current">1. 内容の入力</li>
 			<li>2. 内容確認</li>
 			<li>3. 送信完了</li>
 		</ol>
-		<ol class="step_bar step3 tb-hide pc-hide">
+		<ol class="ozn-form-stepbar step3 tb-hide pc-hide">
 			<li class="current">入力</li>
 			<li>確認</li>
 			<li>完了</li>
