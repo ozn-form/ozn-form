@@ -9,6 +9,7 @@ var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var watch = require('gulp-watch');
 var runSequence = require('run-sequence');
+var plumber = require('gulp-plumber');
 
 // var browserify = require('browserify');
 // var source = require('vinyl-source-stream');
@@ -32,6 +33,7 @@ gulp.task('build_sass_dev', function () {
     ];
 
     return gulp.src(files)
+        .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(concat('ozn-form.css'))
