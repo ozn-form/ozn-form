@@ -15,8 +15,6 @@ jQuery(function ($) {
         return OznForm.unload_message;
     }
 
-
-
     // Datepickerを適用する
     $('[data-of_datepicker]').each(function () {
        $(this).datepicker();
@@ -30,6 +28,8 @@ jQuery(function ($) {
         $('[name="'+form_name+'"]').on('blur', function () {
             if(OznForm.forms[form_name]['validates']) {
                 validFormValue(form_name, OznForm.forms[form_name]);
+            } else {
+                setVaildMark($(this));
             }
         })
     });
@@ -49,6 +49,8 @@ jQuery(function ($) {
 
             if((! $form_el.hasClass('ozn-form-valid')) && OznForm.forms[form_name]['validates']) {
                 ajax_validations.push(validFormValue(form_name, OznForm.forms[form_name]));
+            } else if( ! OznForm.forms[form_name]['validates']) {
+                setVaildMark($form_el);
             }
         });
 
@@ -58,6 +60,15 @@ jQuery(function ($) {
                 $this.off('submit', validateAllForms);
                 $(window).off('beforeunload', showUnloadMessage);
                 $this.submit();
+            }).fail(function () {
+
+                // 検証失敗したフォームまでスクロールバック
+                var top_error_position = $('.ozn-form-invalid').eq(0).offset().top;
+
+                $("html,body").animate({
+                    scrollTop : top_error_position + OznForm.vsetting.shift_scroll_position
+                });
+
             });
 
         return false;
@@ -190,19 +201,31 @@ jQuery(function ($) {
 
         var dInner = new $.Deferred;
 
-        var $form_el = $('[name="'+form_name+'"]');
+        var $form_el   = $('[name="'+form_name+'"]');
+        var form_value = $form_el.val();
+
+        // ラジオボタン・チェックボックスの時は、チェックされているデータを送信する
+        if($.inArray($form_el.attr('type'), ['radio', 'checkbox']) >= 0 ) {
+            form_value = $form_el.filter(':checked').val();
+
+        // その他の input 要素の時は全角を半角に変換して送信する
+        } else if ($form_el.prop("nodeName") == 'INPUT') {
+            form_value = OznForm.utilities.toHalfWidth(form_value);
+
+            // フォームのユーザ入力値を半角変換済みの値に修正
+            // ※ 設定で明示的に false を指定した場合はスキップ
+            if(form_config.to_half !== false) {
+                $form_el.val(form_value);
+            }
+        }
 
         var post_data = {
             name: form_name,
-            value: $form_el.val(),
+            value: form_value,
             label: form_config.label,
             error_messages: form_config.error_messages,
             validate: form_config.validates
         };
-
-        if($.inArray($form_el.attr('type'), ['radio', 'checkbox']) >= 0 ) {
-            post_data.value = $form_el.filter(':checked').val();
-        }
 
         $.ajax(
             {
@@ -221,23 +244,12 @@ jQuery(function ($) {
 
             if(response.valid) {
 
-                $form_el
-                    .removeClass('ozn-form-invalid')
-                    .addClass('ozn-form-valid');
-
-                apendResultIcon($form_el, true);
-
+                setVaildMark($form_el);
                 dInner.resolve();
 
             } else {
-                $form_el
-                    .removeClass('ozn-form-valid')
-                    .addClass('ozn-form-invalid');
 
-                apendErrorMessages($form_el, response.errors[form_name], form_config);
-                apendResultIcon($form_el, false);
-
-
+                setInvalidMark($form_el, response.errors[form_name], form_config);
                 dInner.reject();
             }
         })
@@ -250,9 +262,47 @@ jQuery(function ($) {
     }
 
     /**
+     * フォームを検証OKの表示にする
+     * @param $form_el
+     */
+    function setVaildMark($form_el) {
+        addResultClass($form_el, true);
+        apendResultIcon($form_el, true);
+    }
+
+    function setInvalidMark($form_el, $error_message, form_config) {
+        addResultClass($form_el, false);
+        apendErrorMessages($form_el, $error_message, form_config);
+        apendResultIcon($form_el, false);
+    }
+
+    /**
+     * 検証結果に応じてクラスを付与する
+     * @param $el
+     * @param is_valid
+     */
+    function addResultClass($el, is_valid) {
+
+        // 対象要素がチェックボックスやラジオボタンの時は、ozn-check要素にクラスを追加する
+        if($.inArray($el.attr('type'), ['checkbox', 'radio']) >= 0) {
+            var $ozn_check = $el.closest('.ozn-check');
+            if($ozn_check.length > 0) {$el = $ozn_check}
+        }
+
+        if(is_valid) {
+            $el.removeClass('ozn-form-invalid')
+               .addClass('ozn-form-valid');
+        } else {
+            $el.removeClass('ozn-form-valid')
+               .addClass('ozn-form-invalid');
+        }
+    }
+
+    /**
      * エラーメッセージをページに挿入
      * @param $el <フォーム要素>
      * @param msg <エラーメッセージ>
+     * @param form_config <フォーム設定>
      */
     function apendErrorMessages($el, msg, form_config) {
 
@@ -262,6 +312,11 @@ jQuery(function ($) {
         // エラー位置の指定があれば基準要素を置換
         if(form_config.error_message_position) {
             $el = $(form_config.error_message_position);
+
+        // 対象要素がチェックボックスやラジオボタンの時は、ozn-checkをデフォルトとする
+        } else if($.inArray($el.attr('type'), ['checkbox', 'radio']) >= 0) {
+            var $ozn_check = $el.closest('.ozn-check');
+            if($ozn_check.length > 0) {$el = $ozn_check}
         }
 
         // エラーメッセージテンプレートがあればデフォルトテンプレートを置換
@@ -273,12 +328,24 @@ jQuery(function ($) {
     }
 
 
+    /**
+     * 検証結果に応じたアイコン要素を挿入する
+     *
+     * @param {jQuery}  $el
+     * @param {boolean} is_valid
+     * @returns {number}
+     */
     function apendResultIcon($el, is_valid) {
 
         var form_name = $el.attr('name');
 
-        if($.inArray($el.attr('type'), ['checkbox', 'radio']) >= 0) {return 1}
         if( ! OznForm.vsetting.show_icon) {return 1}
+
+        // 対象要素がチェックボックスやラジオボタンの時は、ozn-check要素の後ろにアイコン追加する
+        if($.inArray($el.attr('type'), ['checkbox', 'radio']) >= 0) {
+            var $ozn_check = $el.closest('.ozn-check');
+            if($ozn_check.length > 0) {$el = $ozn_check}
+        }
 
         if(is_valid) {
             $el.after('<i class="' + form_name.replace('[]', '') + ' ozn-form-icon icon-ok"></i>');
@@ -286,5 +353,4 @@ jQuery(function ($) {
             $el.after('<i class="' + form_name.replace('[]', '') + ' ozn-form-icon icon-caution"></i>')
         }
     }
-
 });

@@ -8,7 +8,8 @@
   "unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。",
 
   "validation": {
-    "show_icon": true
+    "show_icon": true,
+    "shift_scroll_position": -50
   },
 
   "mail": {
@@ -55,7 +56,7 @@
         },
         "zip-code": {
           "label": "郵便番号",
-          "validates": ["required"]
+          "validates": ["required", "zip"]
         },
         "address1": {
           "label": "住所１（番地まで）",
@@ -91,13 +92,13 @@
 
         "shipping-zip-code1": {
           "label": "送付先 郵便番号（３桁）",
-          "validates": ["required"],
+          "validates": ["required", "zip"],
           "error_message_position": ".shipping-zip-area",
           "error_message_template": "<div class=\"col-sm-12\"><% messages %></div>"
         },
         "shipping-zip-code2": {
           "label": "送付先 郵便番号（４桁）",
-          "validates": ["required"],
+          "validates": ["required", "zip"],
           "error_message_position": ".shipping-zip-area",
           "error_message_template": "<div class=\"col-sm-12\"><% messages %></div>"
         },

@@ -117,8 +117,19 @@ class FormConfig
         return $this->config_raw['pages'][$page_name]['forms'];
     }
 
+    /**
+     * 検証の動作に関する設定
+     *
+     * @return array <>
+     */
     public function validationSetting() {
-        return $this->config_raw['validation'];
+
+        $v_setting = $this->config_raw['validation'];
+
+        if( ! isset($v_setting['show_icon'])) {$v_setting['show_icon'] = FALSE;}
+        if( ! isset($v_setting['shift_scroll_position'])) {$v_setting['shift_scroll_position'] = 0;}
+
+        return $v_setting;
     }
 
 
@@ -133,6 +144,7 @@ class FormConfig
 
         return $prev_key;
     }
+
 
     public function prevPageForms($page_name)
     {
