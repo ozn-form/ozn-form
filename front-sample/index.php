@@ -115,18 +115,19 @@
 					</div>
 				</div>
 				<div class="tr">
-					<div class="th">ご住所 <span class="ozn-label required">必須</span></div>
+					<div class="th">ご住所</div>
 					<div class="td">
 						<dl>
-							<dt>郵便番号</dt>
-							<dd><input type="text" name="zip-code" class="ozn-input pc-30 tb-50" style="ime-mode:inactive;" placeholder="例）432-3332" data-oznform-zip="address" autocomplete="postal-code"></dd>
-							<dt>都道府県</dt>
+							<dt>郵便番号 <span class="ozn-label optional">任意</span></dt>
+							<dd><input type="text" name="zip-code" class="ozn-input pc-30 tb-50" style="ime-mode:inactive;" placeholder="例）432-3332" data-oznform-zip="address" autocomplete="postal-code">
+							<p class="ozn-notice">郵便番号を入力すると住所を自動で表示します</p></dd>
+							<dt>都道府県 <span class="ozn-label required">必須</span></dt>
 							<dd><input name="pref" class="ozn-input pc-30 tb-50" placeholder="例）愛知県" data-oznform-pref="address" autocomplete="address-level1">
 							<?php //include('./inc/prefecture.php'); ?>
 							</dd>
-							<dt>番地まで</dt>
+							<dt>番地まで <span class="ozn-label required">必須</span></dt>
 							<dd><input type="text" name="address" class="ozn-input" data-oznform-address="address" placeholder="例）名古屋市中村区＊＊町3丁目11-1" autocomplete="street-address"></dd>
-							<dt>建物名等</dt>
+							<dt>建物名等 <span class="ozn-label optional">任意</span></dt>
 							<dd><input type="text" name="address-building" class="ozn-input" placeholder="例）＊＊ビル 201号室" autocomplete="address-level4"></dd>
 						</dl>
 					</div>

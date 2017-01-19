@@ -77,7 +77,8 @@
         },
 
         "zip-code": {
-          "label": "郵便番号"
+          "label": "郵便番号",
+          "validates": ["zip"]
         },
         "pref": {
           "label": "都道府県",

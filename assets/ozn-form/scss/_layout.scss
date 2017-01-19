@@ -120,15 +120,25 @@ a {
 	}
 	dl{
 		margin-bottom: 10px;
-		dt{
-			clear: left;
-			float: left;
-			width: 20%;
-			padding: 8px 0;
-		}
-		dd{
-			margin-left: calc(21%);
-			margin-bottom: 10px;
+			dt{
+				padding: 8px 0;
+				.ozn-label{
+					float: none;
+				}
+			}
+			dd{
+				margin-bottom: 10px;
+			}
+		@media(min-width:$screen-pc+1) {
+			dt{
+				clear: left;
+				float: left;
+				width: 23%;
+			}
+			dd{
+				margin-left: calc(25%);
+				margin-bottom: 10px;
+			}
 		}
 	}
 }
