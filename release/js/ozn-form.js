@@ -1,6 +1,10 @@
 jQuery(function ($) {
 
+    // セッションに入っているデータをフォームに適用する
     OznForm.utilities.setSessionData(OznForm.page_data);
+
+    // getで渡された値をフォームに初期値として適用（フォームルートのみ）
+    OznForm.utilities.setInitMessage(OznForm.init_msg);
 
     // エンターキー押下時の送信を無効化する
     OznForm.utilities.disableEnterKeySubmit();

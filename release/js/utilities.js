@@ -7,6 +7,8 @@ window.OznForm.utilities = {
      */
     setSessionData: function (session_data) {
 
+        var self = this;
+
         $.each(session_data, function (name, value) {
 
             // if (value instanceof Array) {
@@ -15,14 +17,34 @@ window.OznForm.utilities = {
 
             var $elem = $('[name="' + name + '"]');
 
-            // 入力済みの値を要素に適用
-            if ($elem.attr('type') && (! (value instanceof Array))) {
-                $elem.val([value]);
-            } else {
-                $elem.val(value);
-            }
+
+            self.setValue($elem, value);
 
         });
+    },
+
+    setInitMessage: function (messages) {
+
+        var self = this;
+
+        $.each(messages, function (name, value) {
+
+            var $elem = $('[name="' + name + '"]');
+
+            if($elem.size !== 0 && $elem.val() == '') {
+                self.setValue($elem, value);
+            }
+        })
+
+    },
+
+    setValue: function ($elem, value) {
+        // 入力済みの値を要素に適用
+        if ($elem.attr('type') && (! (value instanceof Array))) {
+            $elem.val([value]);
+        } else {
+            $elem.val(value);
+        }
     },
 
     /**

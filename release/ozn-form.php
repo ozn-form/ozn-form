@@ -72,6 +72,9 @@ if($page_role == 'form') {
         // リファラを保存
         $session->saveReferer();
 
+        // getでの送信値を取得
+        $get_values = json_encode($_GET);
+
     // step2以降のフォームの場合の処理
     } else {
 
@@ -96,6 +99,11 @@ if($page_role == 'form') {
     $ozn_form_javascript[] = '  OznForm.vurl      = "'.$document_path.'/ozn-form-validation.php";';
     $ozn_form_javascript[] = '  OznForm.vsetting  = ' . json_encode($config->validationSetting());
     $ozn_form_javascript[] = '  OznForm.forms     = '.$forms_json.';';
+    $ozn_form_javascript[] = '  OznForm.init_msg     = '.$forms_json.';';
+
+    if(isset($get_values)) {
+        $ozn_form_javascript[] = '  OznForm.init_msg     = '.$get_values.';';
+    }
 
     if($config->unload_message() && $is_debug === FALSE) {
         $ozn_form_javascript[] = '  OznForm.unload_message = '.$config->unload_message().';';
