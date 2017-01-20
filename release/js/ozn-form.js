@@ -247,6 +247,9 @@ jQuery(function ($) {
             }
         }
 
+        // 既存エラーメッセージを初期化
+        $('.' + form_name.replace('[]', '') + '.ozn-form-errors').remove();
+
         var post_data = {
             name: form_name,
             value: form_value,
@@ -334,9 +337,6 @@ jQuery(function ($) {
 
         var form_name = $el.attr('name');
         var template  = $('<div>' + msg.join('<br />') + '</div>');
-
-        // 既存エラーメッセージを初期化
-        $('.' + form_name.replace('[]', '') + '.ozn-form-errors').remove();
 
         // エラー位置の指定があれば基準要素を置換
         if(form_config.error_message_position) {
