@@ -239,8 +239,6 @@ jQuery(function ($) {
 
             var response = $.parseJSON(data);
 
-            $('.' + form_name.replace('[]', '') + '.ozn-form-errors').remove();
-            $('.' + form_name.replace('[]', '') + '.ozn-form-icon').remove();
 
             if(response.valid) {
 
@@ -309,6 +307,9 @@ jQuery(function ($) {
         var form_name = $el.attr('name');
         var template  = $('<div>' + msg.join('<br />') + '</div>');
 
+        // 既存エラーメッセージを初期化
+        $('.' + form_name.replace('[]', '') + '.ozn-form-errors').remove();
+
         // エラー位置の指定があれば基準要素を置換
         if(form_config.error_message_position) {
             $el = $(form_config.error_message_position);
@@ -338,6 +339,9 @@ jQuery(function ($) {
     function apendResultIcon($el, is_valid) {
 
         var form_name = $el.attr('name');
+
+        // 既存アイコンを初期化
+        $('.' + form_name.replace('[]', '') + '.ozn-form-icon').remove();
 
         if( ! OznForm.vsetting.show_icon) {return 1}
 
