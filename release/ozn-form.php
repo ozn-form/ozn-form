@@ -99,7 +99,6 @@ if($page_role == 'form') {
     $ozn_form_javascript[] = '  OznForm.vurl      = "'.$document_path.'/ozn-form-validation.php";';
     $ozn_form_javascript[] = '  OznForm.vsetting  = ' . json_encode($config->validationSetting());
     $ozn_form_javascript[] = '  OznForm.forms     = '.$forms_json.';';
-    $ozn_form_javascript[] = '  OznForm.init_msg     = '.$forms_json.';';
 
     if(isset($get_values)) {
         $ozn_form_javascript[] = '  OznForm.init_msg     = '.$get_values.';';
