@@ -1,6 +1,10 @@
 jQuery(function ($) {
 
+    // セッションに入っているデータをフォームに適用する
     OznForm.utilities.setSessionData(OznForm.page_data);
+
+    // getで渡された値をフォームに初期値として適用（フォームルートのみ）
+    OznForm.utilities.setInitMessage(OznForm.init_msg);
 
     // エンターキー押下時の送信を無効化する
     OznForm.utilities.disableEnterKeySubmit();
@@ -169,22 +173,46 @@ jQuery(function ($) {
             $target.get(0),
             "oznform-suggest",
             [
-                'gmail.com',
                 'yahoo.co.jp',
-                'hotmail.com',
-                'outlook.com',
+                'gmail.com',
                 'ezweb.ne.jp',
                 'docomo.ne.jp',
-                'i.softbank.jp',
                 'softbank.ne.jp',
-                'vodafone.ne.jp',
-                'disney.ne.jp',
-                'emnet.ne.jp',
+                'i.softbank.jp',
+                'icloud.com',
+                'hotmail.com',
+                'hotmail.co.jp',
+                'outlook.com',
+                // --ここまでTOP 10---
+                'outlook.jp',
+                'live.jp',
+                'nifty.ne.jp',
+                'ybb.ne.jp',
+                // --↑あってここまで--
+                //--↓まあほぼ見かけない--
+                'goo.jp',
+                'mail.goo.ne.jp',
+                'infoseek.jp',
+                'excite.co.jp',
+                'auone.jp',
+                'livedoor.com',
                 'ymobile.ne.jp',
                 'ymobile1.ne.jp',
                 'y-mobile.ne.jp',
+                'emnet.ne.jp',
+                'wcm.ne.jp',
+                'd.vodafone.ne.jp',
+                'h.vodafone.ne.jp',
+                't.vodafone.ne.jp',
+                'c.vodafone.ne.jp',
+                'k.vodafone.ne.jp',
+                'r.vodafone.ne.jp',
+                'n.vodafone.ne.jp',
+                's.vodafone.ne.jp',
+                'q.vodafone.ne.jp',
                 'pdx.ne.jp',
-                'willcom.com'
+                'willcom.com',
+                'disney.ne.jp'
             ],
             {dispMax: 10}); // オプション
     }());
@@ -219,6 +247,9 @@ jQuery(function ($) {
             }
         }
 
+        // 既存エラーメッセージを初期化
+        $('.' + form_name.replace('[]', '') + '.ozn-form-errors').remove();
+
         var post_data = {
             name: form_name,
             value: form_value,
@@ -239,8 +270,6 @@ jQuery(function ($) {
 
             var response = $.parseJSON(data);
 
-            $('.' + form_name.replace('[]', '') + '.ozn-form-errors').remove();
-            $('.' + form_name.replace('[]', '') + '.ozn-form-icon').remove();
 
             if(response.valid) {
 
@@ -338,6 +367,9 @@ jQuery(function ($) {
     function apendResultIcon($el, is_valid) {
 
         var form_name = $el.attr('name');
+
+        // 既存アイコンを初期化
+        $('.' + form_name.replace('[]', '') + '.ozn-form-icon').remove();
 
         if( ! OznForm.vsetting.show_icon) {return 1}
 
