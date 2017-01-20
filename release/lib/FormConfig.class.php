@@ -106,6 +106,25 @@ class FormConfig
     }
 
     /**
+     * 全てのページのフォーム設定を返す
+     *
+     * @return array
+     */
+    public function allPageForms() {
+
+        $page_forms = array();
+
+        foreach ($this->config_raw['pages'] as $key => $page) {
+
+            if($page['role'] == 'form') {
+                $page_forms[$key] = $page['forms'];
+            }
+        }
+
+        return $page_forms;
+    }
+
+    /**
      * ページのフォーム情報を返す
      *
      * @param $page_name

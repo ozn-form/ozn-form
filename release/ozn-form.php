@@ -63,13 +63,24 @@ $session->start($config->formName());
  */
 if($page_role == 'form') {
 
-    // フォームルートの場合はリファラを保存する
-    if($is_form_root) {
-        $session->saveReferer();
-    }
-
     // POST送信時の送信値検証とセッション保存処理
     $session->savePostData($page_name, $config);
+
+    // フォームルートの場合の処理
+    if($is_form_root) {
+
+        // リファラを保存
+        $session->saveReferer();
+
+    // step2以降のフォームの場合の処理
+    } else {
+
+        // 前ページのフォームデータがセッションに登録されていない場合はフォームトップページへリダイレクト
+        if( ! $session->verifyFormDate(array($config->prevPageName($page_name) => $config->prevPageForms($page_name)))) {
+            header("Location: {$config->formRoot()}");
+            exit();
+        }
+    }
 
     // 出力JSタグの定義
     $forms_json     = json_encode($config->pageForms($page_name));
@@ -133,6 +144,12 @@ if($page_role == 'form') {
     // POST送信時の送信値検証とセッション保存処理
     $session->savePostData($page_name, $config);
 
+    // 全てのフォームデータがセッションに登録されていない場合はフォームトップページへリダイレクト
+    if( ! $session->verifyFormDate($config->allPageForms())) {
+        header("Location: {$config->formRoot()}");
+        exit();
+    }
+
     // 出力JSタグの定義
     $form_data_json = json_encode($session->getAllPageData());
 
@@ -160,36 +177,70 @@ if($page_role == 'form') {
     // 出力CSSタグの定義
     $ozn_form_styles = '<link rel="stylesheet" href="'.$document_path.'/css/ozn-form.min.css">';
 
-    if($session->verifyFormDate()) {
+    // 全てのフォームデータがセッションに登録されていない場合はフォームトップページへリダイレクト
+    if( ! $session->verifyFormDate($config->allPageForms())) {
+        header("Location: {$config->formRoot()}");
+        exit();
+    }
 
-        $mail   = $config->mail();
-        $mailer = new MailSender();
-        $page_data = $session->getAllPageData(FALSE);
+    $mail   = $config->mail();
+    $mailer = new MailSender();
+    $page_data = $session->getAllPageData(FALSE);
 
-        // 管理者宛メール送信
-        $additional = array();
+    // 管理者宛メール送信
+    $additional = array();
 
-        $additional[] = '';
-        $additional[] = '- - - - - - - - - - - - - - - - - - - - - - - - -';
-        $additional[] = '送信元エージェント：' . $_SERVER['HTTP_USER_AGENT'];
-        $additional[] = '参照元：' . $_SESSION['ref'];
-        $additional[] = '送信日時：' . date('Y年m月d日 H:i:s');
+    $additional[] = '';
+    $additional[] = '- - - - - - - - - - - - - - - - - - - - - - - - -';
+    $additional[] = '送信元エージェント：' . $_SERVER['HTTP_USER_AGENT'];
+    $additional[] = '参照元：' . $_SESSION['ref'];
+    $additional[] = '送信日時：' . date('Y年m月d日 H:i:s');
 
-        // テンプレートタグ置換
-        $admin_mail_title = $mailer->replaceMailTemplateTags($page_data, $admin_mail_title);
-        $admin_mail_body  = $mailer->replaceMailTemplateTags($page_data, $admin_mail_body . join("\n", $additional));
+    // テンプレートタグ置換
+    $admin_mail_title = $mailer->replaceMailTemplateTags($page_data, $admin_mail_title);
+    $admin_mail_body  = $mailer->replaceMailTemplateTags($page_data, $admin_mail_body . join("\n", $additional));
 
+
+    $mailer->setEnvelope(
+        $mail['send_by'],
+        '', $mail['admin_mail_to'],
+        $mail['from_name'], $mail['from_address'],
+        $admin_mail_title, $admin_mail_body
+    );
+
+    // CC.BCC設定
+    $mailer->setCC($mail['admin_mail_cc']);
+    $mailer->setBCC($mail['admin_mail_bcc']);
+
+    switch ($mail['send_by']) {
+        case 'sendmail':
+            $mailer->sendmail();
+            break;
+        case 'Gmail SMTP':
+            $mailer->sendGmailSMTP($gmail_user, $gmail_password);
+            break;
+        case 'Gmail SMTP With OAuth':
+            $mailer->sendGmailSMTPWithOAuth($gmail_user, $oauth_id, $oauth_secret, $oauth_refresh_token);
+            break;
+    }
+
+
+    // 自動返信メールが有効の時は送信
+    if($mail['auto_reply']) {
+
+        $customer_mail_title = $mailer->replaceMailTemplateTags($page_data, $customer_mail_title);
+        $customer_mail_body  = $mailer->replaceMailTemplateTags($page_data, $customer_mail_body);
 
         $mailer->setEnvelope(
             $mail['send_by'],
-            '', $mail['admin_mail_to'],
+            '', $session->getFormValue($mail['customer_address_form_name']),
             $mail['from_name'], $mail['from_address'],
-            $admin_mail_title, $admin_mail_body
+            $customer_mail_title, $customer_mail_body
         );
 
-        // CC.BCC設定
-        $mailer->setCC($mail['admin_mail_cc']);
-        $mailer->setBCC($mail['admin_mail_bcc']);
+        // CC,BCC設定
+        $mailer->setCC($mail['customer_mail_cc']);
+        $mailer->setBCC($mail['customer_mail_bcc']);
 
         switch ($mail['send_by']) {
             case 'sendmail':
@@ -202,51 +253,14 @@ if($page_role == 'form') {
                 $mailer->sendGmailSMTPWithOAuth($gmail_user, $oauth_id, $oauth_secret, $oauth_refresh_token);
                 break;
         }
-
-
-        // 自動返信メールが有効の時は送信
-        if($mail['auto_reply']) {
-
-            $customer_mail_title = $mailer->replaceMailTemplateTags($page_data, $customer_mail_title);
-            $customer_mail_body  = $mailer->replaceMailTemplateTags($page_data, $customer_mail_body);
-
-            $mailer->setEnvelope(
-                $mail['send_by'],
-                '', $session->getFormValue($mail['customer_address_form_name']),
-                $mail['from_name'], $mail['from_address'],
-                $customer_mail_title, $customer_mail_body
-            );
-
-            // CC,BCC設定
-            $mailer->setCC($mail['customer_mail_cc']);
-            $mailer->setBCC($mail['customer_mail_bcc']);
-
-            switch ($mail['send_by']) {
-                case 'sendmail':
-                    $mailer->sendmail();
-                    break;
-                case 'Gmail SMTP':
-                    $mailer->sendGmailSMTP($gmail_user, $gmail_password);
-                    break;
-                case 'Gmail SMTP With OAuth':
-                    $mailer->sendGmailSMTPWithOAuth($gmail_user, $oauth_id, $oauth_secret, $oauth_refresh_token);
-                    break;
-            }
-        }
-
-
-        // リダイレクト先が設定されている場合はリダイレクトして終了
-        if(isset($mail['redirect_to']) && $mail['redirect_to'] != '') {
-            header("Location: {$mail['redirect_to']}");
-            exit();
-        }
-
-
-    } else {
-        header("Location: {$config->formRoot()}");
-        exit();
     }
 
+
+    // リダイレクト先が設定されている場合はリダイレクトして終了
+    if(isset($mail['redirect_to']) && $mail['redirect_to'] != '') {
+        header("Location: {$mail['redirect_to']}");
+        exit();
+    }
 }
     if($is_debug) {
         var_dump('セッション内容', $_SESSION);

@@ -62,10 +62,12 @@ class FormSession
      */
     public function saveReferer()
     {
-        if(isset($_SERVER['HTTP_REFERER'])) {
-            $_SESSION['ref'] = $_SERVER['HTTP_REFERER'];
-        } else {
-            $_SESSION['ref'] = 'なし';
+        if( ! isset($_SESSION['ref'])) {
+            if(isset($_SERVER['HTTP_REFERER'])) {
+                $_SESSION['ref'] = $_SERVER['HTTP_REFERER'];
+            } else {
+                $_SESSION['ref'] = 'なし';
+            }
         }
     }
 
@@ -144,11 +146,22 @@ class FormSession
      *
      * すべてのページを経て検証済みデータが存在しているか確認する
      *
+     * @param array $pages <ページ設定>
+     *
      * @return bool
      */
-    public function verifyFormDate()
+    public function verifyFormDate($pages)
     {
-        return true;
+
+        $is_verified = true;
+
+        foreach ($pages as $page => $forms) {
+            if(( ! isset($_SESSION[$page])) || (count($_SESSION[$page]) !== count($forms))) {
+                $is_verified = FALSE;
+            }
+        }
+
+        return $is_verified;
     }
 
 
