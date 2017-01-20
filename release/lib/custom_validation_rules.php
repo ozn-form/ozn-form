@@ -9,7 +9,7 @@
 // 電話番号検証
 \Valitron\Validator::addRule('tel', function($field, $value, array $params, array $fields) {
     return preg_match("/^[-ー−0-9０-９（）\(\)\s]{9,}$/u", $value) ? true : false;
-}, "は市外局番を含む数字とハイフンの組み合わせで入力してください");
+}, "は市外局番を含む数字またはハイフンの組み合わせで入力してください");
 
 /**
  * 郵便番号検証
