@@ -11,6 +11,9 @@ V::langDir(__DIR__.'/vendor/vlucas/valitron/lang'); // always set langDir before
 V::lang('ja');
 
 
+$json = file_get_contents(dirname(__FILE__) . '/config/mobile_mail_address.json');
+$address_list = json_decode($json,true);
+
 $return_data = array(
     'valid'   => false,
     'warning' => null,
@@ -39,7 +42,12 @@ if(isset($_POST['validate'])) {
 
         // キャリアアドレスの場合、注意メッセージを設定
         if(isset($_POST['mobile_warning'])) {
-            $return_data['warning'] = array($_POST['mobile_warning']);
+
+            list($user, $domain) = explode('@', $value);
+
+            if(in_array($domain, $address_list)) {
+                $return_data['warning'] = array($_POST['mobile_warning']);
+            }
         }
 
     } else {
