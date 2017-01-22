@@ -130,7 +130,7 @@ require_once '../../ozn-form.php';
                             <span data-insert="shipping-address1"></span> <span data-insert="shipping-address2"></span>
                         </td>
                     </tr>
-                    <tr>
+                    <tr data-if="survey[]">
                         <th>アンケート</th>
                         <td data-insert="survey[]"></td>
                     </tr>

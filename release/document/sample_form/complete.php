@@ -61,7 +61,7 @@ Webフォームにて <% customer_name %> 様よりお問合せがありまし�
 配送希望日： <% shipping-date %>
 送付先ご住所： 〒<% shipping-zip-code1 %>-<% shipping-zip-code2 %> <% shipping-address1 %> <% shipping-address2 %>
 
-アンケート： <% survey[] %>
+<%% if.survey[] %%>アンケート： <% survey[] %><%% endif %%>
 
 TEXT;
 
@@ -90,7 +90,7 @@ $customer_mail_body = <<< TEXT
 配送希望日： <% shipping-date %>
 送付先ご住所： 〒<% shipping-zip-code1 %>-<% shipping-zip-code2 %> <% shipping-address1 %> <% shipping-address2 %>
 
-アンケート： <% survey[] %>
+<%% if.survey[] %%>アンケート： <% survey[] %><%% endif %%>
 
 TEXT;
 

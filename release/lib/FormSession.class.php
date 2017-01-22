@@ -45,14 +45,14 @@ class FormSession
         // ページセッションデータ初期化
         $_SESSION[$config->prevPageName($page_name)] = array();
 
-        foreach ($_POST as $name => $value) {
+        foreach ($form_names as $form_name) {
 
-            if(is_array($value)) {
-                $name = $name . '[]';
-            }
+            $r_name = preg_replace('/\[\]$/', '', $form_name);
 
-            if(in_array($name, $form_names)) {
-                $_SESSION[$config->prevPageName($page_name)][$name] = $value;
+            if(isset($_POST[$r_name])) {
+                $_SESSION[$config->prevPageName($page_name)][$form_name] = $_POST[$r_name];
+            } else {
+                $_SESSION[$config->prevPageName($page_name)][$form_name] = null;
             }
         }
     }
