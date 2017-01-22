@@ -73,7 +73,8 @@
 
         "email": {
           "label": "メールアドレス",
-          "validates": ["required", "email"]
+          "validates": ["required", "email"],
+          "mobile_mail_warning": "携帯電話のアドレスが入力されました。example.com ドメインからのメールを受信できるように設定お願いします。"
         },
 
         "materials": {

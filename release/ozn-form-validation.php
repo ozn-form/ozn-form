@@ -12,11 +12,11 @@ V::lang('ja');
 
 
 $return_data = array(
-    'valid' => false,
-    'errors' => null
+    'valid'   => false,
+    'warning' => null,
+    'errors'  => null
 );
 
-//var_dump($_POST);
 
 if(isset($_POST['validate'])) {
 
@@ -34,7 +34,14 @@ if(isset($_POST['validate'])) {
     }
 
     if($v->validate()) {
+
         $return_data['valid'] = true;
+
+        // キャリアアドレスの場合、注意メッセージを設定
+        if(isset($_POST['mobile_warning'])) {
+            $return_data['warning'] = array($_POST['mobile_warning']);
+        }
+
     } else {
         $return_data['errors'] = $v->errors();
     }

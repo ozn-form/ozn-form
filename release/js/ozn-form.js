@@ -247,8 +247,9 @@ jQuery(function ($) {
             }
         }
 
-        // 既存エラーメッセージを初期化
+        // 既存メッセージを初期化
         $('.' + form_name.replace('[]', '') + '.ozn-form-errors').remove();
+        $('.' + form_name.replace('[]', '') + '.ozn-form-warning').remove();
 
         var post_data = {
             name: form_name,
@@ -257,6 +258,10 @@ jQuery(function ($) {
             error_messages: form_config.error_messages,
             validate: form_config.validates
         };
+
+        if(form_config.mobile_mail_warning) {
+            post_data.mobile_warning = form_config.mobile_mail_warning
+        }
 
         $.ajax(
             {
@@ -270,14 +275,19 @@ jQuery(function ($) {
 
             var response = $.parseJSON(data);
 
-
+            // 検証OKのときの処理
             if(response.valid) {
 
-                setVaildMark($form_el);
+                if(response.warning) {
+                    setWarningMark($form_el, response.warning, form_config);
+                } else {
+                    setVaildMark($form_el);
+                }
+
                 dInner.resolve();
 
+            // 検証NGのときの処理
             } else {
-
                 setInvalidMark($form_el, response.errors[form_name], form_config);
                 dInner.reject();
             }
@@ -299,9 +309,19 @@ jQuery(function ($) {
         apendResultIcon($form_el, true);
     }
 
-    function setInvalidMark($form_el, $error_message, form_config) {
+    /**
+     * フォームを検証OKの表示にして、注意メッセージを表示する
+     * @param $form_el
+     */
+    function setWarningMark($form_el, warning_message, form_config) {
+        addResultClass($form_el, true);
+        apendErrorMessages($form_el, warning_message, form_config, true);
+        apendResultIcon($form_el, true);
+    }
+
+    function setInvalidMark($form_el, error_message, form_config) {
         addResultClass($form_el, false);
-        apendErrorMessages($form_el, $error_message, form_config);
+        apendErrorMessages($form_el, error_message, form_config, false);
         apendResultIcon($form_el, false);
     }
 
@@ -332,8 +352,9 @@ jQuery(function ($) {
      * @param $el <フォーム要素>
      * @param msg <エラーメッセージ>
      * @param form_config <フォーム設定>
+     * @param warning <注意メッセージとして表示フラグ>
      */
-    function apendErrorMessages($el, msg, form_config) {
+    function apendErrorMessages($el, msg, form_config, warning) {
 
         var form_name = $el.attr('name');
         var template  = $('<div>' + msg.join('<br />') + '</div>');
@@ -353,14 +374,19 @@ jQuery(function ($) {
             template = $(form_config.error_message_template.replace('<% messages %>', msg.join('<br />')));
         }
 
+        // ドメインサジェスト表示エリアを取得
         var $suggest_area = $el.siblings('#oznform-suggest');
 
-        if($suggest_area.length > 0) {
-            $suggest_area.after(template.addClass(form_name.replace('[]', '') + ' ozn-form-errors'));
-        } else {
-            $el.after(template.addClass(form_name.replace('[]', '') + ' ozn-form-errors'));
-        }
 
+        // 付加するクラスを指定
+        var added_class = 'ozn-form-errors';
+        if(warning) { added_class = 'ozn-form-warning';}
+
+        if($suggest_area.length > 0) {
+            $suggest_area.after(template.addClass(form_name.replace('[]', '') + ' ' + added_class));
+        } else {
+            $el.after(template.addClass(form_name.replace('[]', '') + ' ' + added_class));
+        }
     }
 
 
