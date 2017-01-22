@@ -353,7 +353,14 @@ jQuery(function ($) {
             template = $(form_config.error_message_template.replace('<% messages %>', msg.join('<br />')));
         }
 
-        $el.after(template.addClass(form_name.replace('[]', '') + ' ozn-form-errors'));
+        var $suggest_area = $el.siblings('#oznform-suggest');
+
+        if($suggest_area.length > 0) {
+            $suggest_area.after(template.addClass(form_name.replace('[]', '') + ' ozn-form-errors'));
+        } else {
+            $el.after(template.addClass(form_name.replace('[]', '') + ' ozn-form-errors'));
+        }
+
     }
 
 
