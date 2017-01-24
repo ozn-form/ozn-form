@@ -91,6 +91,7 @@ Suggest.Local.prototype = {
       this.timerId = null;
 
       setTimeout(this._bind(this.clearSuggestArea), 500);
+      $(window).trigger('SuggestJSBlurEvent');
     }, 500));
   },
 

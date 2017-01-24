@@ -73,7 +73,8 @@
 
         "email": {
           "label": "メールアドレス",
-          "validates": ["required", "email"]
+          "validates": ["required", "email"],
+          "mobile_mail_warning": "携帯電話のアドレスが入力されました。example.com ドメインからのメールを受信できるように設定お願いします。"
         },
 
         "materials": {
@@ -112,7 +113,6 @@
 
         "survey[]": {
           "label": "アンケート",
-          "validates": ["required"],
           "error_message_position": ".surveys",
           "error_message_template": "<div class=\"col-sm-12\"><div class=\"alert alert-danger\"><% messages %></div></div>",
           "error_messages": {
