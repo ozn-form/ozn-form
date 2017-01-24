@@ -72,6 +72,11 @@ input[type="checkbox"]{
 		}
 	}
 }
+select{
+	&.ozn-input{
+		height: 4.5rem;
+	}
+}
 
 .ozn-label{
 	display: inline-block;
