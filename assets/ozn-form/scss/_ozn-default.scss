@@ -34,7 +34,7 @@ input[type="checkbox"]{
 	box-sizing: border-box;
 	vertical-align: middle;
 	border: 2px solid $input-border-default;
-	padding: 8px;
+	padding: 10px 8px;
 	margin-right: 5px;
 	font-size: 1.6rem;
 	width: calc(100% - 30px);
@@ -210,23 +210,31 @@ input[type="checkbox"]{
 	}
 }
 
+#oznform-suggest-wrapper{
+	position: relative;
+}
 
 #oznform-suggest{
   position: absolute;
   background-color: #FFFFFF;
   border: 1px solid $light-gray;
-  width: 100%;
+  //width: 100%;
+  width: calc(100% - 30px);
   z-index: 1000;
 	box-sizing: border-box;
+	cursor: pointer;
 
 	div{
     display: block;
-    width: 100%;
     overflow: hidden;
     white-space: nowrap;
+		line-height: 2;
+		font-size: 1.6rem;
+		padding-left: 15px;
+		box-sizing: border-box;
 
 		&.select{ // キー上下で選択した場合のスタイル
-			color: #FFFFFF;
+			color: #efefef;
 			background-color: #3366FF;
 		}
 
