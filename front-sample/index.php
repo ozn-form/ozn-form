@@ -97,7 +97,7 @@
 					<div class="th">メールアドレス <span class="ozn-label required">必須</span></div>
 					<div class="td">
 						<div id="oznform-suggest-wrapper">
-							<input data-domein-suggest="true" type="email" name="email" style="ime-mode:inactive;" class="ozn-input" placeholder="例）yamada@example.com">
+							<input data-domain-suggest="true" type="email" name="email" style="ime-mode:inactive;" class="ozn-input" placeholder="例）yamada@example.com">
 						</div>
 					</div>
 				</div>

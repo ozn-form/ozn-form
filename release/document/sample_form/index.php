@@ -147,7 +147,7 @@
         <div class="row">
             <div class="form-group col-sm-8">
                 <label for="email">メールアドレス<span class="required">（必須）</span></label>
-                <input data-domein-suggest="true" type="text" name="email" id="email" class="form-control" placeholder="例）xxxx@gmail.jp">
+                <input data-domain-suggest="true" type="text" name="email" id="email" class="form-control" placeholder="例）xxxx@gmail.jp">
             </div>
         </div>
 

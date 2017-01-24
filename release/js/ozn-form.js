@@ -178,7 +178,7 @@ jQuery(function ($) {
      */
     (function () {
 
-        var $target = $('[data-domein-suggest="true"]');
+        var $target = $('[data-domain-suggest="true"]');
 
         // suggest.js とのイベント競合を避けるため、リアルタイム検証処理を解除
         $target.off('blur', validateForm);
