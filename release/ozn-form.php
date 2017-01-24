@@ -119,6 +119,13 @@ if($page_role == 'form') {
         $ozn_form_javascript[] = '<script src="'.$document_path.'/js/datepicker-ja.js"></script>';
     }
 
+
+    // ToDo: jQueryFileUpload のパスを考える
+    // ToDo: 設定ファイルで読み込み制限できるようにする
+    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jQuery-File-Upload-9.14.2/js/vendor/jquery.ui.widget.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jQuery-File-Upload-9.14.2/js/jquery.iframe-transport.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jQuery-File-Upload-9.14.2/js/jquery.fileupload.js"></script>';
+
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jquery.autoKana.js"></script>';
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/domain_suggest.js"></script>';
 

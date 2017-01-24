@@ -210,6 +210,12 @@
 
         </div>
 
+        <div class="row">
+            <div class="col-sm-12">
+                <input id="fileupload" type="file" name="files[]" data-url="/js/jQuery-File-Upload-9.14.2/server/php/index.php" multiple>
+            </div>
+        </div>
+
         <hr>
         <div class="checkbox">
             <label class="ozn-check" style="text-indent: 1em;">
