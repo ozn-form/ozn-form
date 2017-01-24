@@ -3,12 +3,13 @@
   "is_debug": true,
 
   "form_name": "ozn-sample",
-  "form_root": "/front-sample/index.php",
+  "form_root": "/ozn-form-sample/front-sample/index.php",
 
   "unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。",
 
   "validation": {
-    "show_icon": true
+    "show_icon": true,
+    "shift_scroll_position": -50
   },
 
   "mail": {
@@ -64,7 +65,8 @@
 
         "email": {
           "label": "メールアドレス",
-          "validates": ["required", "email"]
+          "validates": ["required", "email"],
+          "mobile_mail_warning": "携帯電話のアドレスが入力されました。example.com ドメインからのメールを受信できるように設定お願いします。"
         },
 
         "tel": {
