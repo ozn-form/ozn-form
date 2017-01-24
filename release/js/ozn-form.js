@@ -29,19 +29,36 @@ jQuery(function ($) {
 
         var form_name = this;
 
-        $('[name="'+form_name+'"]').on('blur', function () {
-            if(OznForm.forms[form_name]['validates']) {
-                validFormValue(form_name, OznForm.forms[form_name]);
-            } else {
-                setVaildMark($(this));
-            }
-        })
+        $('[name="' + form_name + '"]').on('blur', {form_name: form_name}, validateForm);
     });
+
+    /**
+     * フォーム検証処理
+     * @param {string} form_name
+     */
+    function validateForm(event) {
+
+        var form_name = event;
+
+        if(typeof event != "string") {
+            form_name = event.data.form_name;
+        }
+
+        if(OznForm.forms[form_name]['validates']) {
+            validFormValue(form_name, OznForm.forms[form_name]);
+        } else {
+            setVaildMark($(this));
+        }
+    }
 
     // 送信時の入力値検証
     $('form').submit(validateAllForms);
 
-    // ToDo: 未検証フォームがなかった場合どうなるかテストする
+    /**
+     * 全てのフォームを検証処理する
+     *
+     * @returns {boolean}
+     */
     function validateAllForms() {
 
         var $this = $(this);
@@ -162,6 +179,17 @@ jQuery(function ($) {
     (function () {
 
         var $target = $('[data-domein-suggest="true"]');
+
+        // suggest.js とのイベント競合を避けるため、リアルタイム検証処理を解除
+        $target.off('blur', validateForm);
+
+        // suggest.js の blur時のイベント処理に合わせて検証を実施
+        // 選択後、文字挿入処理と同時ぐらいに検証イベントが発生するためちょっと遅らせて実行するようにした
+        $(window).on('SuggestJSBlurEvent', function () {
+            setTimeout(function () {
+                validateForm($target.attr('name'));
+            }, 200);
+        });
 
         // ブラウザの autocomplete 機能をOFF
         $target.attr('autocomplete', 'off');
@@ -327,6 +355,7 @@ jQuery(function ($) {
 
     /**
      * 検証結果に応じてクラスを付与する
+     *
      * @param $el
      * @param is_valid
      */
@@ -349,6 +378,7 @@ jQuery(function ($) {
 
     /**
      * エラーメッセージをページに挿入
+     *
      * @param $el <フォーム要素>
      * @param msg <エラーメッセージ>
      * @param form_config <フォーム設定>
