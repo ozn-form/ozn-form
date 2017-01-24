@@ -110,8 +110,8 @@ input[type="checkbox"]{
 }
 
 .ozn-form-warning{
-	color: $input-border-invalid;
-	background-color: lighten( $input-border-invalid, 40% );
+	color: $input-border-warning;
+	background-color: lighten( $input-border-warning, 65% );
 	display: block;
 	padding: 5px 10px;
 	margin: 8px 0 10px;

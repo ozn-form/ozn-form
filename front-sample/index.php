@@ -97,8 +97,6 @@
 					<div class="th">メールアドレス <span class="ozn-label required">必須</span></div>
 					<div class="td">
 						<input data-domein-suggest="true" type="text" name="email" class="ozn-input" placeholder="例）yamada@example.com">
-						<p class="ozn-notice">なるべくPC用のメールアドレスをご記入ください。<br>
-						携帯電話のアドレスの方は、example.com ドメインからのメールを受信できるように設定お願いします。</p>
 					</div>
 				</div>
 				<div class="tr">
