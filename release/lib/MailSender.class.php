@@ -239,7 +239,7 @@ class MailSender {
 
         // if文処理
         $template = preg_replace_callback(
-            "/<%%\s*if\.(.+?)\s*%%>(.+)<%%\s*endif\s*%%>(\n{0,1})/",
+            "/<%%\s*if\.(.+?)\s*%%>(.+?)<%%\s*endif\s*%%>(\n{0,1})/s",
             function($matches) {
 
                 global $page_data;
