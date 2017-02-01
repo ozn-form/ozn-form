@@ -210,41 +210,6 @@
 
         </div>
 
-
-        <!--ファイルアップロード-->
-        <div class="row">
-
-            <div class="col-sm-6">
-
-                <span class="fileinput-button">
-                    <button type="button">添付ファイル１を追加</button>
-                    <!-- The file input field used as target for the file upload widget -->
-                    <input class="fileupload" type="file" name="files[]" multiple>
-                </span>
-
-                <!-- The container for the uploaded files -->
-                <div id="ozn-form-uploaded-files">
-
-                </div>
-
-            </div>
-
-            <div class="col-sm-6">
-
-                <span class="fileinput-button">
-                    <button type="button">添付ファイル２を追加</button>
-                    <!-- The file input field used as target for the file upload widget -->
-                    <input class="fileupload" type="file" name="files[]" multiple>
-                </span>
-
-                <!-- The container for the uploaded files -->
-                <div id="ozn-form-uploaded-files">
-
-                </div>
-
-            </div>
-        </div>
-
         <hr>
         <div class="checkbox">
             <label class="ozn-check" style="text-indent: 1em;">
