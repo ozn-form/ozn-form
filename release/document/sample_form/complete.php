@@ -56,6 +56,9 @@ Webフォームにて <% customer_name %> 様よりお問合せがありまし�
 <%% if.tel %%>電話番号： <% tel %><%% endif %%>
 メールアドレス： <% email %>
 
+<%% if.mail_body %%>お問い合わせ内容：
+<% mail_body %> <%% endif %%>
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - -
 資料送付： <% materials %>
 配送希望日： <% shipping-date %>

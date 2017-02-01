@@ -3,7 +3,7 @@
   "is_debug": true,
 
   "form_name": "sample1",
-  "form_root": "/document/sample_form/index.php",
+  "form_root": "/release/document/sample_form/index.php",
 
   "unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。",
 
