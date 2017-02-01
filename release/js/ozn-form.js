@@ -247,14 +247,33 @@ jQuery(function ($) {
 
 
 
-    $('#fileupload').fileupload({
-        dataType: 'json',
-        done: function (e, data) {
-            $.each(data.result.files, function (index, file) {
-                $('<p/>').text(file.name).appendTo(document.body);
-            });
-        }
-    });
+    (function () {
+
+        var $files_el = $('#ozn-form-uploaded-files');
+
+        $('.fileupload').fileupload({
+            url: OznForm.furl,
+            dataType: 'json',
+            done: function (e, data) {
+                $.each(data.result.files, function (index, file) {
+                    console.log(file);
+
+                    var $template = $('<p class="ozn-form-upfile"></p>');
+
+                    if(file.thumbnailUrl) {
+                        $template.append('<span class="upfile-thumbnail"><img src="' + file.thumbnailUrl + '"></span>');
+                    }
+
+                    $template.append(file.name);
+                    $template.append('<input type="hidden" name="upfiles[]" value="'+file.name+'">');
+                    $files_el.append($template);
+
+                });
+            }
+        });
+    }());
+
+
 
 
     /**

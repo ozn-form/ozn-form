@@ -92,24 +92,31 @@ if($page_role == 'form') {
 
     $ozn_form_javascript = array();
 
+
+    // ページごとに生成するjs
     $ozn_form_javascript[] = '<script type="application/javascript">';
     $ozn_form_javascript[] = '  OznForm = {};';
     $ozn_form_javascript[] = '  OznForm.page_role = "'.$page_role.'";';
     $ozn_form_javascript[] = '  OznForm.page_data = '.$form_data_json.';';
     $ozn_form_javascript[] = '  OznForm.vurl      = "'.$document_path.'/ozn-form-validation.php";';
+    $ozn_form_javascript[] = '  OznForm.furl      = "'.$document_path.'/upload/index.php";';
     $ozn_form_javascript[] = '  OznForm.vsetting  = ' . json_encode($config->validationSetting());
     $ozn_form_javascript[] = '  OznForm.forms     = '.$forms_json.';';
 
+    // 初期化メッセージ設定（GETで初期ページに渡された値）
     if(isset($get_values)) {
         $ozn_form_javascript[] = '  OznForm.init_msg     = '.$get_values.';';
     }
 
+    // ページ離脱時のメッセージ
     if($config->unload_message() && $is_debug === FALSE) {
         $ozn_form_javascript[] = '  OznForm.unload_message = '.$config->unload_message().';';
     }
 
     $ozn_form_javascript[] = '</script>';
 
+
+    // 関連ライブラリの読み込み
     if($config->ajaxZipOption()) {
         $ozn_form_javascript[] = '<script src="'.$document_path.'/js/ajaxzip3.js"></script>';
     }
@@ -143,6 +150,7 @@ if($page_role == 'form') {
         $ozn_form_styles[] = '<link rel="stylesheet" href="'.$document_path.'/css/jquery-ui.min.css">';
     }
 
+    $ozn_form_styles[] = '<link rel="stylesheet" href="'.$document_path.'/js/jQuery-File-Upload-9.14.2/css/jquery.fileupload.css">';
     $ozn_form_styles[] = '<link rel="stylesheet" href="'.$document_path.'/css/ozn-form.min.css">';
 
     $ozn_form_styles = join("\n", $ozn_form_styles);
