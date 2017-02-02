@@ -120,9 +120,12 @@
           }
         },
 
-        "attachments": {
-          "label": "添付ファイル",
-          "validates": ["required"]
+        "attachment1[]": {
+          "label": "添付ファイル１"
+        },
+
+        "attachment2[]": {
+          "label": "添付ファイル２"
         },
 
         "privacy": {

@@ -246,30 +246,65 @@ jQuery(function ($) {
     }());
 
 
-
+    /**
+     * jQuery File Upload の適用
+     *
+     * @note
+     *
+     *  keyword: アップロードフォームのNAME値を指定
+     *
+     *  data-oznform-fileup="keyword"
+     *
+     */
     (function () {
 
-        var $files_el = $('#ozn-form-uploaded-files');
+        var index = 1;
 
-        $('.fileupload').fileupload({
-            url: OznForm.furl,
-            dataType: 'json',
-            done: function (e, data) {
-                $.each(data.result.files, function (index, file) {
-                    console.log(file);
+        $('[data-oznform-fileup]').each(function () {
 
-                    var $template = $('<p class="ozn-form-upfile"></p>');
+            var $el = $(this);
+            var form_name = $el.data('oznformFileup');
 
-                    if(file.thumbnailUrl) {
-                        $template.append('<span class="upfile-thumbnail"><img src="' + file.thumbnailUrl + '"></span>');
-                    }
+            var file_form_id = 'oznform-upform' + index;
+            var uploaded_files_id = 'oznform-uploaded-files' + index;
 
-                    $template.append(file.name);
-                    $template.append('<input type="hidden" name="upfiles[]" value="'+file.name+'">');
-                    $files_el.append($template);
 
-                });
-            }
+            // ファイルアップロードフォームのテンプレート
+            var upload_form_template = "\n" +
+                    '<span class="fileinput-button">' +
+                    '<button type="button">添付ファイル追加</button>' +
+                    '<input id="'+file_form_id+'" class="fileupload" type="file" name="files[]" multiple>' +
+                    '</span>' +
+                    '<div id="'+uploaded_files_id+'" class="oznform-uploaded-files"></div>'
+            ;
+
+            $el.append(upload_form_template);
+
+            $('#' + file_form_id).fileupload({
+                url: OznForm.furl,
+                dataType: 'json',
+                done: function (e, data) {
+                    $.each(data.result.files, function (index, file) {
+
+                        // ToDo: ↓後で削除
+                        console.log(file);
+
+                        var $files_el = $('#' + uploaded_files_id);
+                        var $template = $('<div class="oznform-uploaded-file"></div>');
+
+                        if(file.thumbnailUrl) {
+                            $template.append('<span class="oznform-uploaded-thumbnail"><img src="' + file.thumbnailUrl + '"></span>');
+                        }
+
+                        $template.append(file.name);
+                        $template.append('<input type="hidden" name="'+form_name+'" value="'+file.name+'">');
+                        $files_el.append($template);
+
+                    });
+                }
+            });
+
+            index++;
         });
     }());
 
