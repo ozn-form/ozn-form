@@ -189,6 +189,15 @@
             </div>
         </div>
 
+
+        <hr>
+
+        <!--ファイルアップロード-->
+        <div class="row">
+            <div class="form-group col-sm-6" data-oznform-fileup="attachment1[]"></div>
+            <div class="form-group col-sm-6" data-oznform-fileup="attachment2[]"></div>
+        </div>
+
         <hr>
 
         <div class="row">
@@ -210,12 +219,6 @@
 
         </div>
 
-
-        <!--ファイルアップロード-->
-        <div class="row">
-
-            <div class="col-sm-6" data-oznform-fileup="attachment1[]"></div>
-            <div class="col-sm-6" data-oznform-fileup="attachment2[]"></div>
 
         <hr>
         <div class="checkbox">

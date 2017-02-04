@@ -290,16 +290,35 @@ jQuery(function ($) {
                         console.log(file);
 
                         var $files_el = $('#' + uploaded_files_id);
-                        var $template = $('<div class="oznform-uploaded-file"></div>');
+
+                        var template = [];
+
+                        template.push('<div class="oznform-uploaded-file">');
 
                         if(file.thumbnailUrl) {
-                            $template.append('<span class="oznform-uploaded-thumbnail"><img src="' + file.thumbnailUrl + '"></span>');
+                            template.push('<span class="oznform-uploaded-thumbnail"><img src="' + file.thumbnailUrl + '"></span>');
                         }
 
-                        $template.append(file.name);
-                        $template.append('<input type="hidden" name="'+form_name+'" value="'+file.name+'">');
-                        $files_el.append($template);
+                        template.push(file.name);
+                        template.push('<button type="button" data-delete-url="'+file.deleteUrl+'">削除</button>');
+                        template.push('<input type="hidden" name="'+form_name+'" value="'+file.name+'">');
+                        template.push('</div>');
 
+                        var $file_el = $(template.join('\n'));
+
+                        // 削除処理をバインド
+                        $file_el.find('[data-delete-url]').on('click', function () {
+
+                            var $el = $(this);
+                            var delete_url = $el.data('deleteUrl');
+
+                            $.ajax({
+                                type: 'post',
+                                url: delete_url
+                            }).always(function () { $el.parent().remove(); });
+
+                        });
+                        $files_el.append($file_el);
                     });
                 }
             });
