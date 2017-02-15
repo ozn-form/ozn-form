@@ -181,6 +181,15 @@
 						<textarea name="mail_body" rows="10" class="ozn-input" placeholder="例）＊＊＊＊製品の見積希望"></textarea>
 					</div>
 				</div>
+				<div class="tr">
+					<div class="th">デザイン案添付 <span class="ozn-label optional">任意</span></div>
+					<div class="td">
+						<div class="ozn-file-block" data-oznform-fileup="attachment1[]"></div>
+						<div class="ozn-file-block" data-oznform-fileup="attachment2[]"></div>
+						<p class="ozn-notice">※送信可能な形式：gif, png, jpg, pdf, txt, xls, xlsx, doc, docx, zip <br>
+						※2MBを超えるサイズのデータは送信できません。</p>
+					</div>
+				</div>
 			</div>
 
 			<div class="privacy-wrapper">

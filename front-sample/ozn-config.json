@@ -3,7 +3,7 @@
   "is_debug": true,
 
   "form_name": "ozn-sample",
-  "form_root": "/ozn-form-sample/front-sample/index.php",
+  "form_root": "/front-sample/index.php",
 
   "unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。",
 
@@ -108,6 +108,14 @@
         "mail_body": {
           "label": "お問い合わせ詳細",
           "validates": ["required"]
+        },
+
+        "attachment1[]": {
+          "label": "添付ファイル１"
+        },
+
+        "attachment2[]": {
+          "label": "添付ファイル２"
         },
 
         "privacy": {
