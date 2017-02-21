@@ -73,6 +73,7 @@ class FormSession
 
     /**
      * 特定ページのセッション保存済みデータを返す
+     * 内部処理用（サニタイズなし）
      *
      * @param $page_name
      *
@@ -106,7 +107,7 @@ class FormSession
 
                     if($sanitize) {
                         if(is_array($value)) {
-                            $all_data[$key] = array_map(array($this, 'h'), $value);
+                            $all_data[$key] = join('、', array_map(array($this, 'h'), $value));
                         } else {
                             $all_data[$key] = $this->h($value);
                         }
@@ -142,7 +143,6 @@ class FormSession
     }
 
     /**
-     * ToDo: メール送信前のセッション内容確認　を実装
      *
      * すべてのページを経て検証済みデータが存在しているか確認する
      *

@@ -1,102 +1,10 @@
 jQuery(function ($) {
 
-    // セッションに入っているデータをフォームに適用する
-    OznForm.utilities.setSessionData(OznForm.page_data);
 
-    // getで渡された値をフォームに初期値として適用（フォームルートのみ）
-    OznForm.utilities.setInitMessage(OznForm.init_msg);
-
-    // エンターキー押下時の送信を無効化する
-    OznForm.utilities.disableEnterKeySubmit();
-
-    // 離脱アラートを表示（送信時は解除するため関連実装あり）
-    if(OznForm.unload_message) {
-        $(window).on('beforeunload', showUnloadMessage);
-    }
-
-    // ページ離脱時にアラートを表示する
-    function showUnloadMessage() {
-        return OznForm.unload_message;
-    }
-
-    // Datepickerを適用する
-    $('[data-of_datepicker]').each(function () {
-       $(this).datepicker();
-    });
-
-    // リアルタイム入力値検証
-    $.each(Object.keys(OznForm.forms), function () {
-
-        var form_name = this;
-
-        $('[name="' + form_name + '"]').on('blur', {form_name: form_name}, validateForm);
-    });
+    // -- 設定に応じてオプション機能を追加
 
     /**
-     * フォーム検証処理
-     * @param {string} form_name
-     */
-    function validateForm(event) {
-
-        var form_name = event;
-
-        if(typeof event != "string") {
-            form_name = event.data.form_name;
-        }
-
-        if(OznForm.forms[form_name]['validates']) {
-            validFormValue(form_name, OznForm.forms[form_name]);
-        } else {
-            setVaildMark($(this));
-        }
-    }
-
-    // 送信時の入力値検証
-    $('form').submit(validateAllForms);
-
-    /**
-     * 全てのフォームを検証処理する
-     *
-     * @returns {boolean}
-     */
-    function validateAllForms() {
-
-        var $this = $(this);
-        var ajax_validations = [];
-
-        $.each(Object.keys(OznForm.forms), function () {
-            var form_name = this;
-            var $form_el  = $('[name="'+form_name+'"]');
-
-            if((! $form_el.hasClass('ozn-form-valid')) && OznForm.forms[form_name]['validates']) {
-                ajax_validations.push(validFormValue(form_name, OznForm.forms[form_name]));
-            } else if( ! OznForm.forms[form_name]['validates']) {
-                setVaildMark($form_el);
-            }
-        });
-
-        // 可変数のDeferredを並列実行させる
-        $.when.apply($, ajax_validations)
-            .done(function() {
-                $this.off('submit', validateAllForms);
-                $(window).off('beforeunload', showUnloadMessage);
-                $this.submit();
-            }).fail(function () {
-
-                // 検証失敗したフォームまでスクロールバック
-                var top_error_position = $('.ozn-form-invalid').eq(0).offset().top;
-
-                $("html,body").animate({
-                    scrollTop : top_error_position + OznForm.vsetting.shift_scroll_position
-                });
-
-            });
-
-        return false;
-    }
-
-    /**
-     * ajaxzip3 の適用
+     * 郵便番号で住所補完機能（ajaxzip3）
      *
      * data-oznform-zip="keyword" 郵便番号フィールドの指定
      * data-oznform-pref="keyword" 都道府県入力フィールドの指定
@@ -111,7 +19,7 @@ jQuery(function ($) {
         var keywords = [];
 
         $('input[data-oznform-zip]').each(function () {
-           keywords.push($(this).data('oznformZip'))
+            keywords.push($(this).data('oznformZip'))
         });
 
         if(keywords.length > 0) {
@@ -140,7 +48,7 @@ jQuery(function ($) {
 
 
     /**
-     * autoruby.js の適用
+     * ふりがな自動入力機能（autoruby.js）
      *
      * data-autoruby="keyword" ふりがな自動入力する元の要素指定
      * data-autoruby-hiragana="keyword" ふりがな入力する要素の指定
@@ -148,7 +56,6 @@ jQuery(function ($) {
      *
      * ※ keyword を同じにすることにより各フィールドの関連付けを行う
      */
-
     (function () {
 
         // フォームキーワードを抽出して複数フォームの住所補完に対応
@@ -158,7 +65,7 @@ jQuery(function ($) {
             keywords.push($(this).data('autoruby'));
 
             $.each(keywords, function () {
-               var keyword = this;
+                var keyword = this;
 
                 var $hiragana_ruby = $('input[data-autoruby-hiragana="'+keyword+'"]');
                 var $katakana_ruby = $('input[data-autoruby-katakana="'+keyword+'"]');
@@ -174,7 +81,7 @@ jQuery(function ($) {
 
 
     /**
-     * domain_suggest.js の適用
+     * メールドメイン補完機能（domain_suggest.js）
      */
     (function () {
 
@@ -247,13 +154,11 @@ jQuery(function ($) {
 
 
     /**
-     * jQuery File Upload の適用
+     * 添付ファイル処理機能（jquery.fileupload.js）
      *
-     * @note
+     *  data-oznform-fileup="keyword" アップロードフォームを挿入したい要素
      *
-     *  keyword: アップロードフォームのNAME値を指定
-     *
-     *  data-oznform-fileup="keyword"
+     *  ※ keyword はアップロードフォームのNAME値を指定
      *
      */
     (function () {
@@ -266,7 +171,7 @@ jQuery(function ($) {
             var form_name = $el.data('oznformFileup');
 
             var file_form_id = 'oznform-upform' + index;
-            var uploaded_files_id = 'oznform-uploaded-files' + index;
+            var uploaded_files_id = OznForm.utilities.updatedFileElementName(form_name);
 
 
             // ファイルアップロードフォームのテンプレート
@@ -276,30 +181,19 @@ jQuery(function ($) {
                     '<input id="'+file_form_id+'" class="fileupload" type="file" name="files[]" multiple>' +
                     '</span>' +
                     '<div id="'+uploaded_files_id+'" class="oznform-uploaded-files"></div>'
-            ;
+                ;
 
             $el.append(upload_form_template);
 
             $('#' + file_form_id).fileupload({
+                dropZone: $(),
                 url: OznForm.furl,
                 dataType: 'json',
                 done: function (e, data) {
                     $.each(data.result.files, function (index, file) {
-
-                        // ToDo: ↓後で削除
                         console.log(file);
-
                         var $files_el = $('#' + uploaded_files_id);
-                        var $template = $('<div class="oznform-uploaded-file"></div>');
-
-                        if(file.thumbnailUrl) {
-                            $template.append('<span class="oznform-uploaded-thumbnail"><img src="' + file.thumbnailUrl + '"></span>');
-                        }
-
-                        $template.append(file.name);
-                        $template.append('<input type="hidden" name="'+form_name+'" value="'+file.name+'">');
-                        $files_el.append($template);
-
+                        OznForm.utilities.addUploadFileElement($files_el, form_name, file.thumbnailUrl, file.name, file.deleteUrl);
                     });
                 }
             });
@@ -309,6 +203,111 @@ jQuery(function ($) {
     }());
 
 
+
+
+    // エンターキー押下時の送信を無効化する
+    OznForm.utilities.disableEnterKeySubmit();
+
+    // セッションに入っているデータをフォームに適用する
+    OznForm.utilities.setSessionData(OznForm.page_data, OznForm.forms);
+
+    /**
+     * getで渡された値をフォームに初期値として挿入
+     *
+     * @note
+     *  フォームルートのみの適用。
+     *  すでにフォームに値がある場合は値を挿入しない。
+     *
+     */
+    OznForm.utilities.setInitMessage(OznForm.init_msg);
+
+
+    // 離脱アラートを表示（送信時は解除するため関連実装あり）
+    if(OznForm.unload_message) {
+        $(window).on('beforeunload', showUnloadMessage);
+    }
+
+    // ページ離脱時にアラートを表示する
+    function showUnloadMessage() {
+        return OznForm.unload_message;
+    }
+
+    // Datepickerを適用する
+    $('[data-of_datepicker]').each(function () {
+       $(this).datepicker();
+    });
+
+    // リアルタイム入力値検証
+    $.each(Object.keys(OznForm.forms), function () {
+
+        var form_name = this;
+
+        $('[name="' + form_name + '"]').on('blur', {form_name: form_name}, validateForm);
+    });
+
+
+    /**
+     * フォーム検証処理
+     * @param {string} form_name
+     */
+    function validateForm(event) {
+
+        var form_name = event;
+
+        if(typeof event != "string") {
+            form_name = event.data.form_name;
+        }
+
+        if(OznForm.forms[form_name]['validates']) {
+            validFormValue(form_name, OznForm.forms[form_name]);
+        } else {
+            setVaildMark($(this));
+        }
+    }
+
+    // 送信時の入力値検証
+    $('form').submit(validateAllForms);
+
+    /**
+     * 全てのフォームを検証処理する
+     *
+     * @returns {boolean}
+     */
+    function validateAllForms() {
+
+        var $this = $(this);
+        var ajax_validations = [];
+
+        $.each(Object.keys(OznForm.forms), function () {
+            var form_name = this;
+            var $form_el  = $('[name="'+form_name+'"]');
+
+            if((! $form_el.hasClass('ozn-form-valid')) && OznForm.forms[form_name]['validates']) {
+                ajax_validations.push(validFormValue(form_name, OznForm.forms[form_name]));
+            } else if( ! OznForm.forms[form_name]['validates']) {
+                setVaildMark($form_el);
+            }
+        });
+
+        // 可変数のDeferredを並列実行させる
+        $.when.apply($, ajax_validations)
+            .done(function() {
+                $this.off('submit', validateAllForms);
+                $(window).off('beforeunload', showUnloadMessage);
+                $this.submit();
+            }).fail(function () {
+
+                // 検証失敗したフォームまでスクロールバック
+                var top_error_position = $('.ozn-form-invalid').eq(0).offset().top;
+
+                $("html,body").animate({
+                    scrollTop : top_error_position + OznForm.vsetting.shift_scroll_position
+                });
+
+            });
+
+        return false;
+    }
 
 
     /**
