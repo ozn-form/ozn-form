@@ -142,7 +142,7 @@ console.log($target);
     }
 
     template.push('<span class="oznform-uploaded-filename">'+file_name+'</span>');
-    template.push('<button type="button" data-delete-url="'+delete_url+'">削除</button>');
+    template.push('<button class="oznform-delete-file" type="button" data-delete-url="'+delete_url+'">削除</button>');
     template.push('<input type="hidden" name="'+form_name+'" value="'+file_name+'">');
     template.push('</div>');
 
