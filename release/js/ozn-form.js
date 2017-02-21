@@ -282,6 +282,8 @@ jQuery(function ($) {
             var form_name = this;
             var $form_el  = $('[name="'+form_name+'"]');
 
+            if($form_el.size() == 0) { return true }
+
             if((! $form_el.hasClass('ozn-form-valid')) && OznForm.forms[form_name]['validates']) {
                 ajax_validations.push(validFormValue(form_name, OznForm.forms[form_name]));
             } else if( ! OznForm.forms[form_name]['validates']) {
