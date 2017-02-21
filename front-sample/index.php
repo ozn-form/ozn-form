@@ -41,7 +41,7 @@
 	</div>
 
 	<div class="ozn-form-container">
-		<form action="./confirm.php" method="post">
+		<form action="./confirm.php" method="post" enctype="multipart/form-data">
 
 			<div class="ozn-form-inner">
 				<div class="tr">

@@ -117,7 +117,13 @@ select{
 	}
 	.oznform-uploaded-thumbnail{
 		margin-right: 10px;
+    img{
+      vertical-align: middle;
+    }
 	}
+  .oznform-uploaded-filename{
+    vertical-align: middle;
+  }
 }
 
 
