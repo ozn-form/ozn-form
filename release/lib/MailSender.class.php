@@ -59,7 +59,7 @@ class MailSender {
         $this->phpmailer->setFrom($from, $from_name);
 
         // Set an alternative reply-to address
-        // $this->phpmailer->addReplyTo('replyto@example.com', 'OznForm テスト送信者');
+        $this->phpmailer->addReplyTo($from, $from_name);
 
         //　Set the subject line
         $this->phpmailer->Subject = $subject;

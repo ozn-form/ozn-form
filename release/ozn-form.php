@@ -208,10 +208,26 @@ if($page_role == 'form') {
     $admin_mail_body  = $mailer->replaceMailTemplateTags($page_data, $admin_mail_body . join("\n", $additional));
 
 
+    // 管理者宛メールのFROMを設定する
+    if($mail['from']['to_admin']) {
+        $admin_mail_from_name = $mail['from']['name'];
+        $admin_mail_from      = $mail['from']['address'];
+
+    } else {
+
+        $admin_mail_from_name = array();
+        foreach ( $mail['customer_name_form_name'] as $item) {
+            $admin_mail_from_name[] = $session->getFormValue($item);
+        }
+
+        $admin_mail_from_name = join(' ', $admin_mail_from_name);
+        $admin_mail_from      = $session->getFormValue($mail['customer_address_form_name']);
+    }
+
     $mailer->setEnvelope(
         $mail['send_by'],
         '', $mail['admin_mail_to'],
-        $mail['from_name'], $mail['from_address'],
+        $admin_mail_from_name, $admin_mail_from,
         $admin_mail_title, $admin_mail_body
     );
 
@@ -241,7 +257,7 @@ if($page_role == 'form') {
         $mailer->setEnvelope(
             $mail['send_by'],
             '', $session->getFormValue($mail['customer_address_form_name']),
-            $mail['from_name'], $mail['from_address'],
+            $mail['from']['name'], $mail['from']['address'],
             $customer_mail_title, $customer_mail_body
         );
 
