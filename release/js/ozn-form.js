@@ -56,7 +56,6 @@ jQuery(function ($) {
      *
      * ※ keyword を同じにすることにより各フィールドの関連付けを行う
      */
-
     (function () {
 
         // フォームキーワードを抽出して複数フォームの住所補完に対応
@@ -172,7 +171,7 @@ jQuery(function ($) {
             var form_name = $el.data('oznformFileup');
 
             var file_form_id = 'oznform-upform' + index;
-            var uploaded_files_id = 'oznform-uploaded-files' + index;
+            var uploaded_files_id = OznForm.utilities.updatedFileElementName(form_name);
 
 
             // ファイルアップロードフォームのテンプレート
@@ -187,41 +186,14 @@ jQuery(function ($) {
             $el.append(upload_form_template);
 
             $('#' + file_form_id).fileupload({
+                dropZone: $(),
                 url: OznForm.furl,
                 dataType: 'json',
                 done: function (e, data) {
                     $.each(data.result.files, function (index, file) {
-
+                        console.log(file);
                         var $files_el = $('#' + uploaded_files_id);
-
-                        var template = [];
-
-                        template.push('<div class="oznform-uploaded-file">');
-
-                        if(file.thumbnailUrl) {
-                            template.push('<span class="oznform-uploaded-thumbnail"><img src="' + file.thumbnailUrl + '"></span>');
-                        }
-
-                        template.push(file.name);
-                        template.push('<button type="button" data-delete-url="'+file.deleteUrl+'">削除</button>');
-                        template.push('<input type="hidden" name="'+form_name+'" value="'+file.name+'">');
-                        template.push('</div>');
-
-                        var $file_el = $(template.join('\n'));
-
-                        // 削除処理をバインド
-                        $file_el.find('[data-delete-url]').on('click', function () {
-
-                            var $el = $(this);
-                            var delete_url = $el.data('deleteUrl');
-
-                            $.ajax({
-                                type: 'post',
-                                url: delete_url
-                            }).always(function () { $el.parent().remove(); });
-
-                        });
-                        $files_el.append($file_el);
+                        OznForm.utilities.addUploadFileElement($files_el, form_name, file.thumbnailUrl, file.name, file.deleteUrl);
                     });
                 }
             });
@@ -231,11 +203,13 @@ jQuery(function ($) {
     }());
 
 
+
+
     // エンターキー押下時の送信を無効化する
     OznForm.utilities.disableEnterKeySubmit();
 
     // セッションに入っているデータをフォームに適用する
-    OznForm.utilities.setSessionData(OznForm.page_data);
+    OznForm.utilities.setSessionData(OznForm.page_data, OznForm.forms);
 
     /**
      * getで渡された値をフォームに初期値として挿入

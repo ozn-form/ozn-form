@@ -4,19 +4,36 @@ window.OznForm.utilities = {
      * PHPセッションに保存済みのデータをフォームに適用する
      *
      * @param {object} session_data <セッションに保存済みのデータ>
+     * @param {object} forms        <フォーム設定>
      */
-    setSessionData: function (session_data) {
+    setSessionData: function (session_data, forms) {
 
         var self = this;
 
         $.each(session_data, function (name, value) {
 
-            // if (value instanceof Array) {
-            //     name = name + '[]';
-            // }
+            // アップロードフォームの場合はファイルの情報を取得する
+            if(forms[name]['type'] === 'upload_files' ) {
+
+                var file_name = encodeURIComponent(value);
+
+                $.ajax({
+                    type: 'get',
+                    url: 'http://localhost:8080/release/upload/index.php?file=' + file_name
+                }).done(function (res) {
+                    res = $.parseJSON(res);
+                    console.log(res);
+                    self.addUploadFileElement(
+                        $( '#' + self.updatedFileElementName(name)),
+                        name,
+                        res.file.thumbnailUrl,
+                        res.file.name,
+                        res.file.deleteUrl
+                    );
+                });
+            }
 
             var $elem = $('[name="' + name + '"]');
-
 
             self.setValue($elem, value);
 
@@ -113,5 +130,55 @@ window.OznForm.utilities = {
                 return true;
             }
         });
+    },
+
+    /**
+     * ファイルアップロード後の表示エレメントを追加する
+     *
+     * @param {jQuery} $target <挿入する要素>
+     * @param {string} form_name <フォームの名前>
+     * @param {string} thumbnail_url <ThumbnailのURL>
+     * @param {string} file_name <アップロードファイル名>
+     * @param {string} delete_url <削除用URL>
+     */
+    addUploadFileElement: function ($target, form_name, thumbnail_url, file_name, delete_url) {
+console.log($target);
+    // テンプレート生成
+    var template = [];
+
+    template.push('<div class="oznform-uploaded-file">');
+
+    if(thumbnail_url) {
+        template.push('<span class="oznform-uploaded-thumbnail"><img src="' + thumbnail_url + '"></span>');
     }
+
+    template.push('<span class="oznform-uploaded-filename">'+file_name+'</span>');
+    template.push('<button type="button" data-delete-url="'+delete_url+'">削除</button>');
+    template.push('<input type="hidden" name="'+form_name+'" value="'+file_name+'">');
+    template.push('</div>');
+
+    var $file_el = $(template.join('\n'));
+
+    // 削除処理をバインド
+    $file_el.find('[data-delete-url]').on('click', function () {
+
+        var $el = $(this);
+
+        $.ajax({
+            type: 'post',
+            url: delete_url
+        }).always(function () { $el.parent().remove(); });
+    });
+
+    // 対象要素に追加
+    $target.append($file_el);
+},
+
+    updatedFileElementName: function (form_name) {
+
+        form_name = form_name.replace('[]', '');
+        return form_name + '_files';
+
+    }
+
 };

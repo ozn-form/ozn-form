@@ -110,6 +110,14 @@ require_once '../../ozn-form.php';
                         <th>メールアドレス</th>
                         <td data-insert="email"></td>
                     </tr>
+                    <tr>
+                        <th>添付ファイル１</th>
+                        <td data-insert="attachment1[]"></td>
+                    </tr>
+                    <tr>
+                        <th>添付ファイル２</th>
+                        <td data-insert="attachment2[]"></td>
+                    </tr>
                 </table>
             </div>
         </div>

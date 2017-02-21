@@ -121,11 +121,13 @@
         },
 
         "attachment1[]": {
-          "label": "添付ファイル１"
+          "label": "添付ファイル１",
+          "type": "upload_files"
         },
 
         "attachment2[]": {
-          "label": "添付ファイル２"
+          "label": "添付ファイル２",
+          "type": "upload_files"
         },
 
         "privacy": {
