@@ -14,13 +14,10 @@ window.OznForm.utilities = {
 
             // アップロードフォームの場合はファイルの情報を取得する
             if(forms[name]['type'] === 'upload_files' ) {
-
-                if(value instanceof Array) {
+                if(value) {
                     $.each(value, function () {
                         self.setUploadedFile(name, this);
                     });
-                } else {
-                    self.setUploadedFile(name, value);
                 }
             } else {
                 var $elem = $('[name="' + name + '"]');
@@ -142,7 +139,7 @@ console.log($target);
     }
 
     template.push('<span class="oznform-uploaded-filename">'+file_name+'</span>');
-    template.push('<button type="button" data-delete-url="'+delete_url+'">削除</button>');
+    template.push('<button class="oznform-delete-file" type="button" data-delete-url="'+delete_url+'">削除</button>');
     template.push('<input type="hidden" name="'+form_name+'" value="'+file_name+'">');
     template.push('</div>');
 
@@ -184,10 +181,11 @@ console.log($target);
 
         var self = this;
         var file_name = encodeURIComponent(value);
+        var check_url = 'http://localhost:8080/release/upload/index.php?file=' + file_name;
 
         $.ajax({
             type: 'get',
-            url: 'http://localhost:8080/release/upload/index.php?file=' + file_name
+            url: check_url
         }).done(function (res) {
             res = $.parseJSON(res);
             console.log(res);

@@ -36,7 +36,7 @@ class FormSession
 
             if($validator->validatePostData($page_name, $config) !== true) {
                 var_dump($validator->error_messages);
-                return false;
+                exit();
             }
         }
 
