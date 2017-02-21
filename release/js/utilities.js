@@ -15,28 +15,17 @@ window.OznForm.utilities = {
             // アップロードフォームの場合はファイルの情報を取得する
             if(forms[name]['type'] === 'upload_files' ) {
 
-                var file_name = encodeURIComponent(value);
-
-                $.ajax({
-                    type: 'get',
-                    url: 'http://localhost:8080/release/upload/index.php?file=' + file_name
-                }).done(function (res) {
-                    res = $.parseJSON(res);
-                    console.log(res);
-                    self.addUploadFileElement(
-                        $( '#' + self.updatedFileElementName(name)),
-                        name,
-                        res.file.thumbnailUrl,
-                        res.file.name,
-                        res.file.deleteUrl
-                    );
-                });
+                if(value instanceof Array) {
+                    $.each(value, function () {
+                        self.setUploadedFile(name, this);
+                    });
+                } else {
+                    self.setUploadedFile(name, value);
+                }
+            } else {
+                var $elem = $('[name="' + name + '"]');
+                self.setValue($elem, value);
             }
-
-            var $elem = $('[name="' + name + '"]');
-
-            self.setValue($elem, value);
-
         });
     },
 
@@ -174,11 +163,42 @@ console.log($target);
     $target.append($file_el);
 },
 
+    /**
+     * アップロードファイル情報を表示する要素名を生成する
+     *
+     * @param {string} form_name <対象フォームのNAME値>
+     */
     updatedFileElementName: function (form_name) {
-
         form_name = form_name.replace('[]', '');
         return form_name + '_files';
+    },
 
+
+    /**
+     * アップロードされたファイル情報を表示用要素へセットする
+     *
+     * @param {string} name  <対象フォームのNAME値>
+     * @param {string} value <ファイル名>
+     */
+    setUploadedFile: function (name, value) {
+
+        var self = this;
+        var file_name = encodeURIComponent(value);
+
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:8080/release/upload/index.php?file=' + file_name
+        }).done(function (res) {
+            res = $.parseJSON(res);
+            console.log(res);
+            self.addUploadFileElement(
+                $( '#' + self.updatedFileElementName(name)),
+                name,
+                res.file.thumbnailUrl,
+                res.file.name,
+                res.file.deleteUrl
+            );
+        });
     }
 
 };
