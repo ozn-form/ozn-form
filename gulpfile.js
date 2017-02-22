@@ -20,34 +20,43 @@ gulp.task('default', function() {
 
 gulp.task('watch', function () {
 //   gulp.watch(['./assets/ozn-form/sass/*.sass'], ['build_sass_dev'])
-   gulp.watch(['./assets/ozn-form/scss/*.scss'], ['build_sass_dev'])
+   gulp.watch(['./assets/ozn-form/scss/*.scss'], ['build_sass_dev'],['build_sass_core'])
 });
 
 
 gulp.task('build_sass_dev', function () {
 
     var files = [
-//        './assets/ozn-form/sass/ozn-form.sass',
-//        './assets/ozn-form/sass/base.sass'
-        './assets/ozn-form/scss/ozn-form.scss'
+        './assets/ozn-form/scss/eachsite.scss'
     ];
 
     return gulp.src(files)
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass())
-        .pipe(concat('ozn-form.css'))
-//        .pipe(minify())
-        .pipe(rename({extname: '.min.css'}))
+        .pipe(concat('eachsite.css'))
+        .pipe(rename('style.min.css'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./release/css/'));
+        .pipe(gulp.dest('./front-sample/css/'));
 });
 
 gulp.task('build_sass_release', function () {
 
     var files = [
-//        './assets/ozn-form/sass/ozn-form.sass',
-//        './assets/ozn-form/sass/base.sass'
+        './assets/ozn-form/scss/eachsite.scss'
+    ];
+
+    return gulp.src(files)
+        .pipe(sass())
+        .pipe(minify())
+        .pipe(concat('eachsite.css'))
+        .pipe(rename('style.min.css'))
+        .pipe(gulp.dest('./front-sample/css/'));
+});
+
+gulp.task('build_sass_core', function () {
+
+    var files = [
         './assets/ozn-form/scss/ozn-form.scss'
     ];
 
