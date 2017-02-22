@@ -105,6 +105,13 @@
 				<div class="th">お問い合わせ内容 <span class="ozn-label required">必須</span></div>
 				<div class="td" data-insert="mail_body"></div>
 			</div>
+				<div class="tr" data-if="attachment1[]">
+					<div class="th">デザイン案添付 <span class="ozn-label optional">任意</span></div>
+					<div class="td">
+						<span data-insert="attachment1[]"></span><br>
+						<span data-insert="attachment2[]"></span>
+					</div>
+				</div>
 		</div>
 
 		<div class="ozn-form-buttons">

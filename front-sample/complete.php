@@ -66,6 +66,8 @@ Webサイトから下記の内容でお問い合わせがありました。
 <%% if.survey[] %%>チェック項目： <% survey[] %><%% endif %%>
 <%% if.materials %%>選択項目： <% materials %><%% endif %%>
 <%% if.mail_body %%>お問い合わせ詳細： <% mail_body %><%% endif %%>
+<%% if.attachment1[] %%>【デザイン案添付】 添付あり<% attachment1[] %>
+<%% endif %%><%% if.attachment2[] %%>、<% attachment2[] %><%% endif %%>
 
 TEXT;
 
@@ -103,7 +105,8 @@ $customer_mail_body = <<< TEXT
 <%% if.survey[] %%>チェック項目： <% survey[] %><%% endif %%>
 <%% if.materials %%>選択項目： <% materials %><%% endif %%>
 <%% if.mail_body %%>お問い合わせ詳細： <% mail_body %><%% endif %%>
-
+<%% if.attachment1[] %%>【デザイン案添付】 添付あり<% attachment1[] %>
+<%% endif %%><%% if.attachment2[] %%>、<% attachment2[] %><%% endif %%>
 
 担当者が内容を確認の上、改めてご連絡いたします。
 
