@@ -179,6 +179,7 @@ jQuery(function ($) {
                     '<span class="fileinput-button">' +
                     '<button type="button">添付ファイル追加</button>' +
                     '<input id="'+file_form_id+'" class="fileupload" type="file" name="files[]" multiple>' +
+                    // '<input type="hidden" name="'+form_name+'" value="">' +
                     '</span>' +
                     '<div id="'+uploaded_files_id+'" class="oznform-uploaded-files"></div>'
                 ;

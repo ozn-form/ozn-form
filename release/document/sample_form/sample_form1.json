@@ -1,6 +1,6 @@
 {
 
-  "is_debug": false,
+  "is_debug": true,
 
   "form_name": "sample1",
   "form_root": "/release/document/sample_form/index.php",

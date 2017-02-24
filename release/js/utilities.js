@@ -128,7 +128,7 @@ window.OznForm.utilities = {
      * @param {string} delete_url <削除用URL>
      */
     addUploadFileElement: function ($target, form_name, thumbnail_url, file_name, delete_url) {
-console.log($target);
+
     // テンプレート生成
     var template = [];
 
@@ -181,14 +181,14 @@ console.log($target);
 
         var self = this;
         var file_name = encodeURIComponent(value);
-        var check_url = 'http://localhost:8080/release/upload/index.php?file=' + file_name;
+        var check_url = OznForm.furl + '?file=' + file_name;
 
         $.ajax({
             type: 'get',
             url: check_url
         }).done(function (res) {
             res = $.parseJSON(res);
-            console.log(res);
+
             self.addUploadFileElement(
                 $( '#' + self.updatedFileElementName(name)),
                 name,
