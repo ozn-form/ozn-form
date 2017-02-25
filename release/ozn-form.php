@@ -278,6 +278,10 @@ if($page_role == 'form') {
         }
     }
 
+    // デバッグ設定以外の時はセッションをクリアする
+    if( ! $is_debug) {
+        $session->destroy();
+    }
 
     // リダイレクト先が設定されている場合はリダイレクトして終了
     if(isset($mail['redirect_to']) && $mail['redirect_to'] != '') {
