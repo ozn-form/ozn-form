@@ -8,16 +8,14 @@ class FormSession
 
     private $session_name;
 
-    function __construct()
+    function __construct($session_name)
     {
+        $this->session_name = $session_name;
     }
 
-    public function start($session_name)
+    public function start()
     {
-
-        $this->session_name = $session_name;
-
-        session_name($session_name);
+        session_name($this->session_name);
         session_start();
     }
 

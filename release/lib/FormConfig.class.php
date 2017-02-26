@@ -177,17 +177,42 @@ class FormConfig
         }
     }
 
+    /**
+     * メール送信方法を返す
+     * @return mixed
+     */
+    public function send_by() {
+        return $this->config_raw['mail']['send_by'];
+    }
 
-    public function mail()
-    {
-        $mail_setting = $this->config_raw['mail'];
 
-        if( ! isset($mail_setting['admin_mail_cc'])) {$mail_setting['admin_mail_cc'] = FALSE;}
-        if( ! isset($mail_setting['admin_mail_bcc'])) {$mail_setting['admin_mail_bcc'] = FALSE;}
-        if( ! isset($mail_setting['customer_mail_cc'])) {$mail_setting['customer_mail_cc'] = FALSE;}
-        if( ! isset($mail_setting['customer_mail_bcc'])) {$mail_setting['customer_mail_bcc'] = FALSE;}
+    public function enabledAutoReply() {
+        return $this->config_raw['mail']['auto_reply']['enabled'] === TRUE ? TRUE : FALSE;
+    }
 
-        return $mail_setting;
+
+    /**
+     * 管理者宛メールの設定
+     * @return mixed
+     */
+    public function adminMail() {
+        return $this->mailSetting($this->config_raw['mail']['admin']);
+    }
+
+
+    public function autoReplyMail() {
+        return $this->mailSetting($this->config_raw['mail']['auto_reply']);
+    }
+
+    private function mailSetting($raw) {
+
+        if(empty($raw['to'])) throw new FormError('To アドレスが設定されていません。');
+        if(empty($raw['from'])) throw new FormError('From アドレスが設定されていません。');
+        if(empty($raw['reply_to'])) throw new FormError('Reply To アドレスが設定されていません。');
+
+
+        return $raw;
+
     }
 
     /**

@@ -10,6 +10,7 @@ require_once dirname(__FILE__) . '/lib/MailSender.class.php';
 require_once dirname(__FILE__) . '/lib/FormConfig.class.php';
 require_once dirname(__FILE__) . '/lib/FormError.class.php';
 require_once dirname(__FILE__) . '/lib/FormSession.class.php';
+require_once dirname(__FILE__) . '/lib/MailTemplate.class.php';
 
 
 /**
@@ -53,8 +54,8 @@ $document_path = str_replace($_SERVER['DOCUMENT_ROOT'], '', $system_root);
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
 
-$session = new FormSession();
-$session->start($config->formName());
+$session = new FormSession($config->formName());
+$session->start();
 
 
 /**
@@ -190,11 +191,20 @@ if($page_role == 'form') {
         exit();
     }
 
-    $mail   = $config->mail();
+    // メール送信共通処理
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     $mailer = new MailSender();
     $page_data = $session->getAllPageData(FALSE);
 
-    // 管理者宛メール送信
+    $template = new MailTemplate();
+    $template->setParams($page_data);
+
+
+    // 管理者宛メール送信処理
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    // 付加情報を設定
     $additional = array();
 
     $additional[] = '';
@@ -203,39 +213,23 @@ if($page_role == 'form') {
     $additional[] = '参照元：' . $_SESSION['ref'];
     $additional[] = '送信日時：' . date('Y年m月d日 H:i:s');
 
-    // テンプレートタグ置換
-    $admin_mail_title = $mailer->replaceMailTemplateTags($page_data, $admin_mail_title);
-    $admin_mail_body  = $mailer->replaceMailTemplateTags($page_data, $admin_mail_body . join("\n", $additional));
-
-
-    // 管理者宛メールのFROMを設定する
-    if($mail['from']['to_admin']) {
-        $admin_mail_from_name = $mail['from']['name'];
-        $admin_mail_from      = $mail['from']['address'];
-
-    } else {
-
-        $admin_mail_from_name = array();
-        foreach ( $mail['customer_name_form_name'] as $item) {
-            $admin_mail_from_name[] = $session->getFormValue($item);
-        }
-
-        $admin_mail_from_name = join(' ', $admin_mail_from_name);
-        $admin_mail_from      = $session->getFormValue($mail['customer_address_form_name']);
-    }
+    // 管理者メール設定を取得
+    $mail = $config->adminMail($page_data);
 
     $mailer->setEnvelope(
-        $mail['send_by'],
-        '', $mail['admin_mail_to'],
-        $admin_mail_from_name, $admin_mail_from,
-        $admin_mail_title, $admin_mail_body
+        $config->send_by(),
+        $template->output($mail['to_name']), $mail['to'],
+        $template->output($mail['from_name']), $mail['from'], $template->output($mail['reply_to']),
+        $template->output($admin_mail_title), $template->output($admin_mail_body) . join("\n", $additional)
     );
 
     // CC.BCC設定
-    $mailer->setCC($mail['admin_mail_cc']);
-    $mailer->setBCC($mail['admin_mail_bcc']);
+    $mailer->setCC($mail['cc']);
+    $mailer->setBCC($mail['bcc']);
 
-    switch ($mail['send_by']) {
+    // 送信処理
+
+    switch ($config->send_by()) {
         case 'sendmail':
             $mailer->sendmail();
             break;
@@ -249,23 +243,22 @@ if($page_role == 'form') {
 
 
     // 自動返信メールが有効の時は送信
-    if($mail['auto_reply']) {
+    if($config->enabledAutoReply()) {
 
-        $customer_mail_title = $mailer->replaceMailTemplateTags($page_data, $customer_mail_title);
-        $customer_mail_body  = $mailer->replaceMailTemplateTags($page_data, $customer_mail_body);
+        $mail = $config->autoReplyMail();
 
         $mailer->setEnvelope(
-            $mail['send_by'],
-            '', $session->getFormValue($mail['customer_address_form_name']),
-            $mail['from']['name'], $mail['from']['address'],
-            $customer_mail_title, $customer_mail_body
+            $config->send_by(),
+            $template->output($mail['to_name']), $template->output($mail['to']),
+            $mail['from_name'], $mail['from'], $mail['reply_to'],
+            $template->output($customer_mail_title), $template->output($customer_mail_body)
         );
 
         // CC,BCC設定
-        $mailer->setCC($mail['customer_mail_cc']);
-        $mailer->setBCC($mail['customer_mail_bcc']);
+        $mailer->setCC($mail['cc']);
+        $mailer->setBCC($mail['bcc']);
 
-        switch ($mail['send_by']) {
+        switch ($config->send_by()) {
             case 'sendmail':
                 $mailer->sendmail();
                 break;
