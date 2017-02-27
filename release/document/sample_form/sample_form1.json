@@ -14,22 +14,30 @@
 
   "mail": {
 
-    "auto_reply": true,
-
     "send_by": "Gmail SMTP",
+    "redirect_to": "",
 
-    "admin_mail_to": "oznform+admin_mail@gmail.com",
-    "admin_mail_cc": [],
-    "admin_mail_bcc": [],
+    "admin": {
+      "to_name"   : "",
+      "to"        : "oznform+webcontact@gmail.com",
+      "cc"        : [],
+      "bcc"       : [],
+      "from_name" : "OznForm Mailer",
+      "from"      : "oznform@gmail.com",
+      "reply_to"  : "<% email %>"
 
-    "customer_address_form_name": "email",
-    "customer_mail_cc": [],
-    "customer_mail_bcc": ["oznform+for_customer@gmail.com"],
+    },
 
-    "from_name": "OznFormテスト送信者",
-    "from_address": "oznform@gmail.com",
-
-    "redirect_to": ""
+    "auto_reply": {
+      "enabled"   : true,
+      "to_name"   : "<% customer_name %> 様",
+      "to"        : "<% email %>",
+      "cc"        : [],
+      "bcc"       : [],
+      "from_name" : "OznForm Tester",
+      "from"      : "oznform@gmail.com",
+      "reply_to"  : "oznform@gmail.com"
+    }
   },
 
   "pages": {
