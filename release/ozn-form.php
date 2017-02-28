@@ -133,6 +133,9 @@ if($page_role == 'form') {
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jQuery-File-Upload-9.14.2/js/vendor/jquery.ui.widget.js"></script>';
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jQuery-File-Upload-9.14.2/js/jquery.iframe-transport.js"></script>';
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jQuery-File-Upload-9.14.2/js/jquery.fileupload.js"></script>';
+//    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jQuery-File-Upload-9.14.2/js/jquery.fileupload-validate.js"></script>';
+
+
 
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jquery.autoKana.js"></script>';
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/domain_suggest.js"></script>';
@@ -242,6 +245,16 @@ if($page_role == 'form') {
     $mailer->setCC($mail['cc']);
     $mailer->setBCC($mail['bcc']);
 
+    // 添付ファイルをセット
+    $upload_form_names = $config->uploadFileForms();
+    if( ! empty($upload_form_names)) {
+        foreach ($upload_form_names as $upload_form_name) {
+            if( ! empty($page_data[$upload_form_name])) {
+                $mailer->setAttachment(dirname(__FILE__) . '/upload/files/', $page_data[$upload_form_name]);
+            }
+        }
+    }
+
     // 送信処理
 
     switch ($config->send_by()) {
@@ -286,9 +299,28 @@ if($page_role == 'form') {
         }
     }
 
-    // デバッグ設定以外の時はセッションをクリアする
+    // 送信後処理（デバッグ設定以外の時）
     if( ! $is_debug) {
+
+        // セッション情報をクリア
         $session->destroy();
+
+        // 添付ファイルを削除
+        $upload_form_names = $config->uploadFileForms();
+        if( ! empty($upload_form_names)) {
+            foreach ($upload_form_names as $upload_form_name) {
+                if( ! empty($page_data[$upload_form_name])) {
+                    foreach ($page_data[$upload_form_name] as $file) {
+
+                        $file_path = dirname(__FILE__) . '/upload/files/' . $file;
+                        if(file_exists($file_path)) unlink($file_path);
+
+                        $thumbnail_path = dirname(__FILE__) . '/upload/files/thumbnail/' . $file;
+                        if(file_exists($thumbnail_path)) unlink($thumbnail_path);
+                    }
+                }
+            }
+        }
     }
 
     // リダイレクト先が設定されている場合はリダイレクトして終了

@@ -216,6 +216,26 @@ class FormConfig
     }
 
     /**
+     * アップロード項目のフォーム名を返す
+     */
+    public function uploadFileForms() {
+
+        $file_forms = array();
+
+        foreach ( $this->allPageForms() as $page) {
+
+            foreach ($page as $key => $form) {
+                if(isset($form['type']) && $form['type'] === 'upload_files') {
+                    $file_forms[] = $key;
+                }
+            }
+        }
+
+        return $file_forms;
+
+    }
+
+    /**
      * jQueryUIが有効か確認
      * @return bool
      */

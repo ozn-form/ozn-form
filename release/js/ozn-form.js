@@ -171,6 +171,7 @@ jQuery(function ($) {
             var form_name = $el.data('oznformFileup');
 
             var file_form_id = 'oznform-upform' + index;
+            var file_form_error_id = 'oznform-upform-error-position' + index;
             var uploaded_files_id = OznForm.utilities.updatedFileElementName(form_name);
 
 
@@ -192,9 +193,15 @@ jQuery(function ($) {
                 dataType: 'json',
                 done: function (e, data) {
                     $.each(data.result.files, function (index, file) {
-                        console.log(file);
+                        // console.log(file);
+
                         var $files_el = $('#' + uploaded_files_id);
-                        OznForm.utilities.addUploadFileElement($files_el, form_name, file.thumbnailUrl, file.name, file.deleteUrl);
+                        if(file.error) {
+                            alert(file.error);
+                        } else {
+                            OznForm.utilities.addUploadFileElement($files_el, form_name, file.thumbnailUrl, file.name, file.deleteUrl);
+                        }
+
                     });
                 }
             });
@@ -453,6 +460,11 @@ jQuery(function ($) {
 
         var form_name = $el.attr('name');
         var template  = $('<div>' + msg.join('<br />') + '</div>');
+
+        // ファイルアップロードの時、name属性値にform_nameがないのでdata属性から取得する
+        if(form_name === undefined) {
+            form_name = $el.data('oznformFileup');
+        }
 
         // エラー位置の指定があれば基準要素を置換
         if(form_config.error_message_position) {

@@ -96,6 +96,21 @@ class MailSender {
         }
     }
 
+    /**
+     * 添付ファイルを追加する
+     *
+     * @param string $base_path  <ファイルのあるディレクトリ>
+     * @param array  $file_names <添付するファイル名>
+     */
+    public function setAttachment($base_path, $file_names) {
+
+        if( ! preg_match('/\/$/', $base_path)) $base_path = '/' . $base_path;
+
+        foreach ($file_names as $file_name) {
+            $this->phpmailer->AddAttachment($base_path . $file_name);
+        }
+    }
+
     private function send()
     {
         if (!$this->phpmailer->send()) {
