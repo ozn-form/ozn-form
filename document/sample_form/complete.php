@@ -99,7 +99,7 @@ TEXT;
 
 
 // OznForm 実行ファイル読み込み
-require '../../ozn-form.php';
+require '../../release/ozn-form.php';
 
 ?>
 
@@ -167,7 +167,7 @@ require '../../ozn-form.php';
 
         <div class="row">
             <p class="col-sm-12 text-center">
-                <a href="/document/sample_form/" class="btn btn-success">フォームトップへ戻る</a>
+                <a href="/document/sample_form" class="btn btn-success">フォームトップへ戻る</a>
             </p>
         </div>
     </div>

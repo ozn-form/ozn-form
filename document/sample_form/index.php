@@ -4,7 +4,7 @@
     $config_path = dirname(__FILE__) . '/' . 'sample_form1.json';
 
     // OznForm 実行ファイル読み込み
-    require '../../ozn-form.php';
+    require '../../release/ozn-form.php';
 
 ?>
 
