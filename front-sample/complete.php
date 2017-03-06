@@ -134,7 +134,6 @@ require '../release/ozn-form.php';
 <?php echo $ozn_form_styles; ?>
 <link rel="stylesheet" href="./css/style.min.css">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<?php echo $ozn_form_javascript; ?>
 <!--[if lt IE 9]><script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
