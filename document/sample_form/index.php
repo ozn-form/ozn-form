@@ -151,6 +151,13 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="form-group col-sm-8">
+                <label for="email">勤務先メールアドレス<span class="required">（必須）</span></label>
+                <input data-domain-suggest="true2" type="text" name="email2" id="email" class="form-control" placeholder="例）xxxx@gmail.jp">
+            </div>
+        </div>
+
         <hr>
 
         <div class="row">
