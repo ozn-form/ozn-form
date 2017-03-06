@@ -107,7 +107,7 @@ class MailSender {
         if( ! preg_match('/\/$/', $base_path)) $base_path = '/' . $base_path;
 
         foreach ($file_names as $file_name) {
-            $this->phpmailer->AddAttachment($base_path . $file_name);
+            $this->phpmailer->AddAttachment($base_path . $file_name, $file_name);
         }
     }
 
