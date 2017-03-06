@@ -95,7 +95,7 @@ jQuery(function ($) {
 
             // suggest.js の blur時のイベント処理に合わせて検証を実施
             // 選択後、文字挿入処理と同時ぐらいに検証イベントが発生するためちょっと遅らせて実行するようにした
-            $(window).on('SuggestJSBlurEvent', function () {
+            $target.on('SuggestJSBlurEvent', function () {
                 setTimeout(function () {
                     validateForm($target.attr('name'));
                 }, 200);
@@ -152,7 +152,12 @@ jQuery(function ($) {
                     'willcom.com',
                     'disney.ne.jp'
                 ],
-                {dispMax: 10}); // オプション
+
+                // オプション
+                {
+                    dispMax: 10,
+                    eventTarget: $target
+                });
 
 
         });
