@@ -18,10 +18,10 @@
     "redirect_to": "",
 
     "admin": {
-      "to_name"   : "",
+      "to_name"   : "サンプル株式会社",
       "to"        : "mypacecreator+to@gmail.com",
       "cc"        : [],
-      "bcc"       : [""],
+      "bcc"       : [],
       "from_name" : "<% customer_name %> 様",
       "from"      : "no-reply@ozonenotes.jp",
       "reply_to"  : "<% email %>"
