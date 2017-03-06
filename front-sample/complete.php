@@ -7,8 +7,8 @@ $config_path = dirname(__FILE__) . '/' . 'ozn-config.json';
 // Gmail アカウント設定（Gmail SMTP 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-$gmail_user     = "oznform@gmail.com";
-$gmail_password = "nNeT7FYANyWtDX";
+//$gmail_user     = "";
+//$gmail_password = "";
 
 
 // Gmail API設定（Gmail SMTP [OAuth認証] 経由で送信する時のみ）
@@ -66,8 +66,8 @@ Webサイトから下記の内容でお問い合わせがありました。
 <%% if.survey[] %%>チェック項目： <% survey[] %><%% endif %%>
 <%% if.materials %%>選択項目： <% materials %><%% endif %%>
 <%% if.mail_body %%>お問い合わせ詳細： <% mail_body %><%% endif %%>
-<%% if.attachment1[] %%>【デザイン案添付】 添付あり<% attachment1[] %>
-<%% endif %%><%% if.attachment2[] %%>、<% attachment2[] %><%% endif %%>
+<%% if.attachment1[] %%>デザイン案添付1： <% attachment1[] %><%% endif %%>
+<%% if.attachment2[] %%>デザイン案添付2： <% attachment2[] %><%% endif %%>
 
 TEXT;
 
@@ -105,8 +105,8 @@ $customer_mail_body = <<< TEXT
 <%% if.survey[] %%>チェック項目： <% survey[] %><%% endif %%>
 <%% if.materials %%>選択項目： <% materials %><%% endif %%>
 <%% if.mail_body %%>お問い合わせ詳細： <% mail_body %><%% endif %%>
-<%% if.attachment1[] %%>【デザイン案添付】 添付あり<% attachment1[] %>
-<%% endif %%><%% if.attachment2[] %%>、<% attachment2[] %><%% endif %%>
+<%% if.attachment1[] %%>デザイン案添付1： <% attachment1[] %><%% endif %%>
+<%% if.attachment2[] %%>デザイン案添付2： <% attachment2[] %><%% endif %%>
 
 担当者が内容を確認の上、改めてご連絡いたします。
 

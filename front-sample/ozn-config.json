@@ -1,9 +1,9 @@
 {
 
-  "is_debug": true,
+  "is_debug": false,
 
   "form_name": "ozn-sample",
-  "form_root": "/front-sample/index.php",
+  "form_root": "/ozn-form-sample/front-sample/index.php",
 
   "unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。",
 
@@ -14,22 +14,30 @@
 
   "mail": {
 
-    "auto_reply": true,
+    "send_by": "sendmail",
+    "redirect_to": "",
 
-    "send_by": "Gmail SMTP",
+    "admin": {
+      "to_name"   : "",
+      "to"        : "mypacecreator+to@gmail.com",
+      "cc"        : [],
+      "bcc"       : [""],
+      "from_name" : "<% customer_name %> 様",
+      "from"      : "no-reply@ozonenotes.jp",
+      "reply_to"  : "<% email %>"
 
-    "admin_mail_to": "oznform+admin_mail@gmail.com",
-    "admin_mail_cc": [],
-    "admin_mail_bcc": [],
+    },
 
-    "customer_address_form_name": "email",
-    "customer_mail_cc": [],
-    "customer_mail_bcc": ["oznform+for_customer@gmail.com"],
-
-    "from_name": "OznFormテスト送信者",
-    "from_address": "oznform@gmail.com",
-
-    "redirect_to": ""
+    "auto_reply": {
+      "enabled"   : true,
+      "to_name"   : "<% customer_name %> 様",
+      "to"        : "<% email %>",
+      "cc"        : [],
+      "bcc"       : ["mypacecreator+bcc@gmail.com"],
+      "from_name" : "サンプル株式会社",
+      "from"      : "no-reply@ozonenotes.jp",
+      "reply_to"  : "mypacecreator+replyto@gmail.com"
+    }
   },
 
   "pages": {
