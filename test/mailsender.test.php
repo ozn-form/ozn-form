@@ -15,11 +15,13 @@ class MailSenderTest {
 
 
     function sendGMailSMTPTest() {
-        $this->sender->sendGMailSMTP(
-            'テスト送信先', 'michikawa.seisys@gmail.com',
+
+        $this->sender->setEnvelope('Gmail SMTP', 'テスト送信先', 'michikawa.seisys@gmail.com',
             'OznFormテスト送信者', 'oznform@gmail.com',
             'OznFormテスト送信メール',
-            'これはテスト送信です。',
+            'これはテスト送信です。');
+
+        $this->sender->sendGMailSMTP(
             'oznform@gmail.com',
             'nNeT7FYANyWtDX'
         );
@@ -45,7 +47,7 @@ class MailSenderTest {
 $test = new MailSenderTest();
 
 
-echo $test->replaceTemplateTest();
+echo $test->sendGMailSMTPTest();
 
 
 

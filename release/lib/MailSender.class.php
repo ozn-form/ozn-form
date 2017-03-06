@@ -45,7 +45,7 @@ class MailSender {
     /**
      * 送信情報をセットする
      */
-    public function setEnvelope($send_method, $to_name, $to, $from_name, $from, $subject, $body)
+    public function setEnvelope($send_method, $to_name, $to, $from_name, $from, $reply_to, $subject, $body)
     {
 
         // 送信方法によってphpmailerを初期化する
@@ -59,9 +59,9 @@ class MailSender {
         $this->phpmailer->setFrom($from, $from_name);
 
         // Set an alternative reply-to address
-        // $this->phpmailer->addReplyTo('replyto@example.com', 'OznForm テスト送信者');
+        $this->phpmailer->addReplyTo($reply_to, '');
 
-        //　Set the subject line
+        // Set the subject line
         $this->phpmailer->Subject = $subject;
 
         // Set the plain text body
@@ -93,6 +93,21 @@ class MailSender {
             foreach ($addresses as $address) {
                 $this->phpmailer->addBCC($address);
             }
+        }
+    }
+
+    /**
+     * 添付ファイルを追加する
+     *
+     * @param string $base_path  <ファイルのあるディレクトリ>
+     * @param array  $file_names <添付するファイル名>
+     */
+    public function setAttachment($base_path, $file_names) {
+
+        if( ! preg_match('/\/$/', $base_path)) $base_path = '/' . $base_path;
+
+        foreach ($file_names as $file_name) {
+            $this->phpmailer->AddAttachment($base_path . $file_name);
         }
     }
 
@@ -222,37 +237,4 @@ class MailSender {
 
         $this->send();
     }
-
-
-    /**
-     * メールテンプレート中のタグを入力値で置換
-     */
-    public function replaceMailTemplateTags($page_data, $template)
-    {
-
-        // テンプレートタグ置換
-        foreach ($page_data as $key => $v) {
-            if(is_array($v)) {$v = join('、', $v);}
-            $key = preg_quote($key);
-            $template = preg_replace("/<%\s*$key\s*%>/", $v, $template);
-        }
-
-        // if文処理
-        $template = preg_replace_callback(
-            "/<%%\s*if\.(.+?)\s*%%>(.+?)<%%\s*endif\s*%%>(\n{0,1})/s",
-            function($matches) {
-
-                global $page_data;
-
-                if($page_data[$matches[1]]) {
-                    return $matches[2].$matches[3];
-                }
-            },
-            $template);
-
-
-
-        return $template;
-    }
-
 }

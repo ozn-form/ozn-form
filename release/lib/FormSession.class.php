@@ -5,13 +5,17 @@ require_once dirname(__FILE__) . '/FormValidation.class.php';
 
 class FormSession
 {
-    function __construct()
+
+    private $session_name;
+
+    function __construct($session_name)
     {
+        $this->session_name = $session_name;
     }
 
-    public function start($session_name)
+    public function start()
     {
-        session_name($session_name);
+        session_name($this->session_name);
         session_start();
     }
 
@@ -133,6 +137,15 @@ class FormSession
     {
         $all_data = $this->getAllPageData(false);
         return $all_data[$form_name];
+    }
+
+
+    /**
+     * フォームのセッションを破棄する
+     */
+    public function destroy() {
+        setcookie($this->session_name, '', time() - 1800);
+        session_destroy();
     }
 
 
