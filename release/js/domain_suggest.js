@@ -68,6 +68,7 @@ Suggest.Local.prototype = {
   dispAllKey: false,
   classMouseOver: 'over',
   classSelect: 'select',
+  eventTarget: $(window),
   hookBeforeSearch: function(){},
 
   setOptions: function(options) {
@@ -91,7 +92,7 @@ Suggest.Local.prototype = {
       this.timerId = null;
 
       setTimeout(this._bind(this.clearSuggestArea), 500);
-      $(window).trigger('SuggestJSBlurEvent');
+      this.eventTarget.trigger('SuggestJSBlurEvent');
     }, 500));
   },
 

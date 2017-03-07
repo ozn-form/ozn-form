@@ -103,6 +103,14 @@
 					</div>
 				</div>
 				<div class="tr">
+					<div class="th">メールアドレス2 <span class="ozn-label optional">任意</span></div>
+					<div class="td">
+						<div class="ozn-form-suggest-wrapper">
+							<input data-domain-suggest="true2" type="email" name="email2" style="ime-mode:inactive;" class="ozn-input" placeholder="例）yamada@example.com">
+						</div>
+					</div>
+				</div>
+				<div class="tr">
 					<div class="th">電話番号 <span class="ozn-label required">必須</span></div>
 					<div class="td">
 						<input type="tel" name="tel" class="ozn-input" style="ime-mode:inactive;" placeholder="例）052-111-2222" autocomplete="tel-national">

@@ -85,71 +85,82 @@ jQuery(function ($) {
      */
     (function () {
 
-        var $target = $('[data-domain-suggest="true"]');
+        $('[data-domain-suggest]').each(function () {
 
-        // suggest.js とのイベント競合を避けるため、リアルタイム検証処理を解除
-        $target.off('blur', validateForm);
+            var $target = $(this);
+            var suggest_area_id = "oznform-suggest-" + $target.data('domainSuggest');
 
-        // suggest.js の blur時のイベント処理に合わせて検証を実施
-        // 選択後、文字挿入処理と同時ぐらいに検証イベントが発生するためちょっと遅らせて実行するようにした
-        $(window).on('SuggestJSBlurEvent', function () {
-            setTimeout(function () {
-                validateForm($target.attr('name'));
-            }, 200);
+            // suggest.js とのイベント競合を避けるため、リアルタイム検証処理を解除
+            $target.off('blur', validateForm);
+
+            // suggest.js の blur時のイベント処理に合わせて検証を実施
+            // 選択後、文字挿入処理と同時ぐらいに検証イベントが発生するためちょっと遅らせて実行するようにした
+            $target.on('SuggestJSBlurEvent', function () {
+                setTimeout(function () {
+                    validateForm($target.attr('name'));
+                }, 200);
+            });
+
+            // ブラウザの autocomplete 機能をOFF
+            $target.attr('autocomplete', 'off');
+
+            // サジェストリスト用の要素を用意
+            $target.after('<div id="'+suggest_area_id+'" class="oznform-suggest" style="display:none;"></div>');
+
+            new Suggest.Local(
+                $target.get(0),
+                suggest_area_id,
+                [
+                    'yahoo.co.jp',
+                    'gmail.com',
+                    'ezweb.ne.jp',
+                    'docomo.ne.jp',
+                    'softbank.ne.jp',
+                    'i.softbank.jp',
+                    'icloud.com',
+                    'hotmail.com',
+                    'hotmail.co.jp',
+                    'outlook.com',
+                    // --ここまでTOP 10---
+                    'outlook.jp',
+                    'live.jp',
+                    'nifty.ne.jp',
+                    'ybb.ne.jp',
+                    // --↑あってここまで--
+                    //--↓まあほぼ見かけない--
+                    'goo.jp',
+                    'mail.goo.ne.jp',
+                    'infoseek.jp',
+                    'excite.co.jp',
+                    'auone.jp',
+                    'livedoor.com',
+                    'ymobile.ne.jp',
+                    'ymobile1.ne.jp',
+                    'y-mobile.ne.jp',
+                    'emnet.ne.jp',
+                    'wcm.ne.jp',
+                    'd.vodafone.ne.jp',
+                    'h.vodafone.ne.jp',
+                    't.vodafone.ne.jp',
+                    'c.vodafone.ne.jp',
+                    'k.vodafone.ne.jp',
+                    'r.vodafone.ne.jp',
+                    'n.vodafone.ne.jp',
+                    's.vodafone.ne.jp',
+                    'q.vodafone.ne.jp',
+                    'pdx.ne.jp',
+                    'willcom.com',
+                    'disney.ne.jp'
+                ],
+
+                // オプション
+                {
+                    dispMax: 10,
+                    eventTarget: $target
+                });
+
+
         });
-
-        // ブラウザの autocomplete 機能をOFF
-        $target.attr('autocomplete', 'off');
-
-        // サジェストリスト用の要素を用意
-        $target.after('<div id="oznform-suggest" style="display:none;"></div>');
-
-        new Suggest.Local(
-            $target.get(0),
-            "oznform-suggest",
-            [
-                'yahoo.co.jp',
-                'gmail.com',
-                'ezweb.ne.jp',
-                'docomo.ne.jp',
-                'softbank.ne.jp',
-                'i.softbank.jp',
-                'icloud.com',
-                'hotmail.com',
-                'hotmail.co.jp',
-                'outlook.com',
-                // --ここまでTOP 10---
-                'outlook.jp',
-                'live.jp',
-                'nifty.ne.jp',
-                'ybb.ne.jp',
-                // --↑あってここまで--
-                //--↓まあほぼ見かけない--
-                'goo.jp',
-                'mail.goo.ne.jp',
-                'infoseek.jp',
-                'excite.co.jp',
-                'auone.jp',
-                'livedoor.com',
-                'ymobile.ne.jp',
-                'ymobile1.ne.jp',
-                'y-mobile.ne.jp',
-                'emnet.ne.jp',
-                'wcm.ne.jp',
-                'd.vodafone.ne.jp',
-                'h.vodafone.ne.jp',
-                't.vodafone.ne.jp',
-                'c.vodafone.ne.jp',
-                'k.vodafone.ne.jp',
-                'r.vodafone.ne.jp',
-                'n.vodafone.ne.jp',
-                's.vodafone.ne.jp',
-                'q.vodafone.ne.jp',
-                'pdx.ne.jp',
-                'willcom.com',
-                'disney.ne.jp'
-            ],
-            {dispMax: 10}); // オプション
     }());
 
 
