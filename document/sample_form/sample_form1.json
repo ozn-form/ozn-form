@@ -136,7 +136,8 @@
 
         "attachment1[]": {
           "label": "添付ファイル１",
-          "type": "upload_files"
+          "type": "upload_files",
+          "validates": ["required"]
         },
 
         "attachment2[]": {
