@@ -51,6 +51,22 @@ window.OznForm.utilities = {
     },
 
     /**
+     * 要素からフォームのNAME値を取得する
+     * @param $el
+     * @returns {string}
+     */
+    getFormNameByElement: function($el) {
+
+        var name = $el.attr('name');
+
+        if(name === undefined) {
+          name = $el.data('formname');
+        }
+
+        return name;
+    },
+
+    /**
      * NAME値からフォーム要素を取得する
      *
      * @param {String} name <NAME値>
@@ -168,6 +184,11 @@ window.OznForm.utilities = {
     updatedFileElementName: function (form_name) {
         form_name = form_name.replace('[]', '');
         return form_name + '_files';
+    },
+
+    uploadButtonElementName: function (form_name) {
+        form_name = form_name.replace('[]', '');
+        return 'upload-' + form_name + '-button';
     },
 
 

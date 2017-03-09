@@ -88,7 +88,7 @@ jQuery(function ($) {
         $('[data-domain-suggest]').each(function () {
 
             var $target = $(this);
-            var suggest_area_id = "oznform-suggest-" + $target.data('domainSuggest');
+            var suggest_area_id = "ozn-form-suggest-" + $target.data('domainSuggest');
 
             // suggest.js とのイベント競合を避けるため、リアルタイム検証処理を解除
             $target.off('blur', validateForm);
@@ -105,7 +105,7 @@ jQuery(function ($) {
             $target.attr('autocomplete', 'off');
 
             // サジェストリスト用の要素を用意
-            $target.after('<div id="'+suggest_area_id+'" class="oznform-suggest" style="display:none;"></div>');
+            $target.after('<div id="'+suggest_area_id+'" class="ozn-form-suggest" style="display:none;"></div>');
 
             new Suggest.Local(
                 $target.get(0),
@@ -182,16 +182,15 @@ jQuery(function ($) {
             var form_name = $el.data('oznformFileup');
 
             var file_form_id = 'oznform-upform' + index;
-            var file_form_error_id = 'oznform-upform-error-position' + index;
+            var file_btn_id  = OznForm.utilities.uploadButtonElementName(form_name);
             var uploaded_files_id = OznForm.utilities.updatedFileElementName(form_name);
 
 
             // ファイルアップロードフォームのテンプレート
             var upload_form_template = "\n" +
-                    '<span class="fileinput-button">' +
+                    '<span id="'+file_btn_id+'" class="fileinput-button" data-formname="'+form_name+'">' +
                     '<button type="button">添付ファイル追加</button>' +
                     '<input id="'+file_form_id+'" class="fileupload" type="file" name="files[]" multiple>' +
-                    // '<input type="hidden" name="'+form_name+'" value="">' +
                     '</span>' +
                     '<div id="'+uploaded_files_id+'" class="oznform-uploaded-files"></div>'
                 ;
@@ -204,7 +203,6 @@ jQuery(function ($) {
                 dataType: 'json',
                 done: function (e, data) {
                     $.each(data.result.files, function (index, file) {
-                        // console.log(file);
 
                         var $files_el = $('#' + uploaded_files_id);
                         if(file.error) {
@@ -298,15 +296,20 @@ jQuery(function ($) {
         var ajax_validations = [];
 
         $.each(Object.keys(OznForm.forms), function () {
-            var form_name = this;
-            var $form_el  = $('[name="'+form_name+'"]');
 
-            if($form_el.size() == 0) { return true }
+            var form_name   = this;
+            var form_config = OznForm.forms[form_name];
+            var $form_el    = $('[name="'+form_name+'"]');
+            var is_fileup_form = (form_config.type === 'upload_files');
+
+            if($form_el.size() == 0 && ( ! is_fileup_form )) { return true }
 
             if((! $form_el.hasClass('ozn-form-valid')) && OznForm.forms[form_name]['validates']) {
-                ajax_validations.push(validFormValue(form_name, OznForm.forms[form_name]));
+                ajax_validations.push(validFormValue(form_name, form_config));
             } else if( ! OznForm.forms[form_name]['validates']) {
-                setVaildMark($form_el);
+                if(! is_fileup_form) {
+                    setVaildMark($form_el);
+                }
             }
         });
 
@@ -343,18 +346,41 @@ jQuery(function ($) {
         var $form_el   = $('[name="'+form_name+'"]');
         var form_value = $form_el.val();
 
-        // ラジオボタン・チェックボックスの時は、チェックされているデータを送信する
-        if($.inArray($form_el.attr('type'), ['radio', 'checkbox']) >= 0 ) {
-            form_value = $form_el.filter(':checked').val();
+        var is_upfile_form = (form_config.type === 'upload_files');
 
-        // その他の input 要素の時は全角を半角に変換して送信する
-        } else if ($form_el.prop("nodeName") == 'INPUT') {
-            form_value = OznForm.utilities.toHalfWidth(form_value);
 
-            // フォームのユーザ入力値を半角変換済みの値に修正
-            // ※ 設定で明示的に false を指定した場合はスキップ
-            if(form_config.to_half !== false) {
-                $form_el.val(form_value);
+        // -- 各フォームタイプにより取得値などの設定を変更する
+
+        // ファイルアップロードフォームの場合
+        if(is_upfile_form) {
+
+            var fileup_element_id = OznForm.utilities.updatedFileElementName(form_name);
+            var upload_btn_id     = OznForm.utilities.uploadButtonElementName(form_name);
+
+            $form_el = $('#' + upload_btn_id);
+
+            if($('#' + fileup_element_id).find('input').size() > 0) {
+                form_value = 'check_ok';
+            } else {
+                form_value = '';
+            }
+
+        // 通常フォームの場合
+        } else {
+
+            // ラジオボタン・チェックボックスの時は、チェックされているデータを送信する
+            if($.inArray($form_el.attr('type'), ['radio', 'checkbox']) >= 0 ) {
+                form_value = $form_el.filter(':checked').val();
+
+            // その他の input 要素の時は全角を半角に変換して送信する
+            } else if ($form_el.prop("nodeName") == 'INPUT') {
+                form_value = OznForm.utilities.toHalfWidth(form_value);
+
+                // フォームのユーザ入力値を半角変換済みの値に修正
+                // ※ 設定で明示的に false を指定した場合はスキップ
+                if(form_config.to_half !== false) {
+                    $form_el.val(form_value);
+                }
             }
         }
 
@@ -469,13 +495,8 @@ jQuery(function ($) {
      */
     function apendErrorMessages($el, msg, form_config, warning) {
 
-        var form_name = $el.attr('name');
+        var form_name = OznForm.utilities.getFormNameByElement($el);
         var template  = $('<div>' + msg.join('<br />') + '</div>');
-
-        // ファイルアップロードの時、name属性値にform_nameがないのでdata属性から取得する
-        if(form_name === undefined) {
-            form_name = $el.data('oznformFileup');
-        }
 
         // エラー位置の指定があれば基準要素を置換
         if(form_config.error_message_position) {
@@ -493,7 +514,7 @@ jQuery(function ($) {
         }
 
         // ドメインサジェスト表示エリアを取得
-        var $suggest_area = $el.siblings('#oznform-suggest');
+        var $suggest_area = $el.siblings('.ozn-form-suggest');
 
 
         // 付加するクラスを指定
@@ -517,7 +538,7 @@ jQuery(function ($) {
      */
     function apendResultIcon($el, is_valid) {
 
-        var form_name = $el.attr('name');
+        var form_name = OznForm.utilities.getFormNameByElement($el);
 
         // 既存アイコンを初期化
         $('.' + form_name.replace('[]', '') + '.ozn-form-icon').remove();
