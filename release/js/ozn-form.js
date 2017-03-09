@@ -88,7 +88,7 @@ jQuery(function ($) {
         $('[data-domain-suggest]').each(function () {
 
             var $target = $(this);
-            var suggest_area_id = "oznform-suggest-" + $target.data('domainSuggest');
+            var suggest_area_id = "ozn-form-suggest-" + $target.data('domainSuggest');
 
             // suggest.js とのイベント競合を避けるため、リアルタイム検証処理を解除
             $target.off('blur', validateForm);
@@ -105,7 +105,7 @@ jQuery(function ($) {
             $target.attr('autocomplete', 'off');
 
             // サジェストリスト用の要素を用意
-            $target.after('<div id="'+suggest_area_id+'" class="oznform-suggest" style="display:none;"></div>');
+            $target.after('<div id="'+suggest_area_id+'" class="ozn-form-suggest" style="display:none;"></div>');
 
             new Suggest.Local(
                 $target.get(0),
