@@ -56,9 +56,9 @@ Webサイトから下記の内容でお問い合わせがありました。
 <%% if.customer_kana %%>ご担当者様フリガナ： <% customer_kana %><%% endif %%>
 <%% if.email %%>メールアドレス： <% email %><%% endif %%>
 <%% if.tel %%>電話番号： <% tel %><%% endif %%>
-<%% if.tel %%>FAX番号： <% fax %><%% endif %%>
+<%% if.fax %%>FAX番号： <% fax %><%% endif %%>
 ご住所： <%% if.zip-code %%>〒<% zip-code %><%% endif %%>
-　　　　<% pref %> <% address %><%% if.address-building %%>
+　　　　<% pref %><% address %><%% if.address-building %%>
 　　　　<% address-building %><%% endif %%>
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -95,9 +95,9 @@ $customer_mail_body = <<< TEXT
 <%% if.customer_kana %%>ご担当者様フリガナ： <% customer_kana %><%% endif %%>
 <%% if.email %%>メールアドレス： <% email %><%% endif %%>
 <%% if.tel %%>電話番号： <% tel %><%% endif %%>
-<%% if.tel %%>FAX番号： <% fax %><%% endif %%>
+<%% if.fax %%>FAX番号： <% fax %><%% endif %%>
 ご住所： <%% if.zip-code %%>〒<% zip-code %><%% endif %%>
-　　　　<% pref %> <% address %><%% if.address-building %%>
+　　　　<% pref %><% address %><%% if.address-building %%>
 　　　　<% address-building %><%% endif %%>
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - -
