@@ -514,7 +514,7 @@ jQuery(function ($) {
         }
 
         // ドメインサジェスト表示エリアを取得
-        var $suggest_area = $el.siblings('#oznform-suggest');
+        var $suggest_area = $el.siblings('.ozn-form-suggest');
 
 
         // 付加するクラスを指定
