@@ -1,5 +1,6 @@
 <?php namespace OznForm;
 
+date_default_timezone_set('Asia/Tokyo');
 
 /**
  * 関連クラス・依存ライブラリ読み込み
@@ -209,14 +210,25 @@ if($page_role == 'form') {
         exit();
     }
 
+    // システム情報取得/設定
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    $sys_info = array(
+        'send_date'  => new \DateTime(),
+        'user_agent' => $_SERVER['HTTP_USER_AGENT'],
+        'referrer'   => $_SESSION['ref']
+    );
+
+
     // メール送信共通処理
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     $mailer = new MailSender();
     $page_data = $session->getAllPageData(FALSE);
 
-    $template = new MailTemplate();
+    $template = new MailTemplate($sys_info);
     $template->setParams($page_data);
+
 
 
     // 管理者宛メール送信処理
@@ -227,9 +239,9 @@ if($page_role == 'form') {
 
     $additional[] = '';
     $additional[] = '- - - - - - - - - - - - - - - - - - - - - - - - -';
-    $additional[] = '送信元エージェント：' . $_SERVER['HTTP_USER_AGENT'];
-    $additional[] = '参照元：' . $_SESSION['ref'];
-    $additional[] = '送信日時：' . date('Y年m月d日 H:i:s');
+    $additional[] = '送信元エージェント：' . $sys_info['user_agent'];
+    $additional[] = '参照元：' . $sys_info['referrer'];
+    $additional[] = '送信日時：' . $sys_info['send_date']->format('Y年m月d日 H:i:s');
 
     // 管理者メール設定を取得
     $mail = $config->adminMail($page_data);

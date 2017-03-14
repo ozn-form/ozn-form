@@ -42,7 +42,7 @@ $gmail_password = "nNeT7FYANyWtDX";
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // 管理者宛メールタイトル
-$admin_mail_title = 'web：<% customer_name %> 様より、お問い合わせがありました';
+$admin_mail_title = '[<% {send_date} %>] <% customer_name %> 様より、お問い合わせがありました';
 
 // 管理者宛メールテンプレート
 $admin_mail_body = <<< TEXT

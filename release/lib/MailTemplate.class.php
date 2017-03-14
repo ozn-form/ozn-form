@@ -2,10 +2,12 @@
 
 class MailTemplate
 {
+    private $sys_info;
     private $params;
 
-    function __construct()
+    function __construct($sys_info)
     {
+        $this->sys_info = $sys_info;
     }
 
     /**
@@ -19,14 +21,33 @@ class MailTemplate
     /**
      * 置換後のテンプレートを出力
      *
-     * @param $template
+     * @param string     $template
      *
      * @return string <パラメータ置換済みテンプレート>
      */
     public function output($template) {
 
+        if(empty($template)) return $template;
+
+        if($this->sys_info) $template = $this->replaceSystemTags($template);
+
         $template = $this->replaceTags($template);
         $template = $this->replaceIfTags($template);
+
+        return $template;
+
+    }
+
+
+    public function replaceSystemTags($template) {
+
+        foreach ($this->sys_info as $key => $v) {
+
+            // 送信日時(DateTime)を日付形式文字列に
+            if($key === 'send_date') $v = $v->format('Y年m月d日 H:i');
+
+            $template = preg_replace("/<%\s*\{$key\}\s*%>/", $v, $template);
+        }
 
         return $template;
 
