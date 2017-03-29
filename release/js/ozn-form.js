@@ -374,7 +374,14 @@ jQuery(function ($) {
 
             // その他の input 要素の時は全角を半角に変換して送信する
             } else if ($form_el.prop("nodeName") == 'INPUT') {
+
+                // 全角半角変換
                 form_value = OznForm.utilities.toHalfWidth(form_value);
+
+                // 半角カナ全角カナ変換（カナ検証の時のみ）
+                if($.inArray('kanaOnly', form_config.validates) !== -1) {
+                    form_value = OznForm.utilities.hankana2zenkana(form_value);
+                }
 
                 // フォームのユーザ入力値を半角変換済みの値に修正
                 // ※ 設定で明示的に false を指定した場合はスキップ
