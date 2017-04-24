@@ -273,8 +273,11 @@ if($page_role == 'form') {
         case 'sendmail':
             $mailer->sendmail();
             break;
+        case 'SMTP':
+            $mailer->sendSMTP($account, $password, $host, $smtp_options);
+            break;
         case 'Gmail SMTP':
-            $mailer->sendGmailSMTP($gmail_user, $gmail_password);
+            $mailer->sendSMTP($gmail_user, $gmail_password, 'smtp.gmail.com');
             break;
         case 'Gmail SMTP With OAuth':
             $mailer->sendGmailSMTPWithOAuth($gmail_user, $oauth_id, $oauth_secret, $oauth_refresh_token);
@@ -302,8 +305,11 @@ if($page_role == 'form') {
             case 'sendmail':
                 $mailer->sendmail();
                 break;
+            case 'SMTP':
+                $mailer->sendSMTP($account, $password, $host, $smtp_options);
+                break;
             case 'Gmail SMTP':
-                $mailer->sendGmailSMTP($gmail_user, $gmail_password);
+                $mailer->sendSMTP($gmail_user, $gmail_password, 'smtp.gmail.com');
                 break;
             case 'Gmail SMTP With OAuth':
                 $mailer->sendGmailSMTPWithOAuth($gmail_user, $oauth_id, $oauth_secret, $oauth_refresh_token);

@@ -27,6 +27,7 @@ class MailSender {
         switch ($send_method) {
 
             case 'sendmail':
+            case 'SMTP':
             case 'Gmail SMTP':
                 $this->phpmailer = new \PHPMailer;
                 break;
@@ -128,13 +129,27 @@ class MailSender {
     }
 
     /**
-     * GMail SMTP 経由でメール送信する
+     * SMTP 経由でメール送信する
      *
-     * @param $gmail_address
-     * @param $gmail_password
+     * @param string $account
+     * @param string $password
+     * @param string $host
+     * @param array  $options
+     *
      */
-    public function sendGmailSMTP($gmail_address, $gmail_password)
+    public function sendSMTP($account, $password, $host, $options = array())
     {
+
+        $smtp_options = array(
+            'SMTPAuth'   => true,
+            'Port'       => 587,
+            'SMTPSecure' => 'tls',
+        );
+
+        $smtp_options = array_merge($smtp_options, $options);
+
+
+        // -- デバッグ設定
 
         //Tell PHPMailer to use SMTP
         $this->phpmailer->isSMTP();
@@ -150,30 +165,29 @@ class MailSender {
             $this->phpmailer->SMTPDebug = 0;
         }
 
-
         //Ask for HTML-friendly debug output
         $this->phpmailer->Debugoutput = 'html';
 
-        //Set the hostname of the mail server
-        $this->phpmailer->Host = 'smtp.gmail.com';
-        // use
-        // $this->phpmailer->Host = gethostbyname('smtp.gmail.com');
-        // if your network does not support SMTP over IPv6
 
-        //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-        $this->phpmailer->Port = 587;
-
-        //Set the encryption system to use - ssl (deprecated) or tls
-        $this->phpmailer->SMTPSecure = 'tls';
-
-        //Whether to use SMTP authentication
-        $this->phpmailer->SMTPAuth = true;
+        // -- 送信設定
 
         //Username to use for SMTP authentication - use full email address for gmail
-        $this->phpmailer->Username = $gmail_address;
+        $this->phpmailer->Username = $account;
 
         //Password to use for SMTP authentication
-        $this->phpmailer->Password = $gmail_password;
+        $this->phpmailer->Password = $password;
+
+        //Set the hostname of the mail server
+        $this->phpmailer->Host = $host;
+
+        //Whether to use SMTP authentication
+        $this->phpmailer->SMTPAuth = $smtp_options['SMTPAuth'];
+
+        //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
+        $this->phpmailer->Port = $smtp_options['Port'];
+
+        //Set the encryption system to use - ssl (deprecated) or tls
+        $this->phpmailer->SMTPSecure = $smtp_options['SMTPSecure'];
 
         $this->send();
     }
