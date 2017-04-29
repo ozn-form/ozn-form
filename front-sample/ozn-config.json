@@ -3,7 +3,7 @@
   "is_debug": false,
 
   "form_name": "ozn-sample",
-  "form_root": "/ozn-form-sample/front-sample/index.php",
+  "form_root": "/front-sample/index.php",
 
   "unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。",
 

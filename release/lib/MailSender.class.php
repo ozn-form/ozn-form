@@ -12,7 +12,44 @@ class MailSender {
         date_default_timezone_set("Asia/Tokyo");
 
         $this->is_debug = false;
+    }
 
+
+    /**
+     * メールを送信する
+     *
+     * @param string $send_by   <送信方法>
+     * @param array  $options   <送信時オプション>
+     * @param bool   $send_flag <送信実行の可否（デバッグ用）>
+     *
+     * @return bool
+     * @throws FormError
+     */
+    public function send($send_by, $options = array(), $send_flag) {
+
+        // 送信フラグがたってない時は送信なし
+        if($send_flag === FALSE) { return true; }
+
+        switch ($send_by) {
+            case 'sendmail':
+                $this->sendmail();
+                break;
+            case 'SMTP':
+                $this->sendSMTP($options['account'], $options['password'], $options['host'], $options['smtp_options']);
+                break;
+            case 'Gmail SMTP':
+                $this->sendSMTP($options['account'], $options['password'], 'smtp.gmail.com');
+                break;
+            case 'Gmail SMTP With OAuth':
+                $this->sendGmailSMTPWithOAuth($options['account'], $options['oauth_id'], $options['oauth_secret'], $options['oauth_refresh_token']);
+                break;
+        }
+
+        if ($this->phpmailer->send()) {
+            return true;
+        } else {
+            throw new FormError("Mailer Error: " . $this->phpmailer->ErrorInfo);
+        }
     }
 
     /**
@@ -112,20 +149,12 @@ class MailSender {
         }
     }
 
-    private function send()
-    {
-        if (!$this->phpmailer->send()) {
-            throw new FormError("Mailer Error: " . $this->phpmailer->ErrorInfo);
-        }
-    }
-
     /**
      * sendmail で送信する
      */
     public function sendmail()
     {
         $this->phpmailer->isSendmail();
-        $this->send();
     }
 
     /**
@@ -189,7 +218,6 @@ class MailSender {
         //Set the encryption system to use - ssl (deprecated) or tls
         $this->phpmailer->SMTPSecure = $smtp_options['SMTPSecure'];
 
-        $this->send();
     }
 
     /**
@@ -249,6 +277,5 @@ class MailSender {
         //  eg: http://localhost/phpmail/get_oauth_token.php
         $this->phpmailer->oauthRefreshToken = $oauth_refresh_token;
 
-        $this->send();
     }
 }

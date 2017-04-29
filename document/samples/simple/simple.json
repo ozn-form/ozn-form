@@ -1,0 +1,90 @@
+{
+
+  "is_debug": true,
+
+  "form_name": "simple_form",
+  "form_root": "/document/samples/simple/index.php",
+
+  "validation": {
+    "show_icon": false,
+    "shift_scroll_position": -50
+  },
+
+  "mail": {
+
+    "send_by": "Gmail SMTP",
+    "redirect_to": "",
+
+    "admin": {
+      "to_name"   : "",
+      "to"        : "oznform+webcontact@gmail.com",
+      "cc"        : [],
+      "bcc"       : [],
+      "from_name" : "OznForm Mailer",
+      "from"      : "oznform@gmail.com",
+      "reply_to"  : "<% email %>"
+
+    },
+
+    "auto_reply": {
+      "enabled"   : true,
+      "to_name"   : "<% customer_name %> 様",
+      "to"        : "<% email %>",
+      "cc"        : [],
+      "bcc"       : [],
+      "from_name" : "OznForm Tester",
+      "from"      : "oznform@gmail.com",
+      "reply_to"  : "oznform@gmail.com"
+    }
+  },
+
+  "pages": {
+
+    "index": {
+      "role": "form",
+      "forms": {
+
+        "title": {
+          "label": "お問い合わせ内容",
+          "validates": ["required"]
+        },
+        "mail_body": {
+          "label": "お問い合わせ詳細",
+          "validates": ["required"]
+        },
+        "customer_name": {
+          "label": "お名前",
+          "validates": ["required"]
+        },
+        "customer_kana": {
+          "label": "ふりがな",
+          "validates": ["kanaOnly"]
+        },
+        "zip-code": {
+          "label": "郵便番号",
+          "validates": ["zip"]
+        },
+        "address1": {
+          "label": "住所１（番地まで）"
+        },
+        "address2": {
+          "label": "住所２（建物名など）"
+        },
+
+        "email": {
+          "label": "メールアドレス",
+          "validates": ["required", "email"],
+          "mobile_mail_warning": "携帯電話のアドレスが入力されました。example.com ドメインからのメールを受信できるように設定お願いします。"
+        }
+      }
+    },
+
+    "confirm": {
+      "role": "confirm"
+    },
+
+    "complete": {
+      "role": "mailsend"
+    }
+  }
+}

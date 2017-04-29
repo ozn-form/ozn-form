@@ -10,6 +10,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var watch = require('gulp-watch');
 var runSequence = require('run-sequence');
 var plumber = require('gulp-plumber');
+var extender = require('gulp-html-extend')
 
 // var browserify = require('browserify');
 // var source = require('vinyl-source-stream');
@@ -73,4 +74,15 @@ gulp.task('copy', function() {
     './assets/ozn-form/scss/font/*'
   ])
   .pipe(gulp.dest('./release/css/font'));
+});
+
+
+gulp.task('output_document', function () {
+    gulp.src('./html-extend-src/document/pages/**/*.html')
+        .pipe(extender({annotations:true,verbose:false})) // default options
+        .pipe(gulp.dest('./document'))
+});
+
+gulp.task('document_watch', function () {
+   gulp.watch(['./html-extend-src/document/pages/**/*.html'], ['output_document'])
 });

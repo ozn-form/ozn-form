@@ -195,11 +195,18 @@ if($page_role == 'form') {
     // 出力CSSタグの定義
     $ozn_form_styles = '<link rel="stylesheet" href="'.$document_path.'/css/ozn-form.min.css">';
 
-/**
- * メール送信ページでの処理
- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- */
+
 } else if($page_role == 'mailsend') {
+
+    /**
+     * メール送信ページでの処理
+     *
+     * @var string $admin_mail_title    <管理者向け：メールタイトル>
+     * @var string $admin_mail_body     <管理者向け：メール本文>
+     * @var string $customer_mail_title <返信メール：タイトル>
+     * @var string $customer_mail_body  <返信メール：本文>
+     * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+     */
 
     // 出力CSSタグの定義
     $ozn_form_styles = '<link rel="stylesheet" href="'.$document_path.'/css/ozn-form.min.css">';
@@ -267,22 +274,50 @@ if($page_role == 'form') {
         }
     }
 
-    // 送信処理
+
+    /**
+     * 送信オプションの設定
+     *
+     * @var string $account      <アカウント>
+     * @var string $password     <パスワード>
+     * @var string $host         <ホスト>
+     * @var array  $smtp_options <送信オプション>
+     *
+     * @var string $gmail_user     <GMailアカウント>
+     * @var string $gmail_password <GMailパスワード>
+     *
+     * @var string $oauth_id     <OAuth ID>
+     * @var string $oauth_secret <OAuth Secret>
+     * @var string $oauth_refresh_token <OAuth Refresh Token>
+     */
+
+    $send_option = array();
 
     switch ($config->send_by()) {
-        case 'sendmail':
-            $mailer->sendmail();
-            break;
+
         case 'SMTP':
-            $mailer->sendSMTP($account, $password, $host, $smtp_options);
+            $send_option['account']      = $account;
+            $send_option['password']     = $password;
+            $send_option['host']         = $host;
+            $send_option['smtp_options'] = $smtp_options;
             break;
+
         case 'Gmail SMTP':
-            $mailer->sendSMTP($gmail_user, $gmail_password, 'smtp.gmail.com');
+            $send_option['account']  = $gmail_user;
+            $send_option['password'] = $gmail_password;
             break;
+
         case 'Gmail SMTP With OAuth':
-            $mailer->sendGmailSMTPWithOAuth($gmail_user, $oauth_id, $oauth_secret, $oauth_refresh_token);
+            $send_option['account']             = $gmail_user;
+            $send_option['oauth_id']            = $oauth_id;
+            $send_option['oauth_secret']        = $oauth_secret;
+            $send_option['oauth_refresh_token'] = $oauth_refresh_token;
+
             break;
     }
+
+    // 送信処理
+    $mailer->send($config->send_by(), $send_option, true);
 
 
     // 自動返信メールが有効の時は送信
@@ -301,20 +336,8 @@ if($page_role == 'form') {
         $mailer->setCC($mail['cc']);
         $mailer->setBCC($mail['bcc']);
 
-        switch ($config->send_by()) {
-            case 'sendmail':
-                $mailer->sendmail();
-                break;
-            case 'SMTP':
-                $mailer->sendSMTP($account, $password, $host, $smtp_options);
-                break;
-            case 'Gmail SMTP':
-                $mailer->sendSMTP($gmail_user, $gmail_password, 'smtp.gmail.com');
-                break;
-            case 'Gmail SMTP With OAuth':
-                $mailer->sendGmailSMTPWithOAuth($gmail_user, $oauth_id, $oauth_secret, $oauth_refresh_token);
-                break;
-        }
+        // 送信処理
+        $mailer->send($config->send_by(), $send_option, true);
     }
 
     // 送信後処理（デバッグ設定以外の時）

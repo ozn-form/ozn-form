@@ -58,7 +58,6 @@ jQuery(function ($) {
      */
     (function () {
 
-        // フォームキーワードを抽出して複数フォームの住所補完に対応
         var keywords = [];
 
         $('input[data-autoruby]').each(function () {
