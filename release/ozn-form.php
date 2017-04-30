@@ -317,7 +317,7 @@ if($page_role == 'form') {
     }
 
     // 送信処理
-    $mailer->send($config->send_by(), $send_option, true);
+    $mailer->send($config->send_by(), $send_option, $config->send_flag());
 
 
     // 自動返信メールが有効の時は送信
@@ -337,7 +337,7 @@ if($page_role == 'form') {
         $mailer->setBCC($mail['bcc']);
 
         // 送信処理
-        $mailer->send($config->send_by(), $send_option, true);
+        $mailer->send($config->send_by(), $send_option, $config->send_flag());
     }
 
     // 送信後処理（デバッグ設定以外の時）

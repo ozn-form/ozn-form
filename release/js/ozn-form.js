@@ -219,6 +219,8 @@ jQuery(function ($) {
     }());
 
 
+    // 送信リンクの連続クリック防止
+    OznForm.utilities.setSendmailButtonEvent($('.ozn-form-send'));
 
 
     // エンターキー押下時の送信を無効化する

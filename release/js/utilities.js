@@ -50,6 +50,32 @@ window.OznForm.utilities = {
         }
     },
 
+
+    /**
+     * 送信リンクの二重クリックの防止
+     *
+     * @param {JQuery} $el <送信用リンク要素>
+     */
+    setSendmailButtonEvent: function ($el) {
+        $el.on('click', function () {
+
+            var $this = $(this);
+
+            if($this.hasClass('ozn-form-disabled')) {
+                return false;
+            }
+
+            var send_message = '送信中です…お待ちください。';
+
+            if($this.data('message')) {
+                send_message = $this.data('message');
+            }
+
+            $this.text(send_message);
+            $this.addClass('ozn-form-disabled disabled');
+        })
+    },
+
     /**
      * 要素からフォームのNAME値を取得する
      * @param $el

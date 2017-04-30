@@ -1,5 +1,9 @@
 jQuery(function ($) {
 
+
+    // 送信リンクの連続クリック防止
+    OznForm.utilities.setSendmailButtonEvent($('.ozn-form-send'));
+
     // IFタグの処理
     $.each($('[data-if]'), function () {
         var target = this.getAttribute('data-if');
