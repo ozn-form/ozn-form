@@ -11,14 +11,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="./css/sample_form_style.css">
+    <link rel="stylesheet" href="./css/style.min.css">
 
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -26,37 +26,6 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    <style type="text/css">
-        <!--
-        h1 {font-size: 24px;}
-        h2 {font-size: 20px;}
-        h5 {font-weight:bold;}
-
-        h2.setting-header {margin: 30px 0;}
-        table.setting-table {
-            border-right: 1px solid #ccc;
-            border-bottom: 1px solid #ccc;
-            margin: 30px 0;
-        }
-        table.setting-table th {font-size: 12px; background-color: #42759f; color: #FFFFFF; font-weight: normal;}
-        table.setting-table th,
-        table.setting-table td {border-top: 1px solid #ccc; border-left: 1px solid #ccc; padding: 2px 10px;}
-
-        div.code-example {
-            margin-top: 30px;
-            margin-bottom: 60px;
-        }
-
-        .setting-alert {
-            padding: 5px 10px;
-            margin-top: 0;
-            margin-bottom: 5px;
-
-        }
-        -->
-    </style>
-
 
 </head>
 <body>
@@ -84,230 +53,52 @@
 
 <div class="container">
 <!-- start content -->
-<div class="page-header">
-    <h1>フォーム設定項目</h1>
+<div class="container">
+
+    <div class="page-header">
+        <h1>補助機能</h1>
+    </div>
+
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <h2 class="setting-header">送信ボタンの二重クリック防止</h2>
+
+    <table class="setting-table">
+        <tr>
+            <th>基本機能</th>
+            <th>設定方法</th>
+            <th>有効なページ</th>
+        </tr>
+        <tr>
+            <td class="text-center">○️</td>
+            <td>要素へclass指定</td>
+            <td>フォーム / 確認画面</td>
+        </tr>
+    </table>
+
+    <p>
+        二重送信を防止するため二度目以降のクリックを無効化する機能です。<br>
+        クリックするとリンクテキストが「送信中です…お待ちください。」に変わり、以降のクリックが無効になります。
+    </p>
+
+    <p>
+        またクリック無効中は「ozn-form-disabled」が付与されています。
+    </p>
+
+    <h4 class="config-subheader">使用方法</h4>
+    <p>
+        適用したいリンク（aタグ）へ「ozn-form-send」クラスを使用してください。<br>
+
+    </p>
+
+    <div class="code-example">
+        <h5>コード例</h5>
+        <pre><code>&lt;a href=&quot;complete.php&quot; class=&quot;ozn-form-send&quot; data-message=&quot;送信中&quot;&gt;上記内容で送信する&lt;/a&gt;</code></pre></div>
+
+    <hr class="setting-hr">
+
 </div>
 
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<h2 class="setting-header">デバッグモード指定</h2>
-
-<table class="setting-table">
-    <tr>
-        <th>必須</th>
-        <th>設定値の型</th>
-        <th>設定値サンプル</th>
-    </tr>
-    <tr>
-        <td class="text-center">×️</td>
-        <td>Boolean</td>
-        <td>true / false</td>
-    </tr>
-</table>
-
-
-<p>
-    開発時に使用するモード。通常使用では設定する必要のない項目です。<br>
-    true に設定すると下記の動作となります。
-</p>
-<ul>
-    <li>フォームから離脱するときのメッセージが表示されなくなる</li>
-    <li>送信後もフォームに記入された情報が削除されない。（セッションが削除されない）</li>
-    <li>セッション内の情報（フォームに入力されシステムが保持している情報）が常に画面に表示される。</li>
-</ul>
-
-<p></p>
-
-<div class="code-example">
-    <h5>コード例</h5>
-    <pre><code>{"is_debug": true}</code></pre>
-</div>
-
-<hr class="setting-hr">
-
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<h2 class="setting-header">フォーム名</h2>
-
-<table class="setting-table">
-    <tr>
-        <th>必須</th>
-        <th>設定値の型</th>
-        <th>設定値サンプル</th>
-    </tr>
-    <tr>
-        <td class="text-center">○</td>
-        <td>String</td>
-        <td>"sample_form"</td>
-    </tr>
-</table>
-
-
-<p>
-    フォームの名前を指定します。<br />
-    複数フォームを設置する場合には、このフォーム名が他のフォームと被らないように違う名前を設定する必要があります。
-</p>
-
-<div class="code-example">
-    <h5>コード例</h5>
-    <pre><code>{"form_name": "sample_form"}</code></pre>
-</div>
-
-<hr class="setting-hr">
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<h2 class="setting-header">初期ページパス</h2>
-
-<table class="setting-table">
-    <tr>
-        <th>必須</th>
-        <th>設定値の型</th>
-        <th>設定値サンプル</th>
-    </tr>
-    <tr>
-        <td class="text-center">○</td>
-        <td>String</td>
-        <td>"/document/sample_form/index.php"</td>
-    </tr>
-</table>
-
-
-<p>フォームの初期ページのパスを設定します。</p>
-<div class="alert alert-warning setting-alert">
-    <span class="glyphicon glyphicon-warning-sign"></span>
-    パスは絶対パスで記載してください。
-</div>
-
-<div class="code-example">
-    <h5>コード例</h5>
-    <pre><code>{"form_root": "/document/sample_form/index.php"}</code></pre>
-</div>
-
-<hr class="setting-hr">
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<h2 class="setting-header">ページ離脱メッセージ</h2>
-
-<table class="setting-table">
-    <tr>
-        <th>必須</th>
-        <th>設定値の型</th>
-        <th>設定値サンプル</th>
-    </tr>
-    <tr>
-        <td class="text-center">×</td>
-        <td>String</td>
-        <td>"このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。"</td>
-    </tr>
-</table>
-
-<p>
-    フォーム入力途中にページを離脱する場合に表示するメッセージを設定します。<br>
-    改行は「\n」で入力してください。
-</p>
-<div class="alert alert-success setting-alert">
-    <span class="glyphicon glyphicon-info-sign"></span>
-    この設定項目を記載しない場合は、離脱メッセージ機能をOFFにできます。<br>
-</div>
-<div class="alert alert-warning setting-alert">
-    <span class="glyphicon glyphicon-warning-sign"></span>
-    IE/Edge以外のブラウザについてはこちらで設定したメッセージは適用されず、ブラウザ固有のメッセージとなります。
-</div>
-
-<div class="code-example">
-    <h5>コード例</h5>
-    <pre><code>{"unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。"}</code></pre>
-</div>
-
-<hr class="setting-hr">
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<h2 class="setting-header">検証機能設定</h2>
-
-<table class="setting-table">
-    <tr>
-        <th>必須</th>
-        <th>設定値の型</th>
-        <th>設定値サンプル</th>
-    </tr>
-    <tr>
-        <td class="text-center">○</td>
-        <td>Object</td>
-        <td> {...}</td>
-    </tr>
-</table>
-
-<p>
-    リアルタイム検証機能の全般的な設定を行う項目です。<br>
-    詳細はこちらのページへ
-</p>
-
-<div class="code-example">
-    <h5>コード例</h5>
-    <pre><code>{
-  "validation": {
-    "show_icon": true,
-    "shift_scroll_position": -50
-  }
-}</code></pre>
-</div>
-
-<hr class="setting-hr">
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<h2 class="setting-header">送信メール設定</h2>
-
-<table class="setting-table">
-    <tr>
-        <th>必須</th>
-        <th>設定値の型</th>
-        <th>設定値サンプル</th>
-    </tr>
-    <tr>
-        <td class="text-center">○</td>
-        <td>Object</td>
-        <td> {...}</td>
-    </tr>
-</table>
-
-<p>
-    送信メールの設定を行う項目です。送信方法や、各送信先のTO, CC, BCCアドレスなどの設定はこの中で行います。<br>
-    詳細はこちらのページへ
-</p>
-
-<div class="code-example">
-    <h5>コード例</h5>
-    <pre><code>{
-  "mail": {
-
-    "send_by": "Gmail SMTP",
-    "redirect_to": "",
-
-    "admin": {
-      "to_name"   : "",
-      "to"        : "oznform+webcontact@gmail.com",
-      "cc"        : [],
-      "bcc"       : [],
-      "from_name" : "OznForm Mailer",
-      "from"      : "oznform@gmail.com",
-      "reply_to"  : "<% email %>"
-
-    },
-
-    "auto_reply": {
-      "enabled"   : true,
-      "to_name"   : "<% customer_name %> 様",
-      "to"        : "<% email %>",
-      "cc"        : [],
-      "bcc"       : [],
-      "from_name" : "OznForm Tester",
-      "from"      : "oznform@gmail.com",
-      "reply_to"  : "oznform@gmail.com"
-    }
-}</code></pre>
-</div>
-
-<hr class="setting-hr">
 
 <!-- end content -->
 </div>

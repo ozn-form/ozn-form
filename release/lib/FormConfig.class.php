@@ -53,6 +53,18 @@ class FormConfig
         }
     }
 
+    /**
+     * 送信実行フラグを返す（デバッグ用）
+     * @return bool
+     */
+    public function send_flag() {
+        if (isset($this->config_raw['mail']['send_flag']) && $this->config_raw['mail']['send_flag'] === false) {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
+
 
     /**
      * フォーム名を返す

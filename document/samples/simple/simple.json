@@ -12,6 +12,7 @@
 
   "mail": {
 
+    "send_flag": false,
     "send_by": "Gmail SMTP",
     "redirect_to": "",
 
@@ -27,7 +28,7 @@
     },
 
     "auto_reply": {
-      "enabled"   : true,
+      "enabled"   : false,
       "to_name"   : "<% customer_name %> 様",
       "to"        : "<% email %>",
       "cc"        : [],
