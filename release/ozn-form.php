@@ -129,8 +129,6 @@ if($page_role == 'form') {
     }
 
 
-    // ToDo: jQueryFileUpload のパスを考える
-    // ToDo: 設定ファイルで読み込み制限できるようにする
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jQuery-File-Upload-9.14.2/js/vendor/jquery.ui.widget.js"></script>';
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jQuery-File-Upload-9.14.2/js/jquery.iframe-transport.js"></script>';
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jQuery-File-Upload-9.14.2/js/jquery.fileupload.js"></script>';
@@ -142,6 +140,7 @@ if($page_role == 'form') {
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/domain_suggest.js"></script>';
 
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/utilities.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.$document_path.'/config/suggest_mail_address.js"></script>';
     $ozn_form_javascript[] = '<script src="'.$document_path.'/js/ozn-form.js"></script>';
 
     $ozn_form_javascript = join("\n", $ozn_form_javascript);
