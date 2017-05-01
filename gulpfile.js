@@ -10,7 +10,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var watch = require('gulp-watch');
 var runSequence = require('run-sequence');
 var plumber = require('gulp-plumber');
-var extender = require('gulp-html-extend')
+var extender = require('gulp-html-extend');
 
 // var browserify = require('browserify');
 // var source = require('vinyl-source-stream');
