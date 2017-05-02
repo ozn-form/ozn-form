@@ -273,19 +273,44 @@ jQuery(function ($) {
 
         // 可変数のDeferredを並列実行させる
         $.when.apply($, ajax_validations)
+
             .done(function() {
-                $this.off('submit', validateAllForms);
-                $(window).off('beforeunload', showUnloadMessage);
-                $this.submit();
-            }).fail(function () {
 
-                // 検証失敗したフォームまでスクロールバック
-                var top_error_position = $('.ozn-form-invalid').eq(0).offset().top;
+                var results = this;
+                var is_success = true;
 
-                $("html,body").animate({
-                    scrollTop : top_error_position + OznForm.vsetting.shift_scroll_position
+                $.each(results, function () {
+                   if(this == false) {
+                       is_success = false;
+                       return false;
+                   }
                 });
 
+                if(is_success) {
+
+                    // -- 全て検証OKの時の処理
+
+                    $this.off('submit', validateAllForms);
+                    $(window).off('beforeunload', showUnloadMessage);
+                    $this.submit();
+
+                } else {
+
+                    // -- 検証NGの時の処理
+
+                    // 成功した要素を非表示にする
+                    hideValidItem();
+
+                    // 検証失敗したフォームまでスクロールバック
+                    var top_error_position = $('.ozn-form-invalid').eq(0).offset().top;
+
+                    $("html,body").animate({
+                        scrollTop : top_error_position + OznForm.vsetting.shift_scroll_position
+                    });
+                }
+
+            }).fail(function () {
+                alert('通信に失敗しました。')
             });
 
         return false;
@@ -386,12 +411,12 @@ jQuery(function ($) {
                     setVaildMark($form_el);
                 }
 
-                dInner.resolve();
+                dInner.resolveWith(true);
 
             // 検証NGのときの処理
             } else {
                 setInvalidMark($form_el, response.errors[form_name], form_config);
-                dInner.reject();
+                dInner.resolveWith(false);
             }
         })
 
@@ -414,6 +439,8 @@ jQuery(function ($) {
     /**
      * フォームを検証OKの表示にして、注意メッセージを表示する
      * @param $form_el
+     * @param warning_message
+     * @param form_config
      */
     function setWarningMark($form_el, warning_message, form_config) {
         addResultClass($form_el, true);
@@ -421,6 +448,13 @@ jQuery(function ($) {
         apendResultIcon($form_el, true);
     }
 
+    /**
+     * フォームを検証NGの表示にして、エラーメッセージを表示する
+     *
+     * @param $form_el
+     * @param error_message
+     * @param form_config
+     */
     function setInvalidMark($form_el, error_message, form_config) {
         addResultClass($form_el, false);
         apendErrorMessages($form_el, error_message, form_config, false);
@@ -428,7 +462,11 @@ jQuery(function ($) {
     }
 
     /**
-     * 検証結果に応じてクラスを付与する
+     * 検証結果に応じて検証結果判定クラスを付与する
+     *
+     * @note
+     *   ozn-form-valid   : 検証OK
+     *   ozn-form-invalid : 検証NG
      *
      * @param $el
      * @param is_valid
@@ -521,5 +559,22 @@ jQuery(function ($) {
         } else {
             $el.after('<i class="' + form_name.replace('[]', '') + ' ozn-form-icon icon-caution"></i>')
         }
+    }
+
+    /**
+     * 検証OKの項目を非表示にする
+     */
+    function hideValidItem() {
+
+        $('[data-oznform-area]').each(function () {
+
+            var $this = $(this);
+            var form_name = $this.data('oznformArea');
+            var $form = $('[name="' + form_name + '"]');
+
+            if($form.hasClass('ozn-form-valid') || $form.closest('.ozn-check').hasClass('ozn-form-valid')) {
+                $this.hide();
+            }
+        });
     }
 });

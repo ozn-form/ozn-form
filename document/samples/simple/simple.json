@@ -63,10 +63,11 @@
         },
         "zip-code": {
           "label": "郵便番号",
-          "validates": ["zip"]
+          "validates": ["zip", "required"]
         },
         "address1": {
-          "label": "住所１（番地まで）"
+          "label": "住所１（番地まで）",
+          "validates": ["required"]
         },
         "address2": {
           "label": "住所２（建物名など）"
