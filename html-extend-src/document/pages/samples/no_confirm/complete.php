@@ -1,8 +1,9 @@
-<!-- start php -->
+<!-- @@master ../../../layout/sample.html {"title": "確認画面なし", "relative_path": "../../", "no_confirm_active":"active"} -->
+<!-- @@block php -->
 <?php
 
 // 設定ファイルのパスを設定
-$config_path = dirname(__FILE__) . '/' . 'simple.json';
+$config_path = dirname(__FILE__) . '/' . 'no_confirm.json';
 
 
 // SMTP アカウント設定（SMTP 経由で送信する時のみ）
@@ -29,7 +30,6 @@ $config_path = dirname(__FILE__) . '/' . 'simple.json';
 
 $gmail_user     = "oznform@gmail.com";
 $gmail_password = "nNeT7FYANyWtDX";
-
 
 // Gmail API設定（Gmail SMTP [OAuth認証] 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -101,85 +101,33 @@ $customer_mail_body = <<< TEXT
 
 TEXT;
 
+
 // OznForm 実行ファイル読み込み
 require '../../../release/ozn-form.php';
 
 ?>
 
-<!-- end php -->
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ozn-Form Sample - シンプル</title>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 送信完了画面のHTMLをここから下に記述する。特定ページへリダイレクトする場合は省略可。 -->
+<!-- @@close -->
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="../..//css/style.min.css">
-
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <?php echo $ozn_form_styles; ?>
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
-    <?php echo $ozn_form_javascript; ?>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-<body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Ozn-Form Sample</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/document/samples/simple/">Simple</a></li>
-                <li class=""><a href="/document/samples/no_confirm/">NoConfirm</a></li>
-                <!--<li class="&lt;!&ndash; @@var= home_active &ndash;&gt;"><a href="#about">About</a></li>-->
-                <!--<li class="active"><a href="#contact">サンプルフォーム</a></li>-->
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</nav>
+<!-- @@block content -->
 
 <div class="container">
-<!-- start content -->
-<div class="page-header">
-    <h1>
-        お問い合わせ
-        <small>送信完了</small>
-    </h1>
 
+    <div class="page-header">
+        <h1>
+            お問い合わせ
+            <small>送信完了</small>
+        </h1>
 
-    <div class="row">
-        <p class="col-sm-12 text-center">
-            <a href="/document/samples/simple/index.php" class="btn btn-success">フォームトップへ戻る</a>
-        </p>
+        <div class="row">
+            <p class="col-sm-12 text-center">
+                <a href="/document/samples/simple/index.php" class="btn btn-success">フォームトップへ戻る</a>
+            </p>
+        </div>
     </div>
+
 </div>
 
 
-<!-- end content -->
-</div>
-</body>
-</html>
+<!-- @@close -->

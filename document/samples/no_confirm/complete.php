@@ -2,7 +2,7 @@
 <?php
 
 // 設定ファイルのパスを設定
-$config_path = dirname(__FILE__) . '/' . 'simple.json';
+$config_path = dirname(__FILE__) . '/' . 'no_confirm.json';
 
 
 // SMTP アカウント設定（SMTP 経由で送信する時のみ）
@@ -29,7 +29,6 @@ $config_path = dirname(__FILE__) . '/' . 'simple.json';
 
 $gmail_user     = "oznform@gmail.com";
 $gmail_password = "nNeT7FYANyWtDX";
-
 
 // Gmail API設定（Gmail SMTP [OAuth認証] 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -101,17 +100,20 @@ $customer_mail_body = <<< TEXT
 
 TEXT;
 
+
 // OznForm 実行ファイル読み込み
 require '../../../release/ozn-form.php';
 
 ?>
+
+<!-- 送信完了画面のHTMLをここから下に記述する。特定ページへリダイレクトする場合は省略可。 -->
 
 <!-- end php -->
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ozn-Form Sample - シンプル</title>
+    <title>Ozn-Form Sample - 確認画面なし</title>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -153,8 +155,8 @@ require '../../../release/ozn-form.php';
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/document/samples/simple/">Simple</a></li>
-                <li class=""><a href="/document/samples/no_confirm/">NoConfirm</a></li>
+                <li class=""><a href="/document/samples/simple/">Simple</a></li>
+                <li class="active"><a href="/document/samples/no_confirm/">NoConfirm</a></li>
                 <!--<li class="&lt;!&ndash; @@var= home_active &ndash;&gt;"><a href="#about">About</a></li>-->
                 <!--<li class="active"><a href="#contact">サンプルフォーム</a></li>-->
             </ul>
@@ -164,19 +166,23 @@ require '../../../release/ozn-form.php';
 
 <div class="container">
 <!-- start content -->
-<div class="page-header">
-    <h1>
-        お問い合わせ
-        <small>送信完了</small>
-    </h1>
+<div class="container">
 
+    <div class="page-header">
+        <h1>
+            お問い合わせ
+            <small>送信完了</small>
+        </h1>
 
-    <div class="row">
-        <p class="col-sm-12 text-center">
-            <a href="/document/samples/simple/index.php" class="btn btn-success">フォームトップへ戻る</a>
-        </p>
+        <div class="row">
+            <p class="col-sm-12 text-center">
+                <a href="/document/samples/simple/index.php" class="btn btn-success">フォームトップへ戻る</a>
+            </p>
+        </div>
     </div>
+
 </div>
+
 
 
 <!-- end content -->

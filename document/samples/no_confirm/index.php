@@ -2,21 +2,20 @@
 <?php
 
 // 設定ファイルのパスを設定
-$config_path = dirname(__FILE__) . '/' . 'simple.json';
-
+$config_path = dirname(__FILE__) . '/' . 'no_confirm.json';
 
 // OznForm 実行ファイル読み込み
 require '../../../release/ozn-form.php';
 
-?>
 
+?>
 
 <!-- end php -->
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ozn-Form Sample - シンプル</title>
+    <title>Ozn-Form Sample - 確認画面なし</title>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -58,8 +57,8 @@ require '../../../release/ozn-form.php';
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/document/samples/simple/">Simple</a></li>
-                <li class=""><a href="/document/samples/no_confirm/">NoConfirm</a></li>
+                <li class=""><a href="/document/samples/simple/">Simple</a></li>
+                <li class="active"><a href="/document/samples/no_confirm/">NoConfirm</a></li>
                 <!--<li class="&lt;!&ndash; @@var= home_active &ndash;&gt;"><a href="#about">About</a></li>-->
                 <!--<li class="active"><a href="#contact">サンプルフォーム</a></li>-->
             </ul>
@@ -69,11 +68,16 @@ require '../../../release/ozn-form.php';
 
 <div class="container">
 <!-- start content -->
+<div class="container">
+
     <div class="page-header">
-        <h1>お問い合わせ</h1>
+        <h1>
+            確認画面なし
+            <small>サンプルフォーム</small>
+        </h1>
     </div>
 
-    <form action="confirm.php" method="post">
+    <form action="complete.php" method="post">
 
         <div class="row ozn-check" data-oznform-area="title">
 
@@ -106,7 +110,7 @@ require '../../../release/ozn-form.php';
         </div>
 
 
-        <hr>
+        <hr data-oznform-area="title">
 
         <div class="form-group" data-oznform-area="mail_body">
             <label for="mail_body">お問い合わせ詳細<span class="required">（必須）</span></label>
@@ -116,6 +120,7 @@ require '../../../release/ozn-form.php';
         <hr>
 
         <div class="row">
+
             <div class="form-group col-sm-5" data-oznform-area="customer_name">
                 <label for="customer_name">お名前<span class="required">（必須）</span></label>
                 <input type="text" name="customer_name" class="form-control" id="customer_name" data-autoruby="customer_name" placeholder="例）田中 一郎">
@@ -124,6 +129,7 @@ require '../../../release/ozn-form.php';
                 <label for="customer_kana">ふりがな</label>
                 <input type="text" name="customer_kana" class="form-control" id="customer_kana" data-autoruby-katakana="customer_name" placeholder="例）たなか いちろう">
             </div>
+
         </div>
 
         <div class="row" data-oznform-area="zip-code">
@@ -158,6 +164,9 @@ require '../../../release/ozn-form.php';
             </div>
         </div>
     </form>
+
+</div>
+
 
 
 <!-- end content -->

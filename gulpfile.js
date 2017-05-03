@@ -78,7 +78,7 @@ gulp.task('copy', function() {
 
 
 gulp.task('output_document', function () {
-    gulp.src('./html-extend-src/document/pages/**/*.html')
+    gulp.src('./html-extend-src/document/pages/**/*')
         .pipe(extender({annotations:true,verbose:false})) // default options
         .pipe(gulp.dest('./document'))
 });
@@ -98,6 +98,6 @@ gulp.task('output_document_style', function () {
 });
 
 gulp.task('document_watch', function () {
-   gulp.watch(['./html-extend-src/document/pages/**/*.html'], ['output_document']);
+   gulp.watch(['./html-extend-src/document/pages/**/*'], ['output_document']);
    gulp.watch(['./assets/document/sass/**/*.sass'], ['output_document_style']);
 });

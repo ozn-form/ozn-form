@@ -210,6 +210,17 @@ if($page_role == 'form') {
     // 出力CSSタグの定義
     $ozn_form_styles = '<link rel="stylesheet" href="'.$document_path.'/css/ozn-form.min.css">';
 
+    // 出力jsタグ
+    $ozn_form_javascript = array();
+
+    $ozn_form_javascript[] = '<script type="application/javascript">';
+    $ozn_form_javascript[] = '  OznForm = {};';
+    $ozn_form_javascript[] = '</script>';
+    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/utilities.js"></script>';
+
+    $ozn_form_javascript = join("\n", $ozn_form_javascript);
+
+
     // 全てのフォームデータがセッションに登録されていない場合はフォームトップページへリダイレクト
     if( ! $session->verifyFormDate($config->allPageForms())) {
         header("Location: {$config->formRoot()}");
