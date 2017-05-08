@@ -2,7 +2,7 @@
 <?php
 
 // 設定ファイルのパスを設定
-$config_path = dirname(__FILE__) . '/' . 'simple.json';
+$config_path = dirname(__FILE__) . '/' . 'step.json';
 
 // OznForm 実行ファイル読み込み
 require_once '../../../release/ozn-form.php';

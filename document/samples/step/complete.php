@@ -2,7 +2,7 @@
 <?php
 
 // 設定ファイルのパスを設定
-$config_path = dirname(__FILE__) . '/' . 'simple.json';
+$config_path = dirname(__FILE__) . '/' . 'step.json';
 
 
 // SMTP アカウント設定（SMTP 経由で送信する時のみ）
@@ -174,7 +174,7 @@ require '../../../release/ozn-form.php';
 
     <div class="row">
         <p class="col-sm-12 text-center">
-            <a href="/document/samples/simple/index.php" class="btn btn-success">フォームトップへ戻る</a>
+            <a href="/document/samples/step/index.php" class="btn btn-success">フォームトップへ戻る</a>
         </p>
     </div>
 </div>

@@ -122,7 +122,7 @@ require '../../../release/ozn-form.php';
 
         <div class="row">
             <p class="col-sm-12 text-center">
-                <a href="/document/samples/simple/index.php" class="btn btn-success">フォームトップへ戻る</a>
+                <a href="/document/samples/no_confirm/index.php" class="btn btn-success">フォームトップへ戻る</a>
             </p>
         </div>
     </div>

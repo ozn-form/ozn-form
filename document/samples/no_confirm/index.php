@@ -53,12 +53,13 @@ require '../../../release/ozn-form.php';
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Ozn-Form Sample</a>
+            <a class="navbar-brand" href="#">Ozn-Form サンプル</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class=""><a href="/document/samples/simple/">Simple</a></li>
-                <li class="active"><a href="/document/samples/no_confirm/">NoConfirm</a></li>
+                <li class=""><a href="/document/samples/simple/">シンプル</a></li>
+                <li class="active"><a href="/document/samples/no_confirm/">確認スキップ</a></li>
+                <li class=""><a href="/document/samples/step/">ステップ</a></li>
                 <!--<li class="&lt;!&ndash; @@var= home_active &ndash;&gt;"><a href="#about">About</a></li>-->
                 <!--<li class="active"><a href="#contact">サンプルフォーム</a></li>-->
             </ul>
@@ -109,7 +110,6 @@ require '../../../release/ozn-form.php';
             </div>
         </div>
 
-
         <hr data-oznform-area="title">
 
         <div class="form-group" data-oznform-area="mail_body">
@@ -117,7 +117,7 @@ require '../../../release/ozn-form.php';
             <textarea name="mail_body" id="mail_body" cols="30" rows="10" class="form-control"></textarea>
         </div>
 
-        <hr>
+        <hr data-oznform-area="mail_body">
 
         <div class="row">
 
@@ -160,7 +160,7 @@ require '../../../release/ozn-form.php';
 
         <div class="row actions">
             <div class="col-sm-6">
-                <button type="submit" class="btn btn-info">入力内容確認</button>
+                <button type="submit" class="btn btn-success ozn-form-send">すぐ送信</button>
             </div>
         </div>
     </form>

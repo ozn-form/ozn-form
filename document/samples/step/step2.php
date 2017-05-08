@@ -2,7 +2,7 @@
 <?php
 
 // 設定ファイルのパスを設定
-$config_path = dirname(__FILE__) . '/' . 'simple.json';
+$config_path = dirname(__FILE__) . '/' . 'step.json';
 
 
 // OznForm 実行ファイル読み込み
@@ -16,7 +16,7 @@ require '../../../release/ozn-form.php';
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ozn-Form Sample - シンプル</title>
+    <title>Ozn-Form Sample - ステップ</title>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -58,9 +58,9 @@ require '../../../release/ozn-form.php';
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/document/samples/simple/">シンプル</a></li>
+                <li class=""><a href="/document/samples/simple/">シンプル</a></li>
                 <li class=""><a href="/document/samples/no_confirm/">確認スキップ</a></li>
-                <li class=""><a href="/document/samples/step/">ステップ</a></li>
+                <li class="active"><a href="/document/samples/step/">ステップ</a></li>
                 <!--<li class="&lt;!&ndash; @@var= home_active &ndash;&gt;"><a href="#about">About</a></li>-->
                 <!--<li class="active"><a href="#contact">サンプルフォーム</a></li>-->
             </ul>
@@ -75,46 +75,6 @@ require '../../../release/ozn-form.php';
     </div>
 
     <form action="confirm.php" method="post">
-
-        <div class="row ozn-check" data-oznform-area="title">
-
-            <div class="col-sm-4">
-                <div class="radio-inline">
-                    <label>
-                        <input type="radio" name="title" id="title1" value="業務内容について" checked>
-                        業務内容について
-                    </label>
-                </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="radio-inline">
-                    <label>
-                        <input type="radio" name="title" id="title2" value="採用について">
-                        採用について
-                    </label>
-                </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="radio-inline">
-                    <label>
-                        <input type="radio" name="title" id="title3" value="その他">
-                        その他
-                    </label>
-                </div>
-            </div>
-        </div>
-
-
-        <hr>
-
-        <div class="form-group" data-oznform-area="mail_body">
-            <label for="mail_body">お問い合わせ詳細<span class="required">（必須）</span></label>
-            <textarea name="mail_body" id="mail_body" cols="30" rows="10" class="form-control"></textarea>
-        </div>
-
-        <hr>
 
         <div class="row">
             <div class="form-group col-sm-5" data-oznform-area="customer_name">
@@ -155,7 +115,8 @@ require '../../../release/ozn-form.php';
 
         <div class="row actions">
             <div class="col-sm-6">
-                <button type="submit" class="btn btn-info">入力内容確認</button>
+                <a href="./index.php" class="btn btn-info">戻る</a>
+                <button type="submit" class="btn btn-success">入力内容確認</button>
             </div>
         </div>
     </form>

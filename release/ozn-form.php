@@ -207,6 +207,15 @@ if($page_role == 'form') {
      * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
      */
 
+    // POST送信時の送信値検証とセッション保存処理
+    $session->savePostData($page_name, $config);
+
+    // 全てのフォームデータがセッションに登録されていない場合はフォームトップページへリダイレクト
+    if( ! $session->verifyFormDate($config->allPageForms())) {
+        header("Location: {$config->formRoot()}");
+        exit();
+    }
+
     // 出力CSSタグの定義
     $ozn_form_styles = '<link rel="stylesheet" href="'.$document_path.'/css/ozn-form.min.css">';
 
@@ -221,11 +230,6 @@ if($page_role == 'form') {
     $ozn_form_javascript = join("\n", $ozn_form_javascript);
 
 
-    // 全てのフォームデータがセッションに登録されていない場合はフォームトップページへリダイレクト
-    if( ! $session->verifyFormDate($config->allPageForms())) {
-        header("Location: {$config->formRoot()}");
-        exit();
-    }
 
     // システム情報取得/設定
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
