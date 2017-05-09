@@ -136,7 +136,7 @@ class FormConfig
         foreach ($this->config_raw['pages'] as $key => $page) {
 
             if($page['role'] == 'form') {
-                $page_forms[$key] = $page['forms'];
+                $page_forms[$key] = $this->pageForms($key);
             }
         }
 
@@ -144,7 +144,7 @@ class FormConfig
     }
 
     /**
-     * ページのフォーム情報を返す
+     * 特定ページのフォーム設定を返す
      *
      * @param $page_name
      *
@@ -152,7 +152,21 @@ class FormConfig
      */
     public function pageForms($page_name)
     {
-        return $this->config_raw['pages'][$page_name]['forms'];
+        if($page_name && isset($this->config_raw['pages'][$page_name]['forms']))
+        {
+
+            $forms = $this->config_raw['pages'][$page_name]['forms'];
+
+            foreach ($forms as $name => $config) {
+                if(! isset($config['error_messages'])) { $forms[$name]['error_messages'] = array(); }
+            }
+
+            return $forms;
+        }
+        else
+        {
+            return array();
+        }
     }
 
     /**
@@ -171,12 +185,12 @@ class FormConfig
     }
 
 
-    public function prevPageName($page_name) {
+    public function prevPageName($current_page_name) {
 
         $prev_key = false;
 
         foreach ($this->config_raw['pages'] as $key => $page) {
-            if($page_name == $key) {break;}
+            if($current_page_name == $key) {break;}
             $prev_key = $key;
         }
 
@@ -184,16 +198,17 @@ class FormConfig
     }
 
 
-    public function prevPageForms($page_name)
+    /**
+     * 前のページのフォーム設定を返す
+     *
+     * @param $current_page_name
+     *
+     * @return array <フォーム設定>
+     */
+    public function prevPageForms($current_page_name)
     {
-
-        $prev_page = $this->prevPageName($page_name);
-
-        if($prev_page && isset($this->config_raw['pages'][$prev_page]['forms'])) {
-            return $this->config_raw['pages'][$prev_page]['forms'];
-        } else {
-            return array();
-        }
+        $prev_page = $this->prevPageName($current_page_name);
+        return $this->pageForms($prev_page);
     }
 
     /**
@@ -229,9 +244,7 @@ class FormConfig
         if(empty($raw['from'])) throw new FormError('From アドレスが設定されていません。');
         if(empty($raw['reply_to'])) throw new FormError('Reply To アドレスが設定されていません。');
 
-
         return $raw;
-
     }
 
     /**

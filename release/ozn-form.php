@@ -53,7 +53,7 @@ $session->start();
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
 
-if($_SERVER['REQUEST_METHOD'] === 'post')
+if(strtolower($_SERVER['REQUEST_METHOD']) === 'post')
 {
     $v = new FromValidation();
 
