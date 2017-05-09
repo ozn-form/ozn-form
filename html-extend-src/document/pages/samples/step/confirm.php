@@ -66,7 +66,7 @@ require_once '../../../release/ozn-form.php';
 <div class="row">
     <div class="col-sm-12 text-center">
         <a href="complete.php" class="btn btn-success ozn-form-send" data-message="送信中です…">上記内容で送信する</a>
-        <a href="index.php" class="btn btn-info">戻る</a>
+        <a href="step2.php" class="btn btn-info">戻る</a>
     </div>
 </div>
 

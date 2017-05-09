@@ -1,16 +1,33 @@
 <?php namespace OznForm;
 
-require_once dirname(__FILE__) . '/FormValidation.class.php';
 
-
+/**
+ * Class FormSession
+ *
+ * @package OznForm
+ *
+ * @param FormConfig $config
+ * @param string     $session_name
+ * @param string     $page_name
+ */
 class FormSession
 {
 
+    private $config;
     private $session_name;
+    private $page_name;
 
-    function __construct($session_name)
+    /**
+     * FormSession constructor.
+     *
+     * @param string $page_name
+     * @param FormConfig $config
+     */
+    function __construct($page_name, $config)
     {
-        $this->session_name = $session_name;
+        $this->page_name    = $page_name;
+        $this->config       = $config;
+        $this->session_name = $config->formName();
     }
 
     public function start()
@@ -22,41 +39,27 @@ class FormSession
     /**
      * 送信されたフォームのデータをセッションに登録する
      *
-     * @param string                $page_name
-     * @param \OznForm\FormConfig   $config
-     * @param bool                  $invalid
-     *
      * @return bool
      */
-    public function savePostData($page_name, $config, $invalid = true)
+    public function savePostData()
     {
-        $forms = $config->prevPageForms($page_name);
+        $forms = $this->config->prevPageForms($this->page_name);
 
         if(empty($_POST) || empty($forms)) {return false;}
-
-        if($invalid) {
-
-            $validator = new FromValidation();
-
-            if($validator->validatePostData($page_name, $config) !== true) {
-                var_dump($validator->error_messages);
-                exit();
-            }
-        }
 
         $form_names = array_keys($forms);
 
         // ページセッションデータ初期化
-        $_SESSION[$config->prevPageName($page_name)] = array();
+        $_SESSION[$this->config->prevPageName($this->page_name)] = array();
 
         foreach ($form_names as $form_name) {
 
             $r_name = preg_replace('/\[\]$/', '', $form_name);
 
             if(isset($_POST[$r_name])) {
-                $_SESSION[$config->prevPageName($page_name)][$form_name] = $_POST[$r_name];
+                $_SESSION[$this->config->prevPageName($this->page_name)][$form_name] = $_POST[$r_name];
             } else {
-                $_SESSION[$config->prevPageName($page_name)][$form_name] = null;
+                $_SESSION[$this->config->prevPageName($this->page_name)][$form_name] = null;
             }
         }
     }
@@ -156,25 +159,35 @@ class FormSession
     }
 
     /**
-     *
      * すべてのページを経て検証済みデータが存在しているか確認する
-     *
-     * @param array $pages <ページ設定>
      *
      * @return bool
      */
-    public function verifyFormDate($pages)
+    public function verifyAllData()
     {
-
-        $is_verified = true;
-
-        foreach ($pages as $page => $forms) {
-            if(( ! isset($_SESSION[$page])) || (count($_SESSION[$page]) !== count($forms))) {
-                $is_verified = FALSE;
-            }
+        foreach ($this->config->allPageForms() as $page => $forms) {
+            if( ! $this->verifyFormData($page, $forms)) { return FALSE; }
         }
 
-        return $is_verified;
+        return TRUE;
+    }
+
+    public function verifyPrevFormData() {
+        return $this->verifyFormData($this->config->prevPageName($this->page_name), $this->config->prevPageForms($this->page_name));
+    }
+
+
+    /**
+     * 特定ページの検証済みデータが存在するか確認する
+     *
+     * @param $page_name
+     * @param $page_forms
+     *
+     * @return bool
+     */
+    public function verifyFormData($page_name, $page_forms)
+    {
+        return (isset($_SESSION[$page_name])) && (count($_SESSION[$page_name]) === count($page_forms));
     }
 
 

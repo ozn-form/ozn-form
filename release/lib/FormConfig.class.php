@@ -5,9 +5,7 @@ require_once dirname(__FILE__) . '/FormError.class.php';
 
 class FormConfig
 {
-
-    public $config_path;
-    private $config_raw;
+    private $config_raw;    // 設定値
 
     /**
      * FormConfig constructor.
@@ -16,21 +14,30 @@ class FormConfig
      */
     public function __construct($config_path)
     {
-        $this->config_path = $config_path;
-
-        $this->parseConfigFile();
-
+        $this->config_raw = $this->parseConfigFile($config_path);
     }
 
     /**
-     * 設定ファイルの読み込み/パースを行う
+     * 設定ファイルの有効性をチェックしパースする
+     *
+     * @param string $path <設定ファイルパス>
+     *
+     * @throws FormError
+     *
+     * @return array <設定値>
      */
-    public function parseConfigFile()
-    {
-        $json = file_get_contents($this->config_path);
-        $this->config_raw = json_decode($json,true);
+    public function parseConfigFile($path) {
 
+        if(empty($path))        { throw new FormError('設定ファイルパスが記載されていません。'); }
+        if(!file_exists($path)) { throw new FormError('設定ファイルが存在していません。'); }
+
+        $config = json_decode(file_get_contents($path),true);
+
+        if(is_null($config)) { throw new FormError('設定ファイルを読み込めません。書式を確認してください。'); }
+
+        return $config;
     }
+
 
     /**
      * ToDo: 設定ファイルの検証を行う メソッド実装

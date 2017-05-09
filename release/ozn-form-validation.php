@@ -23,9 +23,18 @@ $return_data = array(
 
 if(isset($_POST['validate'])) {
 
+    // 検証値がない場合はから文字列を設定
     $value = (isset($_POST['value']) ? $_POST['value'] : '');
 
     $v = new \Valitron\Validator(array($_POST['name'] => $value));
+
+    $validates = $_POST['validate'];
+
+
+    if(in_array('required', $validates)) {
+
+
+    }
 
 
     foreach ($_POST['validate'] as $validate) {
@@ -57,6 +66,8 @@ if(isset($_POST['validate'])) {
     echo json_encode($return_data);
 
 } else {
+
+    // 検証なしの項目の場合は無条件に検証成功フラグを返す
     echo json_encode(array('valid' => true, 'errors' => null));
 }
 

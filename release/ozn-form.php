@@ -1,75 +1,87 @@
 <?php namespace OznForm;
 
-date_default_timezone_set('Asia/Tokyo');
+/**
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ *   OznForm Core
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ *
+ * @var string $config_path <設定ファイルパス>
+ *
+ */
 
 /**
- * 関連クラス・依存ライブラリ読み込み
- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ * 初期処理
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
+
+date_default_timezone_set('Asia/Tokyo');
 
 require_once dirname(__FILE__) . '/lib/MailSender.class.php';
 require_once dirname(__FILE__) . '/lib/FormConfig.class.php';
 require_once dirname(__FILE__) . '/lib/FormError.class.php';
 require_once dirname(__FILE__) . '/lib/FormSession.class.php';
 require_once dirname(__FILE__) . '/lib/MailTemplate.class.php';
-
-
-/**
- * 初期処理
- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- */
-
-// ページ設定チェック
-if(!isset($config_path)) {
-    throw new FormError('設定ファイルパスが記載されていません。');
-}
-
-$config = new FormConfig($config_path);
-
-
-/**
- * デバッグフラグ
- * ・セッション内容の画面表示
- * ・ページ離脱時のアラート抑止
- */
-$is_debug = $config->is_debug();
+require_once dirname(__FILE__) . '/lib/FormValidation.class.php';
 
 
 /**
  * 環境情報（パスなど）を定義
- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
 
-$system_root = dirname(__FILE__);   // OznFormシステムのルートパス
-$page_name   = preg_replace('/\..+$/', '', basename($_SERVER["SCRIPT_NAME"]));
-$page_role   = $config->pageRole($page_name);
-$is_form_root = ($config->formRoot() == $_SERVER["SCRIPT_NAME"]);
-$forms       = array();
+// 設定
+$config = new FormConfig($config_path);
 
-// ルートパスからのパス
-$document_path = str_replace($_SERVER['DOCUMENT_ROOT'], '', $system_root);
+define('SYSTEM_ROOT'   , dirname(__FILE__)); // OznFormシステムのルートパス
+define('DOCUMENT_PATH' , str_replace($_SERVER['DOCUMENT_ROOT'], '', SYSTEM_ROOT));
+
+define('PAGE_NAME'     , preg_replace('/\..+$/', '', basename($_SERVER["SCRIPT_NAME"])));
+define('PAGE_ROLE'     , $config->pageRole(PAGE_NAME));
 
 
 /**
  * セッション開始
- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
 
-$session = new FormSession($config->formName());
+$session = new FormSession(PAGE_NAME, $config);
 $session->start();
 
 
 /**
- * フォーム設置ページでの処理
- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ * 送信値の処理
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-if($page_role == 'form') {
 
-    // POST送信時の送信値検証とセッション保存処理
-    $session->savePostData($page_name, $config);
+if($_SERVER['REQUEST_METHOD'] === 'post')
+{
+    $v = new FromValidation();
+
+    if($v->validateFromData(PAGE_NAME, $_POST, $config))
+    {
+        $session->savePostData();
+    }
+    else
+    {
+        throw new FormError('送信されたデータの検証に失敗しました。');
+    }
+}
+
+
+/**
+ * ページの役割による処理
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ */
+
+if(PAGE_ROLE == 'form') {
+
+    /**
+     * フォーム設置ページでの処理
+     * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+     */
 
     // フォームルートの場合の処理
-    if($is_form_root) {
+    if($config->formRoot() == $_SERVER["SCRIPT_NAME"]) {
 
         // リファラを保存
         $session->saveReferer();
@@ -81,15 +93,15 @@ if($page_role == 'form') {
     } else {
 
         // 前ページのフォームデータがセッションに登録されていない場合はフォームトップページへリダイレクト
-        if( ! $session->verifyFormDate(array($config->prevPageName($page_name) => $config->prevPageForms($page_name)))) {
+        if( ! $session->verifyPrevFormData()) {
             header("Location: {$config->formRoot()}");
             exit();
         }
     }
 
     // 出力JSタグの定義
-    $forms_json     = json_encode($config->pageForms($page_name));
-    $form_data_json = json_encode($session->getPageData($page_name));
+    $forms_json     = json_encode($config->pageForms(PAGE_NAME));
+    $form_data_json = json_encode($session->getPageData(PAGE_NAME));
 
 
     $ozn_form_javascript = array();
@@ -98,10 +110,10 @@ if($page_role == 'form') {
     // ページごとに生成するjs
     $ozn_form_javascript[] = '<script type="application/javascript">';
     $ozn_form_javascript[] = '  OznForm = {};';
-    $ozn_form_javascript[] = '  OznForm.page_role = "'.$page_role.'";';
+    $ozn_form_javascript[] = '  OznForm.page_role = "'.PAGE_ROLE.'";';
     $ozn_form_javascript[] = '  OznForm.page_data = '.$form_data_json.';';
-    $ozn_form_javascript[] = '  OznForm.vurl      = "'.$document_path.'/ozn-form-validation.php";';
-    $ozn_form_javascript[] = '  OznForm.furl      = "'.$document_path.'/upload/index.php";';
+    $ozn_form_javascript[] = '  OznForm.vurl      = "'.DOCUMENT_PATH.'/ozn-form-validation.php";';
+    $ozn_form_javascript[] = '  OznForm.furl      = "'.DOCUMENT_PATH.'/upload/index.php";';
     $ozn_form_javascript[] = '  OznForm.vsetting  = ' . json_encode($config->validationSetting());
     $ozn_form_javascript[] = '  OznForm.forms     = '.$forms_json.';';
 
@@ -111,7 +123,7 @@ if($page_role == 'form') {
     }
 
     // ページ離脱時のメッセージ
-    if($config->unload_message() && $is_debug === FALSE) {
+    if($config->unload_message() && $config->is_debug() === FALSE) {
         $ozn_form_javascript[] = '  OznForm.unload_message = '.$config->unload_message().';';
     }
 
@@ -120,28 +132,25 @@ if($page_role == 'form') {
 
     // 関連ライブラリの読み込み
     if($config->ajaxZipOption()) {
-        $ozn_form_javascript[] = '<script src="'.$document_path.'/js/ajaxzip3.js"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/ajaxzip3.js"></script>';
     }
 
     if($config->jqueryUIOption()) {
-        $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jquery-ui.min.js"></script>';
-        $ozn_form_javascript[] = '<script src="'.$document_path.'/js/datepicker-ja.js"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jquery-ui.min.js"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/datepicker-ja.js"></script>';
     }
 
 
-    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jQuery-File-Upload-9.14.2/js/vendor/jquery.ui.widget.js"></script>';
-    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jQuery-File-Upload-9.14.2/js/jquery.iframe-transport.js"></script>';
-    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jQuery-File-Upload-9.14.2/js/jquery.fileupload.js"></script>';
-//    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jQuery-File-Upload-9.14.2/js/jquery.fileupload-validate.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/vendor/jquery.ui.widget.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/jquery.iframe-transport.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/jquery.fileupload.js"></script>';
 
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jquery.autoKana.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/domain_suggest.js"></script>';
 
-
-    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/jquery.autoKana.js"></script>';
-    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/domain_suggest.js"></script>';
-
-    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/utilities.js"></script>';
-    $ozn_form_javascript[] = '<script src="'.$document_path.'/config/suggest_mail_address.js"></script>';
-    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/ozn-form.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/utilities.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/config/suggest_mail_address.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/ozn-form.js"></script>';
 
     $ozn_form_javascript = join("\n", $ozn_form_javascript);
 
@@ -151,11 +160,11 @@ if($page_role == 'form') {
     $ozn_form_styles = array();
 
     if($config->jqueryUIOption()) {
-        $ozn_form_styles[] = '<link rel="stylesheet" href="'.$document_path.'/css/jquery-ui.min.css">';
+        $ozn_form_styles[] = '<link rel="stylesheet" href="'.DOCUMENT_PATH.'/css/jquery-ui.min.css">';
     }
 
-    $ozn_form_styles[] = '<link rel="stylesheet" href="'.$document_path.'/js/jQuery-File-Upload-9.14.2/css/jquery.fileupload.css">';
-    $ozn_form_styles[] = '<link rel="stylesheet" href="'.$document_path.'/css/ozn-form.min.css">';
+    $ozn_form_styles[] = '<link rel="stylesheet" href="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/css/jquery.fileupload.css">';
+    $ozn_form_styles[] = '<link rel="stylesheet" href="'.DOCUMENT_PATH.'/css/ozn-form.min.css">';
 
     $ozn_form_styles = join("\n", $ozn_form_styles);
 
@@ -165,13 +174,11 @@ if($page_role == 'form') {
  * 入力内容確認ページでの処理
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-} else if($page_role == 'confirm') {
+} else if(PAGE_ROLE == 'confirm') {
 
-    // POST送信時の送信値検証とセッション保存処理
-    $session->savePostData($page_name, $config);
 
     // 全てのフォームデータがセッションに登録されていない場合はフォームトップページへリダイレクト
-    if( ! $session->verifyFormDate($config->allPageForms())) {
+    if( ! $session->verifyAllData()) {
         header("Location: {$config->formRoot()}");
         exit();
     }
@@ -183,19 +190,19 @@ if($page_role == 'form') {
 
     $ozn_form_javascript[] = '<script type="application/javascript">';
     $ozn_form_javascript[] = '  OznForm = {};';
-    $ozn_form_javascript[] = '  OznForm.page_role = "'.$page_role.'";';
+    $ozn_form_javascript[] = '  OznForm.page_role = "'.PAGE_ROLE.'";';
     $ozn_form_javascript[] = '  OznForm.page_data = '.$form_data_json.';';
     $ozn_form_javascript[] = '</script>';
-    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/utilities.js"></script>';
-    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/ozn-form-confirm.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/utilities.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/ozn-form-confirm.js"></script>';
 
     $ozn_form_javascript = join("\n", $ozn_form_javascript);
 
     // 出力CSSタグの定義
-    $ozn_form_styles = '<link rel="stylesheet" href="'.$document_path.'/css/ozn-form.min.css">';
+    $ozn_form_styles = '<link rel="stylesheet" href="'.DOCUMENT_PATH.'/css/ozn-form.min.css">';
 
 
-} else if($page_role == 'mailsend') {
+} else if(PAGE_ROLE == 'mailsend') {
 
     /**
      * メール送信ページでの処理
@@ -207,17 +214,14 @@ if($page_role == 'form') {
      * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
      */
 
-    // POST送信時の送信値検証とセッション保存処理
-    $session->savePostData($page_name, $config);
-
     // 全てのフォームデータがセッションに登録されていない場合はフォームトップページへリダイレクト
-    if( ! $session->verifyFormDate($config->allPageForms())) {
+    if( ! $session->verifyAllData()) {
         header("Location: {$config->formRoot()}");
         exit();
     }
 
     // 出力CSSタグの定義
-    $ozn_form_styles = '<link rel="stylesheet" href="'.$document_path.'/css/ozn-form.min.css">';
+    $ozn_form_styles = '<link rel="stylesheet" href="'.DOCUMENT_PATH.'/css/ozn-form.min.css">';
 
     // 出力jsタグ
     $ozn_form_javascript = array();
@@ -225,7 +229,7 @@ if($page_role == 'form') {
     $ozn_form_javascript[] = '<script type="application/javascript">';
     $ozn_form_javascript[] = '  OznForm = {};';
     $ozn_form_javascript[] = '</script>';
-    $ozn_form_javascript[] = '<script src="'.$document_path.'/js/utilities.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/utilities.js"></script>';
 
     $ozn_form_javascript = join("\n", $ozn_form_javascript);
 
@@ -355,7 +359,7 @@ if($page_role == 'form') {
     }
 
     // 送信後処理（デバッグ設定以外の時）
-    if( ! $is_debug) {
+    if( ! $config->is_debug()) {
 
         // セッション情報をクリア
         $session->destroy();
@@ -384,6 +388,6 @@ if($page_role == 'form') {
         exit();
     }
 }
-    if($is_debug) {
+    if($config->is_debug()) {
         var_dump('セッション内容', $_SESSION);
     }
