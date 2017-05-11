@@ -57,7 +57,7 @@ if(strtolower($_SERVER['REQUEST_METHOD']) === 'post')
 {
     $v = new FromValidation();
 
-    if($v->validateFromData(PAGE_NAME, $_POST, $config))
+    if($v->validatePageForm($config->prevPageName(PAGE_NAME), $_POST, $config))
     {
         $session->savePostData();
     }
