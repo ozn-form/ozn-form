@@ -18,10 +18,10 @@ if(isset($_POST['validate'])) {
 
     $is_valid = $v->run(
         $_POST['name'],
-        $_POST['value'],
+        $_POST['values'],
         $_POST['validate'],
         $_POST['label'],
-        null,
+        isset($_POST['condition']) ? $_POST['condition'] : null,
         isset($_POST['error_messages']) ? $_POST['error_messages'] : array()
     );
 
@@ -32,7 +32,7 @@ if(isset($_POST['validate'])) {
         // キャリアアドレスの場合、注意メッセージを設定
         if(isset($_POST['mobile_warning'])) {
 
-            list($user, $domain) = explode('@', $_POST['value']);
+            list($user, $domain) = explode('@', $_POST['values'][$_POST['name']]);
 
             if(in_array($domain, $address_list)) {
                 $return_data['warning'] = array($_POST['mobile_warning']);
@@ -50,4 +50,3 @@ if(isset($_POST['validate'])) {
     // 検証なしの項目の場合は無条件に検証成功フラグを返す
     echo json_encode(array('valid' => true, 'errors' => null));
 }
-

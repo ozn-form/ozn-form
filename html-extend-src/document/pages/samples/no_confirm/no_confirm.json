@@ -77,6 +77,17 @@
           "label": "メールアドレス",
           "validates": ["required", "email_detail"],
           "mobile_mail_warning": "携帯電話のアドレスが入力されました。example.com ドメインからのメールを受信できるように設定お願いします。"
+        },
+
+        "anq": {
+          "label": "アンケート"
+        },
+        "anq_other": {
+          "label": "その他のきっかけ",
+          "validate_condition": {
+            "anq": ["equals_value:その他"]
+          },
+          "validates": ["required"]
         }
       }
     },

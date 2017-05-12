@@ -88,6 +88,75 @@ window.OznForm.utilities = {
         $el.removeClass('ozn-form-disabled disabled');
     },
 
+
+    getFormValues: function (names) {
+
+        if( ! $.isArray(names)) {
+            names = [names];
+        }
+
+        var form_values = {};
+
+        $.each(names, function () {
+
+            var name = this;
+
+            var $form_el    = $('[name="'+name+'"]');
+            var form_value  = $form_el.val();
+            var form_config = window.OznForm.forms[name];
+
+            var is_upfile_form = (form_config.type === 'upload_files');
+
+
+            // -- 各フォームタイプにより取得値などの設定を変更する
+
+            // ファイルアップロードフォームの場合
+            if(is_upfile_form) {
+
+                var fileup_element_id = OznForm.utilities.updatedFileElementName(name);
+                var upload_btn_id     = OznForm.utilities.uploadButtonElementName(name);
+
+                $form_el = $('#' + upload_btn_id);
+
+                if($('#' + fileup_element_id).find('input').size() > 0) {
+                    form_value = 'check_ok';
+                } else {
+                    form_value = '';
+                }
+
+                // 通常フォームの場合
+            } else {
+
+                // ラジオボタン・チェックボックスの時は、チェックされているデータを送信する
+                if($.inArray($form_el.attr('type'), ['radio', 'checkbox']) >= 0 ) {
+                    form_value = $form_el.filter(':checked').val();
+
+                    // その他の input 要素の時は全角を半角に変換して送信する
+                } else if ($form_el.prop("nodeName") === 'INPUT') {
+
+                    // 全角半角変換
+                    form_value = OznForm.utilities.toHalfWidth(form_value);
+
+                    // 半角カナ全角カナ変換（カナ検証の時のみ）
+                    if($.inArray('kanaOnly', form_config.validates) !== -1) {
+                        form_value = OznForm.utilities.hankana2zenkana(form_value);
+                    }
+
+                    // フォームのユーザ入力値を半角変換済みの値に修正
+                    // ※ 設定で明示的に false を指定した場合はスキップ
+                    if(form_config.to_half !== false) {
+                        $form_el.val(form_value);
+                    }
+                }
+            }
+
+            form_values[name] = form_value;
+        });
+
+        return form_values;
+
+    },
+
     /**
      * 要素からフォームのNAME値を取得する
      * @param $el
@@ -295,6 +364,12 @@ window.OznForm.utilities = {
                 res.file.deleteUrl
             );
         });
+    },
+
+    objectKeys: function (obj) {
+
+        return $.map(obj, function(value, key) { return key; });
+
     }
 
 };

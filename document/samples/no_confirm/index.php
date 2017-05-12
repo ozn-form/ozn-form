@@ -158,6 +158,52 @@ require '../../../release/ozn-form.php';
             </div>
         </div>
 
+        <hr>
+
+        <div class="row" data-oznform-area="anq_other" style="margin-bottom: 1em;">
+
+            <h4>アンケート</h4>
+            <p style="margin-bottom: 2em;">このサイトを訪れたきっかけについて教えてください</p>
+
+            <div class="ozn-check">
+                <div class="col-sm-4">
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" name="anq" id="anq1" value="検索サイトなど" checked>
+                            検索サイトなど
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" name="anq" id="anq2" value="知人の紹介">
+                            知人の紹介
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" name="anq" id="anq3" value="その他">
+                            その他
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-sm-8">
+                <label for="email">その他のきっかけ<span class="required">（「その他」を選択した場合は必須）</span></label>
+                <input type="text" name="anq_other" id="anq_other" class="form-control">
+            </div>
+        </div>
+
+        <hr>
+
         <div class="row actions">
             <div class="col-sm-6">
                 <button type="submit" class="btn btn-success ozn-form-send">すぐ送信</button>

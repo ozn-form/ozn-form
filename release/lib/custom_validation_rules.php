@@ -112,3 +112,11 @@
         return !preg_match("/,/", $value);
     }
 }, "の.（ドット）」が「,（カンマ）」になっていませんか？");
+
+
+/**
+ *  フォームの値が指定値と同じ（主に検証条件に使用）
+ */
+\Valitron\Validator::addRule('equals_value', function($field, $value, array $params, array $fields) {
+    return $value === $params[0];
+}, "は「%s」と同じ値である必要があります。");

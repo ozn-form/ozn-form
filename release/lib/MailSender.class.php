@@ -28,7 +28,7 @@ class MailSender {
     public function send($send_by, $options = array(), $send_flag) {
 
         // 送信フラグがたってない時は送信なし（デバッグ用）
-        if($send_flag === FALSE) { sleep(5); return true; }
+        if($send_flag === FALSE) { sleep(1); return true; }
 
         switch ($send_by) {
             case 'sendmail':

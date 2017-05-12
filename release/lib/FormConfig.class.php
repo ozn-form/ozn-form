@@ -159,6 +159,7 @@ class FormConfig
 
             foreach ($forms as $name => $config) {
                 if(! isset($config['error_messages'])) { $forms[$name]['error_messages'] = array(); }
+                if(! isset($config['validate_condition'])) { $forms[$name]['validate_condition'] = array(); }
             }
 
             return $forms;
