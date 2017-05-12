@@ -77,6 +77,12 @@ Webフォームにて <% customer_name %> 様よりお問合せがありまし�
 <%% if.mail_body %%>お問い合わせ内容：
 <% mail_body %> <%% endif %%>
 
+
+- - - - - - - - - - - - - - - - - - - - - - - - -
+送信元エージェント：<% {user_agent} %>
+参照元：<% {referrer} %>
+送信日時：<% {send_date} %>
+
 TEXT;
 
 

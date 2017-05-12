@@ -265,15 +265,6 @@ if(PAGE_ROLE == 'form') {
     // 管理者宛メール送信処理
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    // 付加情報を設定
-    $additional = array();
-
-    $additional[] = '';
-    $additional[] = '- - - - - - - - - - - - - - - - - - - - - - - - -';
-    $additional[] = '送信元エージェント：' . $sys_info['user_agent'];
-    $additional[] = '参照元：' . $sys_info['referrer'];
-    $additional[] = '送信日時：' . $sys_info['send_date']->format('Y年m月d日 H:i:s');
-
     // 管理者メール設定を取得
     $mail = $config->adminMail($page_data);
 
@@ -281,7 +272,7 @@ if(PAGE_ROLE == 'form') {
         $config->send_by(),
         $template->output($mail['to_name']), $mail['to'],
         $template->output($mail['from_name']), $mail['from'], $template->output($mail['reply_to']),
-        $template->output($admin_mail_title), $template->output($admin_mail_body) . join("\n", $additional)
+        $template->output($admin_mail_title), $template->output($admin_mail_body)
     );
 
     // CC.BCC設定
