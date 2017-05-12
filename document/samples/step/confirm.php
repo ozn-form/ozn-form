@@ -14,7 +14,7 @@ require_once '../../../release/ozn-form.php';
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ozn-Form Sample - シンプル</title>
+    <title>Ozn-Form Sample - ステップ</title>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -56,9 +56,9 @@ require_once '../../../release/ozn-form.php';
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/document/samples/simple/">シンプル</a></li>
+                <li class=""><a href="/document/samples/simple/">シンプル</a></li>
                 <li class=""><a href="/document/samples/no_confirm/">確認スキップ</a></li>
-                <li class=""><a href="/document/samples/step/">ステップ</a></li>
+                <li class="active"><a href="/document/samples/step/">ステップ</a></li>
                 <!--<li class="&lt;!&ndash; @@var= home_active &ndash;&gt;"><a href="#about">About</a></li>-->
                 <!--<li class="active"><a href="#contact">サンプルフォーム</a></li>-->
             </ul>

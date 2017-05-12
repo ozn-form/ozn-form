@@ -1,8 +1,24 @@
 jQuery(function ($) {
 
+    var $send_button = $('.ozn-form-send');
 
     // 送信リンクの連続クリック防止
-    OznForm.utilities.setSendmailButtonEvent($('.ozn-form-send'));
+    OznForm.utilities.setSendmailButtonEvent($send_button);
+
+    // ページ離脱時にアラートを表示する
+    function showUnloadMessage() {
+        return OznForm.unload_message;
+    }
+
+    // 離脱アラートを表示（送信時は解除するため関連実装あり）
+    if(OznForm.unload_message) {
+        $(window).on('beforeunload', showUnloadMessage);
+    }
+
+    $send_button.on('click', function () {
+        $(window).off('beforeunload', showUnloadMessage);
+    });
+
 
     // IFタグの処理
     $.each($('[data-if]'), function () {

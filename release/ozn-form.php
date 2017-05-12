@@ -192,6 +192,12 @@ if(PAGE_ROLE == 'form') {
     $ozn_form_javascript[] = '  OznForm = {};';
     $ozn_form_javascript[] = '  OznForm.page_role = "'.PAGE_ROLE.'";';
     $ozn_form_javascript[] = '  OznForm.page_data = '.$form_data_json.';';
+
+    // ページ離脱時のメッセージ
+    if($config->unload_message() && $config->is_debug() === FALSE) {
+        $ozn_form_javascript[] = '  OznForm.unload_message = '.$config->unload_message().';';
+    }
+
     $ozn_form_javascript[] = '</script>';
     $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/utilities.js"></script>';
     $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/ozn-form-confirm.js"></script>';

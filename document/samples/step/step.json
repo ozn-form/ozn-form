@@ -1,9 +1,12 @@
 {
 
-  "is_debug": true,
+  "is_debug": false,
 
   "form_name": "step_form",
   "form_root": "/document/samples/step/index.php",
+
+  "unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。",
+
 
   "validation": {
     "show_icon": false,

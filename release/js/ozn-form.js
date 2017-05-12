@@ -1,6 +1,22 @@
 jQuery(function ($) {
 
 
+    var inputed = false;
+
+    // ページ離脱時にアラートを表示する
+    function showUnloadMessage() {
+        return OznForm.unload_message;
+    }
+
+    // 確認画面の時は検証処理が走らないので、設定されていれば離脱アラートを適用する
+    if(window.OznForm.page_role === 'confirm') {
+        // 離脱アラートを表示（送信時は解除するため関連実装あり）
+        if(OznForm.unload_message) {
+            $(window).on('beforeunload', showUnloadMessage);
+        }
+    }
+
+
     // -- 設定に応じてオプション機能を追加
 
     /**
@@ -197,16 +213,6 @@ jQuery(function ($) {
     OznForm.utilities.setInitMessage(OznForm.init_msg);
 
 
-    // 離脱アラートを表示（送信時は解除するため関連実装あり）
-    if(OznForm.unload_message) {
-        $(window).on('beforeunload', showUnloadMessage);
-    }
-
-    // ページ離脱時にアラートを表示する
-    function showUnloadMessage() {
-        return OznForm.unload_message;
-    }
-
     // Datepickerを適用する
     $('[data-of_datepicker]').each(function () {
        $(this).datepicker();
@@ -237,6 +243,15 @@ jQuery(function ($) {
             validFormValue(form_name, OznForm.forms[form_name]);
         } else {
             setVaildMark($(this));
+        }
+
+        if( ! inputed) {
+            // 離脱アラートを表示（送信時は解除するため関連実装あり）
+            if(OznForm.unload_message) {
+                $(window).on('beforeunload', showUnloadMessage);
+            }
+
+            inputed = true;
         }
     }
 
