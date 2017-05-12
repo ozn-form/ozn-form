@@ -65,6 +65,8 @@ window.OznForm.utilities = {
                 return false;
             }
 
+            window.OznForm.submitLabel = $this.text();
+
             var send_message = '送信中です…お待ちください。';
 
             if($this.data('message')) {
@@ -74,6 +76,16 @@ window.OznForm.utilities = {
             $this.text(send_message);
             $this.addClass('ozn-form-disabled disabled');
         })
+    },
+
+    clearSendingButtonStyle: function ($el) {
+
+        if( ! $el.hasClass('ozn-form-disabled')) {
+            return false;
+        }
+
+        $el.text(window.OznForm.submitLabel);
+        $el.removeClass('ozn-form-disabled disabled');
     },
 
     /**

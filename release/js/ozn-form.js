@@ -307,6 +307,10 @@ jQuery(function ($) {
                     $("html,body").animate({
                         scrollTop : top_error_position + OznForm.vsetting.shift_scroll_position
                     });
+
+                    // 送信状態のボタンを元に戻す
+                    window.OznForm.utilities.clearSendingButtonStyle($('.ozn-form-send'));
+
                 }
 
             }).fail(function () {
