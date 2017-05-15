@@ -21,6 +21,7 @@ require_once dirname(__FILE__) . '/lib/FormConfig.class.php';
 require_once dirname(__FILE__) . '/lib/FormError.class.php';
 require_once dirname(__FILE__) . '/lib/FormSession.class.php';
 require_once dirname(__FILE__) . '/lib/MailTemplate.class.php';
+require_once dirname(__FILE__) . '/lib/MailHistory.class.php';
 require_once dirname(__FILE__) . '/lib/FormValidation.class.php';
 
 
@@ -249,6 +250,16 @@ if(PAGE_ROLE == 'form') {
         'user_agent' => $_SERVER['HTTP_USER_AGENT'],
         'referrer'   => $_SESSION['ref']
     );
+
+
+    // 問い合わせ履歴を保存
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    $history = new MailHistory();
+
+    $sys_info['serial'] = $history->isEnabled()
+        ? $history->save($sys_info, $session, $config)
+        : str_replace('.','',microtime(true));
 
 
     // メール送信共通処理

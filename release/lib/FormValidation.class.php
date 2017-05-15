@@ -71,6 +71,8 @@ class FromValidation
     /**
      * 検証実行
      *
+     * @note 検証実行条件を考慮した上で検証を実行し結果を返す
+     *
      * @param string $name      <フォームのNAME属性値>
      * @param array  $values    <フォームの値>
      * @param array  $validates <検証項目>
@@ -95,7 +97,7 @@ class FromValidation
             }
         }
 
-        // 検証実行条件に合わなければ TRUE を返す
+        // 検証実行条件に合わなければ常に TRUE を返す
         if( ! $run_validation) { return $is_valid; }
 
 
@@ -112,7 +114,7 @@ class FromValidation
     }
 
     /**
-     * 検証を実行する
+     * 検証実行の単体処理
      *
      * @param $name
      * @param $values
@@ -134,9 +136,11 @@ class FromValidation
 
         foreach ($validates as $rule) {
 
+            // 検証オプションをパースして分離
             $option = preg_match("/^.+:(.+)$/", $rule, $m) ? $m[1] : null;
             $rule   = preg_replace("/:.*$/", '', $rule);
 
+            // 実行する検証をセット
             if(!empty($messages) && !empty($messages[$rule]))
             {
                 $v->rule($rule, $name, $option)->message($messages[$rule]);

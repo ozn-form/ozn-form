@@ -6,6 +6,13 @@ require_once dirname(__FILE__) . '/FormError.class.php';
 class FormConfig
 {
     private $config_raw;    // 設定値
+    private $name2label_table;
+
+
+    public static function load($path)
+    {
+
+    }
 
     /**
      * FormConfig constructor.
@@ -292,4 +299,28 @@ class FormConfig
         }
     }
 
+    /**
+     * フォームのNAME属性値から日本語ラベルを返す
+     * @param  string $form_name
+     * @return string
+     */
+    public function formName2Label($form_name)
+    {
+        $this->makeLabelTable();
+        return $this->name2label_table[$form_name];
+    }
+
+    public function makeLabelTable()
+    {
+        if(empty($this->name2label_table))
+        {
+            $this->name2label_table = array();
+
+            foreach ($this->allPageForms() as $forms) {
+                foreach ($forms as $name => $form) {
+                    $this->name2label_table[$name] = $form['label'];
+                }
+            }
+        }
+    }
 }
