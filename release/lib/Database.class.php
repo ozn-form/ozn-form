@@ -155,9 +155,7 @@ class Database
     {
         $path = dirname(__FILE__) . self::RELATIVE_SQLITE_PATH . $this->config['sqlite']['db_name'] . '.db';
 
-        $this->db = new \PDO('sqlite:' . $path);
-        $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-
+        $this->db = new \PDO('sqlite:' . $path, null, null, array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
 
         // DBが作成直後だったら初期化する
         $res = $this->db->query("SELECT COUNT(*) FROM sqlite_master WHERE tbl_name NOT LIKE 'sqlite%';");
