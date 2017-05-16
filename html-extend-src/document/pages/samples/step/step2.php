@@ -60,7 +60,7 @@ require '../../../release/ozn-form.php';
 
         <div class="row actions">
             <div class="col-sm-6">
-                <a href="./index.php" class="btn btn-info">戻る</a>
+                <a href="./index.php" class="btn btn-info ozn-form-nav">戻る</a>
                 <button type="submit" class="btn btn-success">入力内容確認</button>
             </div>
         </div>

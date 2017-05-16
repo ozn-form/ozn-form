@@ -15,7 +15,7 @@ jQuery(function ($) {
         $(window).on('beforeunload', showUnloadMessage);
     }
 
-    $send_button.on('click', function () {
+    $(".ozn-form-send, .ozn-form-nav").on('click', function () {
         $(window).off('beforeunload', showUnloadMessage);
     });
 

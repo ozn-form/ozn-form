@@ -8,14 +8,10 @@ jQuery(function ($) {
         return OznForm.unload_message;
     }
 
-    // 確認画面の時は検証処理が走らないので、設定されていれば離脱アラートを適用する
-    if(window.OznForm.page_role === 'confirm') {
-        // 離脱アラートを表示（送信時は解除するため関連実装あり）
-        if(OznForm.unload_message) {
-            $(window).on('beforeunload', showUnloadMessage);
-        }
-    }
-
+    // ozn-form-nav クラスが付与されたリンクはアラートを出さない
+    $('.ozn-form-nav').on('click', function () {
+        $(window).off('beforeunload', showUnloadMessage);
+    });
 
     // -- 設定に応じてオプション機能を追加
 
@@ -213,12 +209,14 @@ jQuery(function ($) {
     OznForm.utilities.setInitMessage(OznForm.init_msg);
 
 
-    // Datepickerを適用する
-    $('[data-of_datepicker]').each(function () {
-       $(this).datepicker();
-    });
+    /**
+     * Datepickerを適用する
+     */
+    $('[data-of_datepicker]').each(function () { $(this).datepicker(); });
 
-    // リアルタイム入力値検証
+    /**
+     * リアルタイム入力値検証
+     */
     $.each(Object.keys(OznForm.forms), function () {
 
         var form_name = this;
