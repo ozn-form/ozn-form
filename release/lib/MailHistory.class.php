@@ -59,7 +59,6 @@ class MailHistory
 
             foreach ($stmt as $item)
             {
-
                 $form_items = unserialize($item['form_items']);
 
                 if($count === 1)
@@ -115,10 +114,12 @@ class MailHistory
     }
 
     /**
+     * フォームに入力されたデータをシリアライズして返す
+     *
      * @param FormSession $session
      * @param FormConfig  $config
      *
-     * @return string
+     * @return string <シリアライズ済み入力データ>
      */
     public function serializedFormData($session, $config)
     {
@@ -134,6 +135,7 @@ class MailHistory
 
     /**
      * CSVダウンロードが許可されるか
+     *
      * @param $id
      * @param $pass
      *
@@ -144,6 +146,4 @@ class MailHistory
         $config = $this->database->getConfig();
         return (($id == $config['oznform_admin_id']) && ($pass == $config['oznform_admin_pass']));
     }
-
-
 }

@@ -18,20 +18,18 @@ if(strtolower($_SERVER['REQUEST_METHOD']) === 'post')
     // 未入力
     if( ! ($_POST['id'] && $_POST['password']))
     {
-        showTemplate('ログインに失敗しました。<br>ID/パスワードを確認してください。');
+        showLoginMessage('ログインに失敗しました。<br>ID/パスワードを確認してください。');
     }
 
     if( ! $history->allowCSVDownload($_POST['id'], $_POST['password']))
     {
-        showTemplate('ログインに失敗しました。<br>ID/パスワードを確認してください。');
+        showLoginMessage('ログインに失敗しました。<br>ID/パスワードを確認してください。');
     }
-
 
     if( ! $history->getCSV($_POST['form_name']))
     {
-        showTemplate('出力データがありません。');
+        showLoginMessage('出力データがありません。');
     }
-
 }
 else
 {
