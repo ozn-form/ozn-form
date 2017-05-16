@@ -62,11 +62,8 @@ function showTemplate($error_message = '')
     <html lang="ja">
     <head>
         <meta charset="utf-8">
-
-        <title>OanForm - CSVダウンロード</title>
-        <meta name="description" content="The HTML5 Herald">
-        <meta name="author" content="SitePoint">
-
+        <title>OznForm - CSVダウンロード</title>
+        <meta name="robots" content="noindex, nofollow">
         <link rel="stylesheet" href="css/login.css">
     </head>
 
