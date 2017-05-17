@@ -69,6 +69,12 @@ Webサイトから下記の内容でお問い合わせがありました。
 <%% if.attachment1[] %%>デザイン案添付1： <% attachment1[] %><%% endif %%>
 <%% if.attachment2[] %%>デザイン案添付2： <% attachment2[] %><%% endif %%>
 
+- - - - - - - - - - - - - - - - - - - - - - - - -
+送信シリアルNo：<% {serial} %>
+送信元エージェント：<% {user_agent} %>
+参照元：<% {referrer} %>
+送信日時：<% {send_date} %>
+
 TEXT;
 
 
