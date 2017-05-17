@@ -25,14 +25,16 @@ if(isset($_POST['validate'])) {
         isset($_POST['error_messages']) ? $_POST['error_messages'] : array()
     );
 
+    $target_value = $_POST['values'][$_POST['name']];
+
     if($is_valid) {
 
         $return_data['valid'] = true;
 
         // キャリアアドレスの場合、注意メッセージを設定
-        if(isset($_POST['mobile_warning'])) {
+        if(isset($_POST['mobile_warning']) && (! empty($target_value))) {
 
-            list($user, $domain) = explode('@', $_POST['values'][$_POST['name']]);
+            list($user, $domain) = explode('@', $target_value);
 
             if(in_array($domain, $address_list)) {
                 $return_data['warning'] = array($_POST['mobile_warning']);
