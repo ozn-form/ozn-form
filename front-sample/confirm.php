@@ -115,8 +115,8 @@
 		</div>
 
 		<div class="ozn-form-buttons">
-			<span><a href="./complete.php" class="ozn-btn submit">この内容で送信する →</a></span>
-			<span><a href="./index.php" class="ozn-btn back">← 戻って書き直す</a></span>
+			<span><a href="./complete.php" class="ozn-btn ozn-form-nav submit">この内容で送信する →</a></span>
+			<span><a href="./index.php" class="ozn-btn ozn-form-nav back">← 戻って書き直す</a></span>
 		</div>
 
 	</div><!-- ozn-form-inner -->

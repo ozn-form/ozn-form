@@ -254,7 +254,7 @@
 			<div class="privacy-error"></div>
 
 			<div class="ozn-form-buttons">
-				<button type="submit" class="ozn-btn submit">入力内容の確認へ進む →</button>
+				<button type="submit" class="ozn-btn ozn-form-nav submit">入力内容の確認へ進む →</button>
 			</div>
 
 		</form>
