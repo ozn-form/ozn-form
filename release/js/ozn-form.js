@@ -284,51 +284,60 @@ jQuery(function ($) {
             }
         });
 
-        // 可変数のDeferredを並列実行させる
-        $.when.apply($, ajax_validations)
+        if(ajax_validations.length === 0) {
 
-            .done(function() {
+            // -- 全て検証OKの時の処理
+            $this.off('submit', validateAllForms);
+            $(window).off('beforeunload', showUnloadMessage);
+            $this.submit();
 
-                var results = this;
-                var is_success = true;
+        } else {
+            // 可変数のDeferredを並列実行させる
+            $.when.apply($, ajax_validations)
 
-                $.each(results, function () {
-                   if(this == false) {
-                       is_success = false;
-                       return false;
-                   }
-                });
+                .done(function() {
 
-                if(is_success) {
+                    var results = this;
+                    var is_success = true;
 
-                    // -- 全て検証OKの時の処理
-
-                    $this.off('submit', validateAllForms);
-                    $(window).off('beforeunload', showUnloadMessage);
-                    $this.submit();
-
-                } else {
-
-                    // -- 検証NGの時の処理
-
-                    // 成功した要素を非表示にする
-                    hideValidItem();
-
-                    // 検証失敗したフォームまでスクロールバック
-                    var top_error_position = $('.ozn-form-invalid').eq(0).offset().top;
-
-                    $("html,body").animate({
-                        scrollTop : top_error_position + OznForm.vsetting.shift_scroll_position
+                    $.each(results, function () {
+                        if(this == false) {
+                            is_success = false;
+                            return false;
+                        }
                     });
 
-                    // 送信状態のボタンを元に戻す
-                    window.OznForm.utilities.clearSendingButtonStyle($('.ozn-form-send'));
+                    if(is_success) {
 
-                }
+                        // -- 全て検証OKの時の処理
 
-            }).fail(function () {
+                        $this.off('submit', validateAllForms);
+                        $(window).off('beforeunload', showUnloadMessage);
+                        $this.submit();
+
+                    } else {
+
+                        // -- 検証NGの時の処理
+
+                        // 成功した要素を非表示にする
+                        hideValidItem();
+
+                        // 検証失敗したフォームまでスクロールバック
+                        var top_error_position = $('.ozn-form-invalid').eq(0).offset().top;
+
+                        $("html,body").animate({
+                            scrollTop : top_error_position + OznForm.vsetting.shift_scroll_position
+                        });
+
+                        // 送信状態のボタンを元に戻す
+                        window.OznForm.utilities.clearSendingButtonStyle($('.ozn-form-send'));
+
+                    }
+
+                }).fail(function () {
                 alert('通信に失敗しました。')
             });
+        }
 
         return false;
     }
