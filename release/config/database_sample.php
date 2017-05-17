@@ -9,7 +9,7 @@ return array(
     'oznform_admin_pass' => '',
 
     // データベース
-    'databese' => 'sqlite',
+    'database' => 'sqlite',
 
     // SQLite の設定
     'sqlite' => array(
