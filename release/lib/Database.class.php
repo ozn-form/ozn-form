@@ -145,6 +145,7 @@ class Database
     {
         switch ($this->config['database']) {
             case 'sqlite': $this->connectSQLite(); break;
+            default: throw new FormError('接続データベース種別の記述が不正です。');
         }
     }
 
@@ -163,6 +164,9 @@ class Database
         if($res->fetchColumn() == 0) { $this->initDatabase(); }
     }
 
+    /**
+     * データベース初期化処理
+     */
     private function initDatabase()
     {
 
