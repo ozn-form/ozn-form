@@ -81,7 +81,7 @@ function showTemplate($error_message = '')
                 </div>
                 <div class="form-item">
                     <label for="form_name"></label>
-                    <input type="text" name="form_name" required="required" placeholder="フォーム名">
+                    <input type="text" name="form_name" placeholder="フォーム名">
                 </div>
                 <div class="errors">{$error_message}</div>
                 <div class="button-panel">

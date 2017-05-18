@@ -24,12 +24,25 @@ class MailHistory
     public function getCSV($form_name)
     {
 
-        $sql = "SELECT * FROM " .self::TABLE_NAME. " WHERE form_name = :name";
-
         $dbh = $this->database->getDBH();
+        $sql = "SELECT * FROM " .self::TABLE_NAME;
+
+        if($form_name)
+        {
+            $sql .= " WHERE form_name = :name";
+            $file_name = $form_name;
+        }
+        else
+        {
+            $file_name = 'oznform_history';
+        }
 
         $stmt = $dbh->prepare($sql);
-        $stmt->bindParam(':name', $form_name);
+
+       if($form_name)
+       {
+           $stmt->bindParam(':name', $form_name);
+       }
 
         if($stmt->execute())
         {
@@ -61,7 +74,7 @@ class MailHistory
             if($count == 1) {return FALSE;}
 
             header("Content-Type: application/octet-stream");
-            header("Content-Disposition: attachment; filename={$form_name}.csv");
+            header("Content-Disposition: attachment; filename={$file_name}.csv");
             echo mb_convert_encoding(ob_get_clean(), 'SJIS-WIN', 'UTF-8');
 
             return TRUE;
