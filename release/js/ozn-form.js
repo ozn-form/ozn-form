@@ -300,6 +300,13 @@ jQuery(function ($) {
                     var results = this;
                     var is_success = true;
 
+
+                    // 結果処理のため単値の場合は配列にする
+                    // deferred処理が一つのときは結果が配列で返ってこないため
+                    if( ! $.isArray(results)) {
+                        results = [results];
+                    }
+
                     $.each(results, function () {
                         if(this == false) {
                             is_success = false;
