@@ -76,7 +76,7 @@
     {
         list($user, $domain) = explode('@', $value);
 
-        return !empty($user);
+        return preg_match("/[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+/", $user);
     }
 }, "の「@」より前が正しくないようです。確認の上再度ご入力ください。");
 
