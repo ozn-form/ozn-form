@@ -217,6 +217,9 @@ select{
 		font-size: 1.3rem;
 		padding: 5px 20px;
 		float: left;
+		&.ozn-form-sending{
+			display: none;
+		}
 	}
 	&.submit{
 		color: #FFF;
