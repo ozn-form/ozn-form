@@ -8,7 +8,7 @@ require_once dirname(__FILE__) . '/FormError.class.php';
  * @package OznForm
  *
  * @property \PDO   $db
- * @property string $config
+ * @property array $config
  * @property string $lastErrorMessage
  */
 class Database
@@ -154,14 +154,37 @@ class Database
      */
     private function connectSQLite()
     {
-        $path = dirname(__FILE__) . self::RELATIVE_SQLITE_PATH . $this->config['sqlite']['db_name'] . '.db';
 
-        $this->db = new \PDO('sqlite:' . $path, null, null, array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
+        $dsn = 'sqlite:' . $this->getSQLiteDBPath();
+
+        $this->db = new \PDO($dsn, null, null, array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
 
         // DBが作成直後だったら初期化する
         $res = $this->db->query("SELECT COUNT(*) FROM sqlite_master WHERE tbl_name NOT LIKE 'sqlite%';");
 
         if($res->fetchColumn() == 0) { $this->initDatabase(); }
+    }
+
+    /**
+     * SQLite DBのパスを返す
+     * @throws FormError
+     * @return string
+     */
+    private function getSQLiteDBPath() {
+
+        $dir = dirname(__FILE__);
+        $db_extension = '.db';
+
+        if(isset($this->config['database_path'])) {
+            $dir .= '/../' . $this->config['database_path'];
+        } else {
+            $dir .=  self::RELATIVE_SQLITE_PATH;
+        }
+
+        if( ! file_exists($dir)) { throw new FormError('SQLite DB保存ディレクトリが存在しません。設定値を見直してください。'); }
+
+        return $dir . $this->config['sqlite']['db_name'] . $db_extension;
+
     }
 
     /**

@@ -8,36 +8,18 @@ require_once dirname(__FILE__) . '/Database.class.php';
  * @package OznForm
  *
  * @property Database $database
- * @property bool     $enabled  <メール履歴機能の有効フラグ>
  */
 class MailHistory
 {
 
     private $database;
-    private $enabled = TRUE;
-
     const TABLE_NAME = 'histories';
 
     function __construct()
     {
-        try
-        {
-            $this->database = new Database();
-        }
-        catch (FormError $e)
-        {
-            $this->enabled = FALSE;
-        }
+        $this->database = new Database();
     }
 
-    /**
-     * 履歴管理機能が有効かどうか
-     * @return bool
-     */
-    public function isEnabled()
-    {
-        return $this->enabled;
-    }
 
     public function getCSV($form_name)
     {

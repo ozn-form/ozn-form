@@ -11,6 +11,11 @@ return array(
     // データベース
     'database' => 'sqlite',
 
+    // データベースパス
+    // ※ releaseディレクトリからの相対パスで記載（最後の / は必須）
+    // ※ 設定したディレクトリは事前に作成し書き込み権限を付与しておくこと
+    'database_path' => 'db/',
+
     // SQLite の設定
     'sqlite' => array(
 

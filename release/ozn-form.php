@@ -255,9 +255,19 @@ if(PAGE_ROLE == 'form') {
     // 問い合わせ履歴を保存
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    $history = new MailHistory();
+    $isMailHistory = TRUE;
 
-    $sys_info['serial'] = $history->isEnabled()
+    try
+    {
+        $history = new MailHistory();
+    }
+    catch (FormError $e)
+    {
+        $isMailHistory = FALSE;
+    }
+
+
+    $sys_info['serial'] = $isMailHistory
         ? $history->save($sys_info, $session, $config)
         : str_replace('.','',microtime(true));
 
