@@ -246,6 +246,7 @@ jQuery(function ($) {
         if( ! inputed) {
             // 離脱アラートを表示（送信時は解除するため関連実装あり）
             if(OznForm.unload_message) {
+                $(window).off('beforeunload', showUnloadMessage);
                 $(window).on('beforeunload', showUnloadMessage);
             }
 
@@ -339,6 +340,11 @@ jQuery(function ($) {
                         // 送信状態のボタンを元に戻す
                         window.OznForm.utilities.clearSendingButtonStyle($('.ozn-form-send'));
 
+                        // 離脱アラートを設定する
+                        if(OznForm.unload_message) {
+                            $(window).off('beforeunload', showUnloadMessage);
+                            $(window).on('beforeunload', showUnloadMessage);
+                        }
                     }
 
                 }).fail(function () {
