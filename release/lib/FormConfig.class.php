@@ -272,7 +272,14 @@ class FormConfig
         }
 
         return $file_forms;
+    }
 
+    /**
+     * ファイルアップロードフォームが設定されているか
+     */
+    public function isUploadFileForm()
+    {
+        return ( ! empty($this->uploadFileForms()));
     }
 
     /**

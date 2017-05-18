@@ -142,9 +142,17 @@ if(PAGE_ROLE == 'form') {
     }
 
 
-    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/vendor/jquery.ui.widget.js"></script>';
-    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/jquery.iframe-transport.js"></script>';
-    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/jquery.fileupload.js"></script>';
+    // ファイルアップロード関連
+    if($config->isUploadFileForm()) {
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/load-image.all.min.js"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/vendor/jquery.ui.widget.js"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/jquery.iframe-transport.js"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/jquery.fileupload.js"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/canvas-to-blob.min.js"></script>';
+
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/jquery.fileupload-process.js"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/jquery.fileupload-image.js"></script>';
+    }
 
     $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jquery.autoKana.js"></script>';
     $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/domain_suggest.js"></script>';
