@@ -75,6 +75,11 @@ window.OznForm.utilities = {
 
             $this.text(send_message);
             $this.addClass('ozn-form-disabled disabled');
+
+
+            // ナビ要素にもクラスを付与する
+            $('.ozn-form-nav').addClass('ozn-form-sending');
+
         })
     },
 
@@ -86,6 +91,8 @@ window.OznForm.utilities = {
 
         $el.text(window.OznForm.submitLabel);
         $el.removeClass('ozn-form-disabled disabled');
+
+        $('.ozn-form-nav').removeClass('ozn-form-sending');
     },
 
 

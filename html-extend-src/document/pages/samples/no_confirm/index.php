@@ -152,6 +152,7 @@ require '../../../release/ozn-form.php';
         <div class="row actions">
             <div class="col-sm-6">
                 <button type="submit" class="btn btn-success ozn-form-send">すぐ送信</button>
+<!--                <a href="#" class="btn btn-info ozn-form-nav">戻る</a>-->
             </div>
         </div>
     </form>
