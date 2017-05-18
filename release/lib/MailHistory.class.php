@@ -85,6 +85,40 @@ class MailHistory
         }
     }
 
+    /**
+     * 履歴を削除する
+     *
+     * @param $form_name
+     * @return integer|bool
+     */
+    public function destroyHistories($form_name)
+    {
+
+        $dbh = $this->database->getDBH();
+        $sql = "DELETE FROM " .self::TABLE_NAME;
+
+        if($form_name)
+        {
+            $sql .= " WHERE form_name = :name";
+        }
+
+        $stmt = $dbh->prepare($sql);
+
+        if($form_name)
+        {
+            $stmt->bindParam(':name', $form_name);
+        }
+
+        if($stmt->execute())
+        {
+            return $stmt->rowCount();
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+
 
     /**
      * フォーム履歴を記録する
