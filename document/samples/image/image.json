@@ -1,0 +1,68 @@
+{
+
+  "is_debug": false,
+
+  "form_name": "image_form",
+  "form_root": "/document/samples/image/index.php",
+
+  "validation": {
+    "show_icon": false,
+    "shift_scroll_position": -50
+  },
+
+  "mail": {
+
+    "send_flag": false,
+    "send_by": "Gmail SMTP",
+    "redirect_to": "",
+
+    "admin": {
+      "to_name"   : "",
+      "to"        : "oznform+webcontact@gmail.com",
+      "cc"        : [],
+      "bcc"       : [],
+      "from_name" : "OznForm Mailer",
+      "from"      : "oznform@gmail.com",
+      "reply_to"  : "<% email %>"
+
+    },
+
+    "auto_reply": {
+      "enabled"   : false,
+      "to_name"   : "<% customer_name %> 様",
+      "to"        : "<% email %>",
+      "cc"        : [],
+      "bcc"       : [],
+      "from_name" : "OznForm Tester",
+      "from"      : "oznform@gmail.com",
+      "reply_to"  : "oznform@gmail.com"
+    }
+  },
+
+  "pages": {
+
+    "index": {
+      "role": "form",
+      "forms": {
+        "attachment1[]": {
+          "validates": ["required"],
+          "label": "添付ファイル１",
+          "type": "upload_files"
+        },
+
+        "attachment2[]": {
+          "label": "添付ファイル２",
+          "type": "upload_files"
+        }
+      }
+    },
+
+    "confirm": {
+      "role": "confirm"
+    },
+
+    "complete": {
+      "role": "mailsend"
+    }
+  }
+}

@@ -158,7 +158,7 @@ if(PAGE_ROLE == 'form') {
     $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/domain_suggest.js"></script>';
 
     $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/utilities.js"></script>';
-    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/config/suggest_mail_address.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/config/oznform_config.js"></script>';
     $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/ozn-form.js"></script>';
 
     $ozn_form_javascript = join("\n", $ozn_form_javascript);

@@ -1,3 +1,8 @@
+/**
+ * ドメインサジェストのリスト
+ *
+ * @type {[*]}
+ */
 window.OznForm.suggestMailList = [
 
     'yahoo.co.jp',
@@ -41,3 +46,15 @@ window.OznForm.suggestMailList = [
     'willcom.com',
     'disney.ne.jp'
 ];
+
+/**
+ * 画像アップロード時のクライアントリサイズ設定
+ *
+ * @type {{enableClientResize: boolean, maxWidth: number, maxHeight: number}}
+ */
+window.OznForm.client_resize_config = {
+
+    enableClientResize: false,
+    maxWidth: 2048,
+    maxHeight: 2048
+};

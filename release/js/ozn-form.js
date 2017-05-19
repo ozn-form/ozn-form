@@ -165,7 +165,7 @@ jQuery(function ($) {
 
             $el.append(upload_form_template);
 
-            $('#' + file_form_id).fileupload({
+            var upload_options = {
                 dropZone: $(),
                 url: OznForm.furl,
                 dataType: 'json',
@@ -181,7 +181,36 @@ jQuery(function ($) {
 
                     });
                 }
-            });
+            };
+
+            if(OznForm.client_resize_config.enableClientResize) {
+
+                upload_options.imageOrientation = true;
+                upload_options.processQueue = [
+                    {
+                        action: 'loadImageMetaData'
+                    },
+                    {
+                        action: 'loadImage',
+                        fileTypes: /^image\/(gif|jpeg|jpg|JPG|png)$/,
+                        maxFileSize: 10000000 // 10MB
+                    },
+                    {
+                        action: 'resizeImage',
+                        orientation: true,
+
+                        // 長辺 300万画素相当
+                        maxWidth: 2048,
+                        maxHeight: 2048
+                    },
+                    {
+                        action: 'saveImage'
+                    }
+                ];
+            }
+
+
+            $('#' + file_form_id).fileupload(upload_options);
 
             index++;
         });
@@ -363,19 +392,25 @@ jQuery(function ($) {
      */
     function validFormValue(form_name, form_config) {
 
-        var dInner = new $.Deferred;
+        var dInner   = new $.Deferred;
+        var t        = [form_name];
         var $form_el = $('[name="'+form_name+'"]');
-        var t = [form_name];
+
+        if(form_config.type === 'upload_files') {
+            $form_el = $('#' + OznForm.utilities.uploadButtonElementName(form_name));
+        }
 
         if(form_config.validate_condition) {
             t = t.concat(window.OznForm.utilities.objectKeys(form_config.validate_condition))
         }
 
-        var form_values = window.OznForm.utilities.getFormValues(t);
+        var form_values = window.OznForm.utilities.getFormValues(t, true);
+
+        form_name = form_name.replace('[]', '');
 
         // 既存メッセージを初期化
-        $('.' + form_name.replace('[]', '') + '.ozn-form-errors').remove();
-        $('.' + form_name.replace('[]', '') + '.ozn-form-warning').remove();
+        $('.' + form_name + '.ozn-form-errors').remove();
+        $('.' + form_name + '.ozn-form-warning').remove();
 
         var post_data = {
             name: form_name,

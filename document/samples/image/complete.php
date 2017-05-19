@@ -2,10 +2,92 @@
 <?php
 
 // 設定ファイルのパスを設定
-$config_path = dirname(__FILE__) . '/' . 'step.json';
+$config_path = dirname(__FILE__) . '/' . 'image.json';
+
+
+// SMTP アカウント設定（SMTP 経由で送信する時のみ）
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+//$account  = "Account@test.to";
+//$password = "Password";
+//$host     = "smtp.lolipop.jp";  // SMTPサーバ
+//
+//$smtp_options = array(
+//
+////    デフォルト設定
+////    'SMTPAuth'   => true,
+////    'Port'       => 587,
+////    'SMTPSecure' => 'tls',    // 'ssl' or 'tsl'
+//
+//    'Port'       => 465,
+//    'SMTPSecure' => 'ssl',
+//);
+
+
+// Gmail アカウント設定（Gmail SMTP 経由で送信する時のみ）
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+$gmail_user     = "oznform@gmail.com";
+$gmail_password = "nNeT7FYANyWtDX";
+
+
+// Gmail API設定（Gmail SMTP [OAuth認証] 経由で送信する時のみ）
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+//$gmail_user   = 'oznform@gmail.com';
+//$oauth_id     = "";
+//$oauth_secret = "";
+//$oauth_refresh_token = "";
+
+
+/**
+ * メールテンプレートについて
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ *
+ * フォームの NAME値 をタグに用いることによってメールテンプレート中のタグをフォーム入力値で置換できます。
+ *
+ * 【例】
+ *  フォームHTML:
+ *      <input name="last_name" value="田中"> <input name="first_name" value="一郎">
+ *  テンプレート中のタグ表記:
+ *      <% last_name %> <% first_name %> 様
+ *  テンプレート置換例:
+ *      田中 一郎 様
+ *
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ */
+
+
+// 管理者宛メールの設定
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// 管理者宛メールタイトル
+$admin_mail_title = '[<% {send_date} %>] 画像が送信されました。';
+
+// 管理者宛メールテンプレート
+$admin_mail_body = <<< TEXT
+
+Webより画像が送信されています。
+
+
+TEXT;
+
+
+// 自動返信メールの設定（送信しない場合は必要なし）
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// 自動返信メールタイトル
+$customer_mail_title = '画像送信が完了しました。';
+
+// 自動返信メールテンプレート
+$customer_mail_body = <<< TEXT
+
+添付画像は正しく送信されています。
+
+TEXT;
 
 // OznForm 実行ファイル読み込み
-require_once '../../../release/ozn-form.php';
+require '../../../release/ozn-form.php';
 
 ?>
 
@@ -14,7 +96,7 @@ require_once '../../../release/ozn-form.php';
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ozn-Form Sample - ステップ</title>
+    <title>Ozn-Form Sample - 画像添付</title>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -23,7 +105,7 @@ require_once '../../../release/ozn-form.php';
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../../css/style.min.css">
+    <link rel="stylesheet" href="../..//css/style.min.css">
 
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -58,8 +140,8 @@ require_once '../../../release/ozn-form.php';
             <ul class="nav navbar-nav">
                 <li class=""><a href="/document/samples/simple/">シンプル</a></li>
                 <li class=""><a href="/document/samples/no_confirm/">確認スキップ</a></li>
-                <li class="active"><a href="/document/samples/step/">ステップ</a></li>
-                <li class=""><a href="/document/samples/image/">画像添付</a></li>
+                <li class=""><a href="/document/samples/step/">ステップ</a></li>
+                <li class="active"><a href="/document/samples/image/">画像添付</a></li>
                 <!--<li class="&lt;!&ndash; @@var= home_active &ndash;&gt;"><a href="#about">About</a></li>-->
                 <!--<li class="active"><a href="#contact">サンプルフォーム</a></li>-->
             </ul>
@@ -72,61 +154,16 @@ require_once '../../../release/ozn-form.php';
 <div class="page-header">
     <h1>
         お問い合わせ
-        <small>入力内容確認</small>
+        <small>送信完了</small>
     </h1>
-</div>
-
-<div class="row">
-    <p class="col-sm-12">
-        下記の内容で送信します。間違いありませんか？
-    </p>
-</div>
 
 
-<div class="row">
-
-    <div class="col-sm-12">
-        <h4>お客様情報</h4>
-        <table class="table table-striped table-bordered">
-            <tr>
-                <th width="30%">問い合わせ内容</th>
-                <td width="70%" data-insert="title"></td>
-            </tr>
-            <tr>
-                <th>問い合わせ詳細</th>
-                <td data-insert="mail_body"></td>
-            </tr>
-            <tr>
-                <th>お名前</th>
-                <td>
-                    <span data-insert="customer_name"></span>
-                    <span data-if="customer_kana">
-                            （<span data-insert="customer_kana"></span>）
-                        </span>
-            </tr>
-            <tr>
-                <th>ご住所</th>
-                <td>
-                    〒<span data-insert="zip-code"></span><br>
-                    <span data-insert="address1"></span> <span data-insert="address2"></span>
-                </td>
-            </tr>
-            <tr>
-                <th>メールアドレス</th>
-                <td data-insert="email"></td>
-            </tr>
-        </table>
+    <div class="row">
+        <p class="col-sm-12 text-center">
+            <a href="/document/samples/simple/index.php" class="btn btn-success">フォームトップへ戻る</a>
+        </p>
     </div>
 </div>
-
-<div class="row">
-    <div class="col-sm-12 text-center">
-        <a href="complete.php" class="btn btn-success ozn-form-send" data-message="送信中です…">上記内容で送信する</a>
-        <a href="step2.php" class="btn btn-info ozn-form-nav">戻る</a>
-    </div>
-</div>
-
-
 
 
 <!-- end content -->

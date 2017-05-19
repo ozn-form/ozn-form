@@ -96,7 +96,7 @@ window.OznForm.utilities = {
     },
 
 
-    getFormValues: function (names) {
+    getFormValues: function (names, removeBrackets) {
 
         if( ! $.isArray(names)) {
             names = [names];
@@ -121,9 +121,6 @@ window.OznForm.utilities = {
             if(is_upfile_form) {
 
                 var fileup_element_id = OznForm.utilities.updatedFileElementName(name);
-                var upload_btn_id     = OznForm.utilities.uploadButtonElementName(name);
-
-                $form_el = $('#' + upload_btn_id);
 
                 if($('#' + fileup_element_id).find('input').size() > 0) {
                     form_value = 'check_ok';
@@ -155,6 +152,10 @@ window.OznForm.utilities = {
                         $form_el.val(form_value);
                     }
                 }
+            }
+
+            if(removeBrackets){
+                name = name.replace('[]', '');
             }
 
             form_values[name] = form_value;

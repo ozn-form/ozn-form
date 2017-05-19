@@ -61,6 +61,7 @@ require '../../../release/ozn-form.php';
                 <li class=""><a href="/document/samples/simple/">シンプル</a></li>
                 <li class=""><a href="/document/samples/no_confirm/">確認スキップ</a></li>
                 <li class="active"><a href="/document/samples/step/">ステップ</a></li>
+                <li class=""><a href="/document/samples/image/">画像添付</a></li>
                 <!--<li class="&lt;!&ndash; @@var= home_active &ndash;&gt;"><a href="#about">About</a></li>-->
                 <!--<li class="active"><a href="#contact">サンプルフォーム</a></li>-->
             </ul>
