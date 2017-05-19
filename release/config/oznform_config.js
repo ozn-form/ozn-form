@@ -54,7 +54,7 @@ window.OznForm.suggestMailList = [
  */
 window.OznForm.client_resize_config = {
 
-    enableClientResize: false,
+    enableClientResize: true,
     maxWidth: 2048,
     maxHeight: 2048
 };
