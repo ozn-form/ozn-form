@@ -198,10 +198,8 @@ jQuery(function ($) {
                     {
                         action: 'resizeImage',
                         orientation: true,
-
-                        // 長辺 300万画素相当
-                        maxWidth: 2048,
-                        maxHeight: 2048
+                        maxWidth: OznForm.client_resize_config.maxWidth,
+                        maxHeight: OznForm.client_resize_config.maxHeight
                     },
                     {
                         action: 'saveImage'
