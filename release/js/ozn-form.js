@@ -13,6 +13,16 @@ jQuery(function ($) {
         $(window).off('beforeunload', showUnloadMessage);
     });
 
+    /**
+     * リアルタイム入力値検証
+     */
+    $.each(Object.keys(OznForm.forms), function () {
+
+        var form_name = this;
+
+        $('[name="' + form_name + '"]').on('blur', {form_name: form_name}, validateForm);
+    });
+
     // -- 設定に応じてオプション機能を追加
 
     /**
@@ -109,7 +119,8 @@ jQuery(function ($) {
             $target.on('SuggestJSBlurEvent', function () {
                 setTimeout(function () {
                     validateForm($target.attr('name'));
-                }, 200);
+                    console.log('検証！');
+                }, 500);
             });
 
             // ブラウザの autocomplete 機能をOFF
@@ -240,17 +251,6 @@ jQuery(function ($) {
      * Datepickerを適用する
      */
     $('[data-of_datepicker]').each(function () { $(this).datepicker(); });
-
-    /**
-     * リアルタイム入力値検証
-     */
-    $.each(Object.keys(OznForm.forms), function () {
-
-        var form_name = this;
-
-        $('[name="' + form_name + '"]').on('blur', {form_name: form_name}, validateForm);
-    });
-
 
     /**
      * フォーム検証処理
