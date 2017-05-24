@@ -41,6 +41,17 @@ define('PAGE_ROLE'     , $config->pageRole(PAGE_NAME));
 
 
 /**
+ * 例外時のエラーページ表示処理定義
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ */
+
+set_exception_handler(function ($ex){
+    global $config;
+    require_once dirname(__FILE__) . '/error_page.php';
+});
+
+
+/**
  * セッション開始
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
