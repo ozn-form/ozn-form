@@ -406,10 +406,6 @@ jQuery(function ($) {
 
         form_name = form_name.replace('[]', '');
 
-        // 既存メッセージを初期化
-        $('.' + form_name + '.ozn-form-errors').remove();
-        $('.' + form_name + '.ozn-form-warning').remove();
-
         var post_data = {
             name: form_name,
             values: form_values,
@@ -432,6 +428,8 @@ jQuery(function ($) {
             }
 
         ).done(function (data) {
+
+            clearInvalidMessages(form_name);
 
             var response = $.parseJSON(data);
 
@@ -458,6 +456,14 @@ jQuery(function ($) {
         });
 
         return dInner.promise();
+    }
+
+    /**
+     * 検証エラーメッセージ等を初期化
+     */
+    function clearInvalidMessages(form_name) {
+        $('.' + form_name + '.ozn-form-errors').remove();
+        $('.' + form_name + '.ozn-form-warning').remove();
     }
 
     /**
