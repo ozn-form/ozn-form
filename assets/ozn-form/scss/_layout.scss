@@ -10,30 +10,24 @@ html{
 }
 
 body {
-	width: 100%;
-	height: 100%;
 	font-size: 1.6rem;
+	font-family: $font-family;
+	color: $font;
+	background-color: $sitebg;
+	-webkit-tap-highlight-color: rgba(white, 0.2);
 }
 
 a {
-	@include easeing;
+	color: $link;
 	&:hover,
 	&:focus {
-		text-decoration: none;
-		img{
-			opacity: 0.8;
-			@include easeing;
-		}
+		color: darken( $link, 15% );
 	}
 }
 
 img{
 	max-width: 100%;
 	height: auto;
-}
-
-.site-header{
-	padding: 20px 0;
 }
 
 .container{
@@ -44,7 +38,13 @@ img{
 	}
 }
 
+.site-header{
+	background-color: $primary;
+	padding: 20px 0;
+}
+
 .site-footer{
+	background-color: $primary;
 	padding: 20px 0;
 }
 
@@ -76,96 +76,6 @@ img{
 
 .ozn-form-lead{
 	margin-bottom: 20px;
-}
-
-.ozn-form-inner{
-	width: 100%;
-	margin-bottom: 20px;
-	border-top: 1px solid $tableborder;
-	box-sizing: border-box;
-	.th{
-		overflow: hidden;
-		background-color: $thbg;
-		border-left: 1px solid $tableborder;
-		border-right: 1px solid $tableborder;
-		border-bottom: 1px solid $tableborder;
-		padding: 10px 20px;
-		vertical-align: middle;
-		text-align: left;
-		box-sizing: border-box;
-		min-width: $th-min-width;
-	}
-	.td{
-//		overflow: hidden;
-		background-color: $tdbg;
-		border-right: 1px solid $tableborder;
-		border-bottom: 1px solid $tableborder;
-		padding: 10px 10px 10px 20px;
-		box-sizing: border-box;
-	}
-	@media(min-width:$screen-tb+1) {
-		display: table;
-		.tr{
-			display: table-row;
-		}
-		.th{
-			display: table-cell;
-		}
-		.td{
-			display: table-cell;
-		}
-	}
-	dl{
-		margin-bottom: 10px;
-			dt{
-				padding: 8px 0;
-				.ozn-label{
-					float: none;
-				}
-			}
-			dd{
-				margin-bottom: 10px;
-			}
-		@media(min-width:$screen-pc+1) {
-			dt{
-				clear: left;
-				float: left;
-				width: 23%;
-			}
-			dd{
-				margin-left: calc(25%);
-				margin-bottom: 10px;
-			}
-		}
-	}
-}
-@media(max-width:$screen-tb) {
-	.ozn-form-inner{
-		.td{
-			border-left: 1px solid $tableborder;
-			padding-top: 20px;
-			padding-bottom: 20px;
-		}
-		dl{
-			dt{
-				float: none;
-				width: auto;
-				padding: 5px 0;
-			}
-			dd{
-				margin-left: 0;
-			}
-		}
-	}
-}
-.ozn-form-confirm{
-	.ozn-form-inner{
-		dl{
-			dt{
-				padding: 0;
-			}
-		}
-	}
 }
 
 .privacy-wrapper{
