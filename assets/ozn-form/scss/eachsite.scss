@@ -1,34 +1,5 @@
 @charset "utf-8";
 @import "variables";
-
-html{
-	@media(min-width:$screen-tb+1) {
-		font-size: 62.5%;
-	}
-	@media(max-width:$screen-tb) {
-		font-size: 70%;
-	}
-}
-
-body {
-	font-family: $font-family;
-	color: $font;
-	background-color: $sitebg;
-	-webkit-tap-highlight-color: rgba(white, 0.2);
-}
-
-a {
-	color: $link;
-	&:hover,
-	&:focus {
-		color: darken( $link, 15% );
-	}
-}
-
-.site-header{
-	background-color: $primary;
-}
-
-.site-footer{
-	background-color: $primary;
-}
+@import "reset";
+@import "layout";
+@import "step";
