@@ -34,7 +34,8 @@ require_once dirname(__FILE__) . '/lib/FormValidation.class.php';
 $config = new FormConfig($config_path);
 
 define('SYSTEM_ROOT'   , dirname(__FILE__)); // OznFormシステムのルートパス
-define('DOCUMENT_PATH' , str_replace($_SERVER['DOCUMENT_ROOT'], '', SYSTEM_ROOT));
+
+define('DOCUMENT_PATH' , str_replace($config->documentRoot(), '', SYSTEM_ROOT));
 
 define('PAGE_NAME'     , preg_replace('/\..+$/', '', basename($_SERVER["SCRIPT_NAME"])));
 define('PAGE_ROLE'     , $config->pageRole(PAGE_NAME));

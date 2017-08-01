@@ -4,6 +4,7 @@
 
   "form_name": "simple_form",
   "form_root": "/document/samples/simple/index.php",
+  "document_root": "/Users/saya/Dropbox/WorkProjectSources/ozn-form",
 
   "validation": {
     "show_icon": false,

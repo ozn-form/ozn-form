@@ -47,6 +47,16 @@ class FormConfig
 
 
     /**
+     * システムのドキュメントルートを返す
+     */
+    public function documentRoot()
+    {
+        return isset($this->config_raw['document_root']) && (! empty('document_root'))
+            ? $this->config_raw['document_root'] : $_SERVER['DOCUMENT_ROOT'];
+    }
+
+
+    /**
      * ToDo: 設定ファイルの検証を行う メソッド実装
      */
     public function verifyConfig()
