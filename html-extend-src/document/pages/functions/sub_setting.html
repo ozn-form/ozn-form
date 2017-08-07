@@ -1,0 +1,121 @@
+<!-- @@master ../../layout/layout.html {"title": "HOME", "relative_path": "../", "home_active":"active"} -->
+
+<!-- @@block additional_header -->
+
+<!-- @@close -->
+
+<!-- @@block content -->
+
+<div class="container">
+
+    <div class="page-header">
+        <h1>補助機能 </h1>
+    </div>
+
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <h2 class="setting-header">送信ボタンの二重クリック防止</h2>
+
+    <table class="setting-table">
+        <tr>
+            <th>基本機能</th>
+            <th>設定方法</th>
+            <th>有効なページ</th>
+        </tr>
+        <tr>
+            <td class="text-center">×️</td>
+            <td>要素へclass指定</td>
+            <td>フォーム画面 / 確認画面</td>
+        </tr>
+    </table>
+
+    <p>
+        二重送信を防止するため二度目以降のクリックを無効化する機能です。<br>
+        クリックするとリンクテキストが「送信中です…お待ちください。」に変わり、以降のクリックが無効になります。
+    </p>
+
+    <p>
+        またクリック無効中は設定要素に対して「ozn-form-disabled」が付与されます。
+    </p>
+
+    <h4 class="config-subheader">使用方法</h4>
+    <p>
+        適用したいリンク（aタグ）へ「ozn-form-send」クラスを使用してください。<br>
+
+    </p>
+
+    <div class="code-example">
+        <h5>コード例</h5>
+        <pre><code>&lt;a href=&quot;complete.php&quot; class=&quot;ozn-form-send&quot; data-message=&quot;送信中&quot;&gt;上記内容で送信する&lt;/a&gt;</code></pre></div>
+
+    <hr class="setting-hr">
+
+
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <h2 class="setting-header">検証OKの項目を送信時に非表示</h2>
+
+    <table class="setting-table">
+        <tr>
+            <th>基本機能</th>
+            <th>設定方法</th>
+            <th>有効なページ</th>
+        </tr>
+        <tr>
+            <td class="text-center">×️</td>
+            <td>対象要素へ data-oznform-area 属性を指定</td>
+            <td>フォーム画面</td>
+        </tr>
+    </table>
+
+    <p>
+        フォーム送信時、エラー項目のみを表示する（検証OKの項目を非表示にする）機能です。
+    </p>
+
+    <h4 class="config-subheader">使用方法</h4>
+    <p>
+        検証OKの時に非表示にしたい要素へ「data-oznform-area="form_name"」を記述してください。<br>
+        form_name は検証対象要素のNAME属性値を指定します。data-oznform-area は複数の項目に記述しても正しく動作します。
+    </p>
+
+    <p>
+        下記コード例では、ラジオボタンの何かが選択されている状態で送信ボタンが押された時、 div.row要素全体が非表示となります。
+    </p>
+
+    <div class="code-example">
+        <h5>コード例</h5>
+        <pre><code>&lt;div class=&quot;row&quot; data-oznform-area=&quot;title&quot;&gt;
+    &lt;div class=&quot;col-sm-4&quot;&gt;
+        &lt;div class=&quot;radio-inline&quot;&gt;
+            &lt;label&gt;
+                &lt;input type=&quot;radio&quot; name=&quot;title&quot; id=&quot;title1&quot; value=&quot;業務内容について&quot; checked&gt;
+                業務内容について
+            &lt;/label&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;col-sm-4&quot;&gt;
+        &lt;div class=&quot;radio-inline&quot;&gt;
+            &lt;label&gt;
+                &lt;input type=&quot;radio&quot; name=&quot;title&quot; id=&quot;title2&quot; value=&quot;採用について&quot;&gt;
+                採用について
+            &lt;/label&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;col-sm-4&quot;&gt;
+        &lt;div class=&quot;radio-inline&quot;&gt;
+            &lt;label&gt;
+                &lt;input type=&quot;radio&quot; name=&quot;title&quot; id=&quot;title3&quot; value=&quot;その他&quot;&gt;
+                その他
+            &lt;/label&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <hr class="setting-hr">
+
+</div>
+
+<!-- @@close -->
+
+</div>

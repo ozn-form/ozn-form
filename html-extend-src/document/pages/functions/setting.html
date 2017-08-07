@@ -1,0 +1,235 @@
+<!-- @@master ../../layout/layout.html {"title": "フォーム設定項目一覧", "relative_path": "../", "functions_active":"active"} -->
+
+<!-- @@block additional_header -->
+
+<!-- @@close -->
+
+<!-- @@block content -->
+
+<div class="page-header">
+    <h1>フォーム設定項目一覧</h1>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2 class="setting-header">デバッグモード指定</h2>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">×️</td>
+        <td>Boolean</td>
+        <td>true / false</td>
+    </tr>
+</table>
+
+
+<p>
+    開発時に使用するモード。通常使用では設定する必要のない項目です。<br>
+    true に設定すると下記の動作となります。
+</p>
+<ul>
+    <li>フォームから離脱するときのメッセージが表示されなくなる</li>
+    <li>送信後もフォームに記入された情報が削除されない。（セッションが削除されない）</li>
+    <li>セッション内の情報（フォームに入力されシステムが保持している情報）が常に画面に表示される。</li>
+</ul>
+
+<p></p>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{"is_debug": true}</code></pre>
+</div>
+
+<hr class="setting-hr">
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2 class="setting-header">フォーム名</h2>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">○</td>
+        <td>String</td>
+        <td>"sample_form"</td>
+    </tr>
+</table>
+
+
+<p>
+    フォームの名前を指定します。<br />
+    複数フォームを設置する場合には、このフォーム名が他のフォームと被らないように違う名前を設定する必要があります。
+</p>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{"form_name": "sample_form"}</code></pre>
+</div>
+
+<hr class="setting-hr">
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2 class="setting-header">初期ページパス</h2>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">○</td>
+        <td>String</td>
+        <td>"/document/sample_form/index.php"</td>
+    </tr>
+</table>
+
+
+<p>フォームの初期ページのパスを設定します。</p>
+<div class="alert alert-warning setting-alert">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    パスは絶対パスで記載してください。
+</div>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{"form_root": "/document/sample_form/index.php"}</code></pre>
+</div>
+
+<hr class="setting-hr">
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2 class="setting-header">ページ離脱メッセージ</h2>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">×</td>
+        <td>String</td>
+        <td>"このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。"</td>
+    </tr>
+</table>
+
+<p>
+    フォーム入力途中にページを離脱する場合に表示するメッセージを設定します。<br>
+    改行は「\n」で入力してください。
+</p>
+<div class="alert alert-success setting-alert">
+    <span class="glyphicon glyphicon-info-sign"></span>
+    この設定項目を記載しない場合は、離脱メッセージ機能をOFFにできます。<br>
+</div>
+<div class="alert alert-warning setting-alert">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    IE/Edge以外のブラウザについてはこちらで設定したメッセージは適用されず、ブラウザ固有のメッセージとなります。
+</div>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{"unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。"}</code></pre>
+</div>
+
+<hr class="setting-hr">
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2 class="setting-header">検証機能設定</h2>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">○</td>
+        <td>Object</td>
+        <td> {...}</td>
+    </tr>
+</table>
+
+<p>
+    リアルタイム検証機能の全般的な設定を行う項目です。<br>
+    詳細はこちらのページへ
+</p>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{
+  "validation": {
+    "show_icon": true,
+    "shift_scroll_position": -50
+  }
+}</code></pre>
+</div>
+
+<hr class="setting-hr">
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2 class="setting-header">送信メール設定</h2>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">○</td>
+        <td>Object</td>
+        <td> {...}</td>
+    </tr>
+</table>
+
+<p>
+    送信メールの設定を行う項目です。送信方法や、各送信先のTO, CC, BCCアドレスなどの設定はこの中で行います。<br>
+    詳細はこちらのページへ
+</p>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{
+  "mail": {
+
+    "send_by": "Gmail SMTP",
+    "redirect_to": "",
+
+    "admin": {
+      "to_name"   : "",
+      "to"        : "oznform+webcontact@gmail.com",
+      "cc"        : [],
+      "bcc"       : [],
+      "from_name" : "OznForm Mailer",
+      "from"      : "oznform@gmail.com",
+      "reply_to"  : "<% email %>"
+
+    },
+
+    "auto_reply": {
+      "enabled"   : true,
+      "to_name"   : "<% customer_name %> 様",
+      "to"        : "<% email %>",
+      "cc"        : [],
+      "bcc"       : [],
+      "from_name" : "OznForm Tester",
+      "from"      : "oznform@gmail.com",
+      "reply_to"  : "oznform@gmail.com"
+    }
+}</code></pre>
+</div>
+
+<hr class="setting-hr">
+
+<!-- end content -->
+<!-- @@close -->

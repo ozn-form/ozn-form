@@ -14,7 +14,7 @@ require_once '../../../release/ozn-form.php';
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ozn-Form Sample - 画像添付</title>
+    <title>Ozn-Form Document - 画像添付</title>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -39,7 +39,6 @@ require_once '../../../release/ozn-form.php';
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 <body>
 
@@ -52,16 +51,34 @@ require_once '../../../release/ozn-form.php';
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Ozn-Form サンプル</a>
+            <a class="navbar-brand" href="#">Ozn-Form Document</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class=""><a href="/document/samples/simple/">シンプル</a></li>
-                <li class=""><a href="/document/samples/no_confirm/">確認スキップ</a></li>
-                <li class=""><a href="/document/samples/step/">ステップ</a></li>
-                <li class="active"><a href="/document/samples/image/">画像添付</a></li>
-                <!--<li class="&lt;!&ndash; @@var= home_active &ndash;&gt;"><a href="#about">About</a></li>-->
-                <!--<li class="active"><a href="#contact">サンプルフォーム</a></li>-->
+<!-- start _header.html-->
+<li class=""><a href="../../">ホーム</a></li>
+
+<li class="dropdown ">
+    <a href="#" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown" role="button"
+       aria-haspopup="true" aria-expanded="true"> 機能説明 <span class="caret"></span> </a>
+    <ul class="dropdown-menu" aria-labelledby="functions_drop">
+        <li><a href="../../functions/setting.html">設定一覧</a></li>
+        <li><a href="../../functions/sub_setting.html">補助機能</a></li>
+    </ul>
+</li>
+
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" id="drop1" data-toggle="dropdown" role="button"
+                             aria-haspopup="true" aria-expanded="true"> サンプルフォーム <span class="caret"></span> </a>
+    <ul class="dropdown-menu" aria-labelledby="drop1">
+        <li class=""><a href="../../samples/simple/">シンプル</a></li>
+        <li class=""><a href="../../samples/no_confirm/">確認スキップ</a></li>
+        <li class=""><a href="../../samples/step/">ステップ</a></li>
+        <li class="active"><a href="../../samples/image/">画像添付</a></li>
+    </ul>
+</li>
+
+<!-- end _header.html-->
             </ul>
         </div><!--/.nav-collapse -->
     </div>
