@@ -4,6 +4,25 @@
 $config_path = dirname(__FILE__) . '/' . 'ozn-config.json';
 
 
+// SMTP アカウント設定（SMTP 経由で送信する時のみ）
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+//$account  = "Account@test.to";
+//$password = "Password";
+//$host     = "smtp.lolipop.jp";  // SMTPサーバ
+//
+//$smtp_options = array(
+//
+////    デフォルト設定
+////    'SMTPAuth'   => true,
+////    'Port'       => 587,
+////    'SMTPSecure' => 'tls',    // 'ssl' or 'tls'
+//
+//    'Port'       => 465,
+//    'SMTPSecure' => 'ssl',
+//);
+
+
 // Gmail アカウント設定（Gmail SMTP 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
@@ -49,25 +68,25 @@ $admin_mail_body = <<< TEXT
 Webサイトから下記の内容でお問い合わせがありました。
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - -
-<%% if.title %%>お問い合わせ種別： <% title %><%% endif %%>
-<%% if.corporate_name %%>企業名・団体名： <% corporate_name %><%% endif %%>
-<%% if.corporate_kana %%>企業名・団体名フリガナ： <% corporate_kana %><%% endif %%>
-<%% if.customer_name %%>ご担当者様氏名： <% customer_name %><%% endif %%>
-<%% if.customer_kana %%>ご担当者様フリガナ： <% customer_kana %><%% endif %%>
-<%% if.email %%>メールアドレス： <% email %><%% endif %%>
-<%% if.tel %%>電話番号： <% tel %><%% endif %%>
-<%% if.fax %%>FAX番号： <% fax %><%% endif %%>
-ご住所： <%% if.zip-code %%>〒<% zip-code %><%% endif %%>
+<%% if.title %%>■お問い合わせ種別： <% title %><%% endif %%>
+<%% if.corporate_name %%>■企業名・団体名： <% corporate_name %><%% endif %%>
+<%% if.corporate_kana %%>■企業名・団体名フリガナ： <% corporate_kana %><%% endif %%>
+<%% if.customer_name %%>■ご担当者様氏名： <% customer_name %><%% endif %%>
+<%% if.customer_kana %%>■ご担当者様フリガナ： <% customer_kana %><%% endif %%>
+<%% if.email %%>■メールアドレス： <% email %><%% endif %%>
+<%% if.tel %%>■電話番号： <% tel %><%% endif %%>
+<%% if.fax %%>■FAX番号： <% fax %><%% endif %%>
+<%% if.address %%>■ご住所： <%% endif %%><%% if.zip-code %%>〒<% zip-code %><%% endif %%>
 　　　　<% pref %><% address %><%% if.address-building %%>
 　　　　<% address-building %><%% endif %%>
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - -
-<%% if.shipping-date %%>ご希望納期： <% shipping-date %><%% endif %%>
-<%% if.survey[] %%>チェック項目： <% survey[] %><%% endif %%>
-<%% if.materials %%>選択項目： <% materials %><%% endif %%>
-<%% if.mail_body %%>お問い合わせ詳細： <% mail_body %><%% endif %%>
-<%% if.attachment1[] %%>デザイン案添付1： <% attachment1[] %><%% endif %%>
-<%% if.attachment2[] %%>デザイン案添付2： <% attachment2[] %><%% endif %%>
+<%% if.shipping-date %%>■ご希望納期： <% shipping-date %><%% endif %%>
+<%% if.survey[] %%>■チェック項目： <% survey[] %><%% endif %%>
+<%% if.materials %%>■選択項目： <% materials %><%% endif %%>
+<%% if.mail_body %%>■お問い合わせ詳細： <% mail_body %><%% endif %%>
+<%% if.attachment1[] %%>■デザイン案添付1： <% attachment1[] %><%% endif %%>
+<%% if.attachment2[] %%>■デザイン案添付2： <% attachment2[] %><%% endif %%>
 
 - - - - - - - - - - - - - - - - - - - - - - - - -
 送信シリアルNo：<% {serial} %>
@@ -102,7 +121,7 @@ $customer_mail_body = <<< TEXT
 <%% if.email %%>メールアドレス： <% email %><%% endif %%>
 <%% if.tel %%>電話番号： <% tel %><%% endif %%>
 <%% if.fax %%>FAX番号： <% fax %><%% endif %%>
-ご住所： <%% if.zip-code %%>〒<% zip-code %><%% endif %%>
+<%% if.address %%>ご住所： <%% endif %%><%% if.zip-code %%>〒<% zip-code %><%% endif %%>
 　　　　<% pref %><% address %><%% if.address-building %%>
 　　　　<% address-building %><%% endif %%>
 

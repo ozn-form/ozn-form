@@ -16,7 +16,7 @@ $smtp_options = array(
 //    デフォルト設定
 //    'SMTPAuth'   => true,
 //    'Port'       => 587,
-//    'SMTPSecure' => 'tls',    // 'ssl' or 'tsl'
+//    'SMTPSecure' => 'tls',    // 'ssl' or 'tls'
 
     'Port'       => 465,
     'SMTPSecure' => 'ssl',
