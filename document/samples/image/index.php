@@ -58,7 +58,7 @@ require '../../../release/ozn-form.php';
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
 <!-- start _header.html-->
-<li class=""><a href="../../">ホーム</a></li>
+<li class=""><a href="../../">製品概要</a></li>
 
 <li class="dropdown ">
     <a href="#" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown" role="button"
@@ -112,5 +112,13 @@ require '../../../release/ozn-form.php';
 
 <!-- end content -->
 </div>
+
+<hr class="setting-hr">
+<footer>
+    <div class="container">
+        <p>&copy; ozone notes / 西三河情報システム</p>
+    </div>
+</footer>
+
 </body>
 </html>
