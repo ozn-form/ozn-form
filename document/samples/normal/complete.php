@@ -2,7 +2,7 @@
 <?php
 
 // 設定ファイルのパスを設定
-$config_path = dirname(__FILE__) . '/' . 'simple.json';
+$config_path = dirname(__FILE__) . '/' . 'normal.json';
 
 
 // SMTP アカウント設定（SMTP 経由で送信する時のみ）
@@ -27,8 +27,8 @@ $config_path = dirname(__FILE__) . '/' . 'simple.json';
 // Gmail アカウント設定（Gmail SMTP 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-$gmail_user     = "oznform@gmail.com";
-$gmail_password = "nNeT7FYANyWtDX";
+//$gmail_user     = "";
+//$gmail_password = "";
 
 
 // Gmail API設定（Gmail SMTP [OAuth認証] 経由で送信する時のみ）
@@ -62,21 +62,35 @@ $gmail_password = "nNeT7FYANyWtDX";
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // 管理者宛メールタイトル
-$admin_mail_title = '[<% {send_date} %>] <% customer_name %> 様より、お問い合わせがありました';
+$admin_mail_title = '<% title %>のお問い合わせがありました';
 
 // 管理者宛メールテンプレート
 $admin_mail_body = <<< TEXT
-
-Webフォームにて <% customer_name %> 様よりお問合せがありました。
+Webサイトから下記の内容でお問い合わせがありました。
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - -
-お名前： <% customer_name %>
-<%% if.customer_kana %%>よみがな： <% customer_kana %><%% endif %%>
-ご住所： 〒<% zip-code %> <% address1 %> <% address2 %>
-メールアドレス： <% email %>
+<%% if.title %%>■お問い合わせ種別： <% title %><%% endif %%>
+<%% if.customer_name %%>■お名前： <% customer_name %><%% endif %%>
+<%% if.customer_kana %%>■フリガナ： <% customer_kana %><%% endif %%>
+<%% if.address %%>■ご住所： <%% endif %%><%% if.zip-code %%>〒<% zip-code %><%% endif %%>
+　　　　<% pref %><% address %><%% if.address-building %%>
+　　　　<% address-building %><%% endif %%>
+<%% if.email %%>■メールアドレス： <% email %><%% endif %%>
+<%% if.tel %%>■電話番号： <% tel %><%% endif %%>
 
-<%% if.mail_body %%>お問い合わせ内容：
-<% mail_body %> <%% endif %%>
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+<%% if.materials %%>■ご興味のある商品： <% materials %><%% endif %%><%% if.materials-etc %%>
+　　　　その他の商品名： <% materials-etc %><%% endif %%><%% if.shipping-date %%>
+■ご希望納期： <% shipping-date %>までに必要<%% endif %%>
+<%% if.mail_body %%>■お問い合わせ内容： <% mail_body %><%% endif %%>
+<%% if.survey[] %%>■当社を何で知りましたか ： <% survey[] %><%% endif %%>
+
+- - - - - - - - - - - - - - - - - - - - - - - - -
+送信シリアルNo：<% {serial} %>
+送信元エージェント：<% {user_agent} %>
+参照元：<% {referrer} %>
+送信日時：<% {send_date} %>
+
 
 TEXT;
 
@@ -85,19 +99,49 @@ TEXT;
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // 自動返信メールタイトル
-$customer_mail_title = '<% customer_name %>さま、お問合せありがとうございます';
+$customer_mail_title = 'サンプル株式会社へのお問い合わせありがとうございます';
 
 // 自動返信メールテンプレート
 $customer_mail_body = <<< TEXT
 
-下記の通り、承りました。お問合せありがとうございました。
-2〜3営業日以内にお返事いたします。
+<% customer_name %>様
+
+サンプル株式会社へのお問い合わせ、ありがとうございます。
+本メールはメールフォームより送信した内容をお知らせする自動返信メールです。
+送信された内容は下記の通りですのでお確かめください。
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - -
-お名前： <% customer_name %>
-<%% if.customer_kana %%>よみがな： <% customer_kana %><%% endif %%>
-ご住所： 〒<% zip-code %> <% address1 %> <% address2 %>
-メールアドレス： <% email %>
+<%% if.title %%>■お問い合わせ種別： <% title %><%% endif %%>
+<%% if.customer_name %%>■お名前： <% customer_name %><%% endif %%>
+<%% if.customer_kana %%>■フリガナ： <% customer_kana %><%% endif %%>
+<%% if.address %%>■ご住所： <%% endif %%><%% if.zip-code %%>〒<% zip-code %><%% endif %%>
+　　　　<% pref %><% address %><%% if.address-building %%>
+　　　　<% address-building %><%% endif %%>
+<%% if.email %%>■メールアドレス： <% email %><%% endif %%>
+<%% if.tel %%>■電話番号： <% tel %><%% endif %%>
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+<%% if.materials %%>■ご興味のある商品： <% materials %><%% endif %%><%% if.materials-etc %%>
+　　　　その他の商品名： <% materials-etc %><%% endif %%><%% if.shipping-date %%>
+■ご希望納期： <% shipping-date %>までに必要<%% endif %%>
+<%% if.mail_body %%>■お問い合わせ内容： <% mail_body %><%% endif %%>
+<%% if.survey[] %%>■当社を何で知りましたか ： <% survey[] %><%% endif %%>
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+担当者が内容を確認の上、改めてご連絡いたします。
+
+=======================================================
+サンプル株式会社
+〒000-0000 住所
+TEL：  FAX： 
+URL: http://
+=======================================================
+
+- - - - - - - - - - - - - - - - - - - - - - - - -
+送信シリアルNo：<% {serial} %>
+送信元エージェント：<% {user_agent} %>
+参照元：<% {referrer} %>
+送信日時：<% {send_date} %>
 
 TEXT;
 
@@ -185,16 +229,34 @@ require '../../../release/ozn-form.php';
 <!-- start content -->
 <div class="page-header">
     <h1>
-        お問い合わせ
+        お問い合わせサンプル（ノーマル版）
         <small>送信完了</small>
     </h1>
+</div>
 
+<div class="ozn-form-stepbar-wrapper">
+    <ol class="ozn-form-stepbar step3 hidden-xs">
+        <li>1. 内容の入力</li>
+        <li>2. 内容確認</li>
+        <li class="current">3. 送信完了</li>
+    </ol>
+    <ol class="ozn-form-stepbar step3 visible-xs-block">
+        <li>入力</li>
+        <li>確認</li>
+        <li class="current">完了</li>
+    </ol>
+</div>
 
-    <div class="row">
-        <p class="col-sm-12 text-center">
-            <a href="/document/samples/simple/index.php" class="btn btn-success">フォームトップへ戻る</a>
-        </p>
+<div class="ozn-form-container ozn-form-complete">
+
+    <div class="ozn-form-lead">
+        <h2>送信完了しました</h2>
+        <p>お問い合わせありがとうございました。<br />
+            担当者が内容を確認の上、改めてご連絡いたします。<br />
+            今しばらくお待ちください。</p>
+        <p>&raquo;<a href="./" title="HOME">トップページへ戻る</a></p>
     </div>
+
 </div>
 
 

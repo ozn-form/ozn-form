@@ -11,15 +11,15 @@
 
     "mail": {
 
-        "send_by": "Gmail SMTP",
+        "send_by": "sendmail",
         "redirect_to": "",
 
         "admin": {
-            "to_name"   : "サンプル株式会社",
-            "to"        : "<% email %>",
+            "to_name"   : "ozn-form",
+            "to"        : "oznform+sample_normal@gmail.com",
             "cc"        : [],
             "bcc"       : [],
-            "from_name" : "OznForm Mailer",
+            "from_name" : "ozn-form 管理者向けサンプルメール",
             "from"      : "no-reply@ozonenotes.jp",
             "reply_to"  : "<% email %>"
         },
@@ -30,7 +30,7 @@
             "to"        : "<% email %>",
             "cc"        : [],
             "bcc"       : [],
-            "from_name" : "OznForm Tester",
+            "from_name" : "ozn-form 客先向けサンプルメール",
             "from"      : "no-reply@ozonenotes.jp",
             "reply_to"  : "<% email %>"
         }
