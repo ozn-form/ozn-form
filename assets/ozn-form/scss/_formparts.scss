@@ -1,10 +1,18 @@
 @charset "utf-8";
 
-input[type="radio"],
-input[type="checkbox"]{
-	-webkit-transform: scale(1.5);
-	transform: scale(1.5);
-	margin-right: 3px;
+.ozn-form-inner {
+    input[type="radio"],
+    input[type="checkbox"] {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+        margin-right: 3px;
+    }
+    label{
+        cursor: pointer;
+    }
+    p{
+        margin: 10px 0;
+    }
 }
 
 .ozn-check{

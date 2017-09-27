@@ -45,7 +45,7 @@
 		<form action="./confirm.php" method="post" enctype="multipart/form-data">
 
 			<div class="ozn-form-inner">
-				<div class="tr">
+				<div class="tr" data-oznform-area="title">
 					<div class="th">お問い合わせ種別 <span class="ozn-label required">必須</span></div>
 					<div class="td">
 					<div class="ozn-check vertical">
@@ -141,13 +141,13 @@
 						</dl>
 					</div>
 				</div>
-				<div class="tr">
+				<div class="tr" data-oznform-area="shipping-date">
 					<div class="th">ご希望納期 <span class="ozn-label optional">任意</span></div>
 					<div class="td">
 						<input type="text" name="shipping-date" class="ozn-input pc-50 tb-50" data-of_datepicker="true" placeholder="例）2017年10月10日"> <br class="pc-hide tb-hide">までに必要
 					</div>
 				</div>
-				<div class="tr">
+				<div class="tr"  data-oznform-area="survey[]">
 					<div class="th">チェック項目 <span class="ozn-label optional">任意</span></div>
 					<div class="td">
 					<div class="ozn-check horizontal">

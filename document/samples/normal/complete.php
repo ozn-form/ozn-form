@@ -5,18 +5,113 @@
 $config_path = dirname(__FILE__) . '/' . 'simple.json';
 
 
+// SMTP アカウント設定（SMTP 経由で送信する時のみ）
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+//$account  = "Account@test.to";
+//$password = "Password";
+//$host     = "smtp.lolipop.jp";  // SMTPサーバ
+//
+//$smtp_options = array(
+//
+////    デフォルト設定
+////    'SMTPAuth'   => true,
+////    'Port'       => 587,
+////    'SMTPSecure' => 'tls',    // 'ssl' or 'tls'
+//
+//    'Port'       => 465,
+//    'SMTPSecure' => 'ssl',
+//);
+
+
+// Gmail アカウント設定（Gmail SMTP 経由で送信する時のみ）
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+$gmail_user     = "oznform@gmail.com";
+$gmail_password = "nNeT7FYANyWtDX";
+
+
+// Gmail API設定（Gmail SMTP [OAuth認証] 経由で送信する時のみ）
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+//$gmail_user   = 'oznform@gmail.com';
+//$oauth_id     = "";
+//$oauth_secret = "";
+//$oauth_refresh_token = "";
+
+
+/**
+ * メールテンプレートについて
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ *
+ * フォームの NAME値 をタグに用いることによってメールテンプレート中のタグをフォーム入力値で置換できます。
+ *
+ * 【例】
+ *  フォームHTML:
+ *      <input name="last_name" value="田中"> <input name="first_name" value="一郎">
+ *  テンプレート中のタグ表記:
+ *      <% last_name %> <% first_name %> 様
+ *  テンプレート置換例:
+ *      田中 一郎 様
+ *
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ */
+
+
+// 管理者宛メールの設定
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// 管理者宛メールタイトル
+$admin_mail_title = '[<% {send_date} %>] <% customer_name %> 様より、お問い合わせがありました';
+
+// 管理者宛メールテンプレート
+$admin_mail_body = <<< TEXT
+
+Webフォームにて <% customer_name %> 様よりお問合せがありました。
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+お名前： <% customer_name %>
+<%% if.customer_kana %%>よみがな： <% customer_kana %><%% endif %%>
+ご住所： 〒<% zip-code %> <% address1 %> <% address2 %>
+メールアドレス： <% email %>
+
+<%% if.mail_body %%>お問い合わせ内容：
+<% mail_body %> <%% endif %%>
+
+TEXT;
+
+
+// 自動返信メールの設定（送信しない場合は必要なし）
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// 自動返信メールタイトル
+$customer_mail_title = '<% customer_name %>さま、お問合せありがとうございます';
+
+// 自動返信メールテンプレート
+$customer_mail_body = <<< TEXT
+
+下記の通り、承りました。お問合せありがとうございました。
+2〜3営業日以内にお返事いたします。
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+お名前： <% customer_name %>
+<%% if.customer_kana %%>よみがな： <% customer_kana %><%% endif %%>
+ご住所： 〒<% zip-code %> <% address1 %> <% address2 %>
+メールアドレス： <% email %>
+
+TEXT;
+
 // OznForm 実行ファイル読み込み
 require '../../../release/ozn-form.php';
 
 ?>
-
 
 <!-- end php -->
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ozn-Form Document - シンプル</title>
+    <title>Ozn-Form Document - ノーマル</title>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -73,7 +168,7 @@ require '../../../release/ozn-form.php';
     <a href="#" class="dropdown-toggle" id="drop1" data-toggle="dropdown" role="button"
                              aria-haspopup="true" aria-expanded="true"> サンプルフォーム <span class="caret"></span> </a>
     <ul class="dropdown-menu" aria-labelledby="drop1">
-        <li class="active"><a href="../../samples/simple/">シンプル</a></li>
+        <li class=""><a href="../../samples/simple/">シンプル</a></li>
         <li class=""><a href="../../samples/no_confirm/">確認スキップ</a></li>
         <li class=""><a href="../../samples/step/">ステップ</a></li>
         <li class=""><a href="../../samples/image/">画像添付</a></li>
@@ -88,95 +183,19 @@ require '../../../release/ozn-form.php';
 
 <div class="container">
 <!-- start content -->
-    <div class="page-header">
-        <h1>お問い合わせ</h1>
+<div class="page-header">
+    <h1>
+        お問い合わせ
+        <small>送信完了</small>
+    </h1>
+
+
+    <div class="row">
+        <p class="col-sm-12 text-center">
+            <a href="/document/samples/simple/index.php" class="btn btn-success">フォームトップへ戻る</a>
+        </p>
     </div>
-
-    <form action="confirm.php" method="post">
-
-        <div class="row ozn-check" data-oznform-area="title">
-
-            <div class="col-sm-4">
-                <div class="radio-inline">
-                    <label>
-                        <input type="radio" name="title" id="title1" value="業務内容について" checked>
-                        業務内容について
-                    </label>
-                </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="radio-inline">
-                    <label>
-                        <input type="radio" name="title" id="title2" value="採用について">
-                        採用について
-                    </label>
-                </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="radio-inline">
-                    <label>
-                        <input type="radio" name="title" id="title3" value="その他">
-                        その他
-                    </label>
-                </div>
-            </div>
-        </div>
-
-
-        <hr>
-
-        <div class="form-group" data-oznform-area="mail_body">
-            <label for="mail_body">お問い合わせ詳細<span class="required">（必須）</span></label>
-            <textarea name="mail_body" id="mail_body" cols="30" rows="10" class="form-control"></textarea>
-        </div>
-
-        <hr>
-
-        <div class="row">
-            <div class="form-group col-sm-5" data-oznform-area="customer_name">
-                <label for="customer_name">お名前<span class="required">（必須）</span></label>
-                <input type="text" name="customer_name" class="form-control" id="customer_name" data-autoruby="customer_name" placeholder="例）田中 一郎">
-            </div>
-            <div class="form-group col-sm-5" data-oznform-area="customer_kana">
-                <label for="customer_kana">ふりがな</label>
-                <input type="text" name="customer_kana" class="form-control" id="customer_kana" data-autoruby-katakana="customer_name" placeholder="例）たなか いちろう">
-            </div>
-        </div>
-
-        <div class="row" data-oznform-area="zip-code">
-            <div class="form-group col-sm-3 col-xs-6">
-                <label for="zip-code">郵便番号<span class="required">（必須）</span></label>
-                <input type="text" name="zip-code" id="zip-code" class="form-control" placeholder="例）432-3332" data-oznform-zip="addr1">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-sm-7" data-oznform-area="address1">
-                <label for="address1">住所１（番地まで）<span class="required">（必須）</span></label>
-                <input type="text" name="address1" id="address1" class="form-control" data-oznform-address="addr1" placeholder="例）愛知県名古屋市中村区11-1">
-            </div>
-            <div class="form-group col-sm-5" data-oznform-area="address2">
-                <label for="address2">住所２（建物名など）</label>
-                <input type="text" name="address2" id="address2" class="form-control" placeholder="例）第一ビル 5F">
-            </div>
-        </div>
-
-
-        <div class="row" data-oznform-area="email">
-            <div class="form-group col-sm-8">
-                <label for="email">メールアドレス<span class="required">（必須）</span></label>
-                <input data-domain-suggest="true" type="text" name="email" id="email" class="form-control" placeholder="例）xxxx@gmail.jp">
-            </div>
-        </div>
-
-        <div class="row actions">
-            <div class="col-sm-6">
-                <button type="submit" class="btn btn-info">入力内容確認</button>
-            </div>
-        </div>
-    </form>
+</div>
 
 
 <!-- end content -->

@@ -1,4 +1,4 @@
-<!-- @@master ../../../layout/sample.html {"title": "シンプル", "relative_path": "../../", "simple_active":"active"} -->
+<!-- @@master ../../../layout/sample.html {"title": "ノーマル", "relative_path": "../../", "normal_active":"active"} -->
 <!-- @@block php -->
 <?php
 
