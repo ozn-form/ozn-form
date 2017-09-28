@@ -14,10 +14,9 @@ require_once '../../../release/ozn-form.php';
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ozn-Form Document - ステップ</title>
+    <title>ozn-form Document - ステップ</title>
     <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -51,7 +50,7 @@ require_once '../../../release/ozn-form.php';
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Ozn-Form Document</a>
+            <a class="navbar-brand" href="#">ozn-form Document</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -77,6 +76,8 @@ require_once '../../../release/ozn-form.php';
         <li class=""><a href="../..samples/image/">画像添付</a></li>
     </ul>
 </li>
+
+<li><a href="#">導入希望はこちら</a></li>
 
 <!-- end _header.html-->
             </ul>
