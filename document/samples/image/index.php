@@ -60,7 +60,7 @@ require '../../../release/ozn-form.php';
 <li class=""><a href="../../">製品概要</a></li>
 
 <li class="dropdown ">
-    <a href="#" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown" role="button"
+    <a href="../../" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown" role="button"
        aria-haspopup="true" aria-expanded="true"> 機能説明 <span class="caret"></span> </a>
     <ul class="dropdown-menu" aria-labelledby="functions_drop">
         <li><a href="../../functions/setting.html">設定一覧</a></li>
@@ -79,7 +79,7 @@ require '../../../release/ozn-form.php';
     </ul>
 </li>
 
-<li><a href="#">導入希望はこちら</a></li>
+<li><a href="../../../order-form/">導入希望はこちら</a></li>
 
 <!-- end _header.html-->
             </ul>
