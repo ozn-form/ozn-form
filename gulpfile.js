@@ -28,7 +28,7 @@ gulp.task('watch', function () {
 gulp.task('build_sass_dev', function () {
 
     var files = [
-        './assets/ozn-form/scss/eachsite.scss'
+        './assets/eachsite/sass/eachsite.sass'
     ];
 
     return gulp.src(files)
@@ -44,7 +44,7 @@ gulp.task('build_sass_dev', function () {
 gulp.task('build_sass_release', function () {
 
     var files = [
-        './assets/ozn-form/scss/eachsite.scss'
+        './assets/eachsite/sass/eachsite.sass'
     ];
 
     return gulp.src(files)
@@ -58,7 +58,7 @@ gulp.task('build_sass_release', function () {
 gulp.task('build_sass_core', function () {
 
     var files = [
-        './assets/ozn-form/scss/ozn-form.scss'
+        './assets/ozn-form/sass/ozn-form.sass'
     ];
 
     return gulp.src(files)
@@ -71,7 +71,7 @@ gulp.task('build_sass_core', function () {
 
 gulp.task('copy', function() {
   return gulp.src([
-    './assets/ozn-form/scss/font/*'
+    './assets/ozn-form/sass/font/*'
   ])
   .pipe(gulp.dest('./release/css/font'));
 });
