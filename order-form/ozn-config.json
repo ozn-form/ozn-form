@@ -2,8 +2,8 @@
 
   "is_debug": false,
 
-  "form_name": "ozn-sample",
-  "form_root": "/front-sample/index.php",
+  "form_name": "order-form",
+  "form_root": "/order-form/index.php",
 
   "unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。",
 
@@ -18,12 +18,12 @@
     "redirect_to": "",
 
     "admin": {
-      "to_name"   : "サンプル株式会社",
-      "to"        : "mypacecreator+to@gmail.com",
+      "to_name"   : "ozn-formお問い合わせフォーム",
+      "to"        : "ozn-form+admin@ozonenotes.jp",
       "cc"        : [],
       "bcc"       : [],
       "from_name" : "<% customer_name %> 様",
-      "from"      : "no-reply@ozonenotes.jp",
+      "from"      : "ozn-form@ozonenotes.jp",
       "reply_to"  : "<% email %>"
 
     },
@@ -33,10 +33,10 @@
       "to_name"   : "<% customer_name %> 様",
       "to"        : "<% email %>",
       "cc"        : [],
-      "bcc"       : ["mypacecreator+bcc@gmail.com"],
-      "from_name" : "サンプル株式会社",
+      "bcc"       : [],
+      "from_name" : "ozn-form受付 / ozone notes",
       "from"      : "no-reply@ozonenotes.jp",
-      "reply_to"  : "mypacecreator+replyto@gmail.com"
+      "reply_to"  : "<% email %>"
     }
   },
 
@@ -47,7 +47,7 @@
       "forms": {
 
         "title": {
-          "label": "お問い合わせ種別",
+          "label": "ご希望の導入方法",
           "validates": ["required"],
           "error_message_position": ".title-error",
           "error_message_template": "<p><% messages %></p>",
@@ -74,63 +74,12 @@
         "email": {
           "label": "メールアドレス",
           "validates": ["required", "email_detail"],
-          "mobile_mail_warning": "携帯電話のアドレスが入力されました。example.com ドメインからのメールを受信できるように設定お願いします。"
-        },
-        "email2": {
-          "label": "メールアドレス2",
-          "validates": ["email_detail"],
-          "mobile_mail_warning": "携帯電話のアドレスが入力されました。example.com ドメインからのメールを受信できるように設定お願いします。"
+          "mobile_mail_warning": "携帯電話のアドレスが入力されました。ozonenotes.jp ドメインからのメールを受信できるように設定お願いします。"
         },
 
-        "tel": {
-          "label": "電話番号",
-          "validates": ["required", "tel"]
-        },
-        "fax": {
-          "label": "FAX番号",
-          "validates": ["tel"]
-        },
-
-        "zip-code": {
-          "label": "郵便番号",
-          "validates": ["zip"]
-        },
-        "pref": {
-          "label": "都道府県",
-          "validates": ["required"]
-        },
-        "address": {
-          "label": "番地まで",
-          "validates": ["required"]
-        },
-        "address-building": {
-          "label": "建物名等"
-        },
-
-        "shipping-date": {
-          "label": "ご希望納期"
-        },
-
-        "survey[]": {
-          "label": "チェック項目"
-        },
-        "materials": {
-          "label": "選択項目"
-        },
 
         "mail_body": {
-          "label": "お問い合わせ詳細",
-          "validates": ["required"]
-        },
-
-        "attachment1[]": {
-          "label": "添付ファイル1",
-          "type": "upload_files"
-        },
-
-        "attachment2[]": {
-          "label": "添付ファイル2",
-          "type": "upload_files"
+          "label": "お問い合わせ内容"
         },
 
         "privacy": {

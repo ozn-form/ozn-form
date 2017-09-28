@@ -41,6 +41,10 @@ img{
 .site-header{
 	background-color: $primary;
 	padding: 20px 0;
+    .site-logo {
+        margin: 0;
+        font-size: 18px;
+    }
 }
 
 .site-footer{

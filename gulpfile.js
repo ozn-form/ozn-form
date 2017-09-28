@@ -38,7 +38,7 @@ gulp.task('build_sass_dev', function () {
         .pipe(concat('eachsite.css'))
         .pipe(rename('style.min.css'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./front-sample/css/'));
+        .pipe(gulp.dest('./order-form/css/'));
 });
 
 gulp.task('build_sass_release', function () {
@@ -52,7 +52,7 @@ gulp.task('build_sass_release', function () {
         .pipe(minify())
         .pipe(concat('eachsite.css'))
         .pipe(rename('style.min.css'))
-        .pipe(gulp.dest('./front-sample/css/'));
+        .pipe(gulp.dest('./order-form/css/'));
 });
 
 gulp.task('build_sass_core', function () {
