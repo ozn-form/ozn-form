@@ -64,11 +64,15 @@ h2.setting-header
   margin: 30px 0
 
 .container
-  & > ul
-    margin-top: 30px
-    margin-bottom: 40px
-    li
-      margin-bottom: 15px
+  & > ul,
+  & > ol
+    margin-top: 15px
+    margin-bottom: 20px
+    &.featuer
+      margin-top: 30px
+      margin-bottom: 40px
+      li
+        margin-bottom: 15px
 
 table.setting-table
   border-right: 1px solid #ccc
@@ -97,3 +101,8 @@ div.code-example
 
 label
     font-weight: normal
+
+.setting-hr
+    border-color: #aeaeae
+    margin-top: 60px
+    margin-bottom: 40px

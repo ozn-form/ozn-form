@@ -134,7 +134,7 @@ require '../../../release/ozn-form.php';
             <div class="tr" data-oznform-area="shipping-date">
                 <div class="th">ご希望納期 <span class="ozn-label optional">任意</span></div>
                 <div class="td">
-                    <input type="text" name="shipping-date" class="ozn-input pc-50 tb-50" data-of_datepicker="true" placeholder="例）2017年10月10日">までに必要
+                    <input type="text" name="shipping-date" class="ozn-input pc-50 tb-50" data-of_datepicker="true" placeholder="例）2017年10月10日"><br class=" visible-xs-inline">までに必要
                 </div>
             </div>
             <div class="tr" data-oznform-area="mail_body">
@@ -154,7 +154,7 @@ require '../../../release/ozn-form.php';
                             <input type="checkbox" name="survey[]" value="チラシ"> チラシ
                         </label>
                         <label>
-                            <input type="checkbox" name="survey[]" value="看板3"> 看板
+                            <input type="checkbox" name="survey[]" value="看板"> 看板
                         </label>
                         <label>
                             <input type="checkbox" name="survey[]" value="その他"> その他
