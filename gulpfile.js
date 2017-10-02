@@ -79,7 +79,7 @@ gulp.task('copy', function() {
 
 gulp.task('output_document', function () {
     gulp.src('./html-extend-src/document/pages/**/*')
-        .pipe(extender({annotations:true,verbose:false})) // default options
+        .pipe(extender({annotations:false,verbose:false})) // default options
         .pipe(gulp.dest('./document'))
 });
 
