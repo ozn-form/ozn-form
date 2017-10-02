@@ -1,0 +1,22 @@
+# ルートフォルダ
+root = true
+
+# 改行コード: end_of_line = [lf, crlf, cr])
+# 文字コード: charset = [latin1, utf-8-bom, utf-16be, utf-16le]shift-jisはなし
+# 行末の余分なスペースを削除: trim_trailing_whitespace = [true, false]
+# 最終行に空の行を追加: insert_final_newline = [true, false]
+
+[*]
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+indent_style = space
+indent_size = 4
+
+[*.php]
+indent_size = 4
+
+[*.md]
+trim_trailing_whitespace = false

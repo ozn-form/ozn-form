@@ -28,7 +28,7 @@ gulp.task('watch', function () {
 gulp.task('build_sass_dev', function () {
 
     var files = [
-        './assets/ozn-form/scss/eachsite.scss'
+        './assets/eachsite/sass/eachsite.sass'
     ];
 
     return gulp.src(files)
@@ -38,13 +38,13 @@ gulp.task('build_sass_dev', function () {
         .pipe(concat('eachsite.css'))
         .pipe(rename('style.min.css'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./front-sample/css/'));
+        .pipe(gulp.dest('./order-form/css/'));
 });
 
 gulp.task('build_sass_release', function () {
 
     var files = [
-        './assets/ozn-form/scss/eachsite.scss'
+        './assets/eachsite/sass/eachsite.sass'
     ];
 
     return gulp.src(files)
@@ -52,13 +52,13 @@ gulp.task('build_sass_release', function () {
         .pipe(minify())
         .pipe(concat('eachsite.css'))
         .pipe(rename('style.min.css'))
-        .pipe(gulp.dest('./front-sample/css/'));
+        .pipe(gulp.dest('./order-form/css/'));
 });
 
 gulp.task('build_sass_core', function () {
 
     var files = [
-        './assets/ozn-form/scss/ozn-form.scss'
+        './assets/ozn-form/sass/ozn-form.sass'
     ];
 
     return gulp.src(files)
@@ -71,7 +71,7 @@ gulp.task('build_sass_core', function () {
 
 gulp.task('copy', function() {
   return gulp.src([
-    './assets/ozn-form/scss/font/*'
+    './assets/ozn-form/sass/font/*'
   ])
   .pipe(gulp.dest('./release/css/font'));
 });

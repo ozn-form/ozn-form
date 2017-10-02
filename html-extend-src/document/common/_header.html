@@ -1,7 +1,7 @@
 <li class="<!-- @@var= home_active -->"><a href="<!--@@var= relative_path -->">製品概要</a></li>
 
 <li class="dropdown <!-- @@var= functions_active -->">
-    <a href="#" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown" role="button"
+    <a href="<!--@@var= relative_path -->" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown" role="button"
        aria-haspopup="true" aria-expanded="true"> 機能説明 <span class="caret"></span> </a>
     <ul class="dropdown-menu" aria-labelledby="functions_drop">
         <li><a href="<!--@@var= relative_path -->functions/setting.html">設定一覧</a></li>
@@ -13,9 +13,11 @@
     <a href="#" class="dropdown-toggle" id="drop1" data-toggle="dropdown" role="button"
                              aria-haspopup="true" aria-expanded="true"> サンプルフォーム <span class="caret"></span> </a>
     <ul class="dropdown-menu" aria-labelledby="drop1">
-        <li class="<!-- @@var= simple_active -->"><a href="<!--@@var= relative_path -->samples/simple/">シンプル</a></li>
+        <li class="<!-- @@var= normal_active -->"><a href="<!--@@var= relative_path -->samples/normal/?mail_body=これはテスト送信です。">ノーマル版</a></li>
         <li class="<!-- @@var= no_confirm_active -->"><a href="<!--@@var= relative_path -->samples/no_confirm/">確認スキップ</a></li>
-        <li class="<!-- @@var= step_active -->"><a href="<!--@@var= relative_path -->samples/step/">ステップ</a></li>
+        <li class="<!-- @@var= step_active -->"><a href="<!--@@var= relative_path -->samples/step/">ステップ分割</a></li>
         <li class="<!-- @@var= image_active -->"><a href="<!--@@var= relative_path -->samples/image/">画像添付</a></li>
     </ul>
 </li>
+
+<li><a href="<!--@@var= relative_path -->../order-form/">導入希望はこちら</a></li>

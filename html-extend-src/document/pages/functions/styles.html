@@ -1,0 +1,354 @@
+<!-- @@master ../../layout/layout.html {"title": "ozn-form 標準スタイル一覧", "relative_path": "../", "functions_active":"active"} -->
+
+<!-- @@block additional_header -->
+
+<!-- @@close -->
+
+<!-- @@block content -->
+
+<div class="page-header">
+    <h1>ozn-form 標準スタイル</h1>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2 class="setting-header">フォーム表組み</h2>
+
+<p>
+    レスポンシブ対応の表組用のスタイルです。<br>
+    既存サイトのCSSをインクルードした場合も極力干渉や不具合が起こりにくくするため、あえてtable要素ではなく、div要素を使って擬似的なtable表示を作成しました。
+</p>
+
+<div class="code-example">
+    <h4>コード例</h4>
+    <pre><code>&lt;div class=&quot;ozn-form-inner&quot;&gt;
+    &lt;div class=&quot;tr&quot; data-oznform-area=&quot;customer_name&quot;&gt;
+        &lt;div class=&quot;th&quot;&gt;お名前 &lt;span class=&quot;ozn-label required&quot;&gt;必須&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;td&quot;&gt;
+            &lt;input type=&quot;text&quot; name=&quot;customer_name&quot; class=&quot;ozn-input&quot; id=&quot;customer_name&quot; data-autoruby=&quot;customer_name&quot; placeholder=&quot;例）山田 太郎&quot; autocomplete=&quot;name&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<ol>
+    <li>表の外枠をdiv要素で囲み、"ozn-form-inner" classを付与します（&lt;table&gt; &lt;/table&gt; の代替）</li>
+    <li>見出しセルにあたるdiv要素に "tr" classを付与します（&lt;tr&gt; &lt;/tr&gt; の代替）</li>
+    <li>フォーム入力要素を配置するdiv要素に "td" classを付与します（&lt;td&gt; &lt;/td&gt; の代替）</li>
+</ol>
+
+<h4>表示例</h4>
+<h5>PCビュー</h5>
+<p><img src="../images/functions/styles_table01.png" alt=""></p>
+<h5>スマートフォンビュー</h5>
+<p><img src="../images/functions/styles_table02.png" alt=""></p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3 class="setting-header">サブ項目</h3>
+
+<p>
+    1つのセルの中に複数の入力欄を配置したい場合、dl（定義型）リストを使うことできれいに配置できます。<br>
+    住所欄や、「その他」入力欄などでお使いください。
+</p>
+
+<div class="code-example">
+    <h4>コード例</h4>
+    <pre><code>&lt;div class=&quot;tr&quot;&gt;
+    &lt;div class=&quot;th&quot;&gt;興味のある商品 &lt;span class=&quot;ozn-label optional&quot;&gt;任意&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;td&quot;&gt;
+        &lt;select name=&quot;materials&quot; class=&quot;ozn-input pc-50 tb-50&quot;&gt;
+            &lt;option value=&quot;&quot;&gt;お選びください&lt;/option&gt;
+            （略）
+        &lt;/select&gt;
+        &lt;p&gt;以下は「その他」を選んだ方のみ必須&lt;/p&gt;
+        &lt;dl&gt;
+            &lt;dt&gt;その他の商品名&lt;/dt&gt;
+            &lt;dd&gt;&lt;input type=&quot;text&quot; name=&quot;materials-etc&quot; class=&quot;ozn-input&quot; placeholder=&quot;例）マカロン&quot;&gt;&lt;/dd&gt;
+        &lt;/dl&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<h4>表示例</h4>
+<h5>PCビュー</h5>
+<p><img src="../images/functions/styles_dl01.png" alt=""></p>
+<h5>スマートフォンビュー</h5>
+<p><img src="../images/functions/styles_dl02.png" alt=""></p>
+
+<hr class="setting-hr">
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2 class="setting-header">必須・任意ラベル</h2>
+
+<p>
+    EFOの観点からは、「必須」ラベルがわかりやすく表示されていること、任意項目も「任意」のラベルも省略せずに表示することが良いとされています。
+</p>
+
+<div class="code-example">
+    <h4>コード例</h4>
+    <pre><code>&lt;span class=&quot;ozn-label required&quot;&gt;必須&lt;/span&gt;</code></pre>
+    <pre><code>&lt;span class=&quot;ozn-label optional&quot;&gt;任意&lt;/span&gt;</code></pre>
+</div>
+
+<ol>
+    <li>span要素でマークアップし、 class="ozn-label required" または class="ozn-label optional"を付与します
+        <ul>
+            <li>required： 必須（赤色）</li>
+            <li>optional： 任意（水色）</li>
+        </ul>
+    </li>
+</ol>
+
+<h4>表示例</h4>
+<p><img src="../images/functions/styles_label01.png" alt=""></p>
+
+<div class="alert alert-success setting-alert">
+    <span class="glyphicon glyphicon-info-sign"></span>
+    PCビューでは右寄せで、スマートフォンビューでは左寄せで表示されます。
+</div>
+
+<hr class="setting-hr">
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2 class="setting-header">入力欄コンポーネント</h2>
+
+<p>
+    EFOの観点からは、入力欄はフォントサイズや幅・余白を大きめにすべきと言われています。<br>
+    指定のclass属性を付与することで、ブラウザ標準スタイルよりも入力しやすいスタイルを適用できます。（Bootstrapでいう ".form-control" classのような役割です）
+</p>
+
+<h3>テキスト入力欄、セレクトボックスの場合</h3>
+
+<ol>
+    <li>class="ozn-input"属性を付与することで、専用スタイルが適用されます</li>
+    <li>入力欄を短くしたい場合は、以下のclassのいずれかを同時に付与することで、width: 50%, 30% を適用できます
+        <ul>
+            <li>w-50,  w-30 （常に適用）</li>
+            <li>pc-50, pc-30（画面幅 641px〜 の場合に適用）</li>
+            <li>tb-50, tb-30 （画面幅 481px〜640pxの場合に適用）</li>
+            <li>sp-50, sp-30 （画面幅 〜480px の場合に適用）</li>
+        </ul>
+    </li>
+</ol>
+
+<div class="code-example">
+    <h4>コード例</h4>
+    <pre><code>&lt;div class=&quot;ozn-form-inner&quot;&gt;
+    &lt;div class=&quot;tr&quot; data-oznform-area=&quot;customer_name&quot;&gt;
+        &lt;div class=&quot;th&quot;&gt;お名前 &lt;span class=&quot;ozn-label required&quot;&gt;必須&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;td&quot;&gt;
+            &lt;input type=&quot;text&quot; name=&quot;customer_name&quot; class=&quot;ozn-input&quot; id=&quot;customer_name&quot; data-autoruby=&quot;customer_name&quot; placeholder=&quot;例）山田 太郎&quot; autocomplete=&quot;name&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;tr&quot;&gt;
+        &lt;div class=&quot;th&quot;&gt;興味のある商品 &lt;span class=&quot;ozn-label optional&quot;&gt;任意&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;td&quot;&gt;
+            &lt;select name=&quot;materials&quot; class=&quot;ozn-input pc-50 tb-50&quot;&gt;
+                &lt;option value=&quot;&quot;&gt;お選びください&lt;/option&gt;
+                    （略）
+            &lt;/select&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;tr&quot; data-oznform-area=&quot;mail_body&quot;&gt;
+        &lt;div class=&quot;th&quot;&gt;お問い合わせ内容 &lt;span class=&quot;ozn-label required&quot;&gt;必須&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;td&quot;&gt;
+            &lt;textarea name=&quot;mail_body&quot; rows=&quot;5&quot; class=&quot;ozn-input&quot; placeholder=&quot;例）＊＊＊＊製品の見積希望&quot;&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<h4>表示例</h4>
+<p><img src="../images/functions/styles_input01.png" alt=""></p>
+
+
+<h3>ラジオボタン、チェックボックスの場合</h3>
+
+<ol>
+    <li>input要素と選択肢のテキストを、1つのlabel要素で囲みます</li>
+    <li>選択肢の外側をdiv要素で囲み、 class="ozn-check vertical" または class="ozn-check horizontal"を付与します
+        <ul>
+            <li>vertical：   選択肢をタテに並べる</li>
+            <li>horizontal： 選択肢をヨコに並べる</li>
+        </ul>
+    </li>
+</ol>
+
+<div class="code-example">
+    <h4>コード例</h4>
+    <pre><code>&lt;div class=&quot;ozn-form-inner&quot;&gt;
+    &lt;div class=&quot;tr&quot; data-oznform-area=&quot;title&quot;&gt;
+        &lt;div class=&quot;th&quot;&gt;お問い合わせ種別 &lt;span class=&quot;ozn-label required&quot;&gt;必須&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;td&quot;&gt;
+            &lt;div class=&quot;ozn-check vertical&quot;&gt;
+                &lt;label&gt;
+                    &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;見積りのご依頼&quot;&gt; 見積りのご依頼
+                &lt;/label&gt;
+                &lt;label&gt;
+                    &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;商品に関するお問い合わせ&quot;&gt; 商品に関するお問い合わせ
+                &lt;/label&gt;
+                &lt;label&gt;
+                    &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;求人へのご応募&quot;&gt; 求人へのご応募
+                &lt;/label&gt;
+                &lt;label&gt;
+                    &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;その他のお問い合わせ&quot;&gt; その他のお問い合わせ
+                &lt;/label&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;title-error&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;tr&quot; data-oznform-area=&quot;survey[]&quot;&gt;
+        &lt;div class=&quot;th&quot;&gt;当社を何で知りましたか &lt;span class=&quot;ozn-label required&quot;&gt;必須&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;td&quot;&gt;
+            &lt;div class=&quot;ozn-check horizontal&quot;&gt;
+                &lt;label&gt;
+                    &lt;input type=&quot;checkbox&quot; name=&quot;survey[]&quot; value=&quot;ウェブ検索&quot;&gt; ウェブ検索
+                &lt;/label&gt;
+                &lt;label&gt;
+                    &lt;input type=&quot;checkbox&quot; name=&quot;survey[]&quot; value=&quot;チラシ&quot;&gt; チラシ
+                &lt;/label&gt;
+                &lt;label&gt;
+                    &lt;input type=&quot;checkbox&quot; name=&quot;survey[]&quot; value=&quot;看板&quot;&gt; 看板
+                &lt;/label&gt;
+                &lt;label&gt;
+                    &lt;input type=&quot;checkbox&quot; name=&quot;survey[]&quot; value=&quot;その他&quot;&gt; その他
+                &lt;/label&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<h4>表示例</h4>
+<p><img src="../images/functions/styles_input02.png" alt=""></p>
+
+<hr class="setting-hr">
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2 class="setting-header">送信ボタン・戻るボタン</h2>
+
+<p>
+    EFOにおいては、送信ボタンをより目立たせてクリックしやすいデザインにすることも重要視されます。<br>
+    背景色はベタ塗りではなくグラデーションをかけ「よりボタンらしい」見た目にしています。
+</p>
+
+<div class="code-example">
+    <h4>コード例（入力画面）</h4>
+    <pre><code>&lt;div class=&quot;ozn-form-buttons&quot;&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;ozn-btn submit ozn-form-nav&quot;&gt;入力内容の確認へ進む →&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<h4>表示例</h4>
+<p><img src="../images/functions/styles_submitbtn01.png" alt=""></p>
+
+<div class="code-example">
+    <h4>コード例（確認画面）</h4>
+    <pre><code>&lt;div class=&quot;ozn-form-buttons&quot;&gt;
+    &lt;span&gt;&lt;a href=&quot;./complete.php&quot; class=&quot;ozn-btn submit ozn-form-nav&quot;&gt;この内容で送信する →&lt;/a&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;a href=&quot;./index.php&quot; class=&quot;ozn-btn back ozn-form-nav&quot;&gt;← 戻って書き直す&lt;/a&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<h4>表示例</h4>
+<p><img src="../images/index/sample_submitbtn.png" alt=""></p>
+
+<ol>
+    <li>ボタンの外側をdiv要素で囲み、"ozn-form-buttons" classを付与します（グレーの枠で囲まれます）</li>
+    <li>入力画面の送信ボタンはinput要素かbutton要素で作成し、type="submit" 属性、class="ozn-btn submit ozn-form-nav"属性を付与します<br>
+        （ozn-btn submitはスタイル定義用、 ozn-form-navは遷移時に離脱アラートを出さないための制御用classです）</li>
+    <li>確認画面の送信ボタンにはa要素を使用し、href属性には完了画面のPHPファイルのパスを指定します</li>
+    <li>前のステップに戻るボタンはhref属性に前のステップのPHPファイルのパスを指定したa要素でマークアップし、class="ozn-btn back ozn-form-nav"属性を付与します</li>
+</ol>
+
+<div class="alert alert-success setting-alert">
+    <span class="glyphicon glyphicon-info-sign"></span>
+    2つのボタンを並べる場合は、各ボタンをspan要素で囲っておくと、スマートフォンビューで2つのボタンが中央寄せで縦に並びます。<br>
+    <img src="../images/functions/styles_submitbtn02.png" alt=""><br>
+    送信ボタンを上に、戻るボタンを下に記述することを推奨します。
+</div>
+
+<hr class="setting-hr">
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2 class="setting-header">ステップバー</h2>
+
+<p>
+    メールフォームの入力完了までの画面数を示すステップバーを簡単に設置できます。<br>
+    対応可能なステップ数は、2〜5項目です。
+</p>
+
+<div class="code-example">
+    <h4>コード例（3項目の場合）</h4>
+    <pre><code>&lt;div class=&quot;ozn-form-stepbar-wrapper&quot;&gt;
+    &lt;ol class=&quot;ozn-form-stepbar step3&quot;&gt;
+        &lt;li class=&quot;current&quot;&gt;1. 内容の入力&lt;/li&gt;
+        &lt;li&gt;2. 内容確認&lt;/li&gt;
+        &lt;li&gt;3. 送信完了&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<ol>
+    <li>ステップバーの項目をリスト要素（olまたはul）でマークアップし、"ozn-form-stepbar" classを付与します</li>
+    <li>さらに、設置したい項目数に応じたclassを付与します（step2, step3, step4, step5 のいずれか）</li>
+    <li>リスト要素を"ozn-form-stepbar-wrapper" classで囲みます</li>
+    <li>現在地の項目に"current" classを付与します</li>
+</ol>
+
+<h4>表示例</h4>
+<p><img src="../images/index/sample_stepbar.png" alt=""></p>
+
+<div class="code-example">
+    <h4>コード例（4項目の場合）</h4>
+    <pre><code>&lt;div class=&quot;ozn-form-stepbar-wrapper&quot;&gt;
+    &lt;ol class=&quot;ozn-form-stepbar step4&quot;&gt;
+        &lt;li class=&quot;current&quot;&gt;1. ご相談内容&lt;/li&gt;
+        &lt;li&gt;2. お客様情報&lt;/li&gt;
+        &lt;li&gt;3. 内容確認&lt;/li&gt;
+        &lt;li&gt;4. 送信完了&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<h4>表示例</h4>
+<p><img src="../images/functions/styles_stepbar01.png" alt=""></p>
+
+<div class="alert alert-warning setting-alert">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    バー内の文字が長い場合、画面幅が狭まると複数行になってしまいます。<br>
+    <img src="../images/functions/styles_stepbar02.png" alt=""><br>
+    支障がある場合は標準ステップバーを使わず、画像などで作成して対応してください。
+</div>
+
+<hr class="setting-hr">
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2 class="setting-header">バリデーション時に付与されるclass</h2>
+
+<p>
+    以下のclassはバリデーション時に自動的に付与されるので、設置者が自分でHTML内に記述する必要はありません。<br>
+    ozn-form標準のスタイルを上書きしたい場合は、以下のリストを参考にオーバーライドしてください。
+</p>
+
+<ul>
+    <li>ozn-input, ozn-check に付与
+        <ul>
+            <li>ozn-form-valid：   バリデーションOK（枠を黄緑色に）</li>
+            <li>ozn-form-invalid：  バリデーションNG（枠を赤色に）</li>
+        </ul>
+    </li>
+    <li>ozn-form-icon：バリデーション結果を示すアイコンフォントを表示
+        <ul>
+            <li>icon-ok：       バリデーションOKマーク <span class="glyphicon glyphicon-ok-sign"></span>
+                （黄緑色）</li>
+            <li>icon-caution：  バリデーションNGマーク <span class="glyphicon glyphicon-alert"></span>
+                （赤色）</li>
+        </ul>
+    </li>
+    <li>ozn-form-errors：  バリデーションNG時に表示されるエラー文のボックス（赤色）</li>
+    <li>ozn-form-warning： メールアドレスでキャリアメールが入力された時に表示される注意文のボックス（黄緑色）</li>
+</ul>
+
+<!-- end content -->
+<!-- @@close -->
