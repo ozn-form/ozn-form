@@ -40,7 +40,6 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-<!-- start _header.html-->
 <li class=""><a href="../">製品概要</a></li>
 
 <li class="dropdown active">
@@ -65,7 +64,6 @@
 
 <li><a href="../../order-form/">導入希望はこちら</a></li>
 
-<!-- end _header.html-->
 
                 <!--<li class="&lt;!&ndash; @@var= home_active &ndash;&gt;"><a href="#about">About</a></li>-->
                 <!--<li class="active"><a href="#contact">サンプルフォーム</a></li>-->
@@ -75,11 +73,26 @@
 </nav>
 
 <div class="container">
-<!-- start content -->
+
 <div class="page-header">
     <h1>ozn-form 標準スタイル</h1>
 </div>
 
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h2 class="setting-header">標準スタイルの読み込み</h2>
+
+<p>
+    フォームのすべてのステップにおいて、head要素内に以下のPHPコードを記述してください。
+</p>
+
+<div class="code-example">
+
+    <pre><code>&lt;?php echo $ozn_form_styles; ?&gt;</code></pre>
+</div>
+
+これにより、ozn-form標準のスタイルシートが適用されます。
+
+<hr class="setting-hr">
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <h2 class="setting-header">フォーム表組み</h2>
@@ -422,7 +435,6 @@
 
 <!-- end content -->
 
-<!-- end content -->
 </div>
 
 <hr class="setting-hr">

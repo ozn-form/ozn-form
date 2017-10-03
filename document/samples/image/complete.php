@@ -1,4 +1,4 @@
-<!-- start php -->
+
 <?php
 
 // 設定ファイルのパスを設定
@@ -91,7 +91,6 @@ require '../../../release/ozn-form.php';
 
 ?>
 
-<!-- end php -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -136,7 +135,6 @@ require '../../../release/ozn-form.php';
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-<!-- start _header.html-->
 <li class=""><a href="../../">製品概要</a></li>
 
 <li class="dropdown ">
@@ -161,14 +159,13 @@ require '../../../release/ozn-form.php';
 
 <li><a href="../../../order-form/">導入希望はこちら</a></li>
 
-<!-- end _header.html-->
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 
 <div class="container">
-<!-- start content -->
+
 <div class="page-header">
     <h1>
         お問い合わせ
@@ -184,7 +181,6 @@ require '../../../release/ozn-form.php';
 </div>
 
 
-<!-- end content -->
 </div>
 
 <hr class="setting-hr">
