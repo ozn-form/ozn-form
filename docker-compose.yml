@@ -1,0 +1,47 @@
+version: '2'
+
+services:
+
+  php54-apache-dev:
+
+    container_name: php54-apache
+    image: webdevops/php-apache-dev:debian-7
+    env_file: ./docker/.env
+    build:
+      context: ./docker
+    ports:
+      - 8054:80
+    volumes:
+      - .:/app
+
+
+  php56-apache-dev:
+
+    container_name: php56-apache
+    image: webdevops/php-apache-dev:5.6
+    env_file: ./docker/.env
+    build:
+      context: ./docker
+    ports:
+      - 8056:80
+    volumes:
+      - .:/app
+
+
+  php71-apache-dev:
+
+    container_name: php71-apache
+    image: webdevops/php-apache-dev:7.1
+    env_file: ./docker/.env
+    build:
+      context: ./docker
+    ports:
+      - 8071:80
+    volumes_from:
+      - php56-apache-dev
+
+  maildev:
+    container_name: maildev
+    image: djfarrelly/maildev
+    ports:
+     - 8282:80
