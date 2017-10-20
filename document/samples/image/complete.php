@@ -95,7 +95,7 @@ require '../../../release/ozn-form.php';
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ozn-form Document - 画像添付</title>
+    <title>ozn-form Documents - 画像添付</title>
     <meta charset="utf-8">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -131,33 +131,35 @@ require '../../../release/ozn-form.php';
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">ozn-form Document</a>
+            <a class="navbar-brand" href="#">ozn-form Documents</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
 <li class=""><a href="../../">製品概要</a></li>
 
-<li class="dropdown ">
-    <a href="../../" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown" role="button"
-       aria-haspopup="true" aria-expanded="true"> 機能説明 <span class="caret"></span> </a>
-    <ul class="dropdown-menu" aria-labelledby="functions_drop">
-        <li><a href="../../functions/setting.html">設定一覧</a></li>
-        <li><a href="../../functions/sub_setting.html">補助機能</a></li>
-    </ul>
-</li>
+<!--<li class="dropdown &lt;!&ndash; @@var= functions_active &ndash;&gt;">-->
+    <!--<a href="&lt;!&ndash;@@var= relative_path &ndash;&gt;" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown" role="button"-->
+       <!--aria-haspopup="true" aria-expanded="true"> 機能説明 <span class="caret"></span> </a>-->
+    <!--<ul class="dropdown-menu" aria-labelledby="functions_drop">-->
+        <!--<li><a href="&lt;!&ndash;@@var= relative_path &ndash;&gt;functions/setting.html">設定一覧</a></li>-->
+        <!--<li><a href="&lt;!&ndash;@@var= relative_path &ndash;&gt;functions/sub_setting.html">補助機能</a></li>-->
+    <!--</ul>-->
+<!--</li>-->
 
-<li class="dropdown">
-    <a href="#" class="dropdown-toggle" id="drop1" data-toggle="dropdown" role="button"
-                             aria-haspopup="true" aria-expanded="true"> サンプルフォーム <span class="caret"></span> </a>
-    <ul class="dropdown-menu" aria-labelledby="drop1">
-        <li class=""><a href="../../samples/normal/?mail_body=これはテスト送信です。">ノーマル版</a></li>
-        <li class=""><a href="../../samples/no_confirm/">確認スキップ</a></li>
-        <li class=""><a href="../../samples/step/">ステップ分割</a></li>
-        <li class="active"><a href="../../samples/image/">画像添付</a></li>
-    </ul>
-</li>
+<!--<li class="dropdown">-->
+    <!--<a href="#" class="dropdown-toggle" id="drop1" data-toggle="dropdown" role="button"-->
+                             <!--aria-haspopup="true" aria-expanded="true"> サンプルフォーム <span class="caret"></span> </a>-->
+    <!--<ul class="dropdown-menu" aria-labelledby="drop1">-->
+        <!--<li class="&lt;!&ndash; @@var= normal_active &ndash;&gt;"><a href="&lt;!&ndash;@@var= relative_path &ndash;&gt;samples/normal/?mail_body=これはテスト送信です。">ノーマル版</a></li>-->
+        <!--<li class="&lt;!&ndash; @@var= no_confirm_active &ndash;&gt;"><a href="&lt;!&ndash;@@var= relative_path &ndash;&gt;samples/no_confirm/">確認スキップ</a></li>-->
+        <!--<li class="&lt;!&ndash; @@var= step_active &ndash;&gt;"><a href="&lt;!&ndash;@@var= relative_path &ndash;&gt;samples/step/">ステップ分割</a></li>-->
+        <!--<li class="&lt;!&ndash; @@var= image_active &ndash;&gt;"><a href="&lt;!&ndash;@@var= relative_path &ndash;&gt;samples/image/">画像添付</a></li>-->
+    <!--</ul>-->
+<!--</li>-->
 
-<li><a href="../../../order-form/">導入希望はこちら</a></li>
+<li class=""><a href="../../samples/normal/?mail_body=これはテスト送信です。">サンプルフォーム</a></li>
+
+<li><a href="../../../order-form/">導入希望はこちらから</a></li>
 
             </ul>
         </div><!--/.nav-collapse -->
