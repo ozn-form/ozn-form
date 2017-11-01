@@ -2,3 +2,5 @@ node_modules/
 /test/
 /release/config/database.php
 /release/db/*.db
+script/
+/docker/.env
