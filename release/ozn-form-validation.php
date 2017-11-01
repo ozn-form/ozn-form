@@ -14,18 +14,20 @@ $return_data = array(
 
 if(isset($_POST['validate'])) {
 
+    $postValue = isset($_POST['values']) ? $_POST['values'] : [$_POST['name'] => ''];
+
     $v = new FromValidation();
 
     $is_valid = $v->run(
         $_POST['name'],
-        $_POST['values'],
+        $postValue,
         $_POST['validate'],
         $_POST['label'],
         isset($_POST['condition']) ? $_POST['condition'] : null,
         isset($_POST['error_messages']) ? $_POST['error_messages'] : array()
     );
 
-    $target_value = $_POST['values'][$_POST['name']];
+    $target_value = $postValue[$_POST['name']];
 
     if($is_valid) {
 

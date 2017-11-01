@@ -120,3 +120,16 @@
 \Valitron\Validator::addRule('equals_value', function($field, $value, array $params, array $fields) {
     return $value === $params[0];
 }, "は「%s」と同じ値である必要があります。");
+
+
+/**
+ *  チェックボックス（複数）の値が指定値を含む（主に検証条件に使用）
+ */
+\Valitron\Validator::addRule('included', function($field, $value, array $params, array $fields) {
+
+    if(is_array($value)) {
+        return in_array($params[0], $value);
+    } else {
+        return $value === $params[0];
+    }
+}, "は「%s」を含む必要があります。");

@@ -131,12 +131,22 @@ window.OznForm.utilities = {
                 // 通常フォームの場合
             } else {
 
-                // ラジオボタン・チェックボックスの時は、チェックされているデータを送信する
-                if($.inArray($form_el.attr('type'), ['radio', 'checkbox']) >= 0 ) {
+                if($form_el.attr('type') ===  'radio') {
+
+                    // ラジオボタンの時は、チェックされているデータを送信する
                     form_value = $form_el.filter(':checked').val();
 
-                    // その他の input 要素の時は全角を半角に変換して送信する
+                } else if ($form_el.attr('type') === 'checkbox') {
+
+                    // チェックボックスの時にはチェックされているすべてのデータを送信する（配列）
+                    form_value = [];
+                    $form_el.filter(':checked').each(function () {
+                        form_value.push($(this).val());
+                    });
+
                 } else if ($form_el.prop("nodeName") === 'INPUT') {
+
+                    // その他の input 要素の時は全角を半角に変換して送信する
 
                     // 全角半角変換
                     form_value = OznForm.utilities.toHalfWidth(form_value);

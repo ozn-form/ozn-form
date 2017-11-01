@@ -393,13 +393,19 @@ jQuery(function ($) {
         var dInner   = new $.Deferred;
         var t        = [form_name];
         var $form_el = $('[name="'+form_name+'"]');
+        var validate_condition = form_config.validate_condition;
+        var post_condition = {};
 
         if(form_config.type === 'upload_files') {
             $form_el = $('#' + OznForm.utilities.uploadButtonElementName(form_name));
         }
 
-        if(form_config.validate_condition) {
-            t = t.concat(window.OznForm.utilities.objectKeys(form_config.validate_condition))
+        if(validate_condition) {
+            t = t.concat(window.OznForm.utilities.objectKeys(validate_condition));
+
+            $.each(validate_condition, function (key, value) {
+                post_condition[key.replace('[]', '')] = value;
+            })
         }
 
         var form_values = window.OznForm.utilities.getFormValues(t, true);
@@ -411,7 +417,7 @@ jQuery(function ($) {
             values: form_values,
             label: form_config.label,
             error_messages: form_config.error_messages,
-            condition: form_config.validate_condition,
+            condition: post_condition,
             validate: form_config.validates
         };
 

@@ -54,12 +54,21 @@ class FromValidation
 
             $name = str_replace('[]', '', $name);
 
+            // 配列対応
+            $validateCondition = array();
+
+            foreach ($setting['validate_condition'] as $k => $v) {
+                $k = str_replace('[]', '', $k);
+                $validateCondition[$k] = $v;
+            }
+
+
             $this->run(
                 $name,
                 $post_data,
                 $setting['validates'],
                 $setting['label'],
-                $setting['validate_condition'],
+                $validateCondition,
                 $setting['error_messages']
             );
         }
@@ -91,6 +100,9 @@ class FromValidation
         // 検証実行条件があれば先に条件を検証
         if($condition) {
             foreach ($condition as $target_name => $target_validates) {
+
+                if(! isset($values[$target_name])) { $values[$target_name] = ''; }
+
                 if( ! $this->isValid($target_name, $values, $target_validates, null, null)) {
                     $run_validation = FALSE;
                 }
