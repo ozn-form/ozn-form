@@ -32,6 +32,7 @@ class MailTemplate
         if($this->sys_info) $template = $this->replaceSystemTags($template);
 
         $template = $this->replaceTags($template);
+        $template = $this->replaceHarSizeTags($template);
         $template = $this->replaceIfTags($template);
 
         return $template;
@@ -72,6 +73,12 @@ class MailTemplate
     }
 
 
+    /**
+     * IFタグ置換
+     * @param $template
+     *
+     * @return mixed
+     */
     private function replaceIfTags($template) {
         return preg_replace_callback(
             "/<%%\s*if\.(.+?)\s*%%>(.+?)<%%\s*endif\s*%%>(\n{0,1})/s",
@@ -81,6 +88,24 @@ class MailTemplate
                 if($this->params[$matches[1]]) {
                     return $matches[2].$matches[3];
                 }
+            }, $template);
+    }
+
+
+    /**
+     * 半角カナタグ置換
+     * @param $template
+     *
+     * @return mixed
+     */
+    private function replaceHarSizeTags($template) {
+        return preg_replace_callback(
+            "/<%%\s*halfsize\s*%%>(.+?)<%%\s*endhalfsize\s*%%>(\n{0,1})/s",
+
+            function($matches) {
+
+                $half = mb_convert_kana($matches[1], 'kh');
+                return $half.$matches[2];
             }, $template);
     }
 
