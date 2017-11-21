@@ -32,8 +32,9 @@ class MailTemplate
         if($this->sys_info) $template = $this->replaceSystemTags($template);
 
         $template = $this->replaceTags($template);
-        $template = $this->replaceHarSizeTags($template);
         $template = $this->replaceIfTags($template);
+        $template = $this->replaceHarSizeTags($template);
+
 
         return $template;
 
@@ -100,7 +101,7 @@ class MailTemplate
      */
     private function replaceHarSizeTags($template) {
         return preg_replace_callback(
-            "/<%%\s*halfsize\s*%%>(.+?)<%%\s*endhalfsize\s*%%>(\n{0,1})/s",
+            "/<%%\s*halfsize\s*%%>(.*?)<%%\s*endhalfsize\s*%%>(\n{0,1})/s",
 
             function($matches) {
 
