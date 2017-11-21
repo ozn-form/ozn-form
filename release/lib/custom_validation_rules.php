@@ -133,3 +133,29 @@
         return $value === $params[0];
     }
 }, "は「%s」を含む必要があります。");
+
+
+/**
+ *  送信値（配列）の数がxx以上
+ */
+\Valitron\Validator::addRule('itemCountGreaterThan', function($field, $value, array $params, array $fields) {
+
+    if(is_array($value)) {
+        return count($value) >= $params[0];
+    } else {
+        return 1 >= $params[0];
+    }
+}, "は%sつ以上選択してください。");
+
+
+/**
+ *  送信値（配列）の数がxx以下
+ */
+\Valitron\Validator::addRule('itemCountLessThan', function($field, $value, array $params, array $fields) {
+
+    if(is_array($value)) {
+        return count($value) <= $params[0];
+    } else {
+        return 1 <= $params[0];
+    }
+}, "は%sつ以下で選択してください。");
