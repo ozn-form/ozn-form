@@ -29,7 +29,7 @@ require_once dirname(__FILE__) . '/lib/FormValidation.class.php';
  * バージョン
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-const VERSION = '2.0.0';
+const VERSION = '2.1.1';
 
 
 /**
