@@ -26,16 +26,33 @@ window.OznForm.utilities = {
         });
     },
 
+    /**
+     * 各フォームの初期値を設定する
+     *
+     * @param messages
+     */
     setInitMessage: function (messages) {
 
         var self = this;
 
         $.each(messages, function (name, value) {
 
+            // 設定値が配列の場合は [] をつける
+            if($.isArray(value)) { name += '[]'; }
+
             var $elem = $('[name="' + name + '"]');
 
-            if($elem.size !== 0 && $elem.val() == '') {
-                self.setValue($elem, value);
+            if($elem.size() > 0) {
+
+                switch ($elem.attr('type')) {
+
+                    case 'radio':
+                    case 'checkbox':
+                        if($elem.filter('checked').size() === 0) {self.setValue($elem, value);}
+                        break;
+                    default:
+                        if($elem.val() === '') {self.setValue($elem, value);}
+                }
             }
         })
 
