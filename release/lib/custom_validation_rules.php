@@ -62,6 +62,21 @@
     }
 }, "に「@」マークが含まれていません");
 
+/**
+ * メールアドレス詳細（@が複数ある）
+ */
+\Valitron\Validator::addRule('email_atmark_over', function($field, $value, array $params, array $fields) {
+
+    if(empty($value))
+    {
+        return TRUE;
+    }
+    else
+    {
+        return mb_substr_count($value, '@') <= 1;
+    }
+}, "に「@」マークが複数含まれています。");
+
 
 /**
  * メールアドレス詳細（@より前がない）

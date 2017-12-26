@@ -143,7 +143,7 @@ class FromValidation
         // メールアドレス詳細チェック処理
         if(in_array('email_detail', $validates)) {
             array_splice($validates, array_search('email_detail', $validates), 1);
-            $validates = array_merge($validates, array('email_atmark', 'email_no_user', 'email_domain', 'email_comma'));
+            $validates = array_merge($validates, array('email_atmark', 'email_atmark_over', 'email_no_user', 'email_domain', 'email_comma'));
         }
 
         foreach ($validates as $rule) {
