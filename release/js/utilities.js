@@ -129,7 +129,11 @@ window.OznForm.utilities = {
             var form_value  = $form_el.val();
             var form_config = window.OznForm.forms[name];
 
-            var is_upfile_form = (form_config.type === 'upload_files');
+            var is_upfile_form = false;
+
+            if(form_config) {
+                is_upfile_form = (form_config.type === 'upload_files');
+            }
 
 
             // -- 各フォームタイプにより取得値などの設定を変更する
