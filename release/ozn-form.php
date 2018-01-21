@@ -18,18 +18,19 @@ date_default_timezone_set('Asia/Tokyo');
 
 require_once dirname(__FILE__) . '/lib/MailSender.class.php';
 require_once dirname(__FILE__) . '/lib/FormConfig.class.php';
-require_once dirname(__FILE__) . '/lib/FormError.class.php';
+require_once dirname(__FILE__) . '/lib/exceptions/FormError.class.php';
 require_once dirname(__FILE__) . '/lib/FormSession.class.php';
 require_once dirname(__FILE__) . '/lib/MailTemplate.class.php';
 require_once dirname(__FILE__) . '/lib/MailHistory.class.php';
 require_once dirname(__FILE__) . '/lib/FormValidation.class.php';
+require_once dirname(__FILE__) . '/lib/exceptions/SendMailException.class.php';
 
 
 /**
  * バージョン
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-const VERSION = '2.1.4';
+const VERSION = '2.2.0';
 
 
 /**
@@ -55,7 +56,18 @@ define('PAGE_ROLE'     , $config->pageRole(PAGE_NAME));
 
 set_exception_handler(function ($ex){
     global $config;
-    require_once dirname(__FILE__) . '/error_page.php';
+
+    switch (get_class($ex)) {
+
+        // メール送信エラー
+        case SendMailException::class:
+            require_once dirname(__FILE__) . '/send_mail_error.php';
+            break;
+
+        // その他のエラー
+        default:
+            require_once dirname(__FILE__) . '/error_page.php';
+    }
 });
 
 
@@ -379,8 +391,14 @@ if(PAGE_ROLE == 'form') {
             break;
     }
 
-    // 送信処理
-    $mailer->send($config->send_by(), $send_option, $config->send_flag());
+    // 管理者メール送信処理
+    try {
+        $mailer->send($config->send_by(), $send_option, $config->send_flag());
+    } catch (\Exception $e) {
+
+        throw new SendMailException(TRUE, $e->getMessage());
+
+    }
 
 
     // 自動返信メールが有効の時は送信
@@ -400,7 +418,12 @@ if(PAGE_ROLE == 'form') {
         $mailer->setBCC($mail['bcc']);
 
         // 送信処理
-        $mailer->send($config->send_by(), $send_option, $config->send_flag());
+        try {
+            $mailer->send($config->send_by(), $send_option, $config->send_flag());
+        } catch (\Exception $e) {
+            $failCustomerMailSend = TRUE;
+            $customerMailErrorMessage = $e->getMessage();
+        }
     }
 
     // 送信後処理（デバッグ設定以外の時）
@@ -425,6 +448,13 @@ if(PAGE_ROLE == 'form') {
                 }
             }
         }
+    }
+
+    /**
+     * 顧客宛メールが失敗しているときは送信エラー画面を表示
+     */
+    if(isset($failCustomerMailSend) && $failCustomerMailSend === TRUE) {
+        throw new SendMailException(FALSE, $customerMailErrorMessage);
     }
 
     // リダイレクト先が設定されている場合はリダイレクトして終了
