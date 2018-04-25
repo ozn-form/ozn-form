@@ -201,6 +201,19 @@ Suggest.Local.prototype = {
     var currentText = this.getInputText();
     var preText = currentText.substr(0, currentText.indexOf('@'));
     this.input.value = preText + '@' + text;
+
+    /**
+     * ios11 において、未確定文字がサジェスト挿入後に
+     * 確定状態で付加されてしまう問題の対応のため遅延処理を実装
+     */
+    var that = this;
+
+    setTimeout(function () {
+        that.input.value = preText + '@' + text;
+        console.log('input value', this.input.value);
+    }, 200);
+
+
   },
 
   // key event
