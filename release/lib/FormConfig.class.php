@@ -268,7 +268,10 @@ class FormConfig
                 if($setting === 'default') {
                     $defaultAddress = $address;
                 } else {
+
                     list($formKey, $formValue) = explode('|', $setting);
+
+                    if( ! isset($pageData[$formKey])) { continue; }
 
                     if($pageData[$formKey] === $formValue) {
                         $adminAddress = $address;
