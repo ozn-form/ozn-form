@@ -261,18 +261,23 @@ class FormConfig
         if(is_array($adminMailConfig['to'])) {
 
             $adminAddress = '';
+            $defaultAddress = '';
 
             foreach ($adminMailConfig['to'] as $setting => $address) {
 
-                list($formKey, $formValue) = explode('|', $setting);
+                if($setting === 'default') {
+                    $defaultAddress = $address;
+                } else {
+                    list($formKey, $formValue) = explode('|', $setting);
 
-                if($pageData[$formKey] === $formValue) {
-                    $adminAddress = $address;
-                    break;
+                    if($pageData[$formKey] === $formValue) {
+                        $adminAddress = $address;
+                        break;
+                    }
                 }
             }
 
-            $adminMailConfig['to'] = $adminAddress;
+            $adminMailConfig['to'] = $adminAddress ? $adminAddress : $defaultAddress;
         }
 
         return $this->validMailSetting($adminMailConfig);
