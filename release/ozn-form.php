@@ -30,7 +30,7 @@ require_once dirname(__FILE__) . '/lib/exceptions/SendMailException.class.php';
  * バージョン
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-const VERSION = '2.2.0';
+const VERSION = '2.3.0';
 
 
 /**
