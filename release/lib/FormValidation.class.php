@@ -138,6 +138,11 @@ class FromValidation
      */
     private function isValid($name, $values, $validates, $label, $messages)
     {
+
+        if( ! isset($values[$name])) {
+            return TRUE;
+        }
+
         $v = new Valitron(array($name => $values[$name]));
 
         // メールアドレス詳細チェック処理
