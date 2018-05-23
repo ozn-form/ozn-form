@@ -86,7 +86,7 @@ class MailTemplate
 
             function($matches) {
 
-                if($this->params[$matches[1]]) {
+                if($this->params[$matches[1]] !== '') {
                     return $matches[2].$matches[3];
                 }
             }, $template);
