@@ -23,7 +23,7 @@ class MailSender {
      * @param bool   $send_flag <送信実行の可否（デバッグ用）>
      *
      * @return bool
-     * @throws FormError
+     * @throws \Exception
      */
     public function send($send_by, $options = array(), $send_flag) {
 
@@ -48,7 +48,7 @@ class MailSender {
         if ($this->phpmailer->send()) {
             return true;
         } else {
-            throw new FormError("Mailer Error: " . $this->phpmailer->ErrorInfo);
+            throw new \Exception("Mailer Error: " . $this->phpmailer->ErrorInfo);
         }
     }
 
@@ -208,6 +208,14 @@ class MailSender {
 
         //Set the hostname of the mail server
         $this->phpmailer->Host = $host;
+
+//        $this->phpmailer->SMTPOptions = array(
+//            'ssl' => array(
+//                'verify_peer' => false,
+//                'verify_peer_name' => false,
+//                'allow_self_signed' => true
+//            )
+//        );
 
         //Whether to use SMTP authentication
         $this->phpmailer->SMTPAuth = $smtp_options['SMTPAuth'];

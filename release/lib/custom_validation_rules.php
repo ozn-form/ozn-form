@@ -62,6 +62,21 @@
     }
 }, "に「@」マークが含まれていません");
 
+/**
+ * メールアドレス詳細（@が複数ある）
+ */
+\Valitron\Validator::addRule('email_atmark_over', function($field, $value, array $params, array $fields) {
+
+    if(empty($value))
+    {
+        return TRUE;
+    }
+    else
+    {
+        return mb_substr_count($value, '@') <= 1;
+    }
+}, "に「@」マークが複数含まれています。");
+
 
 /**
  * メールアドレス詳細（@より前がない）
@@ -120,3 +135,42 @@
 \Valitron\Validator::addRule('equals_value', function($field, $value, array $params, array $fields) {
     return $value === $params[0];
 }, "は「%s」と同じ値である必要があります。");
+
+
+/**
+ *  チェックボックス（複数）の値が指定値を含む（主に検証条件に使用）
+ */
+\Valitron\Validator::addRule('included', function($field, $value, array $params, array $fields) {
+
+    if(is_array($value)) {
+        return in_array($params[0], $value);
+    } else {
+        return $value === $params[0];
+    }
+}, "は「%s」を含む必要があります。");
+
+
+/**
+ *  送信値（配列）の数がxx以上
+ */
+\Valitron\Validator::addRule('itemCountGreaterThan', function($field, $value, array $params, array $fields) {
+
+    if(is_array($value)) {
+        return count($value) >= $params[0];
+    } else {
+        return 1 >= $params[0];
+    }
+}, "は%sつ以上選択してください。");
+
+
+/**
+ *  送信値（配列）の数がxx以下
+ */
+\Valitron\Validator::addRule('itemCountLessThan', function($field, $value, array $params, array $fields) {
+
+    if(is_array($value)) {
+        return count($value) <= $params[0];
+    } else {
+        return 1 <= $params[0];
+    }
+}, "は%sつ以下で選択してください。");

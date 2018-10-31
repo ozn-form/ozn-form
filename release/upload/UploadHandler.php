@@ -15,6 +15,8 @@ class UploadHandler
 
     protected $options;
 
+    const FileExpired = 60 * 60;
+
     // PHP File Upload error message codes:
     // http://php.net/manual/en/features.file-upload.errors.php
     protected $error_messages = array(
@@ -297,10 +299,18 @@ class UploadHandler
 
     protected function is_valid_file_object($file_name) {
         $file_path = $this->get_upload_path($file_name);
-        if (is_file($file_path) && $file_name[0] !== '.') {
+        if (is_file($file_path) && $file_name[0] !== '.' && (! $this->isExpiredFile($file_path))) {
             return true;
         }
         return false;
+    }
+
+    protected function isExpiredFile($file_path)
+    {
+        $now = time();
+        $updated_at = filemtime($file_path);
+
+        return ($updated_at + self::FileExpired) < $now;
     }
 
     protected function get_file_object($file_name) {

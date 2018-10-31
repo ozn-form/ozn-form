@@ -1,6 +1,6 @@
 <?php namespace OznForm;
 
-require_once dirname(__FILE__) . '/FormError.class.php';
+require_once dirname(__FILE__) . '/exceptions/FormError.class.php';
 
 /**
  * Class Database

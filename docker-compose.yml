@@ -1,0 +1,48 @@
+version: '2'
+
+services:
+
+  php54-apache:
+
+    container_name: php54-apache
+    image: php:5.4-apache
+#    env_file: ./docker/.env
+#    build:
+#      context: ./docker
+    ports:
+      - 8054:80
+    volumes:
+      - .:/var/www/html
+
+
+  php56-apache:
+
+    container_name: php56-apache
+    image: php:5.6-apache
+    env_file: ./docker/.env
+    build:
+      context: ./docker
+      dockerfile: ./php56/Dockerfile
+    ports:
+      - 8056:80
+    volumes:
+      - .:/var/www/html
+
+
+  php71-apache:
+
+    container_name: php71-apache
+    image: php:7.1-apache
+#    env_file: ./docker/.env
+#    build:
+#      context: ./docker
+    ports:
+      - 8071:80
+    volumes:
+      - .:/var/www/html
+
+  maildev:
+    container_name: ozn-maildev
+    image: djfarrelly/maildev:0.14.0
+    ports:
+     - 8282:80

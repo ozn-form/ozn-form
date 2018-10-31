@@ -54,12 +54,21 @@ class FromValidation
 
             $name = str_replace('[]', '', $name);
 
+            // 配列対応
+            $validateCondition = array();
+
+            foreach ($setting['validate_condition'] as $k => $v) {
+                $k = str_replace('[]', '', $k);
+                $validateCondition[$k] = $v;
+            }
+
+
             $this->run(
                 $name,
                 $post_data,
                 $setting['validates'],
                 $setting['label'],
-                $setting['validate_condition'],
+                $validateCondition,
                 $setting['error_messages']
             );
         }
@@ -91,6 +100,9 @@ class FromValidation
         // 検証実行条件があれば先に条件を検証
         if($condition) {
             foreach ($condition as $target_name => $target_validates) {
+
+                if(! isset($values[$target_name])) { $values[$target_name] = ''; }
+
                 if( ! $this->isValid($target_name, $values, $target_validates, null, null)) {
                     $run_validation = FALSE;
                 }
@@ -126,12 +138,17 @@ class FromValidation
      */
     private function isValid($name, $values, $validates, $label, $messages)
     {
+
+        if( ! isset($values[$name])) {
+            return TRUE;
+        }
+
         $v = new Valitron(array($name => $values[$name]));
 
         // メールアドレス詳細チェック処理
         if(in_array('email_detail', $validates)) {
             array_splice($validates, array_search('email_detail', $validates), 1);
-            $validates = array_merge($validates, array('email_atmark', 'email_no_user', 'email_domain', 'email_comma'));
+            $validates = array_merge($validates, array('email_atmark', 'email_atmark_over', 'email_no_user', 'email_domain', 'email_comma'));
         }
 
         foreach ($validates as $rule) {

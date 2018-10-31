@@ -1,6 +1,6 @@
 <?php namespace OznForm;
 
-require_once dirname(__FILE__) . '/FormError.class.php';
+require_once dirname(__FILE__) . '/exceptions/FormError.class.php';
 
 
 class FormConfig
@@ -244,25 +244,68 @@ class FormConfig
 
 
     /**
-     * 管理者宛メールの設定
-     * @return mixed
+     * 管理者宛メールの設定を返す
+     *
+     * @param array $pageData <フォームに入力された全ての値>
+     *
+     * @return array <管理者宛てメール設定>
+     * @throws FormError
      */
-    public function adminMail() {
-        return $this->mailSetting($this->config_raw['mail']['admin']);
+    public function adminMail($pageData) {
+
+        $adminMailConfig = $this->config_raw['mail']['admin'];
+
+        /**
+         * To設定が配列の時は、特定項目の選択によって宛先を変更する
+         */
+        if(is_array($adminMailConfig['to'])) {
+
+            $adminAddress = '';
+            $defaultAddress = '';
+
+            foreach ($adminMailConfig['to'] as $setting => $address) {
+
+                if($setting === 'default') {
+                    $defaultAddress = $address;
+                } else {
+
+                    list($formKey, $formValue) = explode('|', $setting);
+
+                    if( ! isset($pageData[$formKey])) { continue; }
+
+                    if($pageData[$formKey] === $formValue) {
+                        $adminAddress = $address;
+                        break;
+                    }
+                }
+            }
+
+            $adminMailConfig['to'] = $adminAddress ? $adminAddress : $defaultAddress;
+        }
+
+        return $this->validMailSetting($adminMailConfig);
     }
 
 
     public function autoReplyMail() {
-        return $this->mailSetting($this->config_raw['mail']['auto_reply']);
+        return $this->validMailSetting($this->config_raw['mail']['auto_reply']);
     }
 
-    private function mailSetting($raw) {
+    /**
+     * メール設定情報をチェックし返す
+     *
+     * @param $mailSetting
+     *
+     * @return array <検証済みメール設定値>
+     * @throws FormError
+     */
+    private function validMailSetting($mailSetting) {
 
-        if(empty($raw['to'])) throw new FormError('To アドレスが設定されていません。');
-        if(empty($raw['from'])) throw new FormError('From アドレスが設定されていません。');
-        if(empty($raw['reply_to'])) throw new FormError('Reply To アドレスが設定されていません。');
+        if(empty($mailSetting['to'])) throw new FormError('To アドレスが設定されていないか、宛先振り分け設定している場合は、設定内容に誤りがあります。');
+        if(empty($mailSetting['from'])) throw new FormError('From アドレスが設定されていません。');
+        if(empty($mailSetting['reply_to'])) throw new FormError('Reply To アドレスが設定されていません。');
 
-        return $raw;
+        return $mailSetting;
     }
 
     /**

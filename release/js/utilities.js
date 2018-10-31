@@ -26,16 +26,33 @@ window.OznForm.utilities = {
         });
     },
 
+    /**
+     * 各フォームの初期値を設定する
+     *
+     * @param messages
+     */
     setInitMessage: function (messages) {
 
         var self = this;
 
         $.each(messages, function (name, value) {
 
+            // 設定値が配列の場合は [] をつける
+            if($.isArray(value)) { name += '[]'; }
+
             var $elem = $('[name="' + name + '"]');
 
-            if($elem.size !== 0 && $elem.val() == '') {
-                self.setValue($elem, value);
+            if($elem.size() > 0) {
+
+                switch ($elem.attr('type')) {
+
+                    case 'radio':
+                    case 'checkbox':
+                        if($elem.filter('checked').size() === 0) {self.setValue($elem, value);}
+                        break;
+                    default:
+                        if($elem.val() === '') {self.setValue($elem, value);}
+                }
             }
         })
 
@@ -112,7 +129,11 @@ window.OznForm.utilities = {
             var form_value  = $form_el.val();
             var form_config = window.OznForm.forms[name];
 
-            var is_upfile_form = (form_config.type === 'upload_files');
+            var is_upfile_form = false;
+
+            if(form_config) {
+                is_upfile_form = (form_config.type === 'upload_files');
+            }
 
 
             // -- 各フォームタイプにより取得値などの設定を変更する
@@ -131,12 +152,22 @@ window.OznForm.utilities = {
                 // 通常フォームの場合
             } else {
 
-                // ラジオボタン・チェックボックスの時は、チェックされているデータを送信する
-                if($.inArray($form_el.attr('type'), ['radio', 'checkbox']) >= 0 ) {
+                if($form_el.attr('type') ===  'radio') {
+
+                    // ラジオボタンの時は、チェックされているデータを送信する
                     form_value = $form_el.filter(':checked').val();
 
-                    // その他の input 要素の時は全角を半角に変換して送信する
+                } else if ($form_el.attr('type') === 'checkbox') {
+
+                    // チェックボックスの時にはチェックされているすべてのデータを送信する（配列）
+                    form_value = [];
+                    $form_el.filter(':checked').each(function () {
+                        form_value.push($(this).val());
+                    });
+
                 } else if ($form_el.prop("nodeName") === 'INPUT') {
+
+                    // その他の input 要素の時は全角を半角に変換して送信する
 
                     // 全角半角変換
                     form_value = OznForm.utilities.toHalfWidth(form_value);
