@@ -4,3 +4,4 @@ node_modules/
 /release/db/*.db
 script/
 /docker/.env
+package-lock.json
