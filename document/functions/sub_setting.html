@@ -137,14 +137,16 @@
             <td>フォーム画面</td>
         </tr>
     </table>
+    <h3>エラー画面で検証OKの項目のみ非表示にする</h3>
 
     <p>
-        フォーム送信時、エラー項目のみを表示する（検証OKの項目を非表示にする）機能です。
+        フォーム送信時、エラー項目のみを表示する（検証OKの項目を非表示にする）機能です。<br>
+        ユーザーの意識をエラーのある項目だけに集中させます。
     </p>
 
     <h4 class="config-subheader">使用方法</h4>
     <p>
-        検証OKの時に非表示にしたい要素へ「data-oznform-area="form_name"」を記述してください。<br>
+        検証OKの時に非表示にしたい要素へ<code>data-oznform-area="form_name"</code>を記述してください。<br>
         form_name は検証対象要素のNAME属性値を指定します。data-oznform-area は複数の項目に記述しても正しく動作します。
     </p>
 
