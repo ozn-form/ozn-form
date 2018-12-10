@@ -1,23 +1,48 @@
-<li class="<!-- @@var= home_active -->"><a href="<!--@@var= relative_path -->">製品概要</a></li>
+
+<!-- ヘッダメニュー -->
+
+
+<li class="<!-- @@var= home_active -->">
+    <a href="<!--@@var= relative_path -->">製品概要</a>
+</li>
+
+
+<li class="dropdown <!-- @@var= guidance_active -->">
+    <a href="<!--@@var= relative_path -->" class="dropdown-toggle" id="guidance_drop" data-toggle="dropdown"
+       role="button"
+       aria-haspopup="true" aria-expanded="true"> 使い方 <span class="caret"></span> </a>
+    <ul class="dropdown-menu" aria-labelledby="guidance_drop">
+        <li><a href="<!--@@var= relative_path -->guidance/index.html">はじめに</a></li>
+        <li><a href="<!--@@var= relative_path -->guidance/config_file.html">設定ファイルの書き方</a></li>
+        <li><a href="<!--@@var= relative_path -->guidance/form_template.html">フォームテンプレートの書き方</a></li>
+        <li><a href="<!--@@var= relative_path -->guidance/mail_template.html">メールテンプレートの書き方</a></li>
+    </ul>
+</li>
+
 
 <li class="dropdown <!-- @@var= functions_active -->">
-    <a href="<!--@@var= relative_path -->" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown" role="button"
+    <a href="<!--@@var= relative_path -->" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown"
+       role="button"
        aria-haspopup="true" aria-expanded="true"> 機能説明 <span class="caret"></span> </a>
     <ul class="dropdown-menu" aria-labelledby="functions_drop">
-        <li><a href="<!--@@var= relative_path -->functions/setting.html">設定一覧</a></li>
-        <li><a href="<!--@@var= relative_path -->functions/sub_setting.html">補助機能</a></li>
+        <li><a href="<!--@@var= relative_path -->functions/styles.html">標準スタイル設定</a></li>
     </ul>
 </li>
 
-<li class="dropdown">
+<li class="dropdown <!-- @@var= sample_active -->">
     <a href="#" class="dropdown-toggle" id="drop1" data-toggle="dropdown" role="button"
-                             aria-haspopup="true" aria-expanded="true"> サンプルフォーム <span class="caret"></span> </a>
+       aria-haspopup="true" aria-expanded="true"> サンプルフォーム <span class="caret"></span> </a>
     <ul class="dropdown-menu" aria-labelledby="drop1">
-        <li class="<!-- @@var= normal_active -->"><a href="<!--@@var= relative_path -->samples/normal/?mail_body=これはテスト送信です。">ノーマル版</a></li>
-        <li class="<!-- @@var= no_confirm_active -->"><a href="<!--@@var= relative_path -->samples/no_confirm/">確認スキップ</a></li>
-        <li class="<!-- @@var= step_active -->"><a href="<!--@@var= relative_path -->samples/step/">ステップ分割</a></li>
-        <li class="<!-- @@var= image_active -->"><a href="<!--@@var= relative_path -->samples/image/">画像添付</a></li>
+        <li class="<!-- @@var= normal_active -->">
+            <a href="<!--@@var= relative_path -->samples/normal/?mail_body=これはテスト送信です。">ノーマル版</a>
+        </li>
+        <li class="<!-- @@var= no_confirm_active -->">
+            <a href="<!--@@var= relative_path -->samples/no_confirm/">確認画面なし</a></li>
+        <!--<li class="&lt;!&ndash; @@var= step_active &ndash;&gt;">-->
+            <!--<a href="&lt;!&ndash;@@var= relative_path &ndash;&gt;samples/step/">ステップ分割</a>-->
+        <!--</li>-->
+        <li class="<!-- @@var= image_active -->">
+            <a href="<!--@@var= relative_path -->samples/image/">画像添付</a>
+        </li>
     </ul>
 </li>
-
-<li><a href="<!--@@var= relative_path -->../order-form/">導入希望はこちら</a></li>

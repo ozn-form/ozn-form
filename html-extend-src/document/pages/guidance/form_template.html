@@ -1,0 +1,464 @@
+<!-- @@master ../../layout/layout.html {"title": "チュートリアル", "relative_path": "../", "guidance_active":"active", "body_classes": "guidance"} -->
+
+<!-- @@block additional_header -->
+
+<!-- @@close -->
+
+<!-- @@block content -->
+
+    <div class="page-header">
+        <h1>フォームテンプレートの書き方と機能 <small>ozn-form（オゾン・フォーム）</small></h1>
+    </div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<p>フォーム画面、確認画面をozn-formのテンプレートにする書き方とその機能を説明します。</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h2 class="guidance-header">フォームテンプレート化するための記述</h2>
+
+
+<h3 class="guidance-header">設定ファイルとozn-formソースファイルの読み込み</h3>
+
+<p>あらかじめ作成したフォームと確認画面のHTMLファイルの先頭（htmlタグの前）に設定ファイルまでのパスとozn-formソールファイルを読みこむ require_once 文を記述します。</p>
+
+<p>下記の &lt;?php &#12316; ?&gt; の部分をコピーして各ファイルまでのパスを記述してください。絶対パスでも相対パスでもどちらでも大丈夫です。</p>
+
+<div class="code-example">
+    <pre><code>&lt;?php
+  // 設定ファイルのパスを設定
+  $config_path = 'ここに設定ファイルまでのパスを記載';
+
+  // OznForm 実行ファイル読み込み
+  require_once 'ここに実行ファイルまでのパスを記載';
+?&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+...</code></pre>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+
+<h3 class="guidance-header">CSSとJavascriptの読み込み</h3>
+
+<p>ozn-form は javascript を使って様々な機能を実装しています。そのため、各テンプレートファイルではheadタグ内に下記の記述を追加して、それらの読み込みをする必要があります。</p>
+
+<div class="code-example">
+    <pre><code>&lt;head&gt;
+  ...
+  &lt;!-- ozn-form のデフォルトスタイルを読み込み --&gt;
+  &lt;?php echo $ozn_form_styles; ?&gt;
+
+  &lt;!-- ozn-form のjsを読み込み --&gt;
+  &lt;?php echo $ozn_form_javascript; ?&gt;
+  ...
+&lt;/head&gt;</code></pre>
+</div>
+
+
+<p>以上でフォームテンプレートに必要なファイルの読み込みは完了です。</p>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h2 class="guidance-header">フォームテンプレート基本機能</h2>
+<p>
+    フォームテンプレート化した画面で使用できる機能です。
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">リアルタイム入力値検証</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>
+            設定ファイルにフォームの構成と検証条件を書くことにより、対応する項目の入力値検証をフォーカスが外れたタイミングでリアルタイムに行います。
+        </p>
+        <p>
+            検証成功/失敗時には特定のclassが付与されるため、ユーザへ適切にフィードバックすることができます。詳細については<a href="../functions/styles.html">標準スタイルページ</a>の「バリデーション時に付与されるclass」をご覧ください。
+        </p>
+    </div>
+    <div class="col-md-6"><img src="../images/guidance/auto_validate.gif" height="100%" width="100%"/></div>
+</div>
+
+
+<h3 class="guidance-header">ページ離脱時アラート</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>
+            設定ファイルにて有効化することにより、入力途中でリロードや他ページへの遷移を行おうとすると確認ダイアログが出るようにします。
+        </p>
+        <p>こちらの機能はデフォルトではOFFになっています。</p>
+
+        <p>ozn-form-nav クラスをつけたリンクについては、遷移時にアラートを出さないようにできます。</p>
+    </div>
+    <div class="col-md-6"><img src="../images/guidance/reload.gif" height="100%" width="100%"/></div>
+</div>
+
+<h3 class="guidance-header">エンターキー押下時に送信させない</h3>
+
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            エンターキー押下時に送信してしまうブラウザのデフォルトの挙動を停止しています。
+        </p>
+    </div>
+</div>
+
+
+<!--<h3 class="guidance-header">送信リンクの連続クリック防止</h3>-->
+
+<!--<div class="row">-->
+    <!--<div class="col-md-6">-->
+        <!--<p>-->
+            <!--二重送信を防止するため二度目以降のクリックを無効化する機能です。<br>-->
+            <!--クリックするとリンクテキストが「送信中です…お待ちください。」に変わり、以降のクリックが無効になります。-->
+        <!--</p>-->
+        <!--<p>またクリック無効中は設定要素に対して「ozn-form-disabled」が付与されます。</p>-->
+    <!--</div>-->
+    <!--<div class="col-md-6"><img src="../images/guidance/reload.gif" height="100%" width="100%"/></div>-->
+<!--</div>-->
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h2 class="guidance-header">確認画面テンプレート基本機能</h2>
+<p>
+    フォームテンプレート化した確認画面で使用できる機能です。
+</p>
+
+<h3 class="guidance-header">確認画面でのフォーム送信値の表示</h3>
+
+<p>フォームで送信された値を確認画面で表示する場合は、表示したい要素に data-insert="name" 属性をつけてください。nameは表示させたいフォーム要素のNAME属性値となります。</p>
+
+<p>また表示させたいフォーム要素に入力がない場合、data-if="name" 属性をつけた要素は非表示になります。</p>
+
+<p>なお data-if 属性をつけた要素は data-insert 属性をつけた要素を必ずしも含む必要はありません。</p>
+
+<h5>設置例</h5>
+<p>email要素に入力された値を表示し、入力がなければtr以下の要素は非表示とする例。</p>
+<div class="code-example">
+    <pre><code>&lt;div class=&quot;tr&quot; data-if=&quot;email&quot;&gt;
+    &lt;div class=&quot;th&quot;&gt;&#12513;&#12540;&#12523;&#12450;&#12489;&#12524;&#12473; &lt;span class=&quot;ozn-label required&quot;&gt;&#24517;&#38920;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;td&quot;&gt;&lt;span data-insert=&quot;email&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h2 class="guidance-header">フォームテンプレートで使用できる付加機能</h2>
+<p>
+    決められた属性名をつけたり特定のHTML構成をすることによって、付加機能を使用することができます。
+</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">検証OKの項目を非表示にする</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>
+            フォーム送信時に検証を行い問題のなかった項目を次のエラー画面で消すことができます。全ての項目に設定することによってエラーした項目だけ残して表示することができます。
+        </p>
+    </div>
+    <div class="col-md-6"><img src="../images/guidance/hidden_items.gif" height="100%" width="100%"/></div>
+</div>
+
+<h5>使い方</h5>
+
+<p>検証OK時に消したい要素へ data-oznform-area="name" 属性を記述します。nameには検証対象の要素のNAME属性値を指定します。</p>
+
+
+<h5>設置例</h5>
+<p>customer_nameの入力フォームが検証OKだった場合に tr 配下の要素を消す例</p>
+
+<div class="code-example">
+    <pre><code>&lt;div class=&quot;tr&quot; data-oznform-area=&quot;customer_name&quot;&gt;
+&lt;div class=&quot;th&quot;&gt;&#12362;&#21517;&#21069; &lt;span class=&quot;ozn-label required&quot;&gt;&#24517;&#38920;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;td&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;customer_name&quot; &gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+
+<h3 class="guidance-header">カレンダーから日付入力する（Date Picker）機能</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>
+            フォームにフォーカスするとカレンダーが表示され日付を選択入力できる機能です。
+        </p>
+        <p>
+            動作には jQuery UI (Datepicker) ライブラリを使用しています。
+        </p>
+    </div>
+    <div class="col-md-6"><img src="../images/guidance/datepicker.gif" height="100%" width="100%"/></div>
+</div>
+
+<h5>使い方</h5>
+
+<p>inputタグに data-of_datepicker="true" 属性をつけることによりカレンダーを表示する入力フォームが作成できます。</p>
+
+
+<h5>設置例</h5>
+
+<div class="code-example">
+    <pre><code>&lt;input type=&quot;text&quot; name=&quot;shipping-date&quot; data-of_datepicker=&quot;true&quot;&gt;</code></pre>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">郵便番号から住所を入力する機能</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>
+            郵便番号を入力してもらったあと、その番号に基づいて住所を入力する機能です。
+        </p>
+        <p>
+            実際の動作には ajaxzip3 というライブラリを使用しています。
+        </p>
+    </div>
+    <div class="col-md-6"><img src="../images/guidance/autozip.gif" height="100%" width="100%"/></div>
+</div>
+
+<h5>使い方</h5>
+
+<p>inputタグに特定の属性をつけることにより住所補完機能をつけることができます。</p>
+
+<ul>
+    <li>data-oznform-zip="keyword" （郵便番号フィールドの指定）</li>
+    <li>data-oznform-pref="keyword" （都道府県入力フィールドの指定）</li>
+    <li>data-oznform-address="keyword" （住所入力フィールドの指定）</li>
+</ul>
+
+<p>
+    keywordの部分にはお好きなの文字列を指定できます。
+    注文者住所と発送先住所など、複数の住所入力欄を設置したい場合など、入力欄のペアごとにkeyword の部分の文字列を同じにしておけば
+    問題なく入力欄に自動補完できるようになります。
+</p>
+
+<p>都道府県入力フィールドの指定（data-oznform-pref="keyword"）は省略可能です。その場合、住所入力フィールドへ都道府県も含めた住所が補完されます。</p>
+
+<h5>通常例</h5>
+
+<div class="code-example">
+    <pre><code>郵便番号： &lt;input type=&quot;text&quot; name=&quot;zip-code&quot; data-oznform-zip=&quot;address&quot;&gt;
+住所： &lt;input type=&quot;text&quot; name=&quot;address&quot; data-oznform-address=&quot;address&quot;&gt;</code></pre>
+</div>
+
+<h5>都道府県を別入力フィールドへ分ける例</h5>
+
+<div class="code-example">
+    <pre><code>郵便番号： &lt;input type=&quot;text&quot; name=&quot;zip-code&quot; data-oznform-zip=&quot;address&quot;&gt;
+都道府県： &lt;input type=&quot;text&quot; name=&quot;pref&quot; data-oznform-pref=&quot;address&quot;&gt;
+住所： &lt;input type=&quot;text&quot; name=&quot;address&quot; data-oznform-address=&quot;address&quot;&gt;</code></pre>
+</div>
+
+
+<h5>複数設定</h5>
+<div class="code-example">
+    <pre><code>ご注文者：
+郵便番号： &lt;input type=&quot;text&quot; name=&quot;zip-code&quot; data-oznform-zip=&quot;order-address&quot;&gt;
+住所： &lt;input type=&quot;text&quot; name=&quot;address&quot; data-oznform-address=&quot;order-address&quot;&gt;
+
+お届け先：
+郵便番号： &lt;input type=&quot;text&quot; name=&quot;zip-code&quot; data-oznform-zip=&quot;shipping-address&quot;&gt;
+都道府県： &lt;input type=&quot;text&quot; name=&quot;pref&quot; data-oznform-pref=&quot;shipping-address&quot;&gt;
+住所： &lt;input type=&quot;text&quot; name=&quot;address&quot; data-oznform-address=&quot;shipping-address&quot;&gt;</code></pre>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">ふりがな自動補完機能</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>
+            氏名などの入力をしてもらった場合、別フィールドへふりがなを自動入力する機能です。
+        </p>
+        <p>
+            実際の動作には autoKana というライブラリを使用しています。
+        </p>
+    </div>
+    <div class="col-md-6"><img src="../images/guidance/auto_kana.gif" height="100%" width="100%"/></div>
+</div>
+
+<h5>使い方</h5>
+
+<p>inputタグに特定の属性をつけることによりふりがな補完機能をつけることができます。</p>
+
+<ul>
+    <li>data-autoruby="keyword" （ふりがな自動入力する元の要素指定）</li>
+    <li>data-autoruby-hiragana="keyword" （ふりがな入力する要素の指定）</li>
+    <li>data-autoruby-katakana="keyword" （フリガナ入力する要素の指定）</li>
+</ul>
+
+<p>
+    keywordの部分にはお好きなの文字列を指定できます。
+    複数の入力欄を設置したい場合など、入力欄のペアごとにkeyword の部分の文字列を同じにしておけば問題なく入力欄に自動補完できるようになります。
+</p>
+
+<p>属性をつけ分けることにより、ひらがな/カタカナの区別が可能です。</p>
+
+<h5>ふりがな自動補完</h5>
+
+<div class="code-example">
+    <pre><code>氏名： &lt;input type=&quot;text&quot; name=&quot;name&quot; data-autoruby=&quot;name&quot;&gt;
+氏名（かな）： &lt;input type=&quot;text&quot; name=&quot;name_kana&quot; data-autoruby-hiragana=&quot;name&quot;&gt;</code></pre>
+</div>
+
+<h5>フリガナ自動補完</h5>
+
+<div class="code-example">
+    <pre><code>氏名： &lt;input type=&quot;text&quot; name=&quot;name&quot; data-autoruby=&quot;name&quot;&gt;
+氏名（かな）： &lt;input type=&quot;text&quot; name=&quot;name_kana&quot; data-autoruby-katakana=&quot;name&quot;&gt;</code></pre>
+</div>
+
+
+<h5>複数設定</h5>
+<div class="code-example">
+    <pre><code>姓： &lt;input type=&quot;text&quot; name=&quot;name_sei&quot; data-autoruby=&quot;name_sei&quot;&gt;
+名： &lt;input type=&quot;text&quot; name=&quot;name_mei&quot; data-autoruby=&quot;name_mei&quot;&gt;
+姓かな： &lt;input type=&quot;text&quot; name=&quot;name_kana_sei&quot; data-autoruby-katakana=&quot;name_sei&quot;&gt;
+名かな： &lt;input type=&quot;text&quot; name=&quot;name_kana_mei&quot; data-autoruby-katakana=&quot;name_mei&quot;&gt;</code></pre>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">メールドメイン補完機能</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>
+            メールアドレス入力欄に入力する際、@を入れるとそれ以降のドメイン名を補完するリストが表示され選択することができます。
+        </p>
+    </div>
+    <div class="col-md-6"><img src="../images/guidance/auto_mail.gif" height="100%" width="100%"/></div>
+</div>
+
+<h5>使い方</h5>
+
+<p>inputタグに data-domain-suggest 属性をつけることによりメールドメイン補完機能をつけることができます。</p>
+
+<h5>設置例</h5>
+<div class="code-example">
+    <pre><code>&lt;input data-domain-suggest=&quot;true&quot; type=&quot;text&quot; name=&quot;email&quot; &gt;</code></pre>
+</div>
+
+<h5>補完されるドメイン名</h5>
+<p>システム標準で下記のドメイン名が補完対象となります。/config/oznform_config.js にこのリストがありますので、特定のドメインを対象に加えたい場合はこのファイルに追加してください。</p>
+<div class="row">
+    <div class="col-md-3 col-sm-4 col-xs-6">・yahoo.co.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・gmail.com</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・ezweb.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・docomo.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・softbank.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・i.softbank.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・icloud.com</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・hotmail.com</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・hotmail.co.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・outlook.com</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・outlook.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・live.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・nifty.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・ybb.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・goo.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・mail.goo.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・infoseek.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・excite.co.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・auone.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・livedoor.com</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・ymobile.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・ymobile1.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・y-mobile.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・emnet.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・wcm.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・d.vodafone.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・h.vodafone.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・t.vodafone.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・c.vodafone.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・k.vodafone.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・r.vodafone.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・n.vodafone.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・s.vodafone.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・q.vodafone.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・pdx.ne.jp</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・willcom.com</div>
+    <div class="col-md-3 col-sm-4 col-xs-6">・disney.ne.jp</div>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">ファイルアップロード機能</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>
+            ファイルアップロードを含むメールフォームを簡単に設置できる機能です。フォームにアップロードされた画像は、管理者宛メールに添付されます。
+        </p>
+        <p>
+            このファイルアップロード機能では jQuery File Upload ライブラリを使用しています。
+        </p>
+    </div>
+    <div class="col-md-6"><img src="../images/guidance/fileup.gif" height="100%" width="100%"/></div>
+</div>
+
+<h5>使い方</h5>
+
+<p>中身が空のブロック要素に data-oznform-fileup="attachment1[]" 属性を指定してください。 </p>
+
+<p>設置例の attachment1[] の部分はお好きな文字列にできますが、最後に[]がついた名前にする必要があり、その部分がフォーム送信時のNAME属性になります。</p>
+
+<p>
+    アップロードされたファイルは一時ディレクトリ [/upload/files/**/*] に保存されます。この一時ディレクトリにwebサーバ実行ユーザから書き込みできるよう権限を変更してください。
+</p>
+<h5>設置例</h5>
+<div class="code-example">
+    <pre><code>&lt;div class=&quot;ozn-file-block&quot; data-oznform-fileup=&quot;attachment1[]&quot;&gt;&lt;/div&gt;</code></pre>
+</div>
+
+<h5>ファイルアップローダーの設定について</h5>
+
+設定ファイルが [/upload/index.php] にあります。ファイルサイズ上限などの設定はこちらのファイルを編集してください。こちらの設定項目などは jQuery File Upload の設定に準じるものです。
+
+<h5>画像アップロード時のリサイズ設定について</h5>
+<p>
+    フォーム送信前にクライアント側でリサイズ処理を行うことができます。
+</p>
+<p>
+    <b>この機能はデフォルトで有効になっています。</b>設定を変更するには /config/oznform_config.js の項目を確認してください。
+</p>
+
+<ul>
+    <li>enableClientResize　：クライアントリサイズ機能の有効(true)/無効(false)</li>
+    <li>maxWidth　：リサイズ横幅(px)</li>
+    <li>maxWidth　：リサイズ縦幅(px)</li>
+</ul>
+<div class="code-example">
+    <pre><code>/**
+ * 画像アップロード時のクライアントリサイズ設定
+ *
+ * @type {{enableClientResize: boolean, maxWidth: number, maxHeight: number}}
+ */
+window.OznForm.client_resize_config = {
+
+    enableClientResize: true,
+    maxWidth: 2048,
+    maxHeight: 2048
+};</code></pre>
+</div>
+
+
+<!-- @@close -->

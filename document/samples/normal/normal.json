@@ -11,8 +11,9 @@
 
     "mail": {
 
+        "send_flag": false,
+
         "send_by": "sendmail",
-        "redirect_to": "",
 
         "admin": {
             "to_name"   : "ozn-form",
@@ -25,7 +26,7 @@
         },
 
         "auto_reply": {
-            "enabled"   : true,
+            "enabled"   : false,
             "to_name"   : "<% customer_name %> 様",
             "to"        : "<% email %>",
             "cc"        : [],
@@ -47,9 +48,7 @@
                     "validates": ["required"],
                     "error_message_position": ".title-error",
                     "error_message_template": "<p><% messages %></p>",
-                    "error_messages": {
-                        "required": "いずれか1つを選択してください。"
-                    }
+                    "error_messages": {"required": "いずれか1つを選択してください。"}
                 },
 
                 "customer_name": {

@@ -1,0 +1,1064 @@
+<!-- @@master ../../layout/layout.html {"title": "設定ファイルの書き方", "relative_path": "../", "guidance_active":"active", "body_classes": "guidance"} -->
+
+<!-- @@block additional_header -->
+
+<!-- @@close -->
+
+<!-- @@block content -->
+
+    <div class="page-header">
+        <h1>設定ファイルの書き方 <small>ozn-form（オゾン・フォーム）</small></h1>
+    </div>
+
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<p>設定ファイルはフォームの動きを決める重要なファイルです。JSON形式で記述します。</p>
+<p>設定項目は大きく3つのセクションに分かれます。</p>
+<p>1つ目はフォーム全体の動きを設定する「フォーム設定」セクション。こちらは主にJSONのルート { ... } に記載します。</p>
+<p>2つ目はメール送信に関する動きを設定する「メール設定（管理者・自動返信）」セクション。こちらは "mail" の中 { "mail": { "admin": {}, "auto_reply": {}}}という形で記載します。</p>
+<p>最後にフォームの構造を定義する「テンプレート構成設定」セクション。こちらは "pages" の中 {"pages": {...}} という形で記載します。</p>
+
+<h2 class="guidance-header">設定ファイル構造と記載例</h2>
+
+<p>設定ファイルの設定項目とファイル構造の例です。赤い背景色は必須項目、緑の背景色は任意の項目になります。</p>
+<p>設定ファイルの記述は JSON 形式で行います。</p>
+
+<table class="config-document-table">
+    <tr><th>項目名</th><th>セクション</th><th>JSONコード（例）</th></tr>
+
+    <tr class="required-config"><td>&nbsp;</td><td rowspan="5">フォーム設定</td><td>{</td></tr>
+    <tr class="optional-config"><td>デバッグフラグ</td><td>&nbsp;&nbsp;"is_debug": false,</td></tr>
+    <tr class="optional-config"><td>ページ遷移アラート</td><td>&nbsp;&nbsp;    "unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。",
+    </td></tr>
+    <tr class="required-config"><td>フォーム名</td><td>&nbsp;&nbsp;"form_name": "first_form",</td></tr>
+    <tr class="required-config"><td>フォームルートパス</td><td>&nbsp;&nbsp;"form_root": "/Path/to/yourform",</td></tr>
+
+    <tr class="optional-config"><td>&nbsp;</td><td rowspan="4">検証設定<td>&nbsp;&nbsp;"validation": {</td></tr>
+    <tr class="optional-config"><td>メッセージアイコン表示</td><td>&nbsp;&nbsp;&nbsp;&nbsp;"show_icon": false,</td></tr>
+    <tr class="optional-config"><td>エラー時ボジション調整</td><td>&nbsp;&nbsp;&nbsp;&nbsp;"shift_scroll_position": -50</td></tr>
+    <tr class="optional-config"><td>&nbsp;</td><td>&nbsp;&nbsp;},</td></tr>
+
+    <tr class="required-config"><td></td><td rowspan="4">メール設定</td><td>&nbsp;&nbsp;"mail": {</td></tr>
+    <tr class="optional-config"><td>送信フラグ</td><td>&nbsp;&nbsp;&nbsp;&nbsp;"send_flag": false,</td></tr>
+    <tr class="required-config"><td>送信システム指定</td><td>&nbsp;&nbsp;&nbsp;&nbsp;"send_by": "Gmail SMTP",</td></tr>
+    <tr class="optional-config"><td>リダイレクト先設定</td><td>&nbsp;&nbsp;&nbsp;&nbsp;"redirect_to": "",</td></tr>
+
+    <tr class="required-config"><td></td><td rowspan="9">管理者宛</br>メール設定</td><td>&nbsp;&nbsp;&nbsp;&nbsp;"admin": {</td></tr>
+    <tr class="required-config"><td>管理者メール宛先名</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"to_name"   : "ozn-form管理者",</td></tr>
+    <tr class="required-config"><td>管理者メール宛先(TO)アドレス</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"to"        : "admin@mail.to.jp",</td></tr>
+    <tr class="required-config"><td>CCアドレス</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"cc"        : [],</td></tr>
+    <tr class="required-config"><td>BCCアドレス</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"bcc"       : [],</td></tr>
+    <tr class="required-config"><td>送信者名</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"from_name" : "OznForm Mailer",</td></tr>
+    <tr class="required-config"><td>送信者アドレス</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"from"      : "oznform@mail.to.jp",</td></tr>
+    <tr class="required-config"><td>返信先アドレス</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"reply_to"  : "<% email %>"</td></tr>
+    <tr class="required-config"><td></td><td>&nbsp;&nbsp;&nbsp;&nbsp;},</td></tr>
+
+    <tr class="required-config"><td></td><td rowspan="10">自動返信</br>メール設定</td><td>&nbsp;&nbsp;&nbsp;&nbsp;"auto_reply": {</td></tr>
+    <tr class="required-config"><td>自動返信有効フラグ</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"enabled"   : false,</td></tr>
+    <tr class="required-config"><td>返信宛先名</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"to_name"   : "<% customer_name %> 様",</td></tr>
+    <tr class="required-config"><td>返信先TOアドレス</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"to"        : "<% email %>",</td></tr>
+    <tr class="required-config"><td>返信先CCアドレス</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"cc"        : [],</td></tr>
+    <tr class="required-config"><td>返信先BCCアドレス</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"bcc"       : [],</td></tr>
+    <tr class="required-config"><td>送信者名</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"from_name" : "OznForm Tester",</td></tr>
+    <tr class="required-config"><td>送信者アドレス</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"from"      : "oznform@gmail.com",</td></tr>
+    <tr class="required-config"><td>返信先アドレス</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"reply_to"  : "oznform@gmail.com"</td></tr>
+    <tr class="required-config"><td></td><td>&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+    <tr class="required-config"><td></td><td>メール設定</td><td>&nbsp;&nbsp;},</td></tr>
+
+    <tr class="required-config"><td></td><td rowspan="30">テンプレート<br>構成設定</td><td>&nbsp;&nbsp;"pages": {</td></tr>
+    <tr class="required-config"><td>ページ名</td><td>&nbsp;&nbsp;&nbsp;&nbsp;"index": {</td></tr>
+    <tr class="required-config"><td>ページ役割</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"role": "form",</td></tr>
+    <tr class="required-config"><td>ページ内フォーム要素定義</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"forms": {</td></tr>
+    <tr class="required-config"><td>フォーム要素のNAME属性値</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"customer_name": {</td></tr>
+    <tr class="required-config"><td>フォーム要素のラベル</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"label": "お名前",</td></tr>
+    <tr class="required-config"><td>フォーム要素の検証ルール設定</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"validates": ["required"]</td></tr>
+    <tr class="required-config"><td></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</td></tr>
+    <tr class="required-config"><td>フォーム要素のNAME属性値</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"email": {</td></tr>
+    <tr class="required-config"><td>フォーム要素のラベル</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"label": "メールアドレス",</td></tr>
+    <tr class="required-config"><td>フォーム要素の検証ルール設定</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"validates": ["required", "email_detail"],</td></tr>
+    <tr class="optional-config"><td>エラーメッセージ表示場所指定</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"error_message_position": ".title-error",</td></tr>
+    <tr class="optional-config"><td>エラーメッセージ表示テンプレート指定</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"error_message_template": "&lt;p&gt;&lt;% messages %&gt;&lt;/p&gt;",</td></tr>
+    <tr class="optional-config"><td>カスタムエラーメッセージ指定</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"error_messages": {"required": "いずれか1つを選択してください。"}</td></tr>
+    <tr class="optional-config"><td>携帯アドレス注意文設定</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"mobile_mail_warning": "携帯電話のアドレスが入力されました。example.com ドメインからのメールを受信できるように設定お願いします。"</td></tr>
+    <tr class="required-config"><td></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+    <tr class="required-config"><td></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+    <tr class="required-config"><td></td><td>&nbsp;&nbsp;&nbsp;&nbsp;},</td></tr>
+    <tr class="required-config"><td>ページ名</td><td>&nbsp;&nbsp;&nbsp;&nbsp;"complete": {</td></tr>
+    <tr class="required-config"><td>ページ役割</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"role": "mailsend"</td></tr>
+    <tr class="required-config"><td></td><td>&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+    <tr class="required-config"><td></td><td>&nbsp;&nbsp;}</td></tr>
+    <tr class="required-config"><td></td><td>}</td></tr>
+</table>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h2 class="guidance-header">フォーム設定セクション 設定項目</h2>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">デバッグモード指定</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">×️</td>
+        <td>Boolean</td>
+        <td>true / false</td>
+    </tr>
+</table>
+
+<p>
+    開発時に使用するモード。通常使用では設定する必要のない項目です。<br>
+    true に設定すると下記の動作となります。
+</p>
+<ul>
+    <li>フォームから離脱するときのメッセージが表示されなくなる</li>
+    <li>送信後もフォームに記入された情報が削除されない。（セッションが削除されない）</li>
+    <li>セッション内の情報（フォームに入力されシステムが保持している情報）が常に画面に表示される。</li>
+</ul>
+
+<div class="alert alert-danger setting-alert">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    公開の際には設定項目を削除するか false に設定してください。重大なセキュリティリスクになります。
+</div>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{"is_debug": true}</code></pre>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<h3 class="guidance-header">ページ遷移アラート</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">×</td>
+        <td>String</td>
+        <td>"このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。"</td>
+    </tr>
+</table>
+
+<p>
+    フォーム入力途中にページを離脱する場合に表示するメッセージを設定します。<br>
+    改行は「\n」で入力してください。
+</p>
+<div class="alert alert-success setting-alert">
+    <span class="glyphicon glyphicon-info-sign"></span>
+    この設定項目を記載しない場合は、離脱メッセージ機能をOFFにできます。<br>
+</div>
+<div class="alert alert-warning setting-alert">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    IE/Edge以外のブラウザについてはこちらで設定したメッセージは適用されず、ブラウザ固有のメッセージとなります。
+</div>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{"unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。"}</code></pre>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">フォーム名</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">○</td>
+        <td>String</td>
+        <td>"sample_form"</td>
+    </tr>
+</table>
+
+
+<p>設定ファイルで管理するフォームの名前を記述します。</p>
+<div class="alert alert-warning setting-alert">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    複数フォームを設置する場合にはこの名前が被らないようにする必要があります。
+</div>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{"form_name": "sample_form1"}</code></pre>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">フォームルートパス</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">○</td>
+        <td>String</td>
+        <td>"/document/sample_form/index.php"</td>
+    </tr>
+</table>
+
+
+<p>フォームの初期ページのパスを設定します。</p>
+<div class="alert alert-warning setting-alert">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    パスは絶対パスで記載してください。
+</div>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{"form_root": "/document/sample_form/index.php"}</code></pre>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">検証設定</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>サブ設定名</th>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td>show_icon</td>
+        <td class="text-center">×</td>
+        <td>boolean</td>
+        <td>true / false</td>
+    </tr>
+    <tr>
+        <td>shift_scroll_position</td>
+        <td class="text-center">×</td>
+        <td>int</td>
+        <td>-50</td>
+    </tr>
+</table>
+
+
+<p>リアルタイム検証機能のオプション設定になります。</p>
+<ul>
+    <li>show_icon ：検証完了時にアイコンを表示するか設定できます。</li>
+    <li>shift_scroll_position ：フォーム送信時にエラー項目がある場合、その箇所までスクロールしますが、その際の位置調整の項目です。単位はpxです。</li>
+</ul>
+
+
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{
+    "validation": {
+        "show_icon": true,
+        "shift_scroll_position": -50
+    }
+}</code></pre>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h2 class="guidance-header">メール設定セクション 設定項目</h2>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">メール送信フラグ</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">×</td>
+        <td>boolean</td>
+        <td>true / false</td>
+    </tr>
+
+</table>
+
+<p>運用時では通常使用しません。フォーム設置時のテストなど、動作は確認したいがメール自体は送信したくない時に設定する項目です。</p>
+<p>記載なければ、通常通りメール配信されます。</p>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{
+    "mail": {
+        "send_flag": false
+    }
+}</code></pre>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">送信システム指定</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">○</td>
+        <td>string</td>
+        <td>sendmail</td>
+    </tr>
+
+</table>
+
+<p>メールの送信方法を指定する項目です。下記の4通りの送信方法が選択できます。</p>
+<p>この設定ファイルでの設定のほか、メールテンプレートでのアカウント設定を行います。アカウント設定の詳細については<a href="mail_template.html">「メールテンプレートの書き方」</a> ページを参照してください。</p>
+
+<table class="items-table">
+    <tr>
+        <th>設定値</th>
+        <th>説明</th>
+    </tr>
+    <tr>
+        <td>sendmail</td>
+        <td>phpのメール送信機能を使ってsendmailでメール送信する設定です。</td>
+    </tr>
+    <tr>
+        <td>SMTP</td>
+        <td>一般的なSMTPサーバを使って送信する際の設定になります。</td>
+    </tr>
+    <tr>
+        <td>Gmail SMTP</td>
+        <td>GMail の SMTPサーバを使って送信する際の設定になります。</td>
+    </tr>
+    <tr>
+        <td>Gmail SMTP With OAuth</td>
+        <td>GMail の SMTPサーバを使って送信する設定ですが、認証をOAuthで行います。</td>
+    </tr>
+
+</table>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{
+    "mail": {
+        "send_by": "sendmail"
+    }
+}</code></pre>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">リダイレクト先設定</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">×</td>
+        <td>string</td>
+        <td>/</td>
+    </tr>
+
+</table>
+
+<p>メール送信処理終了後のリダイレクト先パスの設定です。メールテンプレートで完了画面まで表示する際には設定不要です。</p>
+<p>この設定項目自体がないか、設定値に何も記載なければリダイレクトされませんので、メールテンプレートにて完了画面を作成しておく必要があります。</p>
+
+<p>この項目は絶対パスで記載するのが確実です。</p>
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{
+    "mail": {
+        "redirect_to": "/form/top/"
+    }
+}</code></pre>
+</div>
+
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">管理者宛メール設定</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">○</td>
+        <td>string</td>
+        <td> - - - </td>
+    </tr>
+
+</table>
+
+<p>管理者宛メールを送信するのに必要な設定項目です。全て必須項目となります。</p>
+
+<table class="items-table">
+    <tr>
+        <th>設定名</th>
+        <th>説明</th>
+    </tr>
+    <tr>
+        <td>to_name</td>
+        <td>宛先名の指定です。</td>
+    </tr>
+
+    <tr>
+        <td>to</td>
+        <td>宛先(To)アドレスの指定です。</td>
+    </tr>
+    <tr>
+        <td>cc</td>
+        <td>CCアドレスの指定です。指定は配列で行います。CC宛先なければ空配列([])を指定します。</td>
+    </tr>
+    <tr>
+        <td>bcc</td>
+        <td>CCアドレスと同様の仕様です。配列で指定してください。</td>
+    </tr>
+    <tr>
+        <td>from_name</td>
+        <td>送信者名の指定です。</td>
+    </tr>
+    <tr>
+        <td>from</td>
+        <td>送信者アドレスの指定です。</td>
+    </tr>
+    <tr>
+        <td>reply_to</td>
+        <td>返信先アドレスの指定です。フォーム入力値をテンプレートタグにて指定できます。</td>
+    </tr>
+
+</table>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{
+    "mail": {
+        "admin": {
+            "to_name"   : "ozn-form",
+            "to"        : "oznform+sample_normal@gmail.com",
+            "cc"        : [],
+            "bcc"       : [],
+            "from_name" : "ozn-form 管理者向けサンプルメール",
+            "from"      : "no-reply@ozonenotes.jp",
+            "reply_to"  : "<% email %>"
+        }
+    }
+}</code></pre>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">自動返信メール設定</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">○</td>
+        <td>string</td>
+        <td> - - -</td>
+    </tr>
+
+</table>
+
+<p>管理者宛メールを送信するのに必要な設定項目です。全て必須項目となります。</p>
+
+<table class="items-table">
+    <tr>
+        <th>設定名</th>
+        <th>説明</th>
+    </tr>
+    <tr>
+        <td>enabled</td>
+        <td>自動返信メールを送信するかのフラグです。[true] or [false] で設定します。</td>
+    </tr>
+    <tr>
+        <td>to_name</td>
+        <td>宛先名の指定です。フォーム入力値をテンプレートタグにて指定できます。</td>
+    </tr>
+
+    <tr>
+        <td>to</td>
+        <td>宛先(To)アドレスの指定です。フォーム入力値をテンプレートタグにて指定できます。</td>
+    </tr>
+    <tr>
+        <td>cc</td>
+        <td>CCアドレスの指定です。指定は配列で行います。CC宛先なければ空配列([])を指定します。</td>
+    </tr>
+    <tr>
+        <td>bcc</td>
+        <td>CCアドレスと同様の仕様です。配列で指定してください。</td>
+    </tr>
+    <tr>
+        <td>from_name</td>
+        <td>送信者名の指定です。</td>
+    </tr>
+    <tr>
+        <td>from</td>
+        <td>送信者アドレスの指定です。</td>
+    </tr>
+    <tr>
+        <td>reply_to</td>
+        <td>返信先アドレスの指定です。フォーム入力値をテンプレートタグにて指定できます。</td>
+    </tr>
+
+</table>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{
+    "mail": {
+        "auto_reply": {
+            "enabled"   : true,
+            "to_name"   : "<% customer_name %> 様",
+            "to"        : "<% email %>",
+            "cc"        : [],
+            "bcc"       : [],
+            "from_name" : "ozn-form 客先向けサンプルメール",
+            "from"      : "no-reply@ozonenotes.jp",
+            "reply_to"  : "<% email %>"
+        }
+    }
+}</code></pre>
+</div>
+
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h2 class="guidance-header">テンプレート構成セクション 設定項目</h2>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">基本的な設定構成</h3>
+
+<p>テンプレート構成セクションでは設定セクション "pages" 以下に実際のテンプレート構成と同じように設定項目を配置していきます。 </p>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="file_composition">
+            <ul>
+                <li><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;(フォームルート)</li>
+                <li>┣&nbsp;<i class="glyphicon glyphicon-cog"></i>&nbsp;&nbsp;form_config.json [フォーム設定ファイル]</li>
+                <li>┣&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;index.php [フォーム入力画面]</li>
+                <li>┣&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;confirm.php [確認画面]</li>
+                <li>┗&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;complete.php [送信完了画面]</li>
+            </ul>
+
+        </div>
+        <p>
+            例えば、標準的な「フォーム入力->確認->送信完了」の3画面のフォームが上記のようなファイル名で構成されていた場合、
+            テンプレート構成セクションは拡張子なしの各ファイル名をキーとした右記のようなテンプレート構造設定を記述します。
+        </p>
+        <p>
+            ページ名をキーとした設定項目の中には、role 設定項目で各ファイルの役割を指定します。フォーム入力画面以外は設定項目がないので role のみの指定となります。
+        </p>
+
+    </div>
+
+    <div class="col-md-6">
+        <div class="code-example">
+            <pre><code>{
+    &quot;pages&quot;: {
+        &quot;index&quot;: {
+            &quot;role&quot;: &quot;form&quot;,
+            &quot;forms&quot;: { ..ここにはフォーム項目の設定..}
+        },
+
+        &quot;confirm&quot;: {
+            &quot;role&quot;: &quot;confirm&quot;
+        },
+
+        &quot;complete&quot;: {
+            &quot;role&quot;: &quot;mailsend&quot;
+        }
+    }
+}</code></pre>
+
+        </div>
+    </div>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">ページ役割</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">○</td>
+        <td>string</td>
+        <td>[form | confirm | mailsend]</td>
+    </tr>
+
+</table>
+
+<p>テンプレート構成でファイルごとの処理役割を指定する項目です。各役割ごとに適切な機能がロードされる実装になっています。</p>
+
+<table class="items-table">
+    <tr>
+        <th>設定値</th>
+        <th>説明</th>
+    </tr>
+    <tr>
+        <td>form</td>
+        <td>フォーム入力画面を指定する設定値です。</td>
+    </tr>
+    <tr>
+
+        <td>confirm</td>
+        <td>確認画面を指定する設定値です。</td>
+    </tr>
+    <tr>
+
+        <td>mailsend</td>
+        <td>メールテンプレート（完了画面）を指定する設定値です。</td>
+    </tr>
+</table>
+
+<div class="code-example">
+    <h5>コード例（index.php というフォーム入力画面を指定する設定）</h5>
+    <pre><code>{
+    &quot;pages&quot;: {
+        &quot;index&quot;: {
+            &quot;role&quot;: &quot;form&quot;,
+            &quot;forms&quot;: { ..ここにはフォーム項目の設定..}
+        }
+    }
+}</code></pre>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">基本的なフォーム項目設定</h3>
+
+<p>設定セクション "pages" > "[pagename]" > "forms" 以下にフォーム入力画面にあるフォーム要素ごとに設定を記述する必要があります。 </p>
+<p>この設定値は主にリアルタイム検証機能の動作指定となります。</p>
+
+<p>下記例のように、フォーム要素 NAME属性値をキーにして設定セクションを作り、その中にフォーム要素に対する設定を記述します。</p>
+
+        <div class="code-example">
+            <h5>index.php フォームコード</h5>
+            <pre><code>&lt;form action=&quot;confirm.php&quot; method=&quot;post&quot;&gt;
+    &lt;div class=&quot;ozn-form-inner&quot;&gt;
+        &lt;div class=&quot;tr&quot; data-oznform-area=&quot;title&quot;&gt;
+            &lt;div class=&quot;th&quot;&gt;&#12362;&#21839;&#12356;&#21512;&#12431;&#12379;&#31278;&#21029; &lt;span class=&quot;ozn-label required&quot;&gt;&#24517;&#38920;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;td&quot;&gt;
+                &lt;div class=&quot;ozn-check vertical&quot;&gt;
+                    &lt;label&gt;
+                        &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;&#35211;&#31309;&#12426;&#12398;&#12372;&#20381;&#38972;&quot;&gt; &#35211;&#31309;&#12426;&#12398;&#12372;&#20381;&#38972;
+                    &lt;/label&gt;
+                    &lt;label&gt;
+                        &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;&#21830;&#21697;&#12395;&#38306;&#12377;&#12427;&#12362;&#21839;&#12356;&#21512;&#12431;&#12379;&quot;&gt; &#21830;&#21697;&#12395;&#38306;&#12377;&#12427;&#12362;&#21839;&#12356;&#21512;&#12431;&#12379;
+                    &lt;/label&gt;
+                    &lt;label&gt;
+                        &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;&#27714;&#20154;&#12408;&#12398;&#12372;&#24540;&#21215;&quot;&gt; &#27714;&#20154;&#12408;&#12398;&#12372;&#24540;&#21215;
+                    &lt;/label&gt;
+                    &lt;label&gt;
+                        &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;&#12381;&#12398;&#20182;&#12398;&#12362;&#21839;&#12356;&#21512;&#12431;&#12379;&quot;&gt; &#12381;&#12398;&#20182;&#12398;&#12362;&#21839;&#12356;&#21512;&#12431;&#12379;
+                    &lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;title-error&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;tr&quot; data-oznform-area=&quot;customer_name&quot;&gt;
+            &lt;div class=&quot;th&quot;&gt;&#12362;&#21517;&#21069; &lt;span class=&quot;ozn-label required&quot;&gt;&#24517;&#38920;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;td&quot;&gt;
+                &lt;input type=&quot;text&quot; name=&quot;customer_name&quot; class=&quot;ozn-input&quot; id=&quot;customer_name&quot; data-autoruby=&quot;customer_name&quot; placeholder=&quot;&#20363;&#65289;&#23665;&#30000; &#22826;&#37070;&quot; autocomplete=&quot;name&quot;&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+        </div>
+
+
+        <div class="code-example">
+            <h5>config.json フォーム要素設定</h5>
+            <pre><code>{
+    &quot;pages&quot;: {
+        &quot;index&quot;: {
+            &quot;role&quot;: &quot;form&quot;,
+            &quot;forms&quot;: {
+
+                "title": {
+                    "label": "お問い合わせ種別",
+                    "validates": ["required"],
+                    "error_message_position": ".title-error",
+                    "error_message_template": "&lt;p&gt;&lt;% messages %&gt;&lt;/p&gt;",
+                    "error_messages": {
+                        "required": "いずれか1つを選択してください。"
+                    }
+                },
+
+                "customer_name": {
+                    "label": "お名前",
+                    "validates": ["required"]
+                },
+            }
+        }
+    }
+}</code></pre>
+
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">フォーム要素のラベル</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">○</td>
+        <td>string</td>
+        <td>'お名前'</td>
+    </tr>
+
+</table>
+
+<p>フォーム要素の名前です。エラーメッセージを表示する際に項目名として使用します。</p>
+
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{
+    &quot;pages&quot;: {
+        &quot;index&quot;: {
+            &quot;forms&quot;: {
+                "customer_name": {
+                    "label": "お名前",
+                },
+            }
+        }
+    }
+}</code></pre>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">フォーム要素の検証ルール設定</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">○</td>
+        <td>array</td>
+        <td>["kanaOnly","required"]</td>
+    </tr>
+
+</table>
+
+<p>フォーム要素に適用する検証ルールになります。配列形式で複数指定可能です。</p>
+
+<table class="items-table">
+    <tr>
+        <th>検証ルール</th>
+        <th>設定値</th>
+        <th>説明</th>
+    </tr>
+    <tr>
+        <td>必須</td>
+        <td>"required"</td>
+        <td>送信値が空ではないことを確認</td>
+    </tr>
+
+    <tr>
+        <td>ひらカナのみ許可</td>
+        <td>"kanaOnly"</td>
+        <td>空文字もしくは、ひらがなとカタカナのみ許可</td>
+    </tr>
+    <tr>
+        <td>電話番号</td>
+        <td>"tel"</td>
+        <td>空文字もしくは、ハイフンを含む電話番号形式（桁数）のみ許可</td>
+    </tr>
+    <tr>
+        <td>郵便番号</td>
+        <td>"zip"</td>
+        <td>空文字もしくは、数字３桁・４桁・７桁（ハイフン含む）のみ許可</td>
+    </tr>
+    <tr>
+        <td>メールアドレス詳細チェック</td>
+        <td>"email_detail"</td>
+        <td>空文字もしくは、「@がある」「@が一つのみ」「@より前に文字がある」「@の後ろが正しいドメイン形式」「ドットがカンマになっていない」のみ許可</td>
+    </tr>
+    <tr>
+        <td>入力値一致</td>
+        <td>"equals_value:その他"</td>
+        <td>入力値が指定値と同じ場合のみ許可。左記の設定値例の場合は「その他」と入力されていればOK。</td>
+    </tr>
+    <tr>
+        <td>入力値が指定値を含む</td>
+        <td>"included:その他"</td>
+        <td>入力値が指定値を含む場合のみ許可。チェックボックスなど複数の入力値にも対応</td>
+    </tr>
+    <tr>
+        <td>送信値（複数）の数が指定値以上</td>
+        <td>"itemCountGreaterThan:5"</td>
+        <td>チェックボックスなどの複数送信値の数が指定値以上の時のみ許可。</td>
+    </tr>
+    <tr>
+        <td>送信値（複数）の数が指定値以下</td>
+        <td>"itemCountLessThan:5"</td>
+        <td>チェックボックスなどの複数送信値の数が指定値以下の時のみ許可。</td>
+    </tr>
+</table>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{
+    &quot;pages&quot;: {
+        &quot;index&quot;: {
+            &quot;forms&quot;: {
+                "customer_kana": {
+                    "label": "フリガナ",
+                    "validates": ["kanaOnly","required"]
+                },
+            }
+        }
+    }
+}</code></pre>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">検証ルール適用条件指定</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">×</td>
+        <td>string</td>
+        <td>'お名前'</td>
+    </tr>
+
+</table>
+
+<p>特定の条件を満たしている時のみ検証ルールを適用する設定です。例えばAを選択した時のみ、B欄の入力が必須になるというルールを作成できます。</p>
+<p>
+    "validate_condition" の中に {"条件を適用するフィールド名": [条件]} という形式で指定します。
+</p>
+<p>
+    下のコード例でいうと、「興味のある商品」選択欄で「その他」を選択した時のみ、「その他の商品名」の入力を必須にしています。
+</p>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{
+    &quot;pages&quot;: {
+        &quot;index&quot;: {
+            &quot;forms&quot;: {
+                "materials": {
+                    "label": "興味のある商品"
+                },
+                "materials-etc": {
+                    "label": "その他の商品名",
+                    "validate_condition": {
+                        "materials": ["equals_value:その他"]
+                    },
+                    "validates": ["required"]
+                },
+            }
+        }
+    }
+}</code></pre>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">エラーメッセージ表示場所指定</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">×</td>
+        <td>string</td>
+        <td>'.error_message'</td>
+    </tr>
+
+</table>
+
+<p>リアルタイム検証実行後のエラーメッセージ表示場所を特定の場所に変更できます。（デフォルトはフォーム要素の次の要素の位置）</p>
+<p>
+    設定値は jQuery に渡せるセレクタ形式の文字列で指定してください。
+</p>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{
+    &quot;pages&quot;: {
+        &quot;index&quot;: {
+            &quot;forms&quot;: {
+                "materials": {
+                    "error_message_position": ".title-error"
+                }
+            }
+        }
+    }
+}</code></pre>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">エラーメッセージ表示テンプレート指定</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">×</td>
+        <td>string</td>
+        <td>&quot;&lt;p&gt;&lt;% messages %&gt;&lt;/p&gt;&quot;</td>
+    </tr>
+
+</table>
+
+<p>リアルタイム検証失敗時のエラーメッセージテンプレートをオリジナルのものに変更できます。メッセージは &lt;% messages %&gt; の場所に入ります。</p>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{
+    &quot;pages&quot;: {
+        &quot;index&quot;: {
+            &quot;forms&quot;: {
+                "materials": {
+                    "error_message_template": &quot;&lt;p&gt;&lt;% messages %&gt;&lt;/p&gt;&quot;
+                }
+            }
+        }
+    }
+}</code></pre>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">カスタムエラーメッセージ指定</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">×</td>
+        <td>string</td>
+        <td>{"required": "いずれか1つを選択してください。"}</td>
+    </tr>
+
+</table>
+
+<p>フォーム要素ごとにエラーメッセージを変更することができます。"error_messages": { "ルール名": "新しいメッセージ", .... }</p>
+<p>指定したフォーム要素のみ、変更されたメッセージが適用されます。</p>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{
+    &quot;pages&quot;: {
+        &quot;index&quot;: {
+            &quot;forms&quot;: {
+                "title": {
+                    "label": "お問い合わせ種別",
+                    "validates": ["required"],
+                    "error_messages": {
+                        "required": "いずれか1つを選択してください。"
+                    }
+                }
+            }
+        }
+    }
+}</code></pre>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">携帯電話アドレス注意メッセージ表示</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">×</td>
+        <td>string</td>
+        <td>{"携帯電話のアドレスが入力されました。"}</td>
+    </tr>
+
+</table>
+
+<p>メールアドレス入力欄で携帯のアドレスが入力された時に、指定のメッセージを表示します。設定省略時は表示しません。</p>
+<p>携帯アドレスのリストは /config/mobile_mail_address.json に列挙されているので、こちらを修正することにより対象ドメインを変更できます。</p>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{
+    &quot;pages&quot;: {
+        &quot;index&quot;: {
+            &quot;forms&quot;: {
+                "email": {
+                    "label": "メールアドレス",
+                    "mobile_mail_warning": "携帯電話のアドレスが入力されました。example.com ドメインからのメールを受信できるように設定お願いします。"
+                },
+            }
+        }
+    }
+}</code></pre>
+
+
+<!-- @@close -->

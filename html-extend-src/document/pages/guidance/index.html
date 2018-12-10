@@ -1,0 +1,132 @@
+<!-- @@master ../../layout/layout.html {"title": "はじめに", "relative_path": "../", "guidance_active":"active", "body_classes": "guidance"} -->
+
+<!-- @@block additional_header -->
+
+<!-- @@close -->
+
+<!-- @@block content -->
+
+    <div class="page-header">
+        <h1>はじめに <small>ozn-form（オゾン・フォーム）</small></h1>
+    </div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+
+<p>ozn-form では、コーディング済みのHTMLファイルに所定の記述することによって、ozn-formテンプレートとして扱うことができます。</p>
+<p>ozn-form では、フォームを構成するファイルは公開ディレクトリの中でしたら自由な場所に配置できますので、既存のサイトなどにも制限なく組み込むことができます。</p>
+
+
+<h2 class="guidance-header">動作に必要なファイルなど</h2>
+
+<h4><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;ozn-form ソースディレクトリ</h4>
+<p>ozn-formの実行ファイルディレクトリです。サーバのWeb公開ディレクトリ内でしたらどこでも配置できます。</p>
+
+<h4><i class="glyphicon glyphicon-cog"></i>&nbsp;&nbsp;フォーム設定ファイル</h4>
+<p>ozn-formの設定するファイル。１フォームにつき、1つ必要です。JSON形式で記述します。</p>
+<p><a href="./config_file.html">詳細はこちらから</a></p>
+
+<h4><i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;フォーム画面テンプレート</h4>
+<p>コーディング済みのHTMLファイルに数行のphpコードを記述することによりフォーム画面のテンプレートとなります。</p>
+<p>※ <a href="../functions/sub_setting.html">補助機能</a>、<a href="../functions/styles.html">標準スタイル</a>を設定するには、決められたHTML構造も必要です。</p>
+
+<h4><i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;送信完了画面テンプレート</h4>
+<p>ozn-formでは実際に送信処理を行う画面となります。最後の画面であるこちらに接続設定とメール書式テンプレートなどを記述していただく形となります。</p>
+
+
+
+
+
+<h2 class="guidance-header">構成サンプル</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <p>ozn-formで作成できるフォームのファイル構成サンプルを記載します。</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h4>確認画面なしシンプルフォーム（最小構成）</h4>
+
+        <p>確認画面なしの最小構成のフォーム例です。</p>
+        <p>ozn-formを機能させる為に最低限必要なファイルになります。</p>
+
+    </div>
+
+    <div class="col-md-6">
+        <div class="file_composition">
+            <h5>ファイル構成</h5>
+
+            <ul>
+                <li><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;(ドキュメントルート)</li>
+                <li>┣&nbsp;<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;ozn-form ソースディレクトリ</li>
+                <li>┣&nbsp;<i class="glyphicon glyphicon-cog"></i>&nbsp;&nbsp;フォーム設定ファイル</li>
+                <li>┣&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;フォーム画面テンプレート</li>
+                <li>┗&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;送信完了画面テンプレート </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h4>確認画面付きステップフォーム（最大構成）</h4>
+        <p>フォーム画面が2画面と確認画面のあるSTEPフォームの構成例です。</p>
+        <p>こちらが最大構成となります。設計上はステップ数に特に上限はありません。</p>
+    </div>
+
+    <div class="col-md-6">
+        <div class="file_composition">
+            <h5>ファイル構成</h5>
+
+            <ul>
+                <li><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;(ドキュメントルート)</li>
+                <li>┣&nbsp;<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;ozn-form ソースディレクトリ</li>
+                <li>┣&nbsp;<i class="glyphicon glyphicon-cog"></i>&nbsp;&nbsp;フォーム設定ファイル</li>
+                <li>┣&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;フォーム STEP1 画面</li>
+                <li>┣&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;フォーム STEP2 画面</li>
+                <li>┣&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;確認画面 HTML</li>
+                <li>┗&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;送信完了画面HTML</li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h4>複数フォーム</h4>
+        <p>ozn-formは設定ファイルに基づいて各処理を行うので、構成の異なる複数のフォームを設置することができます。</p>
+    </div>
+
+    <div class="col-md-6">
+        <div class="file_composition">
+            <h5>ファイル構成</h5>
+
+            <ul>
+                <li><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;(ドキュメントルート)</li>
+                <li>┣&nbsp;<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;ozn-form ソースディレクトリ</li>
+                <li>┣&nbsp;<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;1つ目フォーム</li>
+                <li>┃┣&nbsp;<i class="glyphicon glyphicon-cog"></i>&nbsp;&nbsp;フォーム設定ファイル</li>
+                <li>┃┣&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;フォーム 画面</li>
+                <li>┃┣&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;確認画面 HTML</li>
+                <li>┃┗&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;送信完了画面HTML</li>
+                <li>┗&nbsp;<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;2つ目フォーム</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;┣&nbsp;<i class="glyphicon glyphicon-cog"></i>&nbsp;&nbsp;フォーム設定ファイル</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;┣&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;フォーム 画面</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;┗&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;送信完了画面HTML</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- @@close -->

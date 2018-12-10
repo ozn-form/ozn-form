@@ -2,10 +2,6 @@
 <!-- @@block php -->
 <?php
 
-// 設定ファイルのパスを設定
-$config_path = dirname(__FILE__) . '/' . 'normal.json';
-
-
 // SMTP アカウント設定（SMTP 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
@@ -145,6 +141,9 @@ URL: http://
 送信日時：<% {send_date} %>
 
 TEXT;
+
+// 設定ファイルのパスを設定
+$config_path = __DIR__ . '/' . 'normal.json';
 
 // OznForm 実行ファイル読み込み
 require '../../../release/ozn-form.php';

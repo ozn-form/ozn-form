@@ -11,6 +11,8 @@ var watch = require('gulp-watch');
 var runSequence = require('run-sequence');
 var plumber = require('gulp-plumber');
 var extender = require('gulp-html-extend');
+var browserSync = require('browser-sync').create();
+
 
 // var browserify = require('browserify');
 // var source = require('vinyl-source-stream');
@@ -97,7 +99,23 @@ gulp.task('output_document_style', function () {
         .pipe(gulp.dest('./document/css/'));
 });
 
-gulp.task('document_watch', function () {
+gulp.task('document_watch', ['browser-sync']);
+
+gulp.task('browser-sync', function() {
+    browserSync.init({
+        // phpのビルドインブラウザを下記URLで稼働させている前提
+        proxy: "localhost:8080"
+    });
+});
+
+gulp.task('bs-reload', function () {
+    browserSync.reload();
+});
+
+gulp.task('document_watch', ['browser-sync'], function () {
+   gulp.watch(['./html-extend-src/document/layout/**/*'], ['output_document']);
    gulp.watch(['./html-extend-src/document/pages/**/*'], ['output_document']);
    gulp.watch(['./assets/document/sass/**/*.sass'], ['output_document_style']);
+   gulp.watch("document/*.html", ['bs-reload']);
+   gulp.watch("document/css/*.css", ['bs-reload']);
 });

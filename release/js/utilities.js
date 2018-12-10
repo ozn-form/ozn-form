@@ -74,7 +74,9 @@ window.OznForm.utilities = {
      * @param {JQuery} $el <送信用リンク要素>
      */
     setSendmailButtonEvent: function ($el) {
-        $el.on('click', function () {
+        $el.on('click', function (event) {
+
+            event.preventDefault();
 
             var $this = $(this);
 

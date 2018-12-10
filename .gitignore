@@ -1,6 +1,12 @@
+!.keep
+
 node_modules/
 /test/
 /release/config/database.php
 /release/db/*.db
 script/
 /docker/.env
+
+
+/release/upload/files
+!/release/upload/files/.htaccess

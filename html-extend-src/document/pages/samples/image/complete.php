@@ -28,8 +28,8 @@ $config_path = dirname(__FILE__) . '/' . 'image.json';
 // Gmail アカウント設定（Gmail SMTP 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-$gmail_user     = "oznform@gmail.com";
-$gmail_password = "nNeT7FYANyWtDX";
+$gmail_user     = "yourGmailAccountName";
+$gmail_password = "yourGmailPassword";
 
 
 // Gmail API設定（Gmail SMTP [OAuth認証] 経由で送信する時のみ）
@@ -94,19 +94,37 @@ require '../../../release/ozn-form.php';
 <!-- @@close -->
 
 <!-- @@block content -->
-
 <div class="page-header">
-    <h1>
-        お問い合わせ
-        <small>送信完了</small>
-    </h1>
+    <h1>画像添付フォームサンプル</h1>
+</div>
 
+<div class="ozn-form-stepbar-wrapper">
+    <p>
+        このサンプルフォームでは、送信完了まで操作できますが、実際にメールは送信されません。<br>
+        送信テストまで行いたい方はこの同ディレクトリ内にある設定ファイルと送信完了画面（メールテンプレート）を修正してください。
+    </p>
+    <ol class="ozn-form-stepbar step3 hidden-xs">
+        <li>1. 内容の入力</li>
+        <li>2. 内容確認</li>
+        <li class="current">3. 送信完了</li>
+    </ol>
+    <ol class="ozn-form-stepbar step3 visible-xs-block">
+        <li>入力</li>
+        <li>確認</li>
+        <li class="current">完了</li>
+    </ol>
+</div>
 
-    <div class="row">
-        <p class="col-sm-12 text-center">
-            <a href="/document/samples/simple/index.php" class="btn btn-success">フォームトップへ戻る</a>
-        </p>
+<div class="ozn-form-container ozn-form-complete">
+
+    <div class="ozn-form-lead">
+        <h2>送信完了しました</h2>
+        <p>お問い合わせありがとうございました。<br />
+            担当者が内容を確認の上、改めてご連絡いたします。<br />
+            今しばらくお待ちください。</p>
+        <p>&raquo;<a href="./" title="HOME">トップページへ戻る</a></p>
     </div>
+
 </div>
 
 <!-- @@close -->

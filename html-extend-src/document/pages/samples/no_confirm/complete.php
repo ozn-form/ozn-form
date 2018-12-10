@@ -28,8 +28,8 @@ $config_path = dirname(__FILE__) . '/' . 'no_confirm.json';
 // Gmail アカウント設定（Gmail SMTP 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-$gmail_user     = "oznform@gmail.com";
-$gmail_password = "nNeT7FYANyWtDX";
+$gmail_user     = "yourGmailAddress";
+$gmail_password = "YourGmailPassword";
 
 // Gmail API設定（Gmail SMTP [OAuth認証] 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -57,6 +57,7 @@ $gmail_password = "nNeT7FYANyWtDX";
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
 
+sleep(3);
 
 // 管理者宛メールの設定
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -119,22 +120,33 @@ require '../../../release/ozn-form.php';
 
 <!-- @@block content -->
 
-<div class="container">
+<div class="page-header">
+    <h1>
+        お問い合わせサンプル（ノーマル版）
+        <small>送信完了</small>
+    </h1>
+</div>
 
-    <div class="page-header">
-        <h1>
-            お問い合わせ
-            <small>送信完了</small>
-        </h1>
+<div class="ozn-form-stepbar-wrapper">
+    <ol class="ozn-form-stepbar step2 hidden-xs">
+        <li>1. 内容の入力</li>
+        <li class="current">2. 送信完了</li>
+    </ol>
+    <ol class="ozn-form-stepbar step2 visible-xs-block">
+        <li>入力</li>
+        <li class="current">完了</li>
+    </ol>
+</div>
 
-        <div class="row">
-            <p class="col-sm-12 text-center">
-                <a href="/document/samples/no_confirm/index.php" class="btn btn-success">フォームトップへ戻る</a>
-            </p>
-        </div>
+<div class="ozn-form-container ozn-form-complete">
+
+    <div class="ozn-form-lead">
+        <h2>送信完了しました</h2>
+        <p>お問い合わせありがとうございました。<br />
+            担当者が内容を確認の上、改めてご連絡いたします。<br />
+            今しばらくお待ちください。</p>
     </div>
 
 </div>
-
 
 <!-- @@close -->

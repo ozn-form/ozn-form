@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ozn-form Documents - チュートリアル</title>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../css/style.min.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="guidance">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="../">ozn-form Document</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+
+<!-- ヘッダメニュー -->
+
+
+<li class="">
+    <a href="../">製品概要</a>
+</li>
+
+
+<li class="dropdown active">
+    <a href="../" class="dropdown-toggle" id="guidance_drop" data-toggle="dropdown"
+       role="button"
+       aria-haspopup="true" aria-expanded="true"> 使い方 <span class="caret"></span> </a>
+    <ul class="dropdown-menu" aria-labelledby="guidance_drop">
+        <li><a href="../guidance/index.html">はじめに</a></li>
+        <li><a href="../guidance/config_file.html">設定ファイルの書き方</a></li>
+        <li><a href="../guidance/form_template.html">フォームテンプレートの書き方</a></li>
+        <li><a href="../guidance/mail_template.html">メールテンプレートの書き方</a></li>
+    </ul>
+</li>
+
+
+<li class="dropdown ">
+    <a href="../" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown"
+       role="button"
+       aria-haspopup="true" aria-expanded="true"> 機能説明 <span class="caret"></span> </a>
+    <ul class="dropdown-menu" aria-labelledby="functions_drop">
+        <li><a href="../functions/styles.html">標準スタイル設定</a></li>
+    </ul>
+</li>
+
+<li class="dropdown ">
+    <a href="#" class="dropdown-toggle" id="drop1" data-toggle="dropdown" role="button"
+       aria-haspopup="true" aria-expanded="true"> サンプルフォーム <span class="caret"></span> </a>
+    <ul class="dropdown-menu" aria-labelledby="drop1">
+        <li class="">
+            <a href="../samples/normal/?mail_body=これはテスト送信です。">ノーマル版</a>
+        </li>
+        <li class="">
+            <a href="../samples/no_confirm/">確認画面なし</a></li>
+        <!--<li class="&lt;!&ndash; @@var= step_active &ndash;&gt;">-->
+            <!--<a href="&lt;!&ndash;@@var= relative_path &ndash;&gt;samples/step/">ステップ分割</a>-->
+        <!--</li>-->
+        <li class="">
+            <a href="../samples/image/">画像添付</a>
+        </li>
+    </ul>
+</li>
+
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="page-header">
+        <h1>メールテンプレートの書き方 <small>ozn-form（オゾン・フォーム）</small></h1>
+    </div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<p>実際にメールを送信する設定とメール文面を記述するファイルがメールテンプレートとなります。</p>
+<p>このファイルはメール送信を実際に行うテンプレートファイルとなるため、完了画面を兼ねることができます。完了画面を表示しない場合、リダイレクトすることもできます。</p>
+
+<p>メール送信には phpmailer ライブラリを使用しています。</p>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h2 class="guidance-header">メール送信アカウント設定</h2>
+
+<p>メール送信に使うアカウントを設定します。</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">SendMail送信 の場合</h3>
+
+<p>phpのメール送信機能を使って送信する場合、外部アカウントを使わないため特に記述は必要ありません。</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">SMTP送信 の場合</h3>
+
+<p>SMTPサーバを使っての送信の際の設定になります。</p>
+
+<p>$host に接続先のSMTPサーバのアドレス、$account にはアカウント名、$password にはパスワードを記載してください。</p>
+<p>$smtp_options には接続にあたって指定があれば修正します。例に記載の値は未指定の場合のデフォルト値になります。</p>
+
+<ul>
+    <li>SMTPAuth　：SMTPAuthで接続するか？ [true] or [false]</li>
+    <li>Port　：接続ポート番号</li>
+    <li>SMTPSecure　：接続方式 [ssl] or [tls]</li>
+</ul>
+
+
+<h5>SMTP接続設定例</h5>
+<div class="code-example">
+    <pre><code>&lt;?php
+
+// SMTP アカウント設定（SMTP 経由で送信する時）
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+$account  = &quot;YourSMTPAccount&quot;;
+$password = &quot;YpurPassword&quot;;
+$host     = &quot;smtp.example.jp&quot;;
+
+$smtp_options = array(
+
+    // &#12487;&#12501;&#12457;&#12523;&#12488;&#35373;&#23450;
+    'SMTPAuth'   =&gt; true,
+    'Port'       =&gt; 587,
+    'SMTPSecure' =&gt; 'tls',    // 'ssl' or 'tls'
+);
+
+?&gt;</code></pre>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">GMail（SMTP）送信 の場合</h3>
+
+<p>GMail（SMTP）サーバを使っての送信の際の設定になります。</p>
+
+<p>$gmail_user にGoogleアカウント名、$password にはGoogleパスワードを記載してください。</p>
+
+<h5>GMail設定例</h5>
+<div class="code-example">
+    <pre><code>&lt;?php
+
+// Gmail アカウント設定（Gmail SMTP 経由で送信する時）
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+$gmail_user     = "YourGoogleAccount";
+$gmail_password = "YourGooglePassword";
+
+?&gt;</code></pre>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">Gmail（OAuth認証）送信 の場合</h3>
+
+
+<p>GMail（SMTP）サーバを使っての送信の際の設定になります。</p>
+
+<p>先にOAuth認証をするためのsecret, token などを取得する必要があります。取得後、$gmail_user にGoogleアカウント名、$oauth_id, $oauth_secret, $oauth_refresh_tokenへそれぞれ取得した値を入れてください。</p>
+
+<p>OAuth接続トークン取得方法については <a href="https://github.com/PHPMailer/PHPMailer/wiki/Using-Gmail-with-XOAUTH2">Using Gmail with XOAUTH2</a> のページを参照してください。</p>
+
+<h5>設定例</h5>
+<div class="code-example">
+    <pre><code>&lt;?php
+
+// Gmail API設定（Gmail SMTP [OAuth認証] 経由で送信する時のみ）
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+$gmail_user   = 'YourGoogleAccount';
+$oauth_id     = "YourID";
+$oauth_secret = "YourSecret";
+$oauth_refresh_token = "YourToken";
+
+?&gt;</code></pre>
+</div>
+
+
+<div class="alert alert-warning setting-alert">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    送信にはPHP 5.5 以上が必要です。設置環境に注意してください。
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h2 class="guidance-header">メール文章テンプレートの書き方</h2>
+
+<p>メールに記載する文章テンプレートの書き方を説明します。phpの変数にタイトルなどの文章を入れる形になります。</p>
+
+<ul>
+    <li>$admin_mail_title　：管理者宛のタイトル</li>
+    <li>$admin_mail_body　：管理者宛メール文面</li>
+    <li>$customer_mail_title　：自動返信メールのタイトル</li>
+    <li>$customer_mail_body　：自動返信メール文面</li>
+</ul>
+
+<h5>メール文章テンプレート例</h5>
+<div class="code-example">
+    <pre><code>&lt;?php
+
+// 管理者宛メールの設定
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// 管理者宛メールタイトル
+$admin_mail_title = '管理者宛メールタイトル';
+
+// 管理者宛メールテンプレート
+$admin_mail_body = <<< TEXT
+
+Webサイトからお問い合わせがありました。
+- - - - - - - - - - - - - - - - - - - - - - - - -
+送信シリアルNo：&lt;% {serial} %&gt;
+送信元エージェント：&lt;% {user_agent} %&gt;
+参照元：&lt;% {referrer} %&gt;
+送信日時：&lt;% {send_date} %&gt;
+
+TEXT;
+
+
+// 自動返信メールの設定（送信しない場合は必要なし）
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// 自動返信メールタイトル
+$customer_mail_title = 'お問い合わせありがとうございます';
+
+// 自動返信メールテンプレート
+$customer_mail_body = <<< TEXT
+
+&lt;% customer_name %&gt;様
+
+サンプル株式会社へのお問い合わせ、ありがとうございます。
+本メールはメールフォームより送信した内容をお知らせする自動返信メールです。
+担当者が内容を確認の上、改めてご連絡いたします。
+
+TEXT;
+
+?&gt;</code></pre>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h2 class="guidance-header">テンプレートタグについて</h2>
+
+<p>メール文章テンプレート中では各種テンプレートタグを使用していろんなパターンの文章を作成することができます。<br>メール本文だけでなく、タイトルにもタグを使用することができます。</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">フォーム入力値タグ</h3>
+
+<p>フォームに入力された値をメール文章に反映させるタグになります。 <% name %> という形式で記述します。name にはフォーム要素のNAME属性値を記載します。</p>
+
+<h5>記載例</h5>
+<div class="code-example">
+    <pre><code>■ お名前： &lt;% customer_name %&gt;</code></pre>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">IFタグ</h3>
+
+<p><%% if.sample_item %%> ... <%% endif %%> という形式で記述します。このタグに囲まれた文字は フォーム要素のNAME属性値&lt;sample_item&gt;が入力されていた場合にのみ出力されます。</p>
+
+<h5>記載例</h5>
+<div class="code-example">
+    <pre><code>Web&#12469;&#12452;&#12488;&#12363;&#12425;&#19979;&#35352;&#12398;&#20869;&#23481;&#12391;&#12362;&#21839;&#12356;&#21512;&#12431;&#12379;&#12364;&#12354;&#12426;&#12414;&#12375;&#12383;&#12290;
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+&lt;%% if.title %%&gt;&#9632;&#12362;&#21839;&#12356;&#21512;&#12431;&#12379;&#31278;&#21029;&#65306; &lt;% title %&gt;&lt;%% endif %%&gt;
+&lt;%% if.customer_name %%&gt;&#9632;&#12362;&#21517;&#21069;&#65306; &lt;% customer_name %&gt;&lt;%% endif %%&gt;
+&lt;%% if.customer_kana %%&gt;&#9632;&#12501;&#12522;&#12460;&#12490;&#65306; &lt;% customer_kana %&gt;&lt;%% endif %%&gt;
+&lt;%% if.address %%&gt;&#9632;&#12372;&#20303;&#25152;&#65306; &lt;%% endif %%&gt;&lt;%% if.zip-code %%&gt;&#12306;&lt;% zip-code %&gt;&lt;%% endif %%&gt;
+&#12288;&#12288;&#12288;&#12288;&lt;% pref %&gt;&lt;% address %&gt;&lt;%% if.address-building %%&gt;
+&#12288;&#12288;&#12288;&#12288;&lt;% address-building %&gt;&lt;%% endif %%&gt;
+&lt;%% if.email %%&gt;&#9632;&#12513;&#12540;&#12523;&#12450;&#12489;&#12524;&#12473;&#65306; &lt;% email %&gt;&lt;%% endif %%&gt;
+&lt;%% if.tel %%&gt;&#9632;&#38651;&#35441;&#30058;&#21495;&#65306; &lt;% tel %&gt;&lt;%% endif %%&gt;</code></pre>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">システムタグ</h3>
+
+<p>メール送信時にシステムで付与するデータを表示するタグになります。 <% {serial} %> という形式で記述します。システムタグは下記の4種類あります。</p>
+
+<ul>
+    <li>seria　：メール送信時に付与する送信シリアル番号を表示します。</li>
+    <li>user_agen　：送信されたブラウザの情報を表示します。</li>
+    <li>referre　：フォーム流入時にどのページから来たかリファラを表示します。</li>
+    <li>send_date　：送信日時を表示します。</li>
+</ul>
+<h5>記載例</h5>
+<div class="code-example">
+    <pre><code>- - - - - - - - - - - - - - - - - - - - - - - - -
+&#36865;&#20449;&#12471;&#12522;&#12450;&#12523;No&#65306;&lt;% {serial} %&gt;
+&#36865;&#20449;&#20803;&#12456;&#12540;&#12472;&#12455;&#12531;&#12488;&#65306;&lt;% {user_agent} %&gt;
+&#21442;&#29031;&#20803;&#65306;&lt;% {referrer} %&gt;
+&#36865;&#20449;&#26085;&#26178;&#65306;&lt;% {send_date} %&gt;</code></pre>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h2 class="guidance-header">フォームテンプレート化するための記述</h2>
+
+<p>フォームテンプレート化する場合と同じになります。<a href="form_template.html">フォームテンプレートの書き方</a>ページの下記の項目を参照してください。</p>
+
+<ul>
+    <li>設定ファイルとozn-formソースファイルの読み込み</li>
+    <li>CSSとJavascriptの読み込み</li>
+</ul>
+
+<div class="alert alert-warning setting-alert">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    この記述は、メール送信アカウント設定・メール文章設定の後に記述してください。
+</div>
+
+</div>
+
+<hr class="setting-hr">
+<footer>
+    <div class="container">
+        <p>&copy; ozone notes / 西三河情報システム</p>
+    </div>
+</footer>
+
+</body>
+</html>

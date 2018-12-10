@@ -6,7 +6,7 @@
 $config_path = dirname(__FILE__) . '/' . 'normal.json';
 
 // OznForm 実行ファイル読み込み
-require '../../../release/ozn-form.php';
+require __DIR__ . '../../../../release/ozn-form.php';
 
 ?>
 
@@ -19,8 +19,10 @@ require '../../../release/ozn-form.php';
 </div>
 
 <div class="ozn-form-stepbar-wrapper">
-    <p>このサンプルフォームでは実際に送信でき、正しいメールアドレスを入れれば自動返信メールも受け取れます。<br>
-        テスト送信されたメール内容はチェックせずにゴミ箱に入る設定にしておりますが、気にする方は捨てアドレスをお使いください。また、メールアドレス以外の個人情報等の送信はしないでください。</p>
+    <p>
+        このサンプルフォームでは、送信完了まで操作できますが、実際にメールは送信されません。<br>
+        送信テストまで行いたい方はこの同ディレクトリ内にある設定ファイルと送信完了画面（メールテンプレート）を修正してください。
+    </p>
     <ol class="ozn-form-stepbar step3 hidden-xs">
         <li class="current">1. 内容の入力</li>
         <li>2. 内容確認</li>
@@ -69,7 +71,7 @@ require '../../../release/ozn-form.php';
                     <input type="text" name="customer_kana" class="ozn-input" id="customer_kana" data-autoruby-katakana="customer_name" placeholder="例）ヤマダ タロウ" autocomplete="">
                 </div>
             </div>
-            <div class="tr">
+            <div class="tr" data-oznform-area="pref">
                 <div class="th">ご住所</div>
                 <div class="td">
                     <dl>
@@ -107,7 +109,7 @@ require '../../../release/ozn-form.php';
                     </div>
                 </div>
             </div>
-            <div class="tr">
+            <div class="tr" data-oznform-area="materials">
                 <div class="th">興味のある商品 <span class="ozn-label optional">任意</span></div>
                 <div class="td">
                     <select name="materials" class="ozn-input pc-50 tb-50">

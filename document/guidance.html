@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ozn-form Documents - 特定商取引法に基づく表記</title>
+    <title>ozn-form Documents - 設置方法について</title>
     <meta charset="utf-8">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +13,9 @@
     <link rel="stylesheet" href=".//css/style.min.css">
 
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
@@ -25,27 +28,46 @@
     <![endif]-->
 
 </head>
-<body>
+<body class="guidance">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="./">ozn-form Documents</a>
+            <a class="navbar-brand" href="./">ozn-form Document</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-<li class=""><a href="./">製品概要</a></li>
 
-<li class="dropdown ">
-    <a href="./" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown" role="button"
+<!-- ヘッダメニュー -->
+
+
+<li class="">
+    <a href="./">製品概要</a>
+</li>
+
+<li class="active">
+    <a href="./guidance.html">使い方</a>
+</li>
+
+
+<li class="dropdown active">
+    <a href="./" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown"
+       role="button"
        aria-haspopup="true" aria-expanded="true"> 機能説明 <span class="caret"></span> </a>
     <ul class="dropdown-menu" aria-labelledby="functions_drop">
+        <li><a href="./functions/styles.html">標準スタイル設定</a></li>
+        <li><a href="./functions/setting.html">設定一覧</a></li>
+        <li><a href="./functions/sub_setting.html">補助機能</a></li>
+    </ul>
+</li>
+
+
+<li class="dropdown ">
+    <a href="./" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown"
+       role="button"
+       aria-haspopup="true" aria-expanded="true"> 機能説明 <span class="caret"></span> </a>
+    <ul class="dropdown-menu" aria-labelledby="functions_drop">
+        <li><a href="./functions/styles.html">標準スタイル設定</a></li>
         <li><a href="./functions/setting.html">設定一覧</a></li>
         <li><a href="./functions/sub_setting.html">補助機能</a></li>
     </ul>
@@ -53,12 +75,19 @@
 
 <li class="dropdown">
     <a href="#" class="dropdown-toggle" id="drop1" data-toggle="dropdown" role="button"
-                             aria-haspopup="true" aria-expanded="true"> サンプルフォーム <span class="caret"></span> </a>
+       aria-haspopup="true" aria-expanded="true"> サンプルフォーム <span class="caret"></span> </a>
     <ul class="dropdown-menu" aria-labelledby="drop1">
-        <li class=""><a href="./samples/normal/?mail_body=これはテスト送信です。">ノーマル版</a></li>
-        <li class=""><a href="./samples/no_confirm/">確認スキップ</a></li>
-        <li class=""><a href="./samples/step/">ステップ分割</a></li>
-        <li class=""><a href="./samples/image/">画像添付</a></li>
+        <li class="">
+            <a href="./samples/normal/?mail_body=これはテスト送信です。">ノーマル版</a>
+        </li>
+        <li class="">
+            <a href="./samples/no_confirm/">確認スキップ</a></li>
+        <li class="">
+            <a href="./samples/step/">ステップ分割</a>
+        </li>
+        <li class="">
+            <a href="./samples/image/">画像添付</a>
+        </li>
     </ul>
 </li>
 
@@ -75,52 +104,138 @@
 <div class="container">
 
     <div class="page-header">
-        <h1>ozn-form（オゾン・フォーム） <small>EFO対応 汎用PHPメールフォーム</small></h1>
+        <h1>はじめに <small>ozn-form（オゾン・フォーム）</small></h1>
     </div>
 
+
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<h2 class="setting-header">特定商取引法に基づく表記</h2>
 
-<table class="table">
-    <tr>
-        <th>事業者の名称</th>
-        <td>ozone notes</td>
-    </tr>
-    <tr>
-        <th>責任者名</th>
-        <td>野村 圭</td>
-    </tr>
-    <tr>
-        <th>連絡先</th>
-        <td><img src="images/guidance/guidance_address.png" alt=""><br>
-            <a href="https://www.ozonenotes.jp/">https://www.ozonenotes.jp/</a><br>
-            <a href="#">本製品に関するお問い合わせはフォームよりお願いします</a></td>
-    </tr>
-    <tr>
-        <th>お支払い方法</th>
-        <td>銀行振込 <br>
-            ご発注確定後、請求書を発行いたしますので、指定期日までにお振り込みください。</td>
-    </tr>
-    <tr>
-        <th>商品代金以外に必要な料金</th>
-        <td>振込手数料</td>
-    </tr>
-    <tr>
-        <th>申し込みの有効期限</th>
-        <td>申し込みメールの送信から5営業日（土日祝除く）を経過しても当方にて発注者と連絡が取れない場合は、申し込みは自動的にキャンセル扱いとなります。</td>
-    </tr>
-    <tr>
-        <th>商品の引き渡し時期</th>
-        <td>設置代行なしの場合は、入金確認後2営業日（土日祝除く）以内に製品のダウンロードURLをメールにてお送りいたします。このメールの送信をもって、納品といたします。<br>
-            設置代行ありの場合は、事前にご希望の納期を相談させていただきます。</td>
-    </tr>
-    <tr>
-        <th>キャンセル・返品・交換について</th>
-        <td>本製品の特性上、本製品に重大な瑕疵・欠陥が認められる場合を除き、納品後のキャンセル・返品・交換はお請けいたしかねます。<br>
-            本製品に重大な瑕疵・欠陥が認められる場合は、納品後14日以内にご連絡ください。</td>
-    </tr>
-</table>
 
+<p>ozn-form では、コーディング済みのHTMLファイルに所定の記述することによって、ozn-formテンプレートとして扱うことができます。</p>
+<p>ozn-form では、フォームを構成するファイルは公開ディレクトリの中でしたら自由な場所に配置できますので、既存のサイトなどにも制限なく組み込むことができます。</p>
+
+<h2 class="setting-header">ファイル構成</h2>
+
+
+
+<h2 class="setting-header">構成サンプル</h2>
+
+<p>ozn-formで作成できるフォームのファイル構成サンプルを記載します。</p>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4>確認画面なしシンプルフォーム（最小構成）</h4>
+
+            <p>確認画面なしの最小構成のフォーム例です。</p>
+            <p>ozn-formを機能させる為に最低限必要なファイルになります。</p>
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="file_composition">
+                <h5>ファイル構成</h5>
+
+                <ul>
+                    <li><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;(ドキュメントルート)</li>
+                    <li>┣&nbsp;<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;ozn-form ソースディレクトリ</li>
+                    <li>┣&nbsp;<i class="glyphicon glyphicon-cog"></i>&nbsp;&nbsp;フォーム設定ファイル</li>
+                    <li>┣&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;フォーム画面</li>
+                    <li>┗&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;送信完了画面 </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4>確認画面付きステップフォーム（最大構成）</h4>
+            <p>フォーム画面が2画面と確認画面のあるSTEPフォームの構成例です。</p>
+            <p>こちらが最大構成となります。設計上はステップ数に特に上限はありません。</p>
+        </div>
+
+        <div class="col-md-6">
+            <div class="file_composition">
+                <h5>ファイル構成</h5>
+
+                <ul>
+                    <li><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;(ドキュメントルート)</li>
+                    <li>┣&nbsp;<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;ozn-form ソースディレクトリ</li>
+                    <li>┣&nbsp;<i class="glyphicon glyphicon-cog"></i>&nbsp;&nbsp;フォーム設定ファイル</li>
+                    <li>┣&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;フォーム STEP1 画面</li>
+                    <li>┣&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;フォーム STEP2 画面</li>
+                    <li>┣&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;確認画面 HTML</li>
+                    <li>┗&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;送信完了画面HTML</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4>複数フォーム</h4>
+            <p>ozn-formは設定ファイルに基づいて各処理を行うので、構成の異なる複数のフォームを設置することができます。</p>
+        </div>
+
+        <div class="col-md-6">
+            <div class="file_composition">
+                <h5>ファイル構成</h5>
+
+                <ul>
+                    <li><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;(ドキュメントルート)</li>
+                    <li>┣&nbsp;<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;ozn-form ソースディレクトリ</li>
+                    <li>┣&nbsp;<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;1つ目フォーム</li>
+                    <li>┃┣&nbsp;<i class="glyphicon glyphicon-cog"></i>&nbsp;&nbsp;フォーム設定ファイル</li>
+                    <li>┃┣&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;フォーム 画面</li>
+                    <li>┃┣&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;確認画面 HTML</li>
+                    <li>┃┗&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;送信完了画面HTML</li>
+                    <li>┗&nbsp;<i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;2つ目フォーム</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;┣&nbsp;<i class="glyphicon glyphicon-cog"></i>&nbsp;&nbsp;フォーム設定ファイル</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;┣&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;フォーム 画面</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;┗&nbsp;<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;送信完了画面HTML</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+    <div class="code-example">
+    <h5>フォームHTML</h5>
+    <pre><code>&lt;?php
+  // 設定ファイルのパスを設定
+  $config_path = 'ここに設定ファイルまでのパスを記載';
+
+  // OznForm 実行ファイル読み込み
+  require_once 'ここに実行ファイルまでのパスを記載';
+?&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;サンプルフォーム&lt;/title&gt;
+
+  &lt;!-- ozn-form のデフォルトスタイルを読み込み --&gt;
+  &lt;?php echo $ozn_form_styles; ?&gt;
+
+  &lt;!-- ozn-form のデフォルトjsを読み込み --&gt;
+  &lt;?php echo $ozn_form_javascript; ?&gt;
+&lt;/head&gt;
+&lt;body&gt;
+ .....
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+
+<hr class="setting-hr">
 
 </div>
 
