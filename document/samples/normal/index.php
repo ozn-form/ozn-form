@@ -44,7 +44,17 @@ require __DIR__ . '../../../../release/ozn-form.php';
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
+<<<<<<< HEAD
             <a class="navbar-brand" href="../../">ozn-form Document</a>
+=======
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">ozn-form Documents</a>
+>>>>>>> addDocuments
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -75,27 +85,12 @@ require __DIR__ . '../../../../release/ozn-form.php';
        role="button"
        aria-haspopup="true" aria-expanded="true"> 機能説明 <span class="caret"></span> </a>
     <ul class="dropdown-menu" aria-labelledby="functions_drop">
+        <li><a href="../../functions/setting.html">設定一覧</a></li>
+        <li><a href="../../functions/sub_setting.html">補助機能</a></li>
         <li><a href="../../functions/styles.html">標準スタイル設定</a></li>
     </ul>
 </li>
 
-<li class="dropdown ">
-    <a href="#" class="dropdown-toggle" id="drop1" data-toggle="dropdown" role="button"
-       aria-haspopup="true" aria-expanded="true"> サンプルフォーム <span class="caret"></span> </a>
-    <ul class="dropdown-menu" aria-labelledby="drop1">
-        <li class="active">
-            <a href="../../samples/normal/?mail_body=これはテスト送信です。">ノーマル版</a>
-        </li>
-        <li class="">
-            <a href="../../samples/no_confirm/">確認画面なし</a></li>
-        <!--<li class="&lt;!&ndash; @@var= step_active &ndash;&gt;">-->
-            <!--<a href="&lt;!&ndash;@@var= relative_path &ndash;&gt;samples/step/">ステップ分割</a>-->
-        <!--</li>-->
-        <li class="">
-            <a href="../../samples/image/">画像添付</a>
-        </li>
-    </ul>
-</li>
 
             </ul>
         </div><!--/.nav-collapse -->
