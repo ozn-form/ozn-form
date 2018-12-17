@@ -49,23 +49,14 @@
        aria-haspopup="true" aria-expanded="true"> 使い方 <span class="caret"></span> </a>
     <ul class="dropdown-menu" aria-labelledby="guidance_drop">
         <li><a href="../guidance/index.html">はじめに</a></li>
+        <li><a href="../guidance/flow.html">ファイル内容説明・設置手順</a></li>
         <li><a href="../guidance/config_file.html">設定ファイルの書き方</a></li>
         <li><a href="../guidance/form_template.html">フォームテンプレートの書き方</a></li>
         <li><a href="../guidance/mail_template.html">メールテンプレートの書き方</a></li>
+        <li><a href="../guidance/styles.html">標準スタイル設定</a></li>
     </ul>
 </li>
 
-
-<li class="dropdown ">
-    <a href="../" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown"
-       role="button"
-       aria-haspopup="true" aria-expanded="true"> 機能説明 <span class="caret"></span> </a>
-    <ul class="dropdown-menu" aria-labelledby="functions_drop">
-        <li><a href="../functions/setting.html">設定一覧</a></li>
-        <li><a href="../functions/sub_setting.html">補助機能</a></li>
-        <li><a href="../functions/styles.html">標準スタイル設定</a></li>
-    </ul>
-</li>
 
 
             </ul>
@@ -486,6 +477,8 @@
 
 <h5>使い方</h5>
 
+<p>ファイルアップロード機能を使用する場合、form要素に <code>enctype="multipart/form-data"</code> 属性を記述してください。</p>
+
 <p>中身が空のブロック要素に data-oznform-fileup="attachment1[]" 属性を指定してください。 </p>
 
 <p>設置例の attachment1[] の部分はお好きな文字列にできますが、最後に[]がついた名前にする必要があり、その部分がフォーム送信時のNAME属性になります。</p>
@@ -500,7 +493,7 @@
 
 <h5>ファイルアップローダーの設定について</h5>
 
-設定ファイルが [/upload/index.php] にあります。ファイルサイズ上限などの設定はこちらのファイルを編集してください。こちらの設定項目などは jQuery File Upload の設定に準じるものです。
+<p>設定ファイルが [/upload/index.php] にあります。ファイルサイズ上限などの設定はこちらのファイルを編集してください。こちらの設定項目などは jQuery File Upload の設定に準じるものです。</p>
 
 <h5>画像アップロード時のリサイズ設定について</h5>
 <p>

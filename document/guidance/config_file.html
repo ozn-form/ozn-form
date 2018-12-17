@@ -49,23 +49,14 @@
        aria-haspopup="true" aria-expanded="true"> 使い方 <span class="caret"></span> </a>
     <ul class="dropdown-menu" aria-labelledby="guidance_drop">
         <li><a href="../guidance/index.html">はじめに</a></li>
+        <li><a href="../guidance/flow.html">ファイル内容説明・設置手順</a></li>
         <li><a href="../guidance/config_file.html">設定ファイルの書き方</a></li>
         <li><a href="../guidance/form_template.html">フォームテンプレートの書き方</a></li>
         <li><a href="../guidance/mail_template.html">メールテンプレートの書き方</a></li>
+        <li><a href="../guidance/styles.html">標準スタイル設定</a></li>
     </ul>
 </li>
 
-
-<li class="dropdown ">
-    <a href="../" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown"
-       role="button"
-       aria-haspopup="true" aria-expanded="true"> 機能説明 <span class="caret"></span> </a>
-    <ul class="dropdown-menu" aria-labelledby="functions_drop">
-        <li><a href="../functions/setting.html">設定一覧</a></li>
-        <li><a href="../functions/sub_setting.html">補助機能</a></li>
-        <li><a href="../functions/styles.html">標準スタイル設定</a></li>
-    </ul>
-</li>
 
 
             </ul>
@@ -84,15 +75,27 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <p>設定ファイルはフォームの動きを決める重要なファイルです。JSON形式で記述します。</p>
+
+<h2 class="guidance-header">JSONファイル編集時の注意</h2>
+
+<ul>
+    <li>JSONファイルに馴染みのない方は、以下の参考サイトをご覧ください。<br>
+        <a href="http://www.trident-game.com/blog/2015/10/14/%E3%80%90%E8%BC%AA%E8%AC%9B%E3%80%91json%E3%81%AE%E6%9B%B8%E3%81%8D%E6%96%B9/" target="_blank" rel="noopener">【輪講】JSONの書き方 | TRIDENT Mobile &amp; Network Lab. Blog</a></li>
+    <li>JSONファイル内にコメントは入れられません。</li>
+    <li>括弧の数を間違えるとエラーになります。</li>
+    <li>PHPでは最後の項目にカンマがあってもエラーになりませんが、JSONファイルでは最後の要素の後にカンマがあるとエラーになります。</li>
+    <li>フォームでエラーが出る場合、JSONファイルの書式ミスの場合が多いです。<a href="https://jsonlint.com/" target="_blank" rel="noopener">JSONLint</a> などのツールで書式エラーがないか確認してみてください。</li>
+</ul>
+
+
+<h2 class="guidance-header">設定ファイル構造と記載例</h2>
+
 <p>設定項目は大きく3つのセクションに分かれます。</p>
 <p>1つ目はフォーム全体の動きを設定する「フォーム設定」セクション。こちらは主にJSONのルート { ... } に記載します。</p>
 <p>2つ目はメール送信に関する動きを設定する「メール設定（管理者・自動返信）」セクション。こちらは "mail" の中 { "mail": { "admin": {}, "auto_reply": {}}}という形で記載します。</p>
 <p>最後にフォームの構造を定義する「テンプレート構成設定」セクション。こちらは "pages" の中 {"pages": {...}} という形で記載します。</p>
 
-<h2 class="guidance-header">設定ファイル構造と記載例</h2>
-
 <p>設定ファイルの設定項目とファイル構造の例です。赤い背景色は必須項目、緑の背景色は任意の項目になります。</p>
-<p>設定ファイルの記述は JSON 形式で行います。</p>
 
 <table class="config-document-table">
     <tr><th>項目名</th><th>セクション</th><th>JSONコード（例）</th></tr>

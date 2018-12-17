@@ -74,23 +74,14 @@ require '../../../release/ozn-form.php';
        aria-haspopup="true" aria-expanded="true"> 使い方 <span class="caret"></span> </a>
     <ul class="dropdown-menu" aria-labelledby="guidance_drop">
         <li><a href="../../guidance/index.html">はじめに</a></li>
+        <li><a href="../../guidance/flow.html">ファイル内容説明・設置手順</a></li>
         <li><a href="../../guidance/config_file.html">設定ファイルの書き方</a></li>
         <li><a href="../../guidance/form_template.html">フォームテンプレートの書き方</a></li>
         <li><a href="../../guidance/mail_template.html">メールテンプレートの書き方</a></li>
+        <li><a href="../../guidance/styles.html">標準スタイル設定</a></li>
     </ul>
 </li>
 
-
-<li class="dropdown ">
-    <a href="../../" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown"
-       role="button"
-       aria-haspopup="true" aria-expanded="true"> 機能説明 <span class="caret"></span> </a>
-    <ul class="dropdown-menu" aria-labelledby="functions_drop">
-        <li><a href="../../functions/setting.html">設定一覧</a></li>
-        <li><a href="../../functions/sub_setting.html">補助機能</a></li>
-        <li><a href="../../functions/styles.html">標準スタイル設定</a></li>
-    </ul>
-</li>
 
 
             </ul>
