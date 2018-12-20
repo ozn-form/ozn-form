@@ -529,17 +529,71 @@
     "mail": {
         "admin": {
             "to_name"   : "ozn-form",
-            "to"        : "oznform+sample_normal@gmail.com",
+            "to"        : "admin@example.com",
             "cc"        : [],
             "bcc"       : [],
             "from_name" : "ozn-form 管理者向けサンプルメール",
-            "from"      : "no-reply@ozonenotes.jp",
+            "from"      : "no-reply@example.com",
             "reply_to"  : "<% email %>"
         }
     }
 }</code></pre>
 </div>
 
+<h4>【オプション】管理者宛メール 振り分け機能</h4>
+
+<p>とある項目のラジオボタンの選択値に応じて管理者宛メールの送信先を振り分けたい場合は、"to"欄を以下のように設定します。</p>
+
+<p>JSON側は、連想配列で以下のように記述してください。 | は区切り記号です。</p>
+
+<p>設定値に当てはまらなかった場合のデフォルト送信先も設定できます。<br>
+   デフォルト送信先を設定する際には、設定項目の中に下のようにdefaultという項目を記述をしてください。</p>
+
+<p>以下は、"title" という選択項目で「修理について」と「求人について」が選択されたときは、管理者宛メールをそれぞれの担当部署のメールアドレスに送信する場合のサンプルです。</p>
+
+<div class="code-example">
+    <h5>JSON側 記述例</h5>
+    <pre><code>{
+    "mail": {
+        "admin": {
+            "to_name"   : "ozn-form",
+            "to"        : {
+                "title|修理について" : "repair@example.com",
+                "title|求人について" : "recruit@example.com",
+                "default"          : "admin@example.com"
+            },
+            "cc"        : [],
+            "bcc"       : [],
+            "from_name" : "ozn-form 管理者向けサンプルメール",
+            "from"      : "no-reply@example.com",
+            "reply_to"  : "<% email %>"
+        }
+    }
+}</code></pre>
+</div>
+
+<div class="code-example">
+    <h5>HTML側 記述例</h5>
+    <pre><code>&lt;div class=&quot;ozn-check vertical&quot;&gt;
+     &lt;label&gt;
+         &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;購入について&quot;&gt; 購入について
+     &lt;/label&gt;
+     &lt;label&gt;
+         &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;修理について&quot;&gt; 修理について
+     &lt;/label&gt;
+     &lt;label&gt;
+         &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;求人について&quot;&gt; 求人について
+     &lt;/label&gt;
+     &lt;label&gt;
+         &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;その他&quot;&gt; その他
+     &lt;/label&gt;
+ &lt;/div&gt;</code></pre>
+</div>
+
+<div class="alert alert-danger setting-alert">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    入力値に一致する設定値がなく、デフォルト送信先の設定もない場合は、エラーとなり送信処理ができません。
+</div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
@@ -613,7 +667,7 @@
             "cc"        : [],
             "bcc"       : [],
             "from_name" : "ozn-form 客先向けサンプルメール",
-            "from"      : "no-reply@ozonenotes.jp",
+            "from"      : "no-reply@example.com",
             "reply_to"  : "<% email %>"
         }
     }
@@ -747,20 +801,20 @@
         &lt;div class=&quot;tr&quot; data-oznform-area=&quot;title&quot;&gt;
             &lt;div class=&quot;th&quot;&gt;&#12362;&#21839;&#12356;&#21512;&#12431;&#12379;&#31278;&#21029; &lt;span class=&quot;ozn-label required&quot;&gt;&#24517;&#38920;&lt;/span&gt;&lt;/div&gt;
             &lt;div class=&quot;td&quot;&gt;
-                &lt;div class=&quot;ozn-check vertical&quot;&gt;
-                    &lt;label&gt;
-                        &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;&#35211;&#31309;&#12426;&#12398;&#12372;&#20381;&#38972;&quot;&gt; &#35211;&#31309;&#12426;&#12398;&#12372;&#20381;&#38972;
-                    &lt;/label&gt;
-                    &lt;label&gt;
-                        &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;&#21830;&#21697;&#12395;&#38306;&#12377;&#12427;&#12362;&#21839;&#12356;&#21512;&#12431;&#12379;&quot;&gt; &#21830;&#21697;&#12395;&#38306;&#12377;&#12427;&#12362;&#21839;&#12356;&#21512;&#12431;&#12379;
-                    &lt;/label&gt;
-                    &lt;label&gt;
-                        &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;&#27714;&#20154;&#12408;&#12398;&#12372;&#24540;&#21215;&quot;&gt; &#27714;&#20154;&#12408;&#12398;&#12372;&#24540;&#21215;
-                    &lt;/label&gt;
-                    &lt;label&gt;
-                        &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;&#12381;&#12398;&#20182;&#12398;&#12362;&#21839;&#12356;&#21512;&#12431;&#12379;&quot;&gt; &#12381;&#12398;&#20182;&#12398;&#12362;&#21839;&#12356;&#21512;&#12431;&#12379;
-                    &lt;/label&gt;
-                &lt;/div&gt;
+                 &lt;div class=&quot;ozn-check vertical&quot;&gt;
+                     &lt;label&gt;
+                         &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;購入について&quot;&gt; 購入について
+                     &lt;/label&gt;
+                     &lt;label&gt;
+                         &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;修理について&quot;&gt; 修理について
+                     &lt;/label&gt;
+                     &lt;label&gt;
+                         &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;求人について&quot;&gt; 求人について
+                     &lt;/label&gt;
+                     &lt;label&gt;
+                         &lt;input type=&quot;radio&quot; name=&quot;title&quot; value=&quot;その他&quot;&gt; その他
+                     &lt;/label&gt;
+                 &lt;/div&gt;
                 &lt;div class=&quot;title-error&quot;&gt;&lt;/div&gt;
             &lt;/div&gt;
         &lt;/div&gt;
