@@ -40,12 +40,14 @@
 <table class="config-document-table">
     <tr><th>項目名</th><th>セクション</th><th>JSONコード（例）</th></tr>
 
-    <tr class="required-config"><td>&nbsp;</td><td rowspan="5">フォーム設定</td><td>{</td></tr>
+    <tr class="required-config"><td>&nbsp;</td><td rowspan="6">フォーム設定</td><td>{</td></tr>
     <tr class="optional-config"><td>デバッグフラグ</td><td>&nbsp;&nbsp;"is_debug": false,</td></tr>
     <tr class="optional-config"><td>ページ遷移アラート</td><td>&nbsp;&nbsp;    "unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。",
     </td></tr>
     <tr class="required-config"><td>フォーム名</td><td>&nbsp;&nbsp;"form_name": "first_form",</td></tr>
     <tr class="required-config"><td>フォームルートパス</td><td>&nbsp;&nbsp;"form_root": "/Path/to/yourform",</td></tr>
+    <tr class="optional-config"><td>ドキュメントルートパス</td><td>&nbsp;&nbsp;"document_root": "/Path/to/rootdir",
+    </td></tr>
 
     <tr class="optional-config"><td>&nbsp;</td><td rowspan="4">検証設定<td>&nbsp;&nbsp;"validation": {</td></tr>
     <tr class="optional-config"><td>メッセージアイコン表示</td><td>&nbsp;&nbsp;&nbsp;&nbsp;"show_icon": false,</td></tr>
@@ -156,7 +158,7 @@
         <th>設定値サンプル</th>
     </tr>
     <tr>
-        <td class="text-center">×</td>
+        <td class="text-center">-</td>
         <td>String</td>
         <td>"このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。"</td>
     </tr>
@@ -238,6 +240,35 @@
     <pre><code>{"form_root": "/document/sample_form/index.php"}</code></pre>
 </div>
 
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">ドキュメントルートパス</h3>
+
+<table class="setting-table">
+    <tr>
+        <th>必須</th>
+        <th>設定値の型</th>
+        <th>設定値サンプル</th>
+    </tr>
+    <tr>
+        <td class="text-center">-</td>
+        <td>String</td>
+        <td>"/usr/home/yourname/www/htdocs"</td>
+    </tr>
+</table>
+
+
+<p>サーバによっては、フロント側の$ozn_form_css, $ozn_form_javascript 変数で出力されるパスがApacheのドキュメントルートになってしまい、スタイルやスクリプトが適用されないことがあります。その場合に、本項目を設定してください。<br>
+その場合に、本項目を設定してください。設定した階層部分が、出力されたパスから消えます。</p>
+<div class="alert alert-warning setting-alert">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    パスは絶対パスで記載してください。<em>末尾の / は不要</em>です。
+</div>
+
+<div class="code-example">
+    <h5>コード例</h5>
+    <pre><code>{ "document_root": "/usr/home/yourname/www/htdocs" }</code></pre>
+</div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
@@ -252,13 +283,13 @@
     </tr>
     <tr>
         <td>show_icon</td>
-        <td class="text-center">×</td>
+        <td class="text-center">-</td>
         <td>boolean</td>
         <td>true / false</td>
     </tr>
     <tr>
         <td>shift_scroll_position</td>
-        <td class="text-center">×</td>
+        <td class="text-center">-</td>
         <td>int</td>
         <td>-50</td>
     </tr>
@@ -299,7 +330,7 @@
         <th>設定値サンプル</th>
     </tr>
     <tr>
-        <td class="text-center">×</td>
+        <td class="text-center">-</td>
         <td>boolean</td>
         <td>true / false</td>
     </tr>
@@ -384,7 +415,7 @@
         <th>設定値サンプル</th>
     </tr>
     <tr>
-        <td class="text-center">×</td>
+        <td class="text-center">-</td>
         <td>string</td>
         <td>/</td>
     </tr>
@@ -937,7 +968,7 @@
         <th>設定値サンプル</th>
     </tr>
     <tr>
-        <td class="text-center">×</td>
+        <td class="text-center">-</td>
         <td>string</td>
         <td>'お名前'</td>
     </tr>
@@ -986,7 +1017,7 @@
         <th>設定値サンプル</th>
     </tr>
     <tr>
-        <td class="text-center">×</td>
+        <td class="text-center">-</td>
         <td>string</td>
         <td>'.error_message'</td>
     </tr>
@@ -1024,7 +1055,7 @@
         <th>設定値サンプル</th>
     </tr>
     <tr>
-        <td class="text-center">×</td>
+        <td class="text-center">-</td>
         <td>string</td>
         <td>&quot;&lt;p&gt;&lt;% messages %&gt;&lt;/p&gt;&quot;</td>
     </tr>
@@ -1060,7 +1091,7 @@
         <th>設定値サンプル</th>
     </tr>
     <tr>
-        <td class="text-center">×</td>
+        <td class="text-center">-</td>
         <td>string</td>
         <td>{"required": "いずれか1つを選択してください。"}</td>
     </tr>
@@ -1101,7 +1132,7 @@
         <th>設定値サンプル</th>
     </tr>
     <tr>
-        <td class="text-center">×</td>
+        <td class="text-center">-</td>
         <td>string</td>
         <td>{"携帯電話のアドレスが入力されました。"}</td>
     </tr>
