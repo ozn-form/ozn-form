@@ -3,7 +3,7 @@ FROM php:7.3-apache
 RUN pecl install xdebug \
     && docker-php-ext-enable  xdebug
 
-RUN apt-get update && apt-get install -y vim curl openssl libxml2-dev zlib1g-dev\
+RUN apt-get update && apt-get install -y vim curl openssl libxml2-dev zip zlib1g-dev\
     && docker-php-ext-install pdo_mysql xml tokenizer mbstring
 
 RUN apt-get install -y \
@@ -19,6 +19,8 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php \
     && php -r "unlink('composer-setup.php');" \
     && mv composer.phar /usr/local/bin/composer
+
+RUN composer global require 'phpunit/phpunit:*'
 
 ENV PATH $PATH:/composer/vendor/bin
 ENV COMPOSER_ALLOW_SUPERUSER 1

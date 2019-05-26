@@ -70,6 +70,7 @@ services:
             - ./docker-compose.d/certs:/root/keys
             - ../:/var/www/html
 
+    ##  テスト用 SMTP サーバー  # # # # # # # # # # # # # # # #
     mailhog:
         image: mailhog/mailhog
         ports:
