@@ -47,7 +47,7 @@ services:
 
         volumes:
             - ./DependentFiles/php7x/sites-available:/etc/apache2/sites-available
-            - ./DependentFiles/php7x/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+            - ./DependentFiles/php7x/php71.xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
             - ./docker-compose.d/certs:/root/keys
             - ../:/var/www/html
 
@@ -66,7 +66,7 @@ services:
 
         volumes:
             - ./DependentFiles/php7x/sites-available:/etc/apache2/sites-available
-            - ./DependentFiles/php7x/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+            - ./DependentFiles/php7x/php73.xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
             - ./docker-compose.d/certs:/root/keys
             - ../:/var/www/html
 
