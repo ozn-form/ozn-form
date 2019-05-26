@@ -100,7 +100,18 @@ $gmail_password = "YourGooglePassword";
 
 <p>先にOAuth認証をするためのsecret, token などを取得する必要があります。取得後、$gmail_user にGoogleアカウント名、$oauth_id, $oauth_secret, $oauth_refresh_tokenへそれぞれ取得した値を入れてください。</p>
 
-<p>OAuth接続トークン取得方法については <a href="https://github.com/PHPMailer/PHPMailer/wiki/Using-Gmail-with-XOAUTH2">Using Gmail with XOAUTH2</a> のページを参照してください。</p>
+<h4>リフレッシュトークン等取得手順</h4>
+<ol>
+    <li><a href="http://famirror.hateblo.jp/entry/2015/12/18/180000" target="_blank" rel="noopener">こちらのブログ記事</a>に紹介されている手順でクライアントIDとクライアント シークレットを取得</li>
+    <li>取得したIDとSECRETを /ozn-form/vendor/phpmailer/phpmailer/get_oauth_token.php の32,33行目にコピペ</li>
+    <li>上記スクリプトのアドレスを「承認済みのリダイレクト URI」に設定しておく<br>
+        <img src="../images/functions/google_auth01.png" alt=""></li>
+    <li>上記のスクリプトにブラウザでアクセス</li>
+    <li>Googleの認証ページに飛ぶので許可するとリフレッシュトークンが表示される</li>
+    <li>リフレッシュトークン取得後はget_oauth_token.phpをサーバから削除</li>
+</ol>
+
+<p>詳細は <a href="https://github.com/PHPMailer/PHPMailer/wiki/Using-Gmail-with-XOAUTH2">Using Gmail with XOAUTH2</a> のページを参照してください。</p>
 
 <h5>設定例</h5>
 <div class="code-example">

@@ -49,39 +49,15 @@
        aria-haspopup="true" aria-expanded="true"> 使い方 <span class="caret"></span> </a>
     <ul class="dropdown-menu" aria-labelledby="guidance_drop">
         <li><a href="../guidance/index.html">はじめに</a></li>
+        <li><a href="../guidance/flow.html">ファイル内容説明・設置手順</a></li>
         <li><a href="../guidance/config_file.html">設定ファイルの書き方</a></li>
         <li><a href="../guidance/form_template.html">フォームテンプレートの書き方</a></li>
         <li><a href="../guidance/mail_template.html">メールテンプレートの書き方</a></li>
+        <li><a href="../guidance/styles.html">標準スタイル設定</a></li>
     </ul>
 </li>
 
 
-<li class="dropdown active">
-    <a href="../" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown"
-       role="button"
-       aria-haspopup="true" aria-expanded="true"> 機能説明 <span class="caret"></span> </a>
-    <ul class="dropdown-menu" aria-labelledby="functions_drop">
-        <li><a href="../functions/styles.html">標準スタイル設定</a></li>
-    </ul>
-</li>
-
-<li class="dropdown ">
-    <a href="#" class="dropdown-toggle" id="drop1" data-toggle="dropdown" role="button"
-       aria-haspopup="true" aria-expanded="true"> サンプルフォーム <span class="caret"></span> </a>
-    <ul class="dropdown-menu" aria-labelledby="drop1">
-        <li class="">
-            <a href="../samples/normal/?mail_body=これはテスト送信です。">ノーマル版</a>
-        </li>
-        <li class="">
-            <a href="../samples/no_confirm/">確認画面なし</a></li>
-        <!--<li class="&lt;!&ndash; @@var= step_active &ndash;&gt;">-->
-            <!--<a href="&lt;!&ndash;@@var= relative_path &ndash;&gt;samples/step/">ステップ分割</a>-->
-        <!--</li>-->
-        <li class="">
-            <a href="../samples/image/">画像添付</a>
-        </li>
-    </ul>
-</li>
 
             </ul>
         </div><!--/.nav-collapse -->
@@ -213,13 +189,13 @@
 
 <p>
     EFOの観点からは、入力欄はフォントサイズや幅・余白を大きめにすべきと言われています。<br>
-    指定のclass属性を付与することで、ブラウザ標準スタイルよりも入力しやすいスタイルを適用できます。（Bootstrapでいう ".form-control" classのような役割です）
+    指定のclass属性を付与することで、ブラウザ標準スタイルよりも入力しやすいスタイルを適用できます。（Bootstrapでいう .form-control classのような役割です）
 </p>
 
 <h3>テキスト入力欄、セレクトボックスの場合</h3>
 
 <ol>
-    <li>class="ozn-input"属性を付与することで、専用スタイルが適用されます</li>
+    <li><code>class="ozn-input"</code>属性を付与することで、専用スタイルが適用されます</li>
     <li>入力欄を短くしたい場合は、以下のclassのいずれかを同時に付与することで、width: 50%, 30% を適用できます
         <ul>
             <li>w-50,  w-30 （常に適用）</li>
@@ -265,7 +241,7 @@
 
 <ol>
     <li>input要素と選択肢のテキストを、1つのlabel要素で囲みます</li>
-    <li>選択肢の外側をdiv要素で囲み、 class="ozn-check vertical" または class="ozn-check horizontal"を付与します
+    <li>選択肢の外側をdiv要素で囲み、 <code>class="ozn-check vertical"</code> または <code>class="ozn-check horizontal"</code>を付与します
         <ul>
             <li>vertical：   選択肢をタテに並べる</li>
             <li>horizontal： 選択肢をヨコに並べる</li>
@@ -320,6 +296,7 @@
 
 <h4>表示例</h4>
 <p><img src="../images/functions/styles_input02.png" alt=""></p>
+
 
 <hr class="setting-hr">
 

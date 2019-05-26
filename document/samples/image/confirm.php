@@ -43,7 +43,17 @@ require_once '../../../release/ozn-form.php';
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
+<<<<<<< HEAD
             <a class="navbar-brand" href="../../">ozn-form Document</a>
+=======
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">ozn-form Documents</a>
+>>>>>>> addDocuments
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -62,39 +72,15 @@ require_once '../../../release/ozn-form.php';
        aria-haspopup="true" aria-expanded="true"> 使い方 <span class="caret"></span> </a>
     <ul class="dropdown-menu" aria-labelledby="guidance_drop">
         <li><a href="../../guidance/index.html">はじめに</a></li>
+        <li><a href="../../guidance/flow.html">ファイル内容説明・設置手順</a></li>
         <li><a href="../../guidance/config_file.html">設定ファイルの書き方</a></li>
         <li><a href="../../guidance/form_template.html">フォームテンプレートの書き方</a></li>
         <li><a href="../../guidance/mail_template.html">メールテンプレートの書き方</a></li>
+        <li><a href="../../guidance/styles.html">標準スタイル設定</a></li>
     </ul>
 </li>
 
 
-<li class="dropdown ">
-    <a href="../../" class="dropdown-toggle" id="functions_drop" data-toggle="dropdown"
-       role="button"
-       aria-haspopup="true" aria-expanded="true"> 機能説明 <span class="caret"></span> </a>
-    <ul class="dropdown-menu" aria-labelledby="functions_drop">
-        <li><a href="../../functions/styles.html">標準スタイル設定</a></li>
-    </ul>
-</li>
-
-<li class="dropdown ">
-    <a href="#" class="dropdown-toggle" id="drop1" data-toggle="dropdown" role="button"
-       aria-haspopup="true" aria-expanded="true"> サンプルフォーム <span class="caret"></span> </a>
-    <ul class="dropdown-menu" aria-labelledby="drop1">
-        <li class="">
-            <a href="../../samples/normal/?mail_body=これはテスト送信です。">ノーマル版</a>
-        </li>
-        <li class="">
-            <a href="../../samples/no_confirm/">確認画面なし</a></li>
-        <!--<li class="&lt;!&ndash; @@var= step_active &ndash;&gt;">-->
-            <!--<a href="&lt;!&ndash;@@var= relative_path &ndash;&gt;samples/step/">ステップ分割</a>-->
-        <!--</li>-->
-        <li class="active">
-            <a href="../../samples/image/">画像添付</a>
-        </li>
-    </ul>
-</li>
 
             </ul>
         </div><!--/.nav-collapse -->
