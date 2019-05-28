@@ -24,6 +24,7 @@ require_once dirname(__FILE__) . '/lib/MailTemplate.class.php';
 require_once dirname(__FILE__) . '/lib/MailHistory.class.php';
 require_once dirname(__FILE__) . '/lib/FormValidation.class.php';
 require_once dirname(__FILE__) . '/lib/exceptions/SendMailException.class.php';
+require_once __DIR__ . '/lib/Token.class.php';
 
 
 /**
@@ -89,7 +90,7 @@ if(strtolower($_SERVER['REQUEST_METHOD']) === 'post')
 {
     $v = new FromValidation();
 
-    if($v->validatePageForm($config->prevPageName(PAGE_NAME), $_POST, $config))
+    if($v->validatePageForm($config->prevPageName(PAGE_NAME), $_POST, $config) && Token::check($_POST['_token']))
     {
         $session->savePostData();
     }
@@ -98,6 +99,16 @@ if(strtolower($_SERVER['REQUEST_METHOD']) === 'post')
         throw new FormError('送信されたデータの検証に失敗しました。');
     }
 }
+
+
+/**
+ * CSRF トークンの生成
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ */
+
+$oznFormToken = new Token();
+$oznFormToken->make()->setSession();
+
 
 
 /**

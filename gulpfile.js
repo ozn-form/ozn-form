@@ -102,10 +102,7 @@ gulp.task('output_document_style', function () {
 gulp.task('document_watch', ['browser-sync']);
 
 gulp.task('browser-sync', function() {
-    browserSync.init({
-        // phpのビルドインブラウザを下記URLで稼働させている前提
-        proxy: "localhost:8080"
-    });
+    browserSync.init();
 });
 
 gulp.task('bs-reload', function () {
