@@ -27,7 +27,7 @@ class FromValidation
 
     function __construct()
     {
-        Valitron::langDir(__DIR__.'/../vendor/vlucas/valitron/lang'); // always set langDir before lang.
+        Valitron::langDir(__DIR__.'/validation_message'); // always set langDir before lang.
         Valitron::lang('ja');
     }
 
@@ -148,7 +148,7 @@ class FromValidation
         // メールアドレス詳細チェック処理
         if(in_array('email_detail', $validates)) {
             array_splice($validates, array_search('email_detail', $validates), 1);
-            $validates = array_merge($validates, array('email_atmark', 'email_atmark_over', 'email_no_user', 'email_domain', 'email_comma'));
+            $validates = array_merge($validates, array('email_atmark', 'email_atmark_over', 'email_no_user', 'email_domain', 'email_comma', 'email'));
         }
 
         foreach ($validates as $rule) {
