@@ -241,6 +241,7 @@
                 <button type="submit" class="btn btn-info">確認画面へ</button>
             </div>
         </div>
+        <?php echo $oznFormToken->csrfTag(); ?>
     </form>
 
 </div>

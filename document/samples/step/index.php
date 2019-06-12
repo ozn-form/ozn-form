@@ -139,6 +139,7 @@ require '../../../release/ozn-form.php';
                 <button type="submit" class="btn btn-success">STEP2 へ</button>
             </div>
         </div>
+        <?php echo $oznFormToken->csrfTag(); ?>
     </form>
 
 

@@ -198,6 +198,7 @@ require '../../../release/ozn-form.php';
             </div>
 
         </div>
+        <?php echo $oznFormToken->csrfTag(); ?>
     </form>
 
 </div>
