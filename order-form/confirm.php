@@ -81,7 +81,7 @@
         </div>
 
         <div class="ozn-form-buttons">
-            <span><a href="./complete.php" class="ozn-btn ozn-form-nav submit">この内容で送信する →</a></span>
+            <span><a href="./complete.php" class="ozn-btn ozn-form-nav submit ozn-form-send" data-message="ただいま送信中です。このままお待ちください。">この内容で送信する →</a></span>
             <span><a href="./index.php" class="ozn-btn ozn-form-nav back">← 戻って書き直す</a></span>
         </div>
 
