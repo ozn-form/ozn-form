@@ -13,7 +13,7 @@
   "mail": {
 
     "send_flag": false,
-    "send_by": "Gmail SMTP",
+    "send_by": "sendmail",
     "redirect_to": "",
 
     "admin": {
