@@ -26,8 +26,8 @@ $config_path = dirname(__FILE__) . '/' . 'step.json';
 // Gmail アカウント設定（Gmail SMTP 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-$gmail_user     = "oznform@gmail.com";
-$gmail_password = "nNeT7FYANyWtDX";
+$gmail_user     = "yourGmailAddress";
+$gmail_password = "YourGmailPassword";
 
 
 // Gmail API設定（Gmail SMTP [OAuth認証] 経由で送信する時のみ）

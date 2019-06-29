@@ -106,29 +106,32 @@ require_once '../../../release/ozn-form.php';
         <p>下記の入力内容に間違いが無ければ、一番下の「この内容で送信する」ボタンを押し、送信を完了してください。</p>
     </div>
 
-    <div class="ozn-form-inner">
-        <div class="tr" data-if="customer_name">
-            <div class="th">お名前 <span class="ozn-label required">必須</span></div>
-            <div class="td"><span data-insert="customer_name"></span></div>
+    <form action="complete.php" method="post" enctype="multipart/form-data">
+        <div class="ozn-form-inner">
+            <div class="tr" data-if="customer_name">
+                <div class="th">お名前 <span class="ozn-label required">必須</span></div>
+                <div class="td"><span data-insert="customer_name"></span></div>
+            </div>
+            <div class="tr" data-if="customer_kana">
+                <div class="th">フリガナ <span class="ozn-label required">必須</span></div>
+                <div class="td"><span data-insert="customer_kana"></span></div>
+            </div>
+            <div class="tr" data-if="email">
+                <div class="th">メールアドレス <span class="ozn-label required">必須</span></div>
+                <div class="td"><span data-insert="email"></span></div>
+            </div>
+            <div class="tr" data-if="attachment1[]">
+                <div class="th">添付ファイル１ <span class="ozn-label required">必須</span></div>
+                <div class="td"><div data-insert="attachment1[]"></div></div>
+            </div>
         </div>
-        <div class="tr" data-if="customer_kana">
-            <div class="th">フリガナ <span class="ozn-label required">必須</span></div>
-            <div class="td"><span data-insert="customer_kana"></span></div>
-        </div>
-        <div class="tr" data-if="email">
-            <div class="th">メールアドレス <span class="ozn-label required">必須</span></div>
-            <div class="td"><span data-insert="email"></span></div>
-        </div>
-        <div class="tr" data-if="attachment1[]">
-            <div class="th">添付ファイル１ <span class="ozn-label required">必須</span></div>
-            <div class="td"><div data-insert="attachment1[]"></div></div>
-        </div>
-    </div>
 
-    <div class="ozn-form-buttons">
-        <span><a href="./complete.php" class="ozn-btn ozn-form-nav submit ozn-form-send" data-message="ただいま送信中です。このままお待ちください。">この内容で送信する →</a></span>
-        <span><a href="./index.php" class="ozn-btn ozn-form-nav back">← 戻って書き直す</a></span>
-    </div>
+        <div class="ozn-form-buttons">
+            <span><button type="submit" class="ozn-btn ozn-form-nav submit ozn-form-send" data-message="ただいま送信中です。このままお待ちください。">この内容で送信する →</button></span>
+            <span><a href="./index.php" class="ozn-btn ozn-form-nav back">← 戻って書き直す</a></span>
+        </div>
+        <?php echo $oznFormToken->csrfTag(); ?>
+    </form>
 
 </div><!-- ozn-form-inner -->
 

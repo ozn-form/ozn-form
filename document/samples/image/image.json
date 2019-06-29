@@ -1,6 +1,6 @@
 {
 
-  "is_debug": false,
+  "is_debug": true,
 
   "form_name": "image_form",
   "form_root": "/document/samples/image/index.php",

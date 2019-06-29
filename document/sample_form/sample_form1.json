@@ -1,6 +1,6 @@
 {
 
-  "is_debug": true,
+  "is_debug": false,
 
   "form_name": "sample1",
   "form_root": "/document/sample_form/index.php",
@@ -14,7 +14,8 @@
 
   "mail": {
 
-    "send_by": "Gmail SMTP",
+    "send_by": "sendmail",
+    "send_flag": true,
     "redirect_to": "",
 
     "admin": {

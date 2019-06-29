@@ -187,7 +187,7 @@ require '../../../release/ozn-form.php';
 
 <div class="page-header">
     <h1>
-        お問い合わせサンプル（ノーマル版）
+        お問い合わせサンプル（確認画面なし版）
         <small>送信完了</small>
     </h1>
 </div>
