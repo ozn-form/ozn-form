@@ -129,6 +129,7 @@ require '../../../release/ozn-form.php';
                 <button type="submit" class="btn btn-success">入力内容確認</button>
             </div>
         </div>
+        <?php echo $oznFormToken->csrfTag(); ?>
     </form>
 
 

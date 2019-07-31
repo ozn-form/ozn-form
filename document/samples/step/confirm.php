@@ -46,31 +46,23 @@ require_once '../../../release/ozn-form.php';
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-
-<!-- ヘッダメニュー -->
-
-
-<li class="">
-    <a href="../..">製品概要</a>
-</li>
-
-
-<li class="dropdown ">
-    <a href="../.." class="dropdown-toggle" id="guidance_drop" data-toggle="dropdown"
-       role="button"
-       aria-haspopup="true" aria-expanded="true"> 使い方 <span class="caret"></span> </a>
-    <ul class="dropdown-menu" aria-labelledby="guidance_drop">
-        <li><a href="../..guidance/index.html">はじめに</a></li>
-        <li><a href="../..guidance/flow.html">ファイル内容説明・設置手順</a></li>
-        <li><a href="../..guidance/config_file.html">設定ファイルの書き方</a></li>
-        <li><a href="../..guidance/form_template.html">フォームテンプレートの書き方</a></li>
-        <li><a href="../..guidance/mail_template.html">メールテンプレートの書き方</a></li>
-        <li><a href="../..guidance/styles.html">標準スタイル設定</a></li>
-    </ul>
-</li>
-
-
-
+                <!-- ヘッダメニュー -->
+                <li class="">
+                    <a href="../..">製品概要</a>
+                </li>
+                <li class="dropdown">
+                    <a href="../.." class="dropdown-toggle" id="guidance_drop" data-toggle="dropdown"
+                       role="button"
+                       aria-haspopup="true" aria-expanded="true"> 使い方 <span class="caret"></span> </a>
+                    <ul class="dropdown-menu" aria-labelledby="guidance_drop">
+                        <li><a href="../..guidance/index.html">はじめに</a></li>
+                        <li><a href="../..guidance/flow.html">ファイル内容説明・設置手順</a></li>
+                        <li><a href="../..guidance/config_file.html">設定ファイルの書き方</a></li>
+                        <li><a href="../..guidance/form_template.html">フォームテンプレートの書き方</a></li>
+                        <li><a href="../..guidance/mail_template.html">メールテンプレートの書き方</a></li>
+                        <li><a href="../..guidance/styles.html">標準スタイル設定</a></li>
+                    </ul>
+                </li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -78,66 +70,60 @@ require_once '../../../release/ozn-form.php';
 
 <div class="container">
 
-<div class="page-header">
-    <h1>
-        お問い合わせ
-        <small>入力内容確認</small>
-    </h1>
-</div>
-
-<div class="row">
-    <p class="col-sm-12">
-        下記の内容で送信します。間違いありませんか？
-    </p>
-</div>
-
-
-<div class="row">
-
-    <div class="col-sm-12">
-        <h4>お客様情報</h4>
-        <table class="table table-striped table-bordered">
-            <tr>
-                <th width="30%">問い合わせ内容</th>
-                <td width="70%" data-insert="title"></td>
-            </tr>
-            <tr>
-                <th>問い合わせ詳細</th>
-                <td data-insert="mail_body"></td>
-            </tr>
-            <tr>
-                <th>お名前</th>
-                <td>
-                    <span data-insert="customer_name"></span>
-                    <span data-if="customer_kana">
-                            （<span data-insert="customer_kana"></span>）
-                        </span>
-            </tr>
-            <tr>
-                <th>ご住所</th>
-                <td>
-                    〒<span data-insert="zip-code"></span><br>
-                    <span data-insert="address1"></span> <span data-insert="address2"></span>
-                </td>
-            </tr>
-            <tr>
-                <th>メールアドレス</th>
-                <td data-insert="email"></td>
-            </tr>
-        </table>
+    <div class="page-header">
+        <h1>
+            お問い合わせ
+            <small>入力内容確認</small>
+        </h1>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-sm-12 text-center">
-        <a href="complete.php" class="btn btn-success ozn-form-send" data-message="送信中です…">上記内容で送信する</a>
-        <a href="step2.php" class="btn btn-info ozn-form-nav">戻る</a>
+    <div class="row">
+        <p class="col-sm-12">
+            下記の内容で送信します。間違いありませんか？
+        </p>
     </div>
-</div>
 
+    <form action="complete.php" method="post">
+        <div class="row">
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th width="30%">問い合わせ内容</th>
+                    <td width="70%" data-insert="title"></td>
+                </tr>
+                <tr>
+                    <th>問い合わせ詳細</th>
+                    <td data-insert="mail_body"></td>
+                </tr>
+                <tr>
+                    <th>お名前</th>
+                    <td>
+                        <span data-insert="customer_name"></span>
+                        <span data-if="customer_kana">
+                                （<span data-insert="customer_kana"></span>）
+                            </span>
+                </tr>
+                <tr>
+                    <th>ご住所</th>
+                    <td>
+                        〒<span data-insert="zip-code"></span><br>
+                        <span data-insert="address1"></span> <span data-insert="address2"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>メールアドレス</th>
+                    <td data-insert="email"></td>
+                </tr>
+            </table>
+        </div>
 
-
-
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <a href="step2.php" class="btn btn-info ozn-form-nav">戻る</a>
+                <button type="submit" class="btn btn-success ozn-form-send" data-message="送信中です…">上記内容で送信する</button>
+            </div>
+        </div>
+        <?php echo $oznFormToken->csrfTag(); ?>
+    </form>
 </div>
 
 <hr class="setting-hr">

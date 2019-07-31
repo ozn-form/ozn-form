@@ -102,7 +102,7 @@ require '../../../release/ozn-form.php';
 </div>
 
 <div class="ozn-form-container">
-    <form action="confirm.php" method="post">
+    <form action="confirm.php" method="post" enctype="multipart/form-data">
 
         <div class="ozn-form-inner">
 
@@ -139,7 +139,7 @@ require '../../../release/ozn-form.php';
         <div class="ozn-form-buttons">
             <button type="submit" class="ozn-btn ozn-form-nav submit">入力内容の確認へ進む →</button>
         </div>
-
+        <?php echo $oznFormToken->csrfTag(); ?>
     </form>
 </div>
 

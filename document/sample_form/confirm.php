@@ -73,92 +73,93 @@ require_once '../../release/ozn-form.php';
             </p>
         </div>
 
+        <form action="complete.php" method="post" enctype="multipart/form-data">
+            <div class="row">
 
-        <div class="row">
-
-            <div class="col-sm-12">
-                <h4>お客様情報</h4>
-                <table class="table table-striped table-bordered">
-                    <tr>
-                        <th width="30%">問い合わせ内容</th>
-                        <td width="70%" data-insert="title"></td>
-                    </tr>
-                    <tr>
-                        <th>問い合わせ詳細</th>
-                        <td data-insert="mail_body"></td>
-                    </tr>
-                    <tr>
-                        <th>お名前</th>
-                        <td>
-                            <span data-insert="customer_name"></span>
-                            <span data-if="customer_kana">
-                                （<span data-insert="customer_kana"></span>）
-                            </span>
-                    </tr>
-                    <tr>
-                        <th>ご住所</th>
-                        <td>
-                            〒<span data-insert="zip-code"></span><br>
-                            <span data-insert="address1"></span> <span data-insert="address2"></span>
-                        </td>
-                    </tr>
-                    <tr data-if="tel">
-                        <th>電話番号</th>
-                        <td data-insert="tel"></td>
-                    </tr>
-                    <tr>
-                        <th>メールアドレス</th>
-                        <td data-insert="email"></td>
-                    </tr>
-                    <tr>
-                        <th>添付ファイル１</th>
-                        <td data-insert="attachment1[]"></td>
-                    </tr>
-                    <tr>
-                        <th>添付ファイル２</th>
-                        <td data-insert="attachment2[]"></td>
-                    </tr>
-                </table>
+                <div class="col-sm-12">
+                    <h4>お客様情報</h4>
+                    <table class="table table-striped table-bordered">
+                        <tr>
+                            <th width="30%">問い合わせ内容</th>
+                            <td width="70%" data-insert="title"></td>
+                        </tr>
+                        <tr>
+                            <th>問い合わせ詳細</th>
+                            <td data-insert="mail_body"></td>
+                        </tr>
+                        <tr>
+                            <th>お名前</th>
+                            <td>
+                                <span data-insert="customer_name"></span>
+                                <span data-if="customer_kana">
+                                    （<span data-insert="customer_kana"></span>）
+                                </span>
+                        </tr>
+                        <tr>
+                            <th>ご住所</th>
+                            <td>
+                                〒<span data-insert="zip-code"></span><br>
+                                <span data-insert="address1"></span> <span data-insert="address2"></span>
+                            </td>
+                        </tr>
+                        <tr data-if="tel">
+                            <th>電話番号</th>
+                            <td data-insert="tel"></td>
+                        </tr>
+                        <tr>
+                            <th>メールアドレス</th>
+                            <td data-insert="email"></td>
+                        </tr>
+                        <tr>
+                            <th>添付ファイル１</th>
+                            <td data-insert="attachment1[]"></td>
+                        </tr>
+                        <tr>
+                            <th>添付ファイル２</th>
+                            <td data-insert="attachment2[]"></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-12">
 
-                <h4>資料送付について</h4>
-                <table class="table table-striped table-bordered">
-                    <tr>
-                        <th width="30%">資料タイプ</th>
-                        <td width="70%" data-insert="materials"></td>
-                    </tr>
-                    <tr>
-                        <th>送付先 ご住所</th>
-                        <td>
-                            〒<span data-insert="shipping-zip-code1"></span>-<span data-insert="shipping-zip-code2"></span><br>
-                            <span data-insert="shipping-address1"></span> <span data-insert="shipping-address2"></span>
-                        </td>
-                    </tr>
-                    <tr data-if="survey[]">
-                        <th>アンケート</th>
-                        <td data-insert="survey[]"></td>
-                    </tr>
-                    <tr data-if="privacy">
-                        <th>個人情報の取扱について</th>
-                        <td>同意いただいています。</td>
-                    </tr>
+                    <h4>資料送付について</h4>
+                    <table class="table table-striped table-bordered">
+                        <tr>
+                            <th width="30%">資料タイプ</th>
+                            <td width="70%" data-insert="materials"></td>
+                        </tr>
+                        <tr>
+                            <th>送付先 ご住所</th>
+                            <td>
+                                〒<span data-insert="shipping-zip-code1"></span>-<span data-insert="shipping-zip-code2"></span><br>
+                                <span data-insert="shipping-address1"></span> <span data-insert="shipping-address2"></span>
+                            </td>
+                        </tr>
+                        <tr data-if="survey[]">
+                            <th>アンケート</th>
+                            <td data-insert="survey[]"></td>
+                        </tr>
+                        <tr data-if="privacy">
+                            <th>個人情報の取扱について</th>
+                            <td>同意いただいています。</td>
+                        </tr>
 
-                </table>
+                    </table>
 
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                <a href="complete.php" class="btn btn-success">上記内容で送信する</a>
-                <a href="index.php" class="btn btn-info">戻る</a>
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <a href="index.php" class="btn btn-info ozn-form-nav">戻る</a>
+                    <button type="submit" class="btn btn-success ozn-form-nav ozn-form-send" data-message="ただいま送信中です。">上記内容で送信する</button>
+                </div>
             </div>
-        </div>
-
+            <?php echo $oznFormToken->csrfTag(); ?>
+        </form>
     </div>
 
 </body>

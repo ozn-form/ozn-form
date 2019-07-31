@@ -158,7 +158,7 @@ require '../../../release/ozn-form.php';
                             <dt>郵便番号<span class="ozn-label required">必須</span></dt>
                             <dd>
                                 <input type="text" name="zip-code" class="ozn-input pc-30 tb-50" style="ime-mode:inactive;" placeholder="例）432-3332" data-oznform-zip="address" autocomplete="postal-code">
-                                <p class="ozn-notice">郵便番号を入力すると住所を自動で表示します</p></dd>
+                                <p class="ozn-notice">郵便番号を入力すると住所を自動で表示します</p>
                             </dd>
                         </dl>
                         <dl>
@@ -183,10 +183,11 @@ require '../../../release/ozn-form.php';
 
 
             <div class="ozn-form-buttons">
-                <span><a href="./complete.php" class="ozn-btn ozn-form-nav submit ozn-form-send">この内容で送信する →</a></span>
+                <span><button type="submit" class="ozn-btn ozn-form-nav submit ozn-form-send" data-message="ただいま送信中です。このままお待ちください。">この内容で送信する →</button></span>
             </div>
 
         </div>
+        <?php echo $oznFormToken->csrfTag(); ?>
     </form>
 
 </div>

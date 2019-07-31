@@ -164,7 +164,7 @@
             <div class="ozn-form-buttons">
                 <button type="submit" class="ozn-btn ozn-form-nav submit">入力内容の確認へ進む →</button>
             </div>
-
+            <?php echo $oznFormToken->csrfTag(); ?>
         </form>
     </div><!-- ozn-form-inner -->
 

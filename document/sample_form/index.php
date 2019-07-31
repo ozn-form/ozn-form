@@ -64,7 +64,7 @@
         <h1>お問い合わせ</h1>
     </div>
 
-    <form action="confirm.php" method="post">
+    <form action="confirm.php" method="post" enctype="multipart/form-data">
 
         <div class="row">
 
@@ -241,6 +241,7 @@
                 <button type="submit" class="btn btn-info">確認画面へ</button>
             </div>
         </div>
+        <?php echo $oznFormToken->csrfTag(); ?>
     </form>
 
 </div>

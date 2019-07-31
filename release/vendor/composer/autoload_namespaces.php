@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname(dirname($vendorDir));
 
 return array(
-    'Valitron' => array($vendorDir . '/vlucas/valitron/src'),
     'SecurityLib' => array($vendorDir . '/ircmaxell/security-lib/lib'),
     'RandomLib' => array($vendorDir . '/ircmaxell/random-lib/lib'),
 );

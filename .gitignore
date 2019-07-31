@@ -11,3 +11,4 @@ script/
 /release/upload/files
 !/release/upload/files/.htaccess
 /DevServer/.env
+/DevServer/docker-compose.d/certs/

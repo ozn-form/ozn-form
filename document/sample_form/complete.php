@@ -7,27 +7,27 @@ $config_path = dirname(__FILE__) . '/' . 'sample_form1.json';
 // SMTP アカウント設定（SMTP 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-$account  = "Account@test.to";
-$password = "Password";
-$host     = "smtp.lolipop.jp";  // SMTPサーバ
+//$account  = "Account@test.to";
+//$password = "Password";
+//$host     = "smtp.lolipop.jp";  // SMTPサーバ
 
-$smtp_options = array(
-
-//    デフォルト設定
-//    'SMTPAuth'   => true,
-//    'Port'       => 587,
-//    'SMTPSecure' => 'tls',    // 'ssl' or 'tls'
-
-    'Port'       => 465,
-    'SMTPSecure' => 'ssl',
-);
+//$smtp_options = array(
+//
+////    デフォルト設定
+////    'SMTPAuth'   => true,
+////    'Port'       => 587,
+////    'SMTPSecure' => 'tls',    // 'ssl' or 'tls'
+//
+//    'Port'       => 465,
+//    'SMTPSecure' => 'ssl',
+//);
 
 
 // Gmail アカウント設定（Gmail SMTP 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-$gmail_user     = "oznform@gmail.com";
-$gmail_password = "nNeT7FYANyWtDX";
+//$gmail_user     = "oznform@gmail.com";
+//$gmail_password = "your password";
 
 
 // Gmail API設定（Gmail SMTP [OAuth認証] 経由で送信する時のみ）
