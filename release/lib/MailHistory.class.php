@@ -1,6 +1,6 @@
 <?php namespace OznForm;
 
-require_once dirname(__FILE__) . '/Database.class.php';
+require_once __DIR__ . '/Database.class.php';
 
 
 /**
@@ -11,11 +11,10 @@ require_once dirname(__FILE__) . '/Database.class.php';
  */
 class MailHistory
 {
-
     private $database;
     const TABLE_NAME = 'histories';
 
-    function __construct()
+    public function __construct()
     {
         $this->database = new Database();
     }
@@ -25,11 +24,11 @@ class MailHistory
     {
 
         $dbh = $this->database->getDBH();
-        $sql = "SELECT * FROM " .self::TABLE_NAME;
+        $sql = 'SELECT * FROM ' .self::TABLE_NAME;
 
         if($form_name)
         {
-            $sql .= " WHERE form_name = :name";
+            $sql .= ' WHERE form_name = :name';
             $file_name = $form_name;
         }
         else
@@ -49,7 +48,7 @@ class MailHistory
 
             ob_start();
 
-            $stdout = fopen('php://output', 'w');
+            $stdout = fopen('php://output', 'wb');
             $count = 1;
 
             foreach ($stmt as $item)
@@ -71,18 +70,16 @@ class MailHistory
 
             } ;
 
-            if($count == 1) {return FALSE;}
+            if($count === 1) {return FALSE;}
 
-            header("Content-Type: application/octet-stream");
+            header('Content-Type: application/octet-stream');
             header("Content-Disposition: attachment; filename={$file_name}.csv");
             echo mb_convert_encoding(ob_get_clean(), 'SJIS-WIN', 'UTF-8');
 
             return TRUE;
         }
-        else
-        {
-            return FALSE;
-        }
+
+        return FALSE;
     }
 
     /**
@@ -95,11 +92,11 @@ class MailHistory
     {
 
         $dbh = $this->database->getDBH();
-        $sql = "DELETE FROM " .self::TABLE_NAME;
+        $sql = 'DELETE FROM ' .self::TABLE_NAME;
 
         if($form_name)
         {
-            $sql .= " WHERE form_name = :name";
+            $sql .= ' WHERE form_name = :name';
         }
 
         $stmt = $dbh->prepare($sql);
@@ -109,14 +106,9 @@ class MailHistory
             $stmt->bindParam(':name', $form_name);
         }
 
-        if($stmt->execute())
-        {
-            return $stmt->rowCount();
-        }
-        else
-        {
-            return FALSE;
-        }
+        if($stmt->execute()) { return $stmt->rowCount(); }
+
+        return FALSE;
     }
 
 

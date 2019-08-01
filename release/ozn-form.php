@@ -16,33 +16,36 @@
 
 date_default_timezone_set('Asia/Tokyo');
 
-require_once dirname(__FILE__) . '/lib/MailSender.class.php';
-require_once dirname(__FILE__) . '/lib/FormConfig.class.php';
-require_once dirname(__FILE__) . '/lib/exceptions/FormError.class.php';
-require_once dirname(__FILE__) . '/lib/FormSession.class.php';
-require_once dirname(__FILE__) . '/lib/MailTemplate.class.php';
-require_once dirname(__FILE__) . '/lib/MailHistory.class.php';
-require_once dirname(__FILE__) . '/lib/FormValidation.class.php';
-require_once dirname(__FILE__) . '/lib/exceptions/SendMailException.class.php';
+require_once __DIR__ . '/lib/MailSender.class.php';
+require_once __DIR__ . '/lib/FormConfig.class.php';
+require_once __DIR__ . '/lib/exceptions/FormError.class.php';
+require_once __DIR__ . '/lib/FormSession.class.php';
+require_once __DIR__ . '/lib/MailTemplate.class.php';
+require_once __DIR__ . '/lib/MailHistory.class.php';
+require_once __DIR__ . '/lib/FormValidation.class.php';
+require_once __DIR__ . '/lib/exceptions/SendMailException.class.php';
 require_once __DIR__ . '/lib/Token.class.php';
+require_once __DIR__ . '/lib/GoogleReCAPTCHA.php';
 
 
 /**
  * バージョン
+ * @note 2.5.0 google ReCAPTCHA 機能追加
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-const VERSION = '2.4.0';
+const VERSION = '2.5.0';
 
 
 /**
  * 環境情報（パスなど）を定義
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ * @var FormConfig $config
  */
 
 // 設定
 $config = new FormConfig($config_path);
 
-define('SYSTEM_ROOT'   , dirname(__FILE__)); // OznFormシステムのルートパス
+define('SYSTEM_ROOT'   , __DIR__); // OznFormシステムのルートパス
 
 define('DOCUMENT_PATH' , str_replace($config->documentRoot(), '', SYSTEM_ROOT));
 
@@ -55,19 +58,13 @@ define('PAGE_ROLE'     , $config->pageRole(PAGE_NAME));
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
 
-set_exception_handler(function ($ex){
-    global $config;
+set_exception_handler(static function ($ex) use ($config) {
 
-    switch (get_class($ex)) {
-
-        // メール送信エラー
-        case SendMailException::class:
-            require_once dirname(__FILE__) . '/send_mail_error.php';
-            break;
-
-        // その他のエラー
-        default:
-            require_once dirname(__FILE__) . '/error_page.php';
+    $i = get_class($ex);
+    if ($i == SendMailException::class) {
+        require_once __DIR__ . '/send_mail_error.php';
+    } else {
+        require_once __DIR__ . '/error_page.php';
     }
 });
 
@@ -104,11 +101,11 @@ if(strtolower($_SERVER['REQUEST_METHOD']) === 'post')
 /**
  * CSRF トークンの生成
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ * @var Token $oznFormToken
  */
 
 $oznFormToken = new Token();
 $oznFormToken->make()->setSession();
-
 
 
 /**
@@ -173,7 +170,10 @@ if(PAGE_ROLE == 'form') {
     $ozn_form_javascript[] = '</script>';
 
 
-    // 関連ライブラリの読み込み
+    /**
+     * 関連ライブラリjsの読み込み
+     */
+
     if($config->ajaxZipOption()) {
         $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/ajaxzip3.js"></script>';
     }
@@ -183,6 +183,11 @@ if(PAGE_ROLE == 'form') {
         $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/datepicker-ja.js"></script>';
     }
 
+    // google reCAPTCHA
+    if($config->reCAPTCHA()->enabled()) {
+        $ozn_form_javascript[] = $config->reCAPTCHA()->scriptTag();
+        $reCAPTCHA_tag = $config->reCAPTCHA()->htmlTag();
+    }
 
     // ファイルアップロード関連
     if($config->isUploadFileForm()) {
@@ -203,7 +208,7 @@ if(PAGE_ROLE == 'form') {
     $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/config/oznform_config.js"></script>';
     $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/ozn-form.js"></script>';
 
-    $ozn_form_javascript = join("\n", $ozn_form_javascript);
+    $ozn_form_javascript = implode("\n", $ozn_form_javascript);
 
 
 
@@ -217,7 +222,7 @@ if(PAGE_ROLE == 'form') {
     $ozn_form_styles[] = '<link rel="stylesheet" href="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/css/jquery.fileupload.css">';
     $ozn_form_styles[] = '<link rel="stylesheet" href="'.DOCUMENT_PATH.'/css/ozn-form.min.css">';
 
-    $ozn_form_styles = join("\n", $ozn_form_styles);
+    $ozn_form_styles = implode("\n", $ozn_form_styles);
 
 
 
@@ -250,10 +255,17 @@ if(PAGE_ROLE == 'form') {
     }
 
     $ozn_form_javascript[] = '</script>';
+
+    // google reCAPTCHA
+    if($config->reCAPTCHA()->enabled()) {
+        $ozn_form_javascript[] = $config->reCAPTCHA()->scriptTag();
+        $reCAPTCHA_tag = $config->reCAPTCHA()->htmlTag();
+    }
+
     $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/utilities.js"></script>';
     $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/ozn-form-confirm.js"></script>';
 
-    $ozn_form_javascript = join("\n", $ozn_form_javascript);
+    $ozn_form_javascript = implode("\n", $ozn_form_javascript);
 
     // 出力CSSタグの定義
     $ozn_form_styles = '<link rel="stylesheet" href="'.DOCUMENT_PATH.'/css/ozn-form.min.css">';
@@ -277,6 +289,21 @@ if(PAGE_ROLE == 'form') {
         exit();
     }
 
+
+    // googleReCAPTCHAが有効の場合は、正当性チェックを実施
+
+    if($config->reCAPTCHA()->enabled()) {
+
+        if(empty($googleReCaptchaSecret)) { throw new \LogicException('[設定エラー] 送信ページに google ReCAPTCHA シークレットが設定されていません。');}
+
+        if(! $config->reCAPTCHA()->valid($googleReCaptchaSecret)) {
+            $_SESSION['reCAPTCHAErrorMsg'] = '送信チェックしてください。';
+            header("Location: {$_SERVER['HTTP_REFERER']}");
+            exit();
+        }
+    }
+
+
     // 出力CSSタグの定義
     $ozn_form_styles = '<link rel="stylesheet" href="'.DOCUMENT_PATH.'/css/ozn-form.min.css">';
 
@@ -288,7 +315,7 @@ if(PAGE_ROLE == 'form') {
     $ozn_form_javascript[] = '</script>';
     $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/utilities.js"></script>';
 
-    $ozn_form_javascript = join("\n", $ozn_form_javascript);
+    $ozn_form_javascript = implode("\n", $ozn_form_javascript);
 
 
 

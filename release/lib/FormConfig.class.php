@@ -1,12 +1,19 @@
 <?php namespace OznForm;
 
-require_once dirname(__FILE__) . '/exceptions/FormError.class.php';
+require_once __DIR__ . '/exceptions/FormError.class.php';
+require_once __DIR__ . '/GoogleReCAPTCHA.php';
 
-
+/**
+ * Class FormConfig
+ * @package OznForm
+ *
+ * @property GoogleReCAPTCHA googleReCaptcha
+ */
 class FormConfig
 {
     private $config_raw;    // 設定値
     private $name2label_table;
+    private $googleReCaptcha;
 
 
     public static function load($path)
@@ -382,5 +389,16 @@ class FormConfig
                 }
             }
         }
+    }
+
+    /**
+     * Google reCAPTCHA 設定
+     *
+     * @return GoogleReCAPTCHA
+     */
+    public function reCAPTCHA()
+    {
+        if(empty($this->googleReCaptcha)) { $this->googleReCaptcha = new GoogleReCAPTCHA($this->config_raw); }
+        return $this->googleReCaptcha;
     }
 }

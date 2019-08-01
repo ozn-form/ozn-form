@@ -76,8 +76,6 @@ window.OznForm.utilities = {
     setSendmailButtonEvent: function ($el) {
         $el.on('click', function () {
 
-            //event.preventDefault();
-
             var $this = $(this);
 
             if($this.hasClass('ozn-form-disabled')) {
