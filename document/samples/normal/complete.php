@@ -34,6 +34,9 @@
 //$oauth_secret = "";
 //$oauth_refresh_token = "";
 
+// Gmail ReCAPTCHA
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+$googleReCaptchaSecret = "6LeGY7EUAAAAAPAS8pMjhag3OgEgiPnJ0obXNTeb";
 
 /**
  * メールテンプレートについて

@@ -1,54 +1,48 @@
 {
-
   "is_debug": false,
-
   "form_name": "order-form",
   "form_root": "/order-form/index.php",
-
   "unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。",
-
   "validation": {
     "show_icon": true,
     "shift_scroll_position": -50
   },
-
+  "reCAPTCHA": {
+    "enabled": true,
+    "site_key": "enter ReCaptcha site key"
+},
   "mail": {
-
     "send_by": "sendmail",
     "redirect_to": "",
-
     "admin": {
-      "to_name"   : "ozn-formお問い合わせフォーム",
-      "to"        : "ozn-form+admin@ozonenotes.jp",
-      "cc"        : [],
-      "bcc"       : [],
-      "from_name" : "<% customer_name %> 様",
-      "from"      : "ozn-form@ozonenotes.jp",
-      "reply_to"  : "<% email %>"
-
+      "to_name": "ozn-formお問い合わせフォーム",
+      "to": "ozn-form+admin@ozonenotes.jp",
+      "cc": [],
+      "bcc": [],
+      "from_name": "<% customer_name %> 様",
+      "from": "ozn-form@ozonenotes.jp",
+      "reply_to": "<% email %>"
     },
-
     "auto_reply": {
-      "enabled"   : true,
-      "to_name"   : "<% customer_name %> 様",
-      "to"        : "<% email %>",
-      "cc"        : [],
-      "bcc"       : [],
-      "from_name" : "ozn-form受付 / ozone notes",
-      "from"      : "no-reply@ozonenotes.jp",
-      "reply_to"  : "<% email %>"
+      "enabled": true,
+      "to_name": "<% customer_name %> 様",
+      "to": "<% email %>",
+      "cc": [],
+      "bcc": [],
+      "from_name": "ozn-form受付 / ozone notes",
+      "from": "no-reply@ozonenotes.jp",
+      "reply_to": "<% email %>"
     }
   },
-
   "pages": {
-
     "index": {
       "role": "form",
       "forms": {
-
         "title": {
           "label": "ご希望の導入方法",
-          "validates": ["required"],
+          "validates": [
+            "required"
+          ],
           "error_message_position": ".title-error",
           "error_message_template": "<p><% messages %></p>",
           "error_messages": {
@@ -60,31 +54,39 @@
         },
         "corporate_kana": {
           "label": "企業名・団体名フリガナ",
-          "validates": ["kanaOnly"]
+          "validates": [
+            "kanaOnly"
+          ]
         },
         "customer_name": {
           "label": "ご担当者様氏名",
-          "validates": ["required"]
+          "validates": [
+            "required"
+          ]
         },
         "customer_kana": {
           "label": "ご担当者様フリガナ",
-          "validates": ["required", "kanaOnly"]
+          "validates": [
+            "required",
+            "kanaOnly"
+          ]
         },
-
         "email": {
           "label": "メールアドレス",
-          "validates": ["required", "email_detail"],
+          "validates": [
+            "required",
+            "email_detail"
+          ],
           "mobile_mail_warning": "携帯電話のアドレスが入力されました。ozonenotes.jp ドメインからのメールを受信できるように設定お願いします。"
         },
-
-
         "mail_body": {
           "label": "お問い合わせ内容"
         },
-
         "privacy": {
           "label": "個人情報の取り扱い",
-          "validates": ["required"],
+          "validates": [
+            "required"
+          ],
           "error_message_position": ".privacy-error",
           "error_message_template": "<p><% messages %></p>",
           "error_messages": {
@@ -93,11 +95,9 @@
         }
       }
     },
-
     "confirm": {
       "role": "confirm"
     },
-
     "complete": {
       "role": "mailsend"
     }

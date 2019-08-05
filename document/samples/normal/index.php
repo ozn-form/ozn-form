@@ -231,6 +231,8 @@ require __DIR__ . '../../../../release/ozn-form.php';
             </div>
         </div>
 
+        <?php echo $reCAPTCHA_tag; ?>
+
         <div class="ozn-form-buttons">
             <button type="submit" class="ozn-btn ozn-form-nav submit">入力内容の確認へ進む →</button>
         </div>

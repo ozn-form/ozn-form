@@ -45,7 +45,7 @@ class GoogleReCAPTCHA
             $errorMsg = '<div class="ozn-form-recaptcha-error">'.$_SESSION['reCAPTCHAErrorMsg'].'</div>';
         }
 
-        return '<div class="ozn-form-recaptcha">'.$errorMsg.'<div class="g-recaptcha" data-sitekey="'.$this->config['reCAPTCHA']['site_key'].'"></div></div>';
+        return '<div class="ozn-form-recaptcha"><div class="g-recaptcha" data-sitekey="'.$this->config['reCAPTCHA']['site_key'].'"></div>'.$errorMsg.'</div>';
     }
 
     /**

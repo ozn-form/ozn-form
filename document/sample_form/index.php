@@ -236,6 +236,10 @@
 
         <hr>
 
+        <?php echo $reCAPTCHA_tag; ?>
+
+        <hr>
+
         <div class="row actions">
             <div class="col-sm-6">
                 <button type="submit" class="btn btn-info">確認画面へ</button>

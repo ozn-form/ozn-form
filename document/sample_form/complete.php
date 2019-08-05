@@ -38,6 +38,9 @@ $config_path = dirname(__FILE__) . '/' . 'sample_form1.json';
 //$oauth_secret = "";
 //$oauth_refresh_token = "";
 
+// Gmail ReCAPTCHA
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+//$googleReCaptchaSecret = "enter ReCaptcha secret key";
 
 /**
  * メールテンプレートについて

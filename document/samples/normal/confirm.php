@@ -157,6 +157,8 @@ require_once '../../../release/ozn-form.php';
             </div>
         </div>
 
+        <?php echo $reCAPTCHA_tag; ?>
+
         <div class="ozn-form-buttons">
             <span><button type="submit" class="ozn-btn ozn-form-nav submit ozn-form-send" data-message="ただいま送信中です。このままお待ちください。">この内容で送信する →</button></span>
             <span><a href="./index.php" class="ozn-btn ozn-form-nav back">← 戻って書き直す</a></span>
