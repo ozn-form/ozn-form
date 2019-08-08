@@ -25,28 +25,57 @@ class GoogleReCAPTCHA
     }
 
     /**
+     * サイトキーを返す
+     */
+    public function siteKey()
+    {
+        return isset($this->config['reCAPTCHA']['enabled'], $this->config['reCAPTCHA']['site_key']) && $this->config['reCAPTCHA']['enabled']
+            ? $this->config['reCAPTCHA']['site_key']
+            : '';
+    }
+
+    /**
      * jsスクリプトタグ
      * @return string
      */
     public function scriptTag()
     {
-        return '<script src="https://www.google.com/recaptcha/api.js" async defer></script>';
-    }
+        $siteKey = $this->config['reCAPTCHA']['site_key'];
 
-    /**
-     * reCAPTCHAを挿入するHTMLタグを返す
-     * @return string
-     */
-    public function htmlTag()
-    {
-        $errorMsg = '';
+        $tag = "<script src=\"https://www.google.com/recaptcha/api.js?render=${siteKey}\"></script>";
 
-        if(isset($_SESSION['reCAPTCHAErrorMsg'])) {
-            $errorMsg = '<div class="ozn-form-recaptcha-error">'.$_SESSION['reCAPTCHAErrorMsg'].'</div>';
+        if(PAGE_ROLE === 'confirm') {
+            $tag .= <<< HTML
+
+  <script>
+  jQuery(function ($) {
+      $('form').one('submit', function() {
+         
+          var targetForm = $(this);
+          
+          grecaptcha.ready(function() {
+              grecaptcha.execute('${siteKey}', {action: 'oznform'}).then(function(token) {
+                 targetForm.append('<input type="hidden" name="g-recaptcha-response" value="'+token+'">');
+                 targetForm.submit();
+              });
+          });
+          return false;
+      });
+  });
+  </script>
+HTML;
         }
 
-        return '<div class="ozn-form-recaptcha">'.$errorMsg.'<div class="g-recaptcha" data-sitekey="'.$this->config['reCAPTCHA']['site_key'].'"></div></div>';
+        return $tag;
+
     }
+
+
+    private function score()
+    {
+        return isset($this->config['reCAPTCHA']['score']) ? $this->config['reCAPTCHA']['score'] : 0.5;
+    }
+
 
     /**
      * 正当性検査を実施
@@ -63,7 +92,7 @@ class GoogleReCAPTCHA
         $resp = @file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$googleReCaptchaSecret}&response={$recaptcha}");
         $resp_result = json_decode($resp,true);
 
-        return $resp_result['success'];
+        return $resp_result['success'] && $resp_result['score'] >= $this->score();
     }
 
 }

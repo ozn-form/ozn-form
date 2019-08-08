@@ -156,6 +156,8 @@ if(PAGE_ROLE == 'form') {
     $ozn_form_javascript[] = '  OznForm.furl      = "'.DOCUMENT_PATH.'/upload/index.php";';
     $ozn_form_javascript[] = '  OznForm.vsetting  = ' . json_encode($config->validationSetting());
     $ozn_form_javascript[] = '  OznForm.forms     = '.$forms_json.';';
+    $ozn_form_javascript[] = '  OznForm.reCAPTCHA = '. ($config->reCAPTCHA()->enabled() ? 'true':'false') .';';
+    $ozn_form_javascript[] = '  OznForm.reCAPTCHA_sitekey = "'.$config->reCAPTCHA()->siteKey().'";';
 
     // 初期化メッセージ設定（GETで初期ページに渡された値）
     if(isset($get_values)) {
@@ -186,7 +188,6 @@ if(PAGE_ROLE == 'form') {
     // google reCAPTCHA
     if($config->reCAPTCHA()->enabled()) {
         $ozn_form_javascript[] = $config->reCAPTCHA()->scriptTag();
-        $reCAPTCHA_tag = $config->reCAPTCHA()->htmlTag();
     }
 
     // ファイルアップロード関連
@@ -259,7 +260,6 @@ if(PAGE_ROLE == 'form') {
     // google reCAPTCHA
     if($config->reCAPTCHA()->enabled()) {
         $ozn_form_javascript[] = $config->reCAPTCHA()->scriptTag();
-        $reCAPTCHA_tag = $config->reCAPTCHA()->htmlTag();
     }
 
     $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/utilities.js"></script>';
@@ -295,11 +295,11 @@ if(PAGE_ROLE == 'form') {
     if($config->reCAPTCHA()->enabled()) {
 
         if(empty($googleReCaptchaSecret)) { throw new \LogicException('[設定エラー] 送信ページに google ReCAPTCHA シークレットが設定されていません。');}
+        if(isset($_SESSION['reCAPTCHAErrorMsg'])) { unset($_SESSION['reCAPTCHAErrorMsg']); }
 
         if(! $config->reCAPTCHA()->valid($googleReCaptchaSecret)) {
-            $_SESSION['reCAPTCHAErrorMsg'] = '送信チェックしてください。';
-            header("Location: {$_SERVER['HTTP_REFERER']}");
-            exit();
+
+            throw new FormError('送信されたデータの検証に失敗しました。');
         }
     }
 
