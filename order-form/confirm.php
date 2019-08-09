@@ -3,8 +3,7 @@
     $config_path = dirname(__FILE__) . '/' . 'ozn-config.json';
     // OznForm 実行ファイル読み込み
     require '../release/ozn-form.php';
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
 <head>
 <title>ozn-form 導入についてのお問い合わせ - STEP02</title>

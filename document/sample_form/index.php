@@ -6,9 +6,7 @@
     // OznForm 実行ファイル読み込み
     require '../../release/ozn-form.php';
 
-?>
-
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -122,7 +120,7 @@
         <div class="row">
             <div class="form-group col-sm-3 col-xs-6">
                 <label for="zip-code">郵便番号<span class="required">（必須）</span></label>
-                <input type="text" name="zip-code" id="zip-code" class="form-control" placeholder="例）432-3332" data-oznform-zip="addr1">
+                <input type="text" name="zip-code" id="zip-code" class="form-control" placeholder="例）432-3332" data-oznform-zip="addr1" inputmode="numeric">
             </div>
         </div>
 
@@ -140,21 +138,21 @@
         <div class="row">
             <div class="form-group col-sm-4">
                 <label for="tel">電話番号</label>
-                <input type="text" name="tel" id="tel" class="form-control" placeholder="例）1333-31-3234">
+                <input type="text" name="tel" id="tel" class="form-control" placeholder="例）1333-31-3234" inputmode="tel">
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-sm-8">
                 <label for="email">メールアドレス<span class="required">（必須）</span></label>
-                <input data-domain-suggest="true" type="text" name="email" id="email" class="form-control" placeholder="例）xxxx@gmail.jp">
+                <input data-domain-suggest="true" type="text" name="email" id="email" class="form-control" placeholder="例）xxxx@gmail.jp" inputmode="numeric">
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-sm-8">
                 <label for="email">勤務先メールアドレス<span class="required">（必須）</span></label>
-                <input data-domain-suggest="true2" type="text" name="email2" id="email" class="form-control" placeholder="例）xxxx@gmail.jp">
+                <input data-domain-suggest="true2" type="text" name="email2" id="email" class="form-control" placeholder="例）xxxx@gmail.jp" inputmode="numeric">
             </div>
         </div>
 
@@ -180,8 +178,8 @@
         <div class="row">
             <div class="form-group col-sm-12 col-xs-12 form-inline shipping-zip-area">
                 <label for="shipping-zip-code1">郵便番号<span class="required">（必須）</span></label><br>
-                <input type="text" name="shipping-zip-code1" id="shipping-zip-code1" class="form-control" placeholder="例）432" data-oznform-zip="address2"> -
-                <input type="text" name="shipping-zip-code2" id="shipping-zip-code2" class="form-control" placeholder="例）3332" data-oznform-zip="address2">
+                <input type="text" name="shipping-zip-code1" id="shipping-zip-code1" class="form-control" placeholder="例）432" data-oznform-zip="address2" inputmode="numeric"> -
+                <input type="text" name="shipping-zip-code2" id="shipping-zip-code2" class="form-control" placeholder="例）3332" data-oznform-zip="address2" inputmode="numeric">
             </div>
         </div>
 
@@ -246,11 +244,5 @@
 
 </div>
 
-
-
-
-
-<!-- SCRIPTS -->
-<!-- Example: <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 </body>
 </html>

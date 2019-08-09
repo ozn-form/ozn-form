@@ -122,8 +122,7 @@ TEXT;
 require '../release/ozn-form.php';
 
 //送信完了画面のHTMLをここから下に記述する。特定ページへリダイレクトする場合は省略可。
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
 <head>
 <title>ozn-form 導入についてのお問い合わせ - STEP03</title>

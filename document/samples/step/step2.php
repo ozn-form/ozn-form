@@ -3,14 +3,10 @@
 // 設定ファイルのパスを設定
 $config_path = dirname(__FILE__) . '/' . 'step.json';
 
-
 // OznForm 実行ファイル読み込み
 require '../../../release/ozn-form.php';
 
-?>
-
-
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
