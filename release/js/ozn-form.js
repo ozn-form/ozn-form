@@ -315,9 +315,22 @@ jQuery(function ($) {
         if(ajax_validations.length === 0) {
 
             // -- 全て検証OKの時の処理
-            $this.off('submit', validateAllForms);
-            $(window).off('beforeunload', showUnloadMessage);
-            $this.submit();
+
+            if(OznForm.reCAPTCHA) {
+                grecaptcha.ready(function() {
+                    grecaptcha.execute(OznForm.reCAPTCHA_sitekey, {action: 'oznform'}).then(function(token) {
+                        $this.append('<input type="hidden" name="g-recaptcha-response" value="'+token+'">');
+
+                        $this.off('submit', validateAllForms);
+                        $(window).off('beforeunload', showUnloadMessage);
+                        $this.submit();
+                    });
+                });
+            } else {
+                $this.off('submit', validateAllForms);
+                $(window).off('beforeunload', showUnloadMessage);
+                $this.submit();
+            }
 
         } else {
             // 可変数のDeferredを並列実行させる
@@ -345,10 +358,21 @@ jQuery(function ($) {
                     if(is_success) {
 
                         // -- 全て検証OKの時の処理
+                        if(OznForm.reCAPTCHA) {
+                            grecaptcha.ready(function() {
+                                grecaptcha.execute(OznForm.reCAPTCHA_sitekey, {action: 'oznform'}).then(function(token) {
+                                    $this.append('<input type="hidden" name="g-recaptcha-response" value="'+token+'">');
 
-                        $this.off('submit', validateAllForms);
-                        $(window).off('beforeunload', showUnloadMessage);
-                        $this.submit();
+                                    $this.off('submit', validateAllForms);
+                                    $(window).off('beforeunload', showUnloadMessage);
+                                    $this.submit();
+                                });
+                            });
+                        } else {
+                            $this.off('submit', validateAllForms);
+                            $(window).off('beforeunload', showUnloadMessage);
+                            $this.submit();
+                        }
 
                     } else {
 
