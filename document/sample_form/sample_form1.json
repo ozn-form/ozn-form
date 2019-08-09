@@ -9,30 +9,31 @@
   },
   "reCAPTCHA": {
     "enabled": true,
-    "site_key": "enter ReCaptcha site key"
+    "site_key": "enter ReCaptcha site key",
+    "score": 0.5
   },
   "mail": {
     "send_by": "sendmail",
     "send_flag": true,
     "redirect_to": "",
     "admin": {
-      "to_name": "",
-      "to": "oznform+webcontact@gmail.com",
-      "cc": [],
-      "bcc": [],
+      "to_name":   "",
+      "to":        "oznform+webcontact@gmail.com",
+      "cc":        [],
+      "bcc":       [],
       "from_name": "OznForm Mailer",
-      "from": "oznform@gmail.com",
-      "reply_to": "<% email %>"
+      "from":      "oznform@gmail.com",
+      "reply_to":  "<% email %>"
     },
     "auto_reply": {
-      "enabled": true,
-      "to_name": "<% customer_name %> 様",
-      "to": "<% email %>",
-      "cc": [],
-      "bcc": [],
+      "enabled":   true,
+      "to_name":   "<% customer_name %> 様",
+      "to":        "<% email %>",
+      "cc":        [],
+      "bcc":       [],
       "from_name": "OznForm Tester",
-      "from": "oznform@gmail.com",
-      "reply_to": "oznform@gmail.com"
+      "from":      "oznform@gmail.com",
+      "reply_to":  "oznform@gmail.com"
     }
   },
   "pages": {

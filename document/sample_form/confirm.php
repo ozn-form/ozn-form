@@ -152,8 +152,6 @@ require_once '../../release/ozn-form.php';
                 </div>
             </div>
 
-            <?php echo $reCAPTCHA_tag; ?>
-
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <a href="index.php" class="btn btn-info ozn-form-nav">戻る</a>

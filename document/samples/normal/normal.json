@@ -9,7 +9,8 @@
   },
   "reCAPTCHA": {
     "enabled": true,
-    "site_key": "enter ReCaptcha site key"
+    "site_key": "enter ReCaptcha site key",
+    "score": 0.5
   },
   "mail": {
     "send_flag": false,

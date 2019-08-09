@@ -9,29 +9,30 @@
   },
   "reCAPTCHA": {
     "enabled": true,
-    "site_key": "enter ReCaptcha site key"
-},
+    "site_key": "enter ReCaptcha site key",
+    "score": 0.5
+  },
   "mail": {
     "send_by": "sendmail",
     "redirect_to": "",
     "admin": {
-      "to_name": "ozn-formお問い合わせフォーム",
-      "to": "ozn-form+admin@ozonenotes.jp",
-      "cc": [],
-      "bcc": [],
+      "to_name":   "ozn-formお問い合わせフォーム",
+      "to":        "ozn-form+admin@ozonenotes.jp",
+      "cc":        [],
+      "bcc":       [],
       "from_name": "<% customer_name %> 様",
-      "from": "ozn-form@ozonenotes.jp",
-      "reply_to": "<% email %>"
+      "from":      "ozn-form@ozonenotes.jp",
+      "reply_to":  "<% email %>"
     },
     "auto_reply": {
-      "enabled": true,
-      "to_name": "<% customer_name %> 様",
-      "to": "<% email %>",
-      "cc": [],
-      "bcc": [],
+      "enabled":   true,
+      "to_name":   "<% customer_name %> 様",
+      "to":        "<% email %>",
+      "cc":        [],
+      "bcc":       [],
       "from_name": "ozn-form受付 / ozone notes",
-      "from": "no-reply@ozonenotes.jp",
-      "reply_to": "<% email %>"
+      "from":      "no-reply@ozonenotes.jp",
+      "reply_to":  "<% email %>"
     }
   },
   "pages": {
