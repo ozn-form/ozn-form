@@ -1,131 +1,148 @@
 {
-
   "is_debug": false,
-
   "form_name": "sample1",
   "form_root": "/document/sample_form/index.php",
-
   "unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。",
-
   "validation": {
     "show_icon": true,
     "shift_scroll_position": -50
   },
-
+  "reCAPTCHA": {
+    "enabled": true,
+    "site_key": "enter ReCaptcha site key",
+    "score": 0.5
+  },
   "mail": {
-
     "send_by": "sendmail",
     "send_flag": true,
     "redirect_to": "",
-
     "admin": {
-      "to_name"   : "",
-      "to"        : "oznform+webcontact@gmail.com",
-      "cc"        : [],
-      "bcc"       : [],
-      "from_name" : "OznForm Mailer",
-      "from"      : "oznform@gmail.com",
-      "reply_to"  : "<% email %>"
-
+      "to_name":   "",
+      "to":        "oznform+webcontact@gmail.com",
+      "cc":        [],
+      "bcc":       [],
+      "from_name": "OznForm Mailer",
+      "from":      "oznform@gmail.com",
+      "reply_to":  "<% email %>"
     },
-
     "auto_reply": {
-      "enabled"   : true,
-      "to_name"   : "<% customer_name %> 様",
-      "to"        : "<% email %>",
-      "cc"        : [],
-      "bcc"       : [],
-      "from_name" : "OznForm Tester",
-      "from"      : "oznform@gmail.com",
-      "reply_to"  : "oznform@gmail.com"
+      "enabled":   true,
+      "to_name":   "<% customer_name %> 様",
+      "to":        "<% email %>",
+      "cc":        [],
+      "bcc":       [],
+      "from_name": "OznForm Tester",
+      "from":      "oznform@gmail.com",
+      "reply_to":  "oznform@gmail.com"
     }
   },
-
   "pages": {
-
     "index": {
       "role": "form",
       "forms": {
-
         "title": {
           "label": "お問い合わせ内容",
-          "validates": ["required"]
+          "validates": [
+            "required"
+          ]
         },
         "mail_body": {
           "label": "お問い合わせ詳細",
-          "validates": ["required"]
+          "validates": [
+            "required"
+          ]
         },
         "customer_name": {
           "label": "お名前",
-          "validates": ["required"]
+          "validates": [
+            "required"
+          ]
         },
         "customer_kana": {
           "label": "ふりがな",
-          "validates": ["kanaOnly"]
+          "validates": [
+            "kanaOnly"
+          ]
         },
         "zip-code": {
           "label": "郵便番号",
-          "validates": ["required", "zip"]
+          "validates": [
+            "required",
+            "zip"
+          ]
         },
         "address1": {
           "label": "住所１（番地まで）",
-          "validates": ["required"]
+          "validates": [
+            "required"
+          ]
         },
         "address2": {
           "label": "住所２（建物名など）"
         },
-
         "tel": {
           "label": "電話番号",
-          "validates": ["tel"]
+          "validates": [
+            "tel"
+          ]
         },
-
         "email": {
           "label": "メールアドレス",
-          "validates": ["required", "email"],
+          "validates": [
+            "required",
+            "email"
+          ],
           "mobile_mail_warning": "携帯電話のアドレスが入力されました。example.com ドメインからのメールを受信できるように設定お願いします。"
         },
-
         "email2": {
           "label": "勤務先メールアドレス",
-          "validates": ["required", "email"],
+          "validates": [
+            "required",
+            "email"
+          ],
           "mobile_mail_warning": "携帯電話のアドレスが入力されました。example.com ドメインからのメールを受信できるように設定お願いします。"
         },
-
         "materials": {
           "label": "資料送付",
-          "validates": ["required"],
+          "validates": [
+            "required"
+          ],
           "error_message_position": ".materials",
           "error_message_template": "<div class=\"col-sm-12\"><% messages %></div>",
           "error_messages": {
             "required": "送付する資料を選んでください"
           }
         },
-
         "shipping-date": {
           "label": "希望配送日"
         },
-
         "shipping-zip-code1": {
           "label": "送付先 郵便番号（３桁）",
-          "validates": ["required", "zip"],
+          "validates": [
+            "required",
+            "zip"
+          ],
           "error_message_position": ".shipping-zip-area",
           "error_message_template": "<div class=\"col-sm-12\"><% messages %></div>"
         },
         "shipping-zip-code2": {
           "label": "送付先 郵便番号（４桁）",
-          "validates": ["required", "zip"],
+          "validates": [
+            "required",
+            "zip"
+          ],
           "error_message_position": ".shipping-zip-area",
           "error_message_template": "<div class=\"col-sm-12\"><% messages %></div>"
         },
         "shipping-address1": {
           "label": "送付先 住所１（番地まで）",
-          "validates": ["required"]
+          "validates": [
+            "required"
+          ]
         },
         "shipping-address2": {
           "label": "送付先 住所２（建物名など）"
         },
-
         "survey[]": {
           "label": "アンケート",
           "error_message_position": ".surveys",
@@ -134,30 +151,28 @@
             "required": "どれか１つ回答をお願いします"
           }
         },
-
         "attachment1[]": {
           "label": "添付ファイル１",
-          "type": "upload_files"        },
-
+          "type": "upload_files"
+        },
         "attachment2[]": {
           "label": "添付ファイル２",
           "type": "upload_files"
         },
-
         "privacy": {
           "label": "個人情報の取り扱い",
-          "validates": ["required"],
+          "validates": [
+            "required"
+          ],
           "error_messages": {
             "required": "個人情報の取り扱いに同意願います"
           }
         }
       }
     },
-
     "confirm": {
       "role": "confirm"
     },
-
     "complete": {
       "role": "mailsend"
     }

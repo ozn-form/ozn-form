@@ -6,9 +6,7 @@ $config_path = dirname(__FILE__) . '/' . 'normal.json';
 // OznForm 実行ファイル読み込み
 require_once '../../../release/ozn-form.php';
 
-?>
-
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

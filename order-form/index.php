@@ -3,8 +3,7 @@
     $config_path = dirname(__FILE__) . '/' . 'ozn-config.json';
     // OznForm 実行ファイル読み込み
     require '../release/ozn-form.php';
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
 <head>
 <title>ozn-form 導入についてのお問い合わせ - STEP01</title>
@@ -96,7 +95,7 @@
                     <div class="th">メールアドレス <span class="ozn-label required">必須</span></div>
                     <div class="td">
                         <div class="ozn-form-suggest-wrapper">
-                            <input data-domain-suggest="true" type="email" name="email" style="ime-mode:inactive;" class="ozn-input" placeholder="例）yamada@example.com">
+                            <input data-domain-suggest="true" type="email" name="email" inputmode="email" style="ime-mode:inactive;" class="ozn-input" placeholder="例）yamada@example.com">
                         </div>
                     </div>
                 </div>
@@ -167,7 +166,6 @@
             <?php echo $oznFormToken->csrfTag(); ?>
         </form>
     </div><!-- ozn-form-inner -->
-
 
 </div>
 

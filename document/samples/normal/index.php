@@ -6,10 +6,7 @@ $config_path = dirname(__FILE__) . '/' . 'normal.json';
 // OznForm 実行ファイル読み込み
 require __DIR__ . '../../../../release/ozn-form.php';
 
-?>
-
-
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -141,7 +138,7 @@ require __DIR__ . '../../../../release/ozn-form.php';
                 <div class="td">
                     <dl>
                         <dt>郵便番号 <span class="ozn-label optional">任意</span></dt>
-                        <dd><input type="text" name="zip-code" class="ozn-input pc-30 tb-50" style="ime-mode:inactive;" placeholder="例）432-3332" data-oznform-zip="address" autocomplete="postal-code">
+                        <dd><input type="text" name="zip-code" class="ozn-input pc-30 tb-50" style="ime-mode:inactive;" placeholder="例）432-3332" data-oznform-zip="address" autocomplete="postal-code" inputmode="numeric">
                             <p class="ozn-notice">郵便番号を入力すると住所を自動で表示します</p></dd>
                     </dl>
                     <dl>
@@ -162,7 +159,7 @@ require __DIR__ . '../../../../release/ozn-form.php';
             <div class="tr" data-oznform-area="tel">
                 <div class="th">電話番号 <span class="ozn-label required">必須</span></div>
                 <div class="td">
-                    <input type="tel" name="tel" class="ozn-input" style="ime-mode:inactive;" placeholder="例）000-111-2222" autocomplete="tel-national">
+                    <input type="tel" name="tel" class="ozn-input" style="ime-mode:inactive;" placeholder="例）000-111-2222" autocomplete="tel-national" inputmode="tel">
                     <p class="ozn-notice">日中にご連絡の取りやすい番号をご記入ください。</p>
                 </div>
             </div>
@@ -170,7 +167,7 @@ require __DIR__ . '../../../../release/ozn-form.php';
                 <div class="th">メールアドレス <span class="ozn-label required">必須</span></div>
                 <div class="td">
                     <div class="ozn-form-suggest-wrapper">
-                        <input data-domain-suggest="true" type="email" name="email" style="ime-mode:inactive;" class="ozn-input" placeholder="例）yamada@example.com">
+                        <input data-domain-suggest="true" type="email" name="email" style="ime-mode:inactive;" class="ozn-input" placeholder="例）yamada@example.com" inputmode="email">
                     </div>
                 </div>
             </div>

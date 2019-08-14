@@ -34,6 +34,9 @@
 //$oauth_secret = "";
 //$oauth_refresh_token = "";
 
+// Gmail ReCAPTCHA
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+$googleReCaptchaSecret = "enter ReCaptcha secret key";
 
 /**
  * メールテンプレートについて
@@ -146,9 +149,8 @@ $config_path = __DIR__ . '/' . 'normal.json';
 // OznForm 実行ファイル読み込み
 require '../../../release/ozn-form.php';
 
-?>
-
-<!DOCTYPE html>
+// 送信完了画面のHTMLをここから下に記述する。特定ページへリダイレクトする場合は省略可。
+?><!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

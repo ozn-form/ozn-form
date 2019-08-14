@@ -3,7 +3,6 @@
 // 設定ファイルのパスを設定
 $config_path = dirname(__FILE__) . '/' . 'no_confirm.json';
 
-
 // SMTP アカウント設定（SMTP 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
@@ -107,15 +106,11 @@ $customer_mail_body = <<< TEXT
 
 TEXT;
 
-
 // OznForm 実行ファイル読み込み
 require '../../../release/ozn-form.php';
 
-?>
-
-<!-- 送信完了画面のHTMLをここから下に記述する。特定ページへリダイレクトする場合は省略可。 -->
-
-<!DOCTYPE html>
+// 送信完了画面のHTMLをここから下に記述する。特定ページへリダイレクトする場合は省略可。
+?><!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
