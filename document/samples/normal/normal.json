@@ -106,6 +106,7 @@
           "label": "その他の商品名",
           "validate_condition": {
             "materials": [
+              "required",
               "equals_value:その他"
             ]
           },

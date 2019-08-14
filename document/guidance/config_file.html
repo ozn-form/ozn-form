@@ -1118,10 +1118,10 @@ $googleReCaptchaSecret = '6LeNZ****************************f5j';
 
 <p>特定の条件を満たしている時のみ検証ルールを適用する設定です。例えばAを選択した時のみ、B欄の入力が必須になるというルールを作成できます。</p>
 <p>
-    "validate_condition" の中に {"条件を適用するフィールド名": [条件]} という形式で指定します。
-</p>
-<p>
-    下のコード例でいうと、「興味のある商品」選択欄で「その他」を選択した時のみ、「その他の商品名」の入力を必須にしています。
+    "validate_condition" の中に {"条件を適用するフィールド名": [条件]} という形式で指定します。<br>
+    空文字列をスルーしたいときは、required も条件に追加してください。<br>
+    下記の例だと、"materials"（興味のある商品）選択欄で「その他」を選択した時のみ、「その他の商品名」の入力を必須にしています。<br>
+    "materials" が空、またはの「その他」以外の時は「その他」欄の必須判定を行いません。
 </p>
 
 <div class="code-example">
@@ -1136,7 +1136,7 @@ $googleReCaptchaSecret = '6LeNZ****************************f5j';
                 "materials-etc": {
                     "label": "その他の商品名",
                     "validate_condition": {
-                        "materials": ["equals_value:その他"]
+                        "materials": ["required", "equals_value:その他"]
                     },
                     "validates": ["required"]
                 },
@@ -1144,6 +1144,13 @@ $googleReCaptchaSecret = '6LeNZ****************************f5j';
         }
     }
 }</code></pre>
+</div>
+
+<div class="alert alert-warning setting-alert">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    上記例で、"validate_condition" の設定値に、["required", "equals_value:その他"]の両方が指定されているところがポイントです。<br>
+    これは、【"materials"の値が値が空ではなく(required)、かつ「その他」の場合(equal_value)、"materials-etc"が必須になる】という意味になります。<br>
+    もし ["equals_value:その他"] だけを指定した場合、"materials"が空の場合でも"materials-etc"が必須になってしまいますのでご注意ください。
 </div>
 
 
