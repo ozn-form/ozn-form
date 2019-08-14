@@ -25,8 +25,8 @@ $config_path = dirname(__FILE__) . '/' . 'no_confirm.json';
 // Gmail アカウント設定（Gmail SMTP 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-$gmail_user     = "yourGmailAddress";
-$gmail_password = "YourGmailPassword";
+//$gmail_user     = "yourGmailAddress";
+//$gmail_password = "YourGmailPassword";
 
 // Gmail API設定（Gmail SMTP [OAuth認証] 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //

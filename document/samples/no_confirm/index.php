@@ -87,7 +87,6 @@ require '../../../release/ozn-form.php';
 
     <div class="ozn-form-stepbar-wrapper">
         <p>このサンプルは確認画面なしのすぐに送信するタイプの最小構成フォームになります。</p>
-        <p>デモ用フォームですので、メール送信機能は無効化しています。</p>
         <ol class="ozn-form-stepbar step2 hidden-xs">
             <li class="current">1. 内容の入力</li>
             <li>2. 送信完了</li>
@@ -127,7 +126,7 @@ require '../../../release/ozn-form.php';
                 <div class="tr">
                     <div class="th">お問い合わせ詳細<span class="ozn-label optional">任意</span></div>
                     <div class="td">
-                        <textarea name="mail_body" id="mail_body" cols="30" rows="10" class="form-control"></textarea>
+                        <textarea name="mail_body" id="mail_body" cols="30" rows="10" class="ozn-input"></textarea>
                     </div>
                 </div>
 
@@ -135,7 +134,7 @@ require '../../../release/ozn-form.php';
                 <div class="tr">
                     <div class="th">お名前<span class="ozn-label required">必須</span></div>
                     <div class="td">
-                        <input type="text" name="customer_name" class="form-control" id="customer_name" data-autoruby="customer_name" placeholder="例）田中 一郎">
+                        <input type="text" name="customer_name" class="ozn-input" id="customer_name" data-autoruby="customer_name" placeholder="例）田中 一郎">
                     </div>
                 </div>
 
@@ -143,7 +142,7 @@ require '../../../release/ozn-form.php';
                 <div class="tr">
                     <div class="th">ふりがな<span class="ozn-label optional">任意</span></div>
                     <div class="td">
-                        <input type="text" name="customer_kana" class="form-control" id="customer_kana" data-autoruby-katakana="customer_name" placeholder="例）たなか いちろう">
+                        <input type="text" name="customer_kana" class="ozn-input" id="customer_kana" data-autoruby-katakana="customer_name" placeholder="例）たなか いちろう">
                     </div>
                 </div>
 
@@ -172,7 +171,7 @@ require '../../../release/ozn-form.php';
                 <div class="tr">
                     <div class="th">メールアドレス<span class="ozn-label required">必須</span></div>
                     <div class="td">
-                        <input data-domain-suggest="true" type="text" name="email" id="email" class="form-control" placeholder="例）xxxx@gmail.jp">
+                        <input data-domain-suggest="true" type="text" name="email" id="email" class="ozn-input" placeholder="例）xxxx@gmail.jp">
                     </div>
                 </div>
 

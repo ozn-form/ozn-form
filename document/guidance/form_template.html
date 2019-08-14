@@ -54,6 +54,7 @@
         <li><a href="../guidance/form_template.html">フォームテンプレートの書き方</a></li>
         <li><a href="../guidance/mail_template.html">メールテンプレートの書き方</a></li>
         <li><a href="../guidance/styles.html">標準スタイル設定</a></li>
+        <li><a href="../guidance/miscellaneous.html">その他の活用例・トラブルシューティング等</a></li>
     </ul>
 </li>
 
@@ -196,18 +197,25 @@
 </div>
 
 
-<!--<h3 class="guidance-header">送信リンクの連続クリック防止</h3>-->
+<h3 class="guidance-header">送信リンクの連続クリック防止</h3>
 
-<!--<div class="row">-->
-    <!--<div class="col-md-6">-->
-        <!--<p>-->
-            <!--二重送信を防止するため二度目以降のクリックを無効化する機能です。<br>-->
-            <!--クリックするとリンクテキストが「送信中です…お待ちください。」に変わり、以降のクリックが無効になります。-->
-        <!--</p>-->
-        <!--<p>またクリック無効中は設定要素に対して「ozn-form-disabled」が付与されます。</p>-->
-    <!--</div>-->
-    <!--<div class="col-md-6"><img src="../images/guidance/reload.gif" height="100%" width="100%"/></div>-->
-<!--</div>-->
+<p>
+    二重送信を防止するため二度目以降のクリックを無効化する機能です。<br>
+    特に、Gmail SMTP を使用する場合には認証に数秒かかることがあるため、この機能との併用をおすすめします。
+</p>
+<p>連続クリックを防止したいボタン要素に、 class="ozn-form-send" 属性を付けてください。</p>
+<p>
+    クリックするとリンクテキストが「送信中です…お待ちください。」に変わり、以降のクリックが無効になります。<br>
+    クリック無効中のテキストは、data-message 属性で変更可能です。<br>
+    クリック無効中は設定要素に対して class="ozn-form-send" が付与されます。
+</p>
+
+<p><img src="../images/guidance/ozn-form-send.gif"></p>
+
+<h5>設置例</h5>
+<div class="code-example">
+    <pre><code>&lt;button type="submit" class="ozn-form-send ozn-btn submit" data-message="ただいま送信中です。このままお待ちください。">この内容で送信する →&lt;/button&gt;</code></pre>
+</div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 

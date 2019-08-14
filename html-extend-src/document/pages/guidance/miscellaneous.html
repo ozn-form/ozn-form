@@ -1,0 +1,74 @@
+<!-- @@master ../../layout/layout.html {"title": "チュートリアル", "relative_path": "../", "guidance_active":"active", "body_classes": "guidance"} -->
+
+<!-- @@block additional_header -->
+
+<!-- @@close -->
+
+<!-- @@block content -->
+
+    <div class="page-header">
+        <h1>その他の活用例・トラブルシューティング等 <small>ozn-form（オゾン・フォーム）</small></h1>
+    </div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<p>このページでは、実際に利用者様からいただいた質問やトラブル対応例などを紹介します。</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h2 class="guidance-header">よくあるエラーメッセージ例</h2>
+
+<h3 class="guidance-header">Fatal error: Uncaught exception</h3>
+
+<div class="code-example">
+    <pre><code>Fatal error: Uncaught exception 'OznForm\FormError' with message '設定ファイルを読み込めません。書式を確認してください。' in /foo/bar/ozn-form/lib/FormConfig.class.php:43 Stack trace: #0 /foo/bar/ozn-form/lib/FormConfig.class.php(24): OznForm\FormConfig->parseConfigFile('/foo/bar/...') #1 /foo/bar/ozn-form/ozn-form.php(41): OznForm\FormConfig->__construct('/foo/bar/...') #2 /foo/bar/contact/index.php(8): require('foo/bar/...') #3 {main} thrown in /foo/bar/ozn-form/lib/FormConfig.class.php on line 43</code></pre>
+</div>
+<p>↓↓↓</p>
+<p>設定jsonファイルの書式に誤りがあります。括弧の綴じミス、カンマのあるなしなどを確認してください。</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h3 class="guidance-header">Warning: session_start()</h3>
+
+<div class="code-example">
+    <pre><code>Warning: session_start(): Cannot send session cookie - headers already sent by (output started at foo/bar/contact/index.php:2) in /foo/bar/ozn-form/lib/FormSession.class.php on line 36</code></pre>
+</div>
+<p>↓↓↓</p>
+<p>PHPファイルの冒頭の&lt;?php より前に改行やコメントなどが入っていませんか？</p>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h2 class="guidance-header">フォームの多言語対応について</h2>
+
+<p>現在、オフィシャルな機能としてのフォームの言語の切り替え機能はありませんが、以下の方法で日本語以外での利用が可能になります。</p>
+
+<h3 class="guidance-header">1. フォーム全体で言語を変える場合</h3>
+<ol>
+    <li>vendor/vlucas/valitron/lang/ 内にある任意の言語ファイルをコピーし、lib/validation_message/ に配置</li>
+    <li>lib/FormValidation.class.php の31行目 Valitron::lang('ja'); の部分を、コピーした言語ファイル名に変更（en.phpなら、'en'）</li>
+    <li>バリデーション項目で「メールアドレス詳細チェック」"email_detail"を使用している場合は、lib/custom_validation_rules.php 内のメッセージも手動で翻訳の必要あり</li>
+    <li>zipやtelのバリデーション形式については、日本の郵便番号・電話番号の形式であるかをチェックしているので、必要に応じて正規表現を編集したりなどのカスタマイズが必要</li>
+</ol>
+
+<h3 class="guidance-header">1つのコアファイルで、異なる言語のフォームを複数設置する場合</h3>
+
+<p>それぞれのフォームの設定jsonファイルで、各入力項目ごとに以下のようにエラーメッセージの翻訳文を指定してください。</p>
+
+<h5>設定例</h5>
+<div class="code-example">
+    <pre><code>"error_messages": {
+     "required": "Enter Email.",
+     "email_atmark": "Does not contain the @ mark.",
+     "email_atmark_over": "Email address is not a valid.",
+     "email_no_user": "Email address is not a valid.",
+     "email_domain": "Email address is not a valid.",
+     "email_comma": "Email address is not a valid."
+ }</code></pre>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+
+
+<!-- @@close -->
