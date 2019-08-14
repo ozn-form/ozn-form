@@ -124,6 +124,7 @@ require '../../../release/ozn-form.php';
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="../../">ozn-form Document</a>
+        </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
 

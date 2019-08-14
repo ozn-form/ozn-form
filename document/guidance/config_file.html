@@ -115,7 +115,7 @@
     <tr class="optional-config"><td>&nbsp;</td><td>&nbsp;&nbsp;},</td></tr>
 
 
-    <tr class="optional-config"><td>&nbsp;</td><td rowspan="5">google reCAPTCHA 設定<td>&nbsp;&nbsp;"reCAPTCHA": {</td></tr>
+    <tr class="optional-config"><td>&nbsp;</td><td rowspan="5">Google reCAPTCHA v3 設定<td>&nbsp;&nbsp;"reCAPTCHA": {</td></tr>
     <tr class="optional-config"><td>reCAPTCHA 機能 有効化設定</td><td>&nbsp;&nbsp;&nbsp;&nbsp;"enabled": true,</td></tr>
     <tr class="optional-config"><td>site key 指定</td><td>&nbsp;&nbsp;&nbsp;&nbsp;"site_key": "YOUR_SITE_KEY",</td></tr>
     <tr class="optional-config"><td>判定スコア設定</td><td>&nbsp;&nbsp;&nbsp;&nbsp;"score": 0.5</td></tr>
@@ -384,7 +384,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<h3 class="guidance-header">google reCAPTCHA 機能設定</h3>
+<h3 class="guidance-header">Google reCAPTCHA v3 機能設定</h3>
 
 <table class="setting-table">
     <tr>
@@ -403,7 +403,7 @@
         <td>site_key</td>
         <td class="text-center">-</td>
         <td>string</td>
-        <td>6LeNZrgeraAGGERKQhc3dkYogu08SIsp589E</td>
+        <td>6LeNZ****************************89E</td>
     </tr>
     <tr>
         <td>score</td>
@@ -414,34 +414,45 @@
 </table>
 
 
-<p>フォームに google reCAPTCHA を設定する機能になります。バージョンは v3 に対応しています。</p>
-<p>事前に google reCAPTCHA のサイトにて sitekey と secret の発行が必要です。</p>
+<p>フォームに <a href="https://webmaster-ja.googleblog.com/2018/10/introducing-recaptcha-v3-new-way-to.html" target="_blank" rel="noopener nofollow">Google reCAPTCHA v3</a> を設定する機能です。</p>
+<p>事前に <a href="https://www.google.com/recaptcha/intro/v3.html" target="_blank" rel="noopener nofollow">Google reCAPTCHA v3</a> のサイトにて sitekey と secret の発行が必要です。</p>
 <ul>
     <li>enabled ：機能の有効無効を指定できます。</li>
-    <li>site_key ：google reCAPTCHA のサイトで発行した site key を指定します。 secret についてはセキュリティ確保のため設定ファイルに記載しません。</li>
-    <li>score ：ボット判定スコアの閾値を個別に指定します。デフォルトは0.5です。googleの判定によりフォーム送信者のスコアがこの指定値を下回るとエラーページを表示させ、フォームの送信を阻止します。</li>
+    <li>site_key ：Google reCAPTCHA v3 のサイトで発行した site key を指定します。 secret key についてはセキュリティ確保のため設定ファイルに記載しません。</li>
+    <li>score ：ボット判定スコアの閾値を個別に指定します。デフォルトは0.5です。Googleの判定によりフォーム送信者のスコアがこの指定値を下回るとエラーページを表示させ、フォームの送信を阻止します。</li>
 </ul>
 
-
+<h5>reCAPTCHA keys の発行方法</h5>
+<ol>
+    <li><a href="https://www.google.com/recaptcha/intro/v3.html" target="_blank" rel="noopener nofollow">Google reCAPTCHA v3</a> のサイトにアクセスし、右上の "Admin console" ボタンをクリック<br>
+        <img src="../images/config_file/recaptcha01.png" alt="">
+    </li>
+    <li>必要事項を入力し、 "SUBMIT" ボタンをクリック<br>
+        <img src="../images/config_file/recaptcha02.png" alt="">
+    </li>
+    <li>site key と secret key が発行されるので、それぞれコピーして所定の箇所にペースト
+        <img src="../images/config_file/recaptcha03.png" alt="">
+    </li>
+</ol>
 
 <div class="code-example">
     <h5>設定ファイル コード例</h5>
     <pre><code>{
   "reCAPTCHA": {
     "enabled": true,
-    "site_key": "6LeNZrgeraAGGERKQhc3dkYogu08SIsp589E",
+    "site_key": "6LeNZ****************************89E",
     "score": 0.5
   },
 }</code></pre>
 </div>
 
-<p><span style="color: red;">secretは設定ファイルではなく、送信用ページ(php)への記載が必要です。</span>メール設定が書いてある下あたりに下記のコードを入れ、secretを記載してください。</p>
+<p><span style="color: red;">secretは設定ファイルではなく、送信完了ページテンプレート(PHP)への記載が必要です。</span>メール設定が書いてある下あたりに下記のコードを入れ、secretを記載してください。</p>
 
 <div class="code-example">
     <h5>送信ページ(complete.php) コード例</h5>
     <pre><code>// Gmail ReCAPTCHA
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-$googleReCaptchaSecret = '6LeNZrgeraAGGreGGEWRaerac3dkYogu08SIsp589E';
+$googleReCaptchaSecret = '6LeNZ****************************f5j';
 </code></pre>
 </div>
 
