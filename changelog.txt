@@ -1,0 +1,53 @@
+# 製品本体ファイル
+/ozn-form/
+
+# 製品概要・利用規約
+/document/index.html
+
+# マニュアルトップ
+/document/guidance/index.html
+
+# 設置サンプルファイル
+/sample-form/ ：　https://www.ozonenotes.jp/order-form/ のサンプル
+/document/sample_form/
+/document/samples/   にもいろいろなパターンのサンプルがあります
+
+
+# v2.4からのアップデートの場合
+基本的には、コアファイルをそのまま上書きしてください。
+※ozn-form/config ディレクトリ以下を除く。
+※コアファイルを改変している場合は自己責任で差分を取って対応してください。
+
+Google ReCAPTCHA v3 機能を使わない場合は、設定ファイル等の変更はありません。
+Google ReCAPTCHA v3 機能を追加する場合は、マニュアルの「Google reCAPTCHA v3 機能設定」を確認してください。
+document/guidance/config_file.html
+
+
+
+# v2.3以前からのアップデートの場合
+基本的には、コアファイルをそのまま上書きしてください。
+※ozn-form/config ディレクトリ以下を除く。
+※コアファイルを改変している場合は自己責任で差分を取って対応してください。
+
+ozn-form v2.4から、CSRF（クロスサイトリクエストフォージェリ）対策のためワンタイムトークンをチェックし不正投稿を防ぐ機能を追加しました。
+フォームをPOSTメソッドで送信する場合は、必ず下記のワンタイムトークンを出力するコードをform要素内のどこかに追記してください。
+GETメソッドで送信する場合にはトークンチェックは行われません。
+
+```
+<form action="（次のステップのファイルパス）" method="post">
+  ...
+  <!-- ワンタイムパスワードを送信する input hiddenタグを出力する -->
+  <?php echo $oznFormToken->csrfTag(); ?>
+  ...
+</form>
+``` 
+
+また、これまでのバージョンのサンプルでは、確認画面→送信完了画面への遷移をa要素にて記述していましたが、セキュリティー面への配慮から非推奨となりました。
+他のステップと同様form要素を使用し、送信ボタンはbuttonまたはinput type="submit"要素で記述してください。
+ワンタイムパスワードを送信する$oznFormToken->csrfTag()タグも必要です。
+
+
+# 動作要件・変更履歴・利用規約・よくある質問　などはマニュアル内に移動しました。
+document/index.html
+document/guidance/index.html
+document/guidance/miscellaneous.html
