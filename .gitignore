@@ -1,13 +1,15 @@
-!.keep
-
 node_modules/
-/test/
 /release/config/database.php
-/release/db/*.db
-script/
-/docker/.env
+
 
 
 /release/upload/files
 !/release/upload/files/.htaccess
 .env
+
+# sqlite database
+/release/db/*.db
+!/release/db/sample_jpj5405WD94E3GTvgG5wet459gsGjgHGee.db
+
+
+!.keep
