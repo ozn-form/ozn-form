@@ -31,9 +31,10 @@ require_once __DIR__ . '/lib/GoogleReCAPTCHA.php';
 /**
  * バージョン
  * @note 2.5.0 google ReCAPTCHA 機能追加
+ *       2.5.1 ozn-form.min.css update
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-const VERSION = '2.5.0';
+const VERSION = '2.5.1';
 
 
 /**
