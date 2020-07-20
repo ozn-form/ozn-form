@@ -102,6 +102,8 @@ services:
           - php71:php71.ozn-form.com
           - php73:php73.ozn-form.com
           - php74:php74.ozn-form.com
+        volumes:
+        - ..:/root/source
 
     ##  テスト用 SMTP サーバー  # # # # # # # # # # # # # # # #
     mailhog:

@@ -9,6 +9,6 @@
     },
 
     "config": {
-        "vendor-dir": "release/vendor"
+        "vendor-dir": "release/ozn-form/vendor"
     }
 }

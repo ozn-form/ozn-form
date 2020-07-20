@@ -1,0 +1,75 @@
+{
+
+  "is_debug": false,
+
+  "form_name": "image_form",
+  "form_root": "/test/samples/image/index.php",
+
+  "validation": {
+    "show_icon": false,
+    "shift_scroll_position": -50
+  },
+
+  "mail": {
+
+    "send_flag": false,
+    "send_by": "Gmail SMTP",
+    "redirect_to": "",
+
+    "admin": {
+      "to_name"   : "",
+      "to"        : "oznform+webcontact@gmail.com",
+      "cc"        : [],
+      "bcc"       : [],
+      "from_name" : "OznForm Mailer",
+      "from"      : "oznform@gmail.com",
+      "reply_to"  : "<% email %>"
+
+    },
+
+    "auto_reply": {
+      "enabled"   : false,
+      "to_name"   : "<% customer_name %> 様",
+      "to"        : "<% email %>",
+      "cc"        : [],
+      "bcc"       : [],
+      "from_name" : "OznForm Tester",
+      "from"      : "oznform@gmail.com",
+      "reply_to"  : "oznform@gmail.com"
+    }
+  },
+
+  "pages": {
+
+    "index": {
+      "role": "form",
+      "forms": {
+        "customer_name": {
+            "label": "お名前",
+            "validates": ["required"]
+        },
+        "customer_kana": {
+            "label": "フリガナ",
+            "validates": ["kanaOnly","required"]
+        },
+        "email": {
+          "label": "メールアドレス",
+          "validates": ["required", "email_detail"],
+          "mobile_mail_warning": "携帯電話のアドレスが入力されました。example.com ドメインからのメールを受信できるように設定お願いします。"
+        },
+        "attachment1[]": {
+          "label": "添付ファイル１",
+          "type": "upload_files"
+        }
+      }
+    },
+
+    "confirm": {
+      "role": "confirm"
+    },
+
+    "complete": {
+      "role": "mailsend"
+    }
+  }
+}

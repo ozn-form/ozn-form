@@ -1,15 +1,14 @@
 node_modules/
 /release/config/database.php
 
+# アップロードディレクトリ
+/release/upload/files/*
+!/release/upload/files/thumbnail
+/release/upload/files/thumbnail/*
+!/release/upload/files/thumbnail/.keep
 
-
-/release/upload/files
-!/release/upload/files/.htaccess
 .env
 
 # sqlite database
 /release/db/*.db
 !/release/db/sample_jpj5405WD94E3GTvgG5wet459gsGjgHGee.db
-
-
-!.keep
