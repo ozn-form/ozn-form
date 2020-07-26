@@ -1,6 +1,6 @@
 <?php namespace OznForm;
 
-require_once dirname(__FILE__) . '/../lib/MailHistory.class.php';
+require_once dirname(__FILE__) . '/../lib/MailHistory.php';
 
 // DBクラスを読み込み
 try{

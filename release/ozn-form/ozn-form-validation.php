@@ -1,6 +1,6 @@
 <?php namespace OznForm;
 
-require_once dirname(__FILE__) . '/lib/FormValidation.class.php';
+require_once dirname(__FILE__) . '/lib/FormValidation.php';
 
 $json = file_get_contents(dirname(__FILE__) . '/config/mobile_mail_address.json');
 $address_list = json_decode($json,true);

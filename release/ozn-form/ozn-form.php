@@ -16,15 +16,15 @@
 
 date_default_timezone_set('Asia/Tokyo');
 
-require_once __DIR__ . '/lib/MailSender.class.php';
-require_once __DIR__ . '/lib/FormConfig.class.php';
-require_once __DIR__ . '/lib/exceptions/FormError.class.php';
-require_once __DIR__ . '/lib/FormSession.class.php';
-require_once __DIR__ . '/lib/MailTemplate.class.php';
-require_once __DIR__ . '/lib/MailHistory.class.php';
-require_once __DIR__ . '/lib/FormValidation.class.php';
-require_once __DIR__ . '/lib/exceptions/SendMailException.class.php';
-require_once __DIR__ . '/lib/Token.class.php';
+require_once __DIR__ . '/lib/MailSender.php';
+require_once __DIR__ . '/lib/FormConfig.php';
+require_once __DIR__ . '/lib/exceptions/FormError.php';
+require_once __DIR__ . '/lib/FormSession.php';
+require_once __DIR__ . '/lib/MailTemplate.php';
+require_once __DIR__ . '/lib/MailHistory.php';
+require_once __DIR__ . '/lib/FormValidation.php';
+require_once __DIR__ . '/lib/exceptions/SendMailException.php';
+require_once __DIR__ . '/lib/Token.php';
 require_once __DIR__ . '/lib/GoogleReCAPTCHA.php';
 
 
