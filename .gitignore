@@ -12,3 +12,4 @@ node_modules/
 # sqlite database
 /release/db/*.db
 !/release/db/sample_jpj5405WD94E3GTvgG5wet459gsGjgHGee.db
+!/.phpunit.result.cache
