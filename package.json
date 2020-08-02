@@ -10,7 +10,9 @@
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.4.0",
     "gulp-watch": "^5.0.1",
-    "maildev": "^1.1.0",
+    "jest": "^26.2.2",
+    "jest-puppeteer": "^4.4.0",
+    "puppeteer": "^5.2.1",
     "run-sequence": "^2.2.1"
   },
   "dependencies": {
