@@ -1,6 +1,5 @@
 <?php
-
-namespace OznForm;
+namespace OznForm\lib;
 
 class Token
 {

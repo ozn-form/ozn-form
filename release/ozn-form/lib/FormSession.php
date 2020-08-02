@@ -1,5 +1,5 @@
-<?php namespace OznForm;
-
+<?php
+namespace OznForm\lib;
 
 /**
  * Class FormSession
@@ -23,7 +23,7 @@ class FormSession
      * @param string $page_name
      * @param FormConfig $config
      */
-    function __construct($page_name, $config)
+    public function __construct($page_name, $config)
     {
         $this->page_name    = $page_name;
         $this->config       = $config;
@@ -62,6 +62,8 @@ class FormSession
                 $_SESSION[$this->config->prevPageName($this->page_name)][$form_name] = null;
             }
         }
+        
+        return true;
     }
 
     /**
@@ -114,7 +116,7 @@ class FormSession
 
                     if($sanitize) {
                         if(is_array($value)) {
-                            $all_data[$key] = join('、', array_map(array($this, 'h'), $value));
+                            $all_data[$key] = implode('、', array_map(array($this, 'h'), $value));
                         } else {
                             $all_data[$key] = $this->h($value);
                         }

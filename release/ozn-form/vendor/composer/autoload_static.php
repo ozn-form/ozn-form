@@ -22,6 +22,10 @@ class ComposerStaticInit5e3b8a5416f4504a561bfcae34be7b3a
         array (
             'Psr\\Http\\Message\\' => 17,
         ),
+        'O' => 
+        array (
+            'OznForm\\' => 8,
+        ),
         'L' => 
         array (
             'League\\OAuth2\\Client\\' => 21,
@@ -42,6 +46,10 @@ class ComposerStaticInit5e3b8a5416f4504a561bfcae34be7b3a
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'OznForm\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/',
         ),
         'League\\OAuth2\\Client\\' => 
         array (

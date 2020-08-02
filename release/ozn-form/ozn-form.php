@@ -1,4 +1,19 @@
-<?php namespace OznForm;
+<?php 
+namespace OznForm;
+
+use DateTime;
+use OznForm\lib\exceptions\FormError;
+use OznForm\lib\exceptions\SendMailException;
+use OznForm\lib\FormConfig;
+use OznForm\lib\FormSession;
+use OznForm\lib\FormValidation;
+use OznForm\lib\MailSender;
+use OznForm\lib\MailTemplate;
+use OznForm\lib\Token;
+use OznForm\lib\MailHistory;
+
+
+require_once __DIR__ . '/vendor/autoload.php';
 
 /**
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -16,30 +31,18 @@
 
 date_default_timezone_set('Asia/Tokyo');
 
-require_once __DIR__ . '/lib/MailSender.php';
-require_once __DIR__ . '/lib/FormConfig.php';
-require_once __DIR__ . '/lib/exceptions/FormError.php';
-require_once __DIR__ . '/lib/FormSession.php';
-require_once __DIR__ . '/lib/MailTemplate.php';
-require_once __DIR__ . '/lib/MailHistory.php';
-require_once __DIR__ . '/lib/FormValidation.php';
-require_once __DIR__ . '/lib/exceptions/SendMailException.php';
-require_once __DIR__ . '/lib/Token.php';
-require_once __DIR__ . '/lib/GoogleReCAPTCHA.php';
-
 
 /**
  * バージョン
- * @note 2.5.0 google ReCAPTCHA 機能追加
+ * @note 2.6.0 AutoLoading 対応
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-const VERSION = '2.5.0';
+const VERSION = '2.6.0';
 
 
 /**
  * 環境情報（パスなど）を定義
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- * @var FormConfig $config
  */
 
 // 設定
@@ -61,7 +64,7 @@ define('PAGE_ROLE'     , $config->pageRole(PAGE_NAME));
 set_exception_handler(static function ($ex) use ($config) {
 
     $i = get_class($ex);
-    if ($i == SendMailException::class) {
+    if ($i === SendMailException::class) {
         require_once __DIR__ . '/send_mail_error.php';
     } else {
         require_once __DIR__ . '/error_page.php';
@@ -85,7 +88,7 @@ $session->start();
 
 if(strtolower($_SERVER['REQUEST_METHOD']) === 'post')
 {
-    $v = new FromValidation();
+    $v = new FormValidation();
 
     if($v->validatePageForm($config->prevPageName(PAGE_NAME), $_POST, $config) && Token::check($_POST['_token']))
     {
@@ -101,7 +104,6 @@ if(strtolower($_SERVER['REQUEST_METHOD']) === 'post')
 /**
  * CSRF トークンの生成
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- * @var Token $oznFormToken
  */
 
 $oznFormToken = new Token();
@@ -113,7 +115,7 @@ $oznFormToken->make()->setSession();
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
 
-if(PAGE_ROLE == 'form') {
+if(PAGE_ROLE === 'form') {
 
     /**
      * フォーム設置ページでの処理
@@ -121,7 +123,7 @@ if(PAGE_ROLE == 'form') {
      */
 
     // フォームルートの場合の処理
-    if($config->formRoot() == $_SERVER["SCRIPT_NAME"]) {
+    if($config->formRoot() === $_SERVER["SCRIPT_NAME"]) {
 
         // リファラを保存
         $session->saveReferer();
@@ -323,7 +325,7 @@ if(PAGE_ROLE == 'form') {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     $sys_info = array(
-        'send_date'  => new \DateTime(),
+        'send_date'  => new DateTime(),
         'user_agent' => $_SERVER['HTTP_USER_AGENT'],
         'referrer'   => $_SESSION['ref']
     );
@@ -382,7 +384,7 @@ if(PAGE_ROLE == 'form') {
     if( ! empty($upload_form_names)) {
         foreach ($upload_form_names as $upload_form_name) {
             if( ! empty($page_data[$upload_form_name])) {
-                $mailer->setAttachment(dirname(__FILE__) . '/upload/files/', $page_data[$upload_form_name]);
+                $mailer->setAttachment(__DIR__ . '/upload/files/', $page_data[$upload_form_name]);
             }
         }
     }
@@ -477,10 +479,10 @@ if(PAGE_ROLE == 'form') {
                 if( ! empty($page_data[$upload_form_name])) {
                     foreach ($page_data[$upload_form_name] as $file) {
 
-                        $file_path = dirname(__FILE__) . '/upload/files/' . $file;
+                        $file_path = __DIR__ . '/upload/files/' . $file;
                         if(file_exists($file_path)) unlink($file_path);
 
-                        $thumbnail_path = dirname(__FILE__) . '/upload/files/thumbnail/' . $file;
+                        $thumbnail_path = __DIR__ . '/upload/files/thumbnail/' . $file;
                         if(file_exists($thumbnail_path)) unlink($thumbnail_path);
                     }
                 }

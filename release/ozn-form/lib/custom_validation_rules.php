@@ -1,4 +1,5 @@
-<?php namespace OznForm;
+<?php
+namespace OznForm\lib;
 
 /**
  * 「ひらがな」「カタカナ」のみ検証

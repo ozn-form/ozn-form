@@ -1,8 +1,10 @@
 <?php namespace OznForm;
 
-require_once dirname(__FILE__) . '/lib/FormValidation.php';
+use OznForm\lib\FormValidation;
 
-$json = file_get_contents(dirname(__FILE__) . '/config/mobile_mail_address.json');
+require_once __DIR__ . '/lib/FormValidation.php';
+
+$json = file_get_contents(__DIR__ . '/config/mobile_mail_address.json');
 $address_list = json_decode($json,true);
 
 $return_data = array(
@@ -16,7 +18,7 @@ if(isset($_POST['validate'])) {
 
     $postValue = isset($_POST['values']) ? $_POST['values'] : [$_POST['name'] => ''];
 
-    $v = new FromValidation();
+    $v = new FormValidation();
 
     $is_valid = $v->run(
         $_POST['name'],

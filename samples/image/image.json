@@ -3,7 +3,7 @@
   "is_debug": false,
 
   "form_name": "image_form",
-  "form_root": "/test/samples/image/index.php",
+  "form_root": "/samples/image/index.php",
 
   "validation": {
     "show_icon": false,
@@ -12,8 +12,8 @@
 
   "mail": {
 
-    "send_flag": false,
-    "send_by": "Gmail SMTP",
+    "send_flag": true,
+    "send_by": "SMTP",
     "redirect_to": "",
 
     "admin": {
@@ -28,7 +28,7 @@
     },
 
     "auto_reply": {
-      "enabled"   : false,
+      "enabled"   : true,
       "to_name"   : "<% customer_name %> 様",
       "to"        : "<% email %>",
       "cc"        : [],

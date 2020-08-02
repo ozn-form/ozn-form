@@ -1,34 +1,33 @@
-
 <?php
 
 // 設定ファイルのパスを設定
-$config_path = dirname(__FILE__) . '/' . 'image.json';
+$config_path = __DIR__ . '/' . 'image.json';
 
 
 // SMTP アカウント設定（SMTP 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-//$account  = "Account@test.to";
-//$password = "Password";
-//$host     = "smtp.lolipop.jp";  // SMTPサーバ
+$account  = "Account@test.to";
+$password = "Password";
+$host     = "mailhog";  // SMTPサーバ
 //
-//$smtp_options = array(
+$smtp_options = array(
 //
 ////    デフォルト設定
 ////    'SMTPAuth'   => true,
 ////    'Port'       => 587,
 ////    'SMTPSecure' => 'tls',    // 'ssl' or 'tls'
 //
-//    'Port'       => 465,
-//    'SMTPSecure' => 'ssl',
-//);
+    'Port'       => 1025,
+    'SMTPSecure' => 'none',
+);
 
 
 // Gmail アカウント設定（Gmail SMTP 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-$gmail_user     = "yourGmailAccountName";
-$gmail_password = "yourGmailPassword";
+//$gmail_user     = "yourGmailAccountName";
+//$gmail_password = "yourGmailPassword";
 
 
 // Gmail API設定（Gmail SMTP [OAuth認証] 経由で送信する時のみ）
@@ -87,7 +86,7 @@ $customer_mail_body = <<< TEXT
 TEXT;
 
 // OznForm 実行ファイル読み込み
-require '../../../release/ozn-form.php';
+require '../../release/ozn-form/ozn-form.php';
 
 ?>
 

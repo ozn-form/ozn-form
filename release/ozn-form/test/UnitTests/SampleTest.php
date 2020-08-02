@@ -1,8 +1,10 @@
 <?php
+namespace OznForm\test\UnitTests;
 
-require_once __DIR__ . '/../../release/ozn-form/vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 use PHPUnit\Framework\TestCase;
+
 
 class SampleTest extends TestCase
 {
@@ -17,7 +19,6 @@ class SampleTest extends TestCase
 
         $this->assertSame('foo', array_pop($stack));
         $this->assertSame(0, count($stack));
-        
         
     }
 }

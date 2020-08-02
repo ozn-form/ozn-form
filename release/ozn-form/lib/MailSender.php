@@ -1,4 +1,5 @@
-<?php namespace OznForm;
+<?php
+namespace OznForm\lib;
 
 // メール送信クラス
 class MailSender {

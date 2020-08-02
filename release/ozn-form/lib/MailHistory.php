@@ -1,7 +1,5 @@
-<?php namespace OznForm;
-
-require_once __DIR__ . '/Database.php';
-
+<?php
+namespace OznForm\lib;
 
 /**
  * Class MailHistory

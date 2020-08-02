@@ -1,5 +1,5 @@
-<?php namespace OznForm;
-
+<?php
+namespace OznForm\lib\exceptions;
 
 /**
  * @property  bool isAdminMail

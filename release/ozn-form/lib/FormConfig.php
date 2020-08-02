@@ -1,7 +1,8 @@
-<?php namespace OznForm;
+<?php
+namespace OznForm\lib;
 
-require_once __DIR__ . '/exceptions/FormError.php';
-require_once __DIR__ . '/GoogleReCAPTCHA.php';
+use OznForm\lib\exceptions\FormError;
+use OznForm\lib\GoogleReCAPTCHA;
 
 /**
  * Class FormConfig
@@ -16,15 +17,11 @@ class FormConfig
     private $googleReCaptcha;
 
 
-    public static function load($path)
-    {
-
-    }
-
     /**
      * FormConfig constructor.
      *
      * @param $config_path
+     * @throws FormError
      */
     public function __construct($config_path)
     {

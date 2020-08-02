@@ -1,4 +1,5 @@
-<?php namespace OznForm;
+<?php
+namespace OznForm\lib;
 
 require_once dirname(__FILE__) . '/../vendor/autoload.php';
 require_once dirname(__FILE__) . '/custom_validation_rules.php';
@@ -7,13 +8,13 @@ use Valitron\Validator as Valitron;
 
 
 /**
- * Class FromValidation
+ * Class FormValidation
  * @package OznForm
  *
  * @param Valitron $valitron
  * @param array    $error_messages
  */
-class FromValidation
+class FormValidation
 {
     /**
      * @var bool $is_valid

@@ -1,7 +1,7 @@
 <?php
 
 // 設定ファイルのパスを設定
-$config_path = __DIR__ . '/';
+$config_path = __DIR__ . '/image.json';
 
 // OznForm 実行ファイル読み込み
 require '../../release/ozn-form/ozn-form.php';
@@ -66,6 +66,8 @@ require '../../release/ozn-form/ozn-form.php';
 
 <div class="ozn-form-container">
     <form action="confirm.php" method="post">
+
+        <?php echo $oznFormToken->csrfTag(); ?>
 
         <div class="ozn-form-inner">
 

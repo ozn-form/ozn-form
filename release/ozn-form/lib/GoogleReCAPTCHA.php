@@ -1,6 +1,6 @@
 <?php
+namespace OznForm\lib;
 
-namespace OznForm;
 
 /**
  * Class GoogleReCAPTCHA

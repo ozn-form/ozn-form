@@ -1,13 +1,15 @@
-<?php namespace OznForm;
+<?php
+namespace OznForm\lib;
 
-require_once dirname(__FILE__) . '/exceptions/FormError.php';
+use OznForm\lib\exceptions\FormError;
+use PDO;
 
 /**
  * Class Database
  *
  * @package OznForm
  *
- * @property \PDO   $db
+ * @property PDO   $db
  * @property array $config
  * @property string $lastErrorMessage
  */
@@ -23,7 +25,7 @@ class Database
     const RELATIVE_SQLITE_PATH = '/../db/';
 
 
-    function __construct()
+    public function __construct()
     {
         $this->loadConfig();
         $this->connect();
@@ -33,58 +35,12 @@ class Database
     /**
      * 接続済みデータベースハンドルを返す
      *
-     * @return \PDO
+     * @return PDO
      */
     public function getDBH()
     {
         return $this->db;
     }
-
-//    /**
-//     * データ取得
-//     *
-//     * @param       $table
-//     *
-//     * @return
-//     */
-//    public function find($table, $condition = array(), $limit = null, $offset = null) {
-//
-//        $is_condition = FALSE;
-//        $sql          = "SELECT * FROM $table ";
-//
-//        // 検索条件があるときの処理
-//        if( ! empty($condition)) {
-//
-//            $is_condition  = TRUE;
-//            $condition_str = array();
-//            $condition_values = array();
-//
-//            foreach ($condition as $item) {
-//                $condition_str[] = "{$item[0]} = :{$item[0]}";
-//                $condition_values[$item[0]] = $item[1];
-//            }
-//
-//            $sql .= 'WHERE ' . join(' AND ', $condition_str);
-//        }
-//
-//        $stmt = $this->db->prepare($sql);
-//
-//
-//        if($is_condition) {
-//            foreach ($condition_values as $key => $value) {
-//                $stmt->bindValue(":$key", $value);
-//            }
-//        }
-//
-//        if($stmt->execute()) {
-//            if($stmt->rowCount() == 0) {return false;}
-//            return $stmt->fetch();
-//        } else {
-//            $this->lastErrorMessage = $stmt->errorInfo();
-//            return false;
-//        }
-//
-//    }
 
     public function getConfig()
     {
@@ -128,7 +84,7 @@ class Database
      */
     private function loadConfig()
     {
-        $path = dirname(__FILE__) . self::RELATIVE_CONFIG_PATH;
+        $path = __DIR__ . self::RELATIVE_CONFIG_PATH;
 
         if(file_exists($path))
         {
@@ -157,7 +113,7 @@ class Database
 
         $dsn = 'sqlite:' . $this->getSQLiteDBPath();
 
-        $this->db = new \PDO($dsn, null, null, array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
+        $this->db = new PDO($dsn, null, null, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
         // DBが作成直後だったら初期化する
         $res = $this->db->query("SELECT COUNT(*) FROM sqlite_master WHERE tbl_name NOT LIKE 'sqlite%';");

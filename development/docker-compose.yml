@@ -103,7 +103,8 @@ services:
           - php73:php73.ozn-form.com
           - php74:php74.ozn-form.com
         volumes:
-        - ..:/root/source
+          - ..:/root/source
+        working_dir: /root/source
 
     ##  テスト用 SMTP サーバー  # # # # # # # # # # # # # # # #
     mailhog:
