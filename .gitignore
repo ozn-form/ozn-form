@@ -1,15 +1,14 @@
 node_modules/
-/release/config/database.php
+/release/ozn-form/config/database.php
 
 # アップロードディレクトリ
-/release/upload/files/*
-!/release/upload/files/thumbnail
-/release/upload/files/thumbnail/*
-!/release/upload/files/thumbnail/.keep
+/release/ozn-form/upload/files/*
+!/release/ozn-form/upload/files/thumbnail
+/release/ozn-form/upload/files/thumbnail/*
+!/release/ozn-form/upload/files/thumbnail/.keep
 
 .env
 
 # sqlite database
-/release/db/*.db
-!/release/db/sample_jpj5405WD94E3GTvgG5wet459gsGjgHGee.db
-!/.phpunit.result.cache
+/release/ozn-form/db/*.db
+.phpunit.result.cache

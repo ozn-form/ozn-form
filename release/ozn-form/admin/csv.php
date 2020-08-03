@@ -1,6 +1,10 @@
-<?php namespace OznForm;
+<?php 
+namespace OznForm\admin;
 
-require_once dirname(__FILE__) . '/../lib/MailHistory.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use OznForm\lib\exceptions\FormError;
+use OznForm\lib\MailHistory;
 
 // DBクラスを読み込み
 try{
