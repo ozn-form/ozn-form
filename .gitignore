@@ -12,3 +12,7 @@ node_modules/
 # sqlite database
 /release/ozn-form/db/*.db
 .phpunit.result.cache
+
+# スナップショット（E2Eテスト）保存ディレクトリ
+/release/ozn-form/test/FeatureTests/snapshots/
+!/release/ozn-form/test/FeatureTests/snapshots/.keep
