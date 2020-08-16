@@ -73,12 +73,12 @@ require __DIR__ . '/../../release/ozn-form/ozn-form.php';
             <div class="tr" data-oznform-area="title">
                 <div class="th">お問い合わせ種別 <span class="ozn-label required">必須</span></div>
                 <div class="td">
-                    <div class="ozn-check vertical">
+                    <div class="ozn-check vertical" data-test-id="titleValid">
                         <label>
                             <input type="radio" name="title" value="見積りのご依頼"> 見積りのご依頼
                         </label>
                         <label>
-                            <input type="radio" name="title" value="商品に関するお問い合わせ"> 商品に関するお問い合わせ
+                            <input type="radio" name="title" value="商品に関するお問い合わせ" data-test-id="titleCheck"> 商品に関するお問い合わせ
                         </label>
                         <label>
                             <input type="radio" name="title" value="求人へのご応募"> 求人へのご応募
@@ -93,13 +93,13 @@ require __DIR__ . '/../../release/ozn-form/ozn-form.php';
             <div class="tr" data-oznform-area="customer_name">
                 <div class="th">お名前 <span class="ozn-label required">必須</span></div>
                 <div class="td">
-                    <input type="text" name="customer_name" class="ozn-input" id="customer_name" data-autoruby="customer_name" placeholder="例）山田 太郎" autocomplete="name">
+                    <input type="text" name="customer_name" class="ozn-input" id="customer_name" data-test-id="customerName" data-autoruby="customer_name" placeholder="例）山田 太郎" autocomplete="name">
                 </div>
             </div>
             <div class="tr" data-oznform-area="customer_kana">
                 <div class="th">フリガナ <span class="ozn-label required">必須</span></div>
                 <div class="td">
-                    <input type="text" name="customer_kana" class="ozn-input" id="customer_kana" data-autoruby-katakana="customer_name" placeholder="例）ヤマダ タロウ" autocomplete="">
+                    <input type="text" name="customer_kana" class="ozn-input" id="customer_kana" data-test-id="customerKana" data-autoruby-katakana="customer_name" placeholder="例）ヤマダ タロウ" autocomplete="">
                 </div>
             </div>
             <div class="tr" data-oznform-area="pref">
@@ -179,7 +179,7 @@ require __DIR__ . '/../../release/ozn-form/ozn-form.php';
             <div class="tr" data-oznform-area="survey[]">
                 <div class="th">当社を何で知りましたか <span class="ozn-label required">必須</span></div>
                 <div class="td">
-                    <div class="ozn-check horizontal">
+                    <div class="ozn-check horizontal" data-test-id="checkSurvey">
                         <label>
                             <input type="checkbox" name="survey[]" value="ウェブ検索"> ウェブ検索
                         </label>
@@ -187,7 +187,7 @@ require __DIR__ . '/../../release/ozn-form/ozn-form.php';
                             <input type="checkbox" name="survey[]" value="チラシ"> チラシ
                         </label>
                         <label>
-                            <input type="checkbox" name="survey[]" value="看板"> 看板
+                            <input type="checkbox" name="survey[]" data-test-id="clickSurvey" value="看板"> 看板
                         </label>
                         <label>
                             <input type="checkbox" name="survey[]" value="その他"> その他

@@ -18,7 +18,7 @@
 
     "admin": {
       "to_name"   : "",
-      "to"        : "oznform+webcontact@gmail.com",
+      "to"        : "test@gmail.com",
       "cc"        : [],
       "bcc"       : [],
       "from_name" : "OznForm Mailer",

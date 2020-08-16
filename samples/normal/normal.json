@@ -3,7 +3,6 @@
     "is_debug": false,
     "form_name": "normal_form",
     "form_root": "/samples/normal/index.php",
-    "unload_message": "このページから移動してよろしいですか？\n入力内容は保存されていない可能性があります。",
     "validation": {
         "show_icon": true,
         "shift_scroll_position": -50
