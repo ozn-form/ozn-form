@@ -12,6 +12,7 @@ services:
         volumes:
             - /var/run/docker.sock:/tmp/docker.sock:ro
             - ./docker-compose.d/certs:/etc/nginx/certs
+            - ./DependentFiles/nginx/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf
 
 
     ## php5.6  # # # # # # # # # # # #
@@ -95,7 +96,9 @@ services:
 
     ##  node.js  # # # # # # # # # # # # # # # #
     node:
-        image: node:latest
+        build:
+            context: ./DependentFiles/node
+            dockerfile: nodeDockerfile
         tty: true
         links:
           - php56:php56.ozn-form.com
@@ -103,7 +106,7 @@ services:
           - php73:php73.ozn-form.com
           - php74:php74.ozn-form.com
         volumes:
-          - ..:/root/source
+          - ..:/root/source:delegated
         working_dir: /root/source
 
     ##  テスト用 SMTP サーバー  # # # # # # # # # # # # # # # #
