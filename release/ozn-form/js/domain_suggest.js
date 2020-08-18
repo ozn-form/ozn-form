@@ -210,7 +210,6 @@ Suggest.Local.prototype = {
 
     setTimeout(function () {
         that.input.value = preText + '@' + text;
-        console.log('input value', this.input.value);
     }, 200);
 
 
