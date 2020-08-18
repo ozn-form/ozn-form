@@ -19,7 +19,7 @@ ozn-form（オゾン・フォーム）は、いわゆる「EFO（入力フォー
 
 ## 変更履歴
 
-#### [v2.5.1] - 2020-08-xx
+#### [v2.6.0] - 2020-08-xx
 
 - Changed: 動作要件を PHP 5.6.x〜7.4.x に変更
 - Changed: ozn-form/css/ozn-form.min.css のフォントサイズ単位を em による相対指定に変更

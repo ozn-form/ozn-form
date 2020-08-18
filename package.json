@@ -17,5 +17,9 @@
   },
   "dependencies": {
     "natives": "^1.1.6"
+  },
+  
+  "scripts": {
+    "e2e": "jest -c ./release/ozn-form/test/FeatureTests/config.json"
   }
 }

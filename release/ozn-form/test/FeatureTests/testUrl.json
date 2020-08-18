@@ -1,0 +1,12 @@
+{
+  "urls": {
+    "php74": "https://php74.ozn-form.com/samples"
+  }, 
+  
+  "urlsSample": {
+    "php56": "http://php56.ozn-form.com/samples",
+    "php71": "https://php71.ozn-form.com/samples",
+    "php73": "https://php73.ozn-form.com/samples",
+    "php74": "https://php74.ozn-form.com/samples"
+  }
+}
