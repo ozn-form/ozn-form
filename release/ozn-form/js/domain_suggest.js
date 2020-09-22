@@ -396,7 +396,7 @@ Suggest.Local.prototype = {
       var range = this.input.createTextRange();
       range.move('character', this.input.value.length);
       range.select();
-    } else if (this.input.setSelectionRange) {
+    } else if (this.input.getAttribute('type') !== 'email' &&　this.input.setSelectionRange) {
       this.input.setSelectionRange(this.input.value.length, this.input.value.length);
     }
   },
