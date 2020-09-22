@@ -51,12 +51,14 @@ Object.keys(json.urls).forEach((phpVersion) => {
             await page.$eval('[name="email"]', e => e.blur());
 
             // get the ElementHandle of the selector above
-            const inputUploadHandle = await page.$('input[type=file]');
+            const inputUploadHandle1 = await page.$('#oznform-upform1');
+            const inputUploadHandle2 = await page.$('#oznform-upform2');
             let fileToUpload = __dirname + '/data/attachment1.jpg';
             
-            await inputUploadHandle.uploadFile(fileToUpload);
+            await inputUploadHandle1.uploadFile(fileToUpload);
+            await inputUploadHandle2.uploadFile(fileToUpload);
 
-            await page.waitFor(500);
+            await page.waitFor(750);
             
             // アップロード後のサムネイル表示ができるか
             await expect(page.$('span.oznform-uploaded-thumbnail img')).resolves.toBeTruthy();
