@@ -97,6 +97,14 @@ require '../../release/ozn-form/ozn-form.php';
                         ※2MBを超えるサイズのデータは送信できません。</p>
                 </div>
             </div>
+            <div class="tr">
+                <div class="th">必須画像の添付 <span class="ozn-label required">必須</span></div>
+                <div class="td">
+                    <div class="ozn-file-block" data-oznform-fileup="attachment2[]"></div>
+                    <p class="ozn-notice">※送信可能な形式：gif, png, jpg, pdf, txt, xls, xlsx, doc, docx, zip <br>
+                        ※2MBを超えるサイズのデータは送信できません。</p>
+                </div>
+            </div>
         </div>
 
         <div class="ozn-form-buttons">

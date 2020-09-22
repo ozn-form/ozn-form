@@ -300,7 +300,7 @@ jQuery(function ($) {
             var $form_el    = $('[name="'+form_name+'"]');
             var is_fileup_form = (form_config.type === 'upload_files');
 
-            if($form_el.size() == 0 && ( ! is_fileup_form )) { return true }
+            if($form_el.length == 0 && ( ! is_fileup_form )) { return true }
 
             if((! $form_el.hasClass('ozn-form-valid')) && OznForm.forms[form_name]['validates']) {
                 ajax_validations.push(validFormValue(form_name, form_config));

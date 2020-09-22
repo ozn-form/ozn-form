@@ -2,15 +2,16 @@
 const fs = require('fs');
 const json = JSON.parse(fs.readFileSync(__dirname + '/testUrl.json', 'utf8'));
 
+
 Object.keys(json.urls).forEach((phpVersion) => {
+
+    let url = json.urls[phpVersion] + '/normal/'; // バックエンドは最新環境（php7.4）で検証する
 
     /**
      * php7.4 でUIテスト
      */
     describe(phpVersion + ' - UIテスト [お問い合わせサンプル（ノーマル版）]', () => {
-
-        let url = json.urls[phpVersion] + '/normal/'; // バックエンドは最新環境（php7.4）で検証する
-
+        
         beforeAll(async () => {
             await page.goto(url, {waitUntil: 'networkidle2'});
         });
@@ -176,6 +177,22 @@ Object.keys(json.urls).forEach((phpVersion) => {
 
             await page.screenshot({ path: __dirname + '/snapshots/'+phpVersion+'_normalForm_確認画面の表示.png', fullPage: true });
         });
+    });
+
+
+    describe(phpVersion + ' - 個別機能テスト', () => {
+
+        it('getでパラメータを渡した時、事前に入力した値がある場合には上書きされない', async () => {
+            await page.goto(url + '?customer_name=testName', {waitUntil: 'networkidle2'});
+            await expect(page.$eval('input[name="customer_name"]', item => item.value)).resolves.toMatch('名前');
+        });
+        
+        it('getでパラメータを渡した場合、特定の項目に初期値として挿入される', async () => {
+            await page.deleteCookie({name: 'normal_form'});
+            await page.goto(url + '?customer_name=testName', {waitUntil: 'networkidle2'});
+            await expect(page.$eval('input[name="customer_name"]', item => item.value)).resolves.toMatch('testName');
+        });
+        
     });
     
 });

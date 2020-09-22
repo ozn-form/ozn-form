@@ -83,8 +83,12 @@ require_once '../../release/ozn-form/ozn-form.php';
             <div class="td"><span data-insert="email"></span></div>
         </div>
         <div class="tr" data-if="attachment1[]">
-            <div class="th">添付ファイル１ <span class="ozn-label required">必須</span></div>
+            <div class="th">添付ファイル１ <span class="ozn-label optional">任意</span></div>
             <div class="td"><div data-insert="attachment1[]"></div></div>
+        </div>
+        <div class="tr" data-if="attachment2[]">
+            <div class="th">添付ファイル２ <span class="ozn-label required">必須</span></div>
+            <div class="td"><div data-insert="attachment2[]"></div></div>
         </div>
     </div>
 

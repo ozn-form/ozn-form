@@ -42,13 +42,13 @@ window.OznForm.utilities = {
 
             var $elem = $('[name="' + name + '"]');
 
-            if($elem.size() > 0) {
+            if($elem.length > 0) {
 
                 switch ($elem.attr('type')) {
 
                     case 'radio':
                     case 'checkbox':
-                        if($elem.filter('checked').size() === 0) {self.setValue($elem, value);}
+                        if($elem.filter('checked').length === 0) {self.setValue($elem, value);}
                         break;
                     default:
                         if($elem.val() === '') {self.setValue($elem, value);}
@@ -143,7 +143,7 @@ window.OznForm.utilities = {
 
                 var fileup_element_id = OznForm.utilities.updatedFileElementName(name);
 
-                if($('#' + fileup_element_id).find('input').size() > 0) {
+                if($('#' + fileup_element_id).find('input').length > 0) {
                     form_value = 'check_ok';
                 } else {
                     form_value = '';
