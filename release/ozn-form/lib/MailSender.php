@@ -2,6 +2,8 @@
 namespace OznForm\lib;
 
 // メール送信クラス
+use OznForm\lib\exceptions\FormError;
+
 class MailSender {
 
     public  $is_debug;
