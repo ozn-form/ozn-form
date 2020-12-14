@@ -86,7 +86,7 @@ function showTemplate($message = '', $error_message = '')
     <html lang="ja">
     <head>
         <meta charset="utf-8">
-        <title>OznForm - CSVダウンロード</title>
+        <title>ozn-form - CSVダウンロード</title>
         <meta name="robots" content="noindex, nofollow">
         <link rel="stylesheet" href="css/login.css">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -95,7 +95,7 @@ function showTemplate($message = '', $error_message = '')
 
     <body>
         <div class="form-wrapper">
-            <h1>Ozn Form</h1>
+            <h1>ozn-form</h1>
             <form method="post">
                 <div class="form-item">
                     <label for="email"></label>
@@ -118,8 +118,6 @@ function showTemplate($message = '', $error_message = '')
             </form>
             <div class="form-footer"></div>
         </div>
-
-<!--    <script src="js/scripts.js"></script>-->
     </body>
     </html>
 
