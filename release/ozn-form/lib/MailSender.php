@@ -3,6 +3,8 @@ namespace OznForm\lib;
 
 // メール送信クラス
 use OznForm\lib\exceptions\FormError;
+use PHPMailer\PHPMailer\OAuth;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class MailSender {
 
@@ -28,7 +30,7 @@ class MailSender {
      * @return bool
      * @throws \Exception
      */
-    public function send($send_by, $options = array(), $send_flag) {
+    public function send($send_by, $options = array(), $send_flag = true) {
 
         // 送信フラグがたってない時は送信なし（デバッグ用）
         if($send_flag === FALSE) { sleep(1); return true; }
@@ -69,10 +71,10 @@ class MailSender {
             case 'sendmail':
             case 'SMTP':
             case 'Gmail SMTP':
-                $this->phpmailer = new \PHPMailer;
+                $this->phpmailer = new PHPMailer();
                 break;
             case 'Gmail SMTP With OAuth':
-                $this->phpmailer = new \PHPMailerOAuth;
+                $this->phpmailer = new OAuth();
                 break;
             default:
                 throw new FormError("送信方法の指定値[$send_method]が間違っています。");

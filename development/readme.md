@@ -48,9 +48,15 @@ mv _wildcard.ozn-form.com.pem ozn-form.com.crt
 下記エントリをhostsファイルへ追記します。
 
 ```
-127.0.0.1 php56.ozn-form.com, php71.ozn-form.com, php73.ozn-form.com, php74.ozn-form.com
+127.0.0.1 php56.ozn-form.com
+127.0.0.1 php71.ozn-form.com, php73.ozn-form.com, php74.ozn-form.com
+127.0.0.1 php80.ozn-form.com
 ```
 
+### 4. 開発環境設定ファイルの作成（初回のみ）
+```
+cp development/.env.sample .env
+```
 
 
 ## 3. Docker UP
@@ -70,4 +76,4 @@ docker-compose up -d
 | php7.1 環境 | https://php71.ozn-form.com/ |
 | php7.3 環境 | https://php73.ozn-form.com/ |
 | php7.4 環境 | https://php74.ozn-form.com/ |
-
+| php8.0 環境 | https://php80.ozn-form.com/ |

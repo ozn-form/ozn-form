@@ -93,6 +93,25 @@ services:
             - ./DependentFiles/php7x/php74.xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
             - ./docker-compose.d/certs:/root/keys
             - ../:/var/www/html
+              
+    ## php8.0  # # # # # # # # # # # # # # # #
+    php80:
+        build:
+            context: ./DependentFiles/php8
+            dockerfile: php80.dockerfile
+        hostname: php80.ozn-form
+        environment:
+            VIRTUAL_HOST: php80.ozn-form.com
+            CERT_NAME: ${LOCAL_DOMAIN}
+            APACHE_LOG_DIR: "/var/log/apache2"
+            TZ: "Asia/Tokyo"
+        ports:
+            - "20080:22"
+        volumes:
+            - ./DependentFiles/php7x/sites-available:/etc/apache2/sites-available
+            - ./DependentFiles/php8/php80.xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+            - ./docker-compose.d/certs:/root/keys
+            - ../:/var/www/html
 
     ##  node.js  # # # # # # # # # # # # # # # #
     node:
@@ -105,6 +124,7 @@ services:
           - php71:php71.ozn-form.com
           - php73:php73.ozn-form.com
           - php74:php74.ozn-form.com
+          - php80:php80.ozn-form.com
         volumes:
           - ..:/root/source:delegated
         working_dir: /root/source
