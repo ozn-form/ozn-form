@@ -39,7 +39,7 @@ date_default_timezone_set('Asia/Tokyo');
  *       2.6.0 PSR-4 AutoLoader 対応
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-const VERSION = '2.6.0';
+const VERSION = '2.6.1';
 
 
 /**

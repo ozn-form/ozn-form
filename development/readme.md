@@ -39,7 +39,7 @@ mv _wildcard.ozn-form.com-key.pem ozn-form.com.key
 mv _wildcard.ozn-form.com.pem ozn-form.com.crt 
 ```
 
-上記、2つのファイルを `DevServer/docker-compose.d/certs/` へ移動させて完了。
+上記、2つのファイルを `development/docker-compose.d/certs/` へ移動させて完了。
 
 
 
@@ -58,15 +58,15 @@ mv _wildcard.ozn-form.com.pem ozn-form.com.crt
 cp development/.env.sample .env
 ```
 
-
 ## 3. Docker UP
 
-`development` ディレクトリへ移動して下記コマンドでdocker環境を作成します。docker環境セットアップの説明は省略します。
+`development` ディレクトリへ移動して、.env.sample をコピーし同じ階層に .env ファイルを追加
+
+下記コマンドでdocker環境を作成します。docker環境セットアップの説明は省略します。
 
 ```
 docker-compose up -d
 ```
-
 
 
 ## 4. URL
