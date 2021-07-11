@@ -34,12 +34,11 @@ date_default_timezone_set('Asia/Tokyo');
 
 /**
  * バージョン
- * @note 2.5.0 google ReCAPTCHA 機能追加
- *       2.5.1 ozn-form.min.css update
- *       2.6.0 PSR-4 AutoLoader 対応
+ * @note 2.6.0 PSR-4 AutoLoader 対応
+ *       2.7.0 PHPMailer ver.6 アップデート 及び 依存ライブラリ最新化 (2021.7)
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-const VERSION = '2.6.1';
+const VERSION = '2.7.0';
 
 
 /**
