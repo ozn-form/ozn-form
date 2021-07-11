@@ -156,7 +156,11 @@ class MailSender {
     
     public function setDebugFlag()
     {
-        
+        if($this->is_debug === true) {
+            $this->phpmailer->SMTPDebug = SMTP::DEBUG_CONNECTION;
+        } else {
+            $this->phpmailer->SMTPDebug = SMTP::DEBUG_OFF;
+        }
     }
 
     /**
@@ -165,7 +169,7 @@ class MailSender {
     public function sendmail()
     {
         $this->phpmailer->isSendmail();
-        
+        $this->setDebugFlag();
     }
 
     /**
@@ -190,20 +194,11 @@ class MailSender {
 
 
         // -- デバッグ設定
+        $this->setDebugFlag();
 
         //Tell PHPMailer to use SMTP
         $this->phpmailer->isSMTP();
-
-        //Enable SMTP debugging
-        // 0 = off (for production use)
-        // 1 = client messages
-        // 2 = client and server messages
-
-        if($this->is_debug === true) {
-            $this->phpmailer->SMTPDebug = 2;
-        } else {
-            $this->phpmailer->SMTPDebug = 0;
-        }
+        
 
         //Ask for HTML-friendly debug output
         $this->phpmailer->Debugoutput = 'html';
@@ -255,11 +250,8 @@ class MailSender {
         // Tell PHPMailer to use SMTP
         $this->phpmailer->isSMTP();
 
-        // Enable SMTP debugging
-        // 0 = off (for production use)
-        // 1 = client messages
-        // 2 = client and server messages
-        $this->phpmailer->SMTPDebug = SMTP::DEBUG_OFF;
+        // デバッグ設定
+        $this->setDebugFlag();
 
         // Ask for HTML-friendly debug output
         $this->phpmailer->Debugoutput = 'html';
