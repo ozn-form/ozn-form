@@ -2,9 +2,11 @@
 namespace OznForm\lib;
 
 // メール送信クラス
+use League\OAuth2\Client\Provider\Google;
 use OznForm\lib\exceptions\FormError;
 use PHPMailer\PHPMailer\OAuth;
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 
 class MailSender {
 
@@ -52,9 +54,9 @@ class MailSender {
 
         if ($this->phpmailer->send()) {
             return true;
-        } else {
-            throw new \Exception("Mailer Error: " . $this->phpmailer->ErrorInfo);
         }
+
+        throw new \Exception("Mailer Error: " . $this->phpmailer->ErrorInfo);
     }
 
     /**
@@ -71,10 +73,8 @@ class MailSender {
             case 'sendmail':
             case 'SMTP':
             case 'Gmail SMTP':
-                $this->phpmailer = new PHPMailer();
-                break;
             case 'Gmail SMTP With OAuth':
-                $this->phpmailer = new OAuth();
+                $this->phpmailer = new PHPMailer();
                 break;
             default:
                 throw new FormError("送信方法の指定値[$send_method]が間違っています。");
@@ -153,6 +153,11 @@ class MailSender {
             $this->phpmailer->AddAttachment($base_path . $file_name, $file_name);
         }
     }
+    
+    public function setDebugFlag()
+    {
+        
+    }
 
     /**
      * sendmail で送信する
@@ -160,6 +165,7 @@ class MailSender {
     public function sendmail()
     {
         $this->phpmailer->isSendmail();
+        
     }
 
     /**
@@ -253,22 +259,23 @@ class MailSender {
         // 0 = off (for production use)
         // 1 = client messages
         // 2 = client and server messages
-        $this->phpmailer->SMTPDebug = 0;
+        $this->phpmailer->SMTPDebug = SMTP::DEBUG_OFF;
 
         // Ask for HTML-friendly debug output
         $this->phpmailer->Debugoutput = 'html';
 
         // Set the hostname of the mail server
         $this->phpmailer->Host = 'smtp.gmail.com';
-        // use
-        // $this->phpmailer->Host = gethostbyname('smtp.gmail.com');
-        // if your network does not support SMTP over IPv6
 
-        // Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-        $this->phpmailer->Port = 587;
-
-        // Set the encryption system to use - ssl (deprecated) or tls
-        $this->phpmailer->SMTPSecure = 'tls';
+        //Set the SMTP port number:
+        // - 465 for SMTP with implicit TLS, a.k.a. RFC8314 SMTPS or
+        // - 587 for SMTP+STARTTLS
+        $this->phpmailer->Port = 465;
+        
+        //Set the encryption mechanism to use:
+        // - SMTPS (implicit TLS on port 465) or
+        // - STARTTLS (explicit TLS on port 587)
+        $this->phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 
         // Whether to use SMTP authentication
         $this->phpmailer->SMTPAuth = true;
@@ -276,19 +283,26 @@ class MailSender {
         // Set AuthType
         $this->phpmailer->AuthType = 'XOAUTH2';
 
-        // User Email to use for SMTP authentication - Use the same Email used in Google Developer Console
-        $this->phpmailer->oauthUserEmail = $gmail_user;
 
-        // Obtained From Google Developer Console
-        $this->phpmailer->oauthClientId = $oauth_id;
+        //Create a new OAuth2 provider instance
+        $provider = new Google(
+            [
+                'clientId' => $oauth_id,
+                'clientSecret' => $oauth_secret,
+            ]
+        );
 
-        // Obtained From Google Developer Console
-        $this->phpmailer->oauthClientSecret = $oauth_secret;
-
-        // Obtained By running get_oauth_token.php after setting up APP in Google Developer Console.
-        // Set Redirect URI in Developer Console as [https/http]://<yourdomain>/<folder>/get_oauth_token.php
-        //  eg: http://localhost/phpmail/get_oauth_token.php
-        $this->phpmailer->oauthRefreshToken = $oauth_refresh_token;
-
+        //Pass the OAuth provider instance to PHPMailer
+        $this->phpmailer->setOAuth(
+            new OAuth(
+                [
+                    'provider' => $provider,
+                    'clientId' => $oauth_id,
+                    'clientSecret' => $oauth_secret,
+                    'refreshToken' => $oauth_refresh_token,
+                    'userName' => $gmail_user,
+                ]
+            )
+        );
     }
 }
