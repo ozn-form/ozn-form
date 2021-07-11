@@ -20,7 +20,7 @@
             "cc"        : [],
             "bcc"       : [],
             "from_name" : "ozn-form 管理者向けサンプルメール",
-            "from"      : "no-reply@ozonenotes.jp",
+            "from"      : "oznform+no_reply@gmail.com",
             "reply_to"  : "<% email %>"
         },
 
@@ -31,7 +31,7 @@
             "cc"        : [],
             "bcc"       : [],
             "from_name" : "ozn-form 客先向けサンプルメール",
-            "from"      : "no-reply@ozonenotes.jp",
+            "from"      : "oznform@gmail.com",
             "reply_to"  : "<% email %>"
         }
     },
