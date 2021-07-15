@@ -14,5 +14,8 @@
         "psr-4": {
             "OznForm\\" : "."
         }
+    },
+    "config": {
+        "platform-check": false
     }
 }
