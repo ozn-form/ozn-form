@@ -70,6 +70,16 @@ set_exception_handler(static function ($ex) use ($config) {
     } else {
         require_once __DIR__ . '/error_page.php';
     }
+
+    // エラーログを出力する
+    $msg = "PHP Fatal error:  Uncaught exception '%s' with message '%s' in %s:%s";
+    $msg = sprintf(
+        $msg, get_class($ex),
+        $ex->getMessage(),
+        $ex->getFile(), $ex->getLine()
+    );
+    
+    error_log($msg);
 });
 
 
