@@ -3,6 +3,7 @@ namespace OznForm\admin;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use OznForm\lib\Database;
 use OznForm\lib\exceptions\FormError;
 use OznForm\lib\MailHistory;
 
@@ -79,14 +80,24 @@ function showLoginMessage($message)
  */
 function showTemplate($message = '', $error_message = '')
 {
-    echo <<<HTML
+    /**
+     * 設定ファイルを取得
+     */
+    $config = Database::getDatabaseConfig();
+    
+    $title = $config['adminPageTitle'] ?? 'ozn-form - CSVダウンロード';
+    $hideFormInput = $config['isMultiFormDataDownload'] ? '' : 'style="display:none;"';
+    $hideDeleteBtn = $config['showDeleteBtn'] ? '' : 'style="display:none;"';
+    
+    
+    $html = <<<HTML
 
     <!doctype html>
 
     <html lang="ja">
     <head>
         <meta charset="utf-8">
-        <title>ozn-form - CSVダウンロード</title>
+        <title>{$title}</title>
         <meta name="robots" content="noindex, nofollow">
         <link rel="stylesheet" href="css/login.css">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -95,7 +106,7 @@ function showTemplate($message = '', $error_message = '')
 
     <body>
         <div class="form-wrapper">
-            <h1>ozn-form</h1>
+            <h1>{$title}</h1>
             <form method="post">
                 <div class="form-item">
                     <label for="email"></label>
@@ -105,7 +116,7 @@ function showTemplate($message = '', $error_message = '')
                     <label for="password"></ label>
                     <input type="password" name="password" required="required" placeholder="パスワード">
                 </div>
-                <div class="form-item">
+                <div class="form-item" {$hideFormInput}>
                     <label for="form_name"></label>
                     <input type="text" name="form_name" placeholder="フォーム名">
                 </div>
@@ -113,7 +124,7 @@ function showTemplate($message = '', $error_message = '')
                 <div class="errors">{$error_message}</div>
                 <div class="button-panel">
                     <input type="submit" name="button_name" class="button submit" title="download" value="CSVダウンロード">
-                    <input type="submit" name="button_name" class="button delete" title="delete" value="削除">
+                    <input {$hideDeleteBtn} type="submit" name="button_name" class="button delete" title="delete" value="削除">
                 </div>
             </form>
             <div class="form-footer"></div>
@@ -122,5 +133,8 @@ function showTemplate($message = '', $error_message = '')
     </html>
 
 HTML;
+    
+    
+    echo $html;
 
 }

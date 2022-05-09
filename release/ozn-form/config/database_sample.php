@@ -22,4 +22,18 @@ return array(
         // データベース名（推測しにくい文字列で変更推奨）
         'db_name' => 'oznform_jgreaj5405WD94E3GTvgG5wet459gsGjge'
     ),
+
+    /**
+     * オプション設定
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     */
+
+    // ダウンロード画面タイトル
+    'adminPageTitle' => 'CSVダウンロード',
+
+    // フォーム名選択
+    'isMultiFormDataDownload' => true,
+
+    // 削除ボタンを表示する
+    'showDeleteBtn' => true,
 );

@@ -78,6 +78,19 @@ class Database
     }
 
     /**
+     * データベース設定を返す
+     * @throws FormError
+     */
+    public static function getDatabaseConfig()
+    {
+        $path = __DIR__ . self::RELATIVE_CONFIG_PATH;
+
+        if(file_exists($path)) { return include($path); }
+
+        throw new FormError('管理機能が有効化されていません');
+    }
+    
+    /**
      * 設定ファイル読み込み
      *
      * @throws FormError
