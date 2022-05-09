@@ -114,6 +114,15 @@ class FormConfig
     }
 
     /**
+     * フォームの初期パラメータを検証する設定を返す
+     * @return false|array
+     */
+    public function getFirstFormValidation()
+    {
+        return $this->config_raw['firstFormValidation'] ?? false;
+    }
+    
+    /**
      * ページの役割を返す
      * @note
      *  form    : フォーム入力ページ

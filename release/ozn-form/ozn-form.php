@@ -139,8 +139,23 @@ if(PAGE_ROLE === 'form') {
         // リファラを保存
         $session->saveReferer();
 
+        $firstFormValidation = $config->getFirstFormValidation();
+
         // getでの送信値を取得
-        $get_values = json_encode($_GET);
+        if($firstFormValidation === false) {
+            $get_values = json_encode($_GET);
+        } else {
+
+            $get_values = [];
+
+            foreach ($_GET as $k => $v) {
+                if(array_key_exists($k, $firstFormValidation) && in_array($v, $firstFormValidation[$k], true)) {
+                    $get_values[$k] = $v;
+                }
+            }
+
+            $get_values = json_encode($get_values);
+        }
 
     // step2以降のフォームの場合の処理
     } else {
