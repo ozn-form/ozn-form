@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="69a03321-564e-495c-8d18-3d871456b630" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/development/DependentFiles/nginx/my_proxy.conf" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/release/ozn-form/composer.json</pharConfigPath>
+    <execution>
+      <executable path="/usr/local/Cellar/composer/1.9.1/bin/composer" />
+    </execution>
+  </component>
+  <component name="DockerExecCommands">
+    <ExecCommand>
+      <option name="command" value="bash" />
+    </ExecCommand>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpDebugGeneral" xdebug_debug_port="9100">
+    <xdebug_debug_ports port="9100" />
+    <xdebug_debug_ports port="9003" />
+  </component>
+  <component name="PhpServers">
+    <servers>
+      <server host="php74.ozn-form.com/" id="c709f631-fcfb-402e-8e3b-332e3b02d2f7" name="php7.4 - Docker" use_path_mappings="true">
+        <path_mappings>
+          <mapping local-root="$PROJECT_DIR$" remote-root="/var/www/html" />
+        </path_mappings>
+      </server>
+    </servers>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="ozn-form_php56:latest">
+    <include_path>
+      <path value="$USER_HOME$/.composer/vendor" />
+      <path value="$PROJECT_DIR$/release/ozn-form/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/release/ozn-form/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/release/ozn-form/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/release/ozn-form/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/release/ozn-form/vendor/ircmaxell/security-lib" />
+      <path value="$PROJECT_DIR$/release/ozn-form/vendor/ircmaxell/random-lib" />
+      <path value="$PROJECT_DIR$/release/ozn-form/vendor/phpmailer/phpmailer" />
+      <path value="$PROJECT_DIR$/release/ozn-form/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/release/ozn-form/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/release/ozn-form/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/release/ozn-form/vendor/symfony/polyfill-php70" />
+      <path value="$PROJECT_DIR$/release/ozn-form/vendor/league/oauth2-client" />
+      <path value="$PROJECT_DIR$/release/ozn-form/vendor/league/oauth2-google" />
+      <path value="$PROJECT_DIR$/release/ozn-form/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/release/ozn-form/vendor/vlucas/valitron" />
+      <path value="$PROJECT_DIR$/release/ozn-form/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/release/ozn-form/vendor/composer" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1eTjI6lMPiqAljfYNIbRYerd7Yt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/saya/Dropbox/WorkProjectSources/ozone_notes/ozn-form/release/ozn-form/admin&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/release/ozn-form/admin" />
+      <recent name="$PROJECT_DIR$/samples" />
+      <recent name="$PROJECT_DIR$/development/DependentFiles/php8" />
+      <recent name="$PROJECT_DIR$/release/ozn-form/test/FeatureTests" />
+      <recent name="$PROJECT_DIR$/release/ozn-form/config" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/release/ozn-form" />
+      <recent name="$PROJECT_DIR$/release" />
+      <recent name="$PROJECT_DIR$/release/ozn-form/test/FeatureTests/data" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/release/ozn-form/test/FeatureTests" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Docker.Docker Start">
+    <configuration name="phpVersion + ' - UIテスト [お問い合わせサンプル（ノーマル版）]'" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/release/ozn-form/test/FeatureTests/normalFormTest.e2e.js" />
+      <test-names>
+        <test-name value="phpVersion + ' - UIテスト [お問い合わせサンプル（ノーマル版）]'" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="phpVersion + ' - UIテスト [お問い合わせサンプル（ノーマル版）]'.ページ表示" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/release/ozn-form/test/FeatureTests/normalFormTest.e2e.js" />
+      <test-names>
+        <test-name value="phpVersion + ' - UIテスト [お問い合わせサンプル（ノーマル版）]'" />
+        <test-name value="ページ表示" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="phpVersion + ' - 個別機能テスト'" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/release/ozn-form/test/FeatureTests/normalFormTest.e2e.js" />
+      <test-names>
+        <test-name value="phpVersion + ' - 個別機能テスト'" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="phpVersion + ' - 個別機能テスト'.getでパラメータを渡した場合、特定の項目に初期値として挿入される" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/release/ozn-form/test/FeatureTests/normalFormTest.e2e.js" />
+      <test-names>
+        <test-name value="phpVersion + ' - 個別機能テスト'" />
+        <test-name value="getでパラメータを渡した場合、特定の項目に初期値として挿入される" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="php7.4 Debug" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug" filter_connections="FILTER" server_name="php7.4 - Docker" session_id="PHPSTORM">
+      <method v="2" />
+    </configuration>
+    <configuration name="Docker Start" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="development/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="e2e" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="e2e" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Docker.Docker Start" />
+      <item itemvalue="Jest.phpVersion + ' - 個別機能テスト'.getでパラメータを渡した場合、特定の項目に初期値として挿入される" />
+      <item itemvalue="Jest.phpVersion + ' - 個別機能テスト'" />
+      <item itemvalue="Jest.phpVersion + ' - UIテスト [お問い合わせサンプル（ノーマル版）]'.ページ表示" />
+      <item itemvalue="Jest.phpVersion + ' - UIテスト [お問い合わせサンプル（ノーマル版）]'" />
+      <item itemvalue="npm.e2e" />
+      <item itemvalue="PHP Remote Debug.php7.4 Debug" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.e2e" />
+        <item itemvalue="Jest.phpVersion + ' - UIテスト [お問い合わせサンプル（ノーマル版）]'" />
+        <item itemvalue="Jest.phpVersion + ' - UIテスト [お問い合わせサンプル（ノーマル版）]'.ページ表示" />
+        <item itemvalue="Jest.phpVersion + ' - 個別機能テスト'" />
+        <item itemvalue="Jest.phpVersion + ' - 個別機能テスト'.getでパラメータを渡した場合、特定の項目に初期値として挿入される" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="69a03321-564e-495c-8d18-3d871456b630" name="Default Changelist" comment="" />
+      <created>1594352393298</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594352393298</updated>
+      <workItem from="1594352395025" duration="3722000" />
+      <workItem from="1594456308783" duration="1196000" />
+      <workItem from="1594471648279" duration="1195000" />
+      <workItem from="1595140776777" duration="12753000" />
+      <workItem from="1595662369178" duration="7468000" />
+      <workItem from="1595751294214" duration="6385000" />
+      <workItem from="1596157168508" duration="1360000" />
+      <workItem from="1596169109324" duration="606000" />
+      <workItem from="1596170907784" duration="26000" />
+      <workItem from="1596170948619" duration="181000" />
+      <workItem from="1596171238480" duration="6591000" />
+      <workItem from="1596299252291" duration="2163000" />
+      <workItem from="1596302079000" duration="608000" />
+      <workItem from="1596330188518" duration="811000" />
+      <workItem from="1596348708962" duration="54000" />
+      <workItem from="1596348771489" duration="6521000" />
+      <workItem from="1596433179577" duration="1271000" />
+      <workItem from="1596442579433" duration="4054000" />
+      <workItem from="1596497953606" duration="3327000" />
+      <workItem from="1596945546610" duration="595000" />
+      <workItem from="1596946629114" duration="1374000" />
+      <workItem from="1596948112240" duration="6938000" />
+      <workItem from="1597039279683" duration="2217000" />
+      <workItem from="1597229461796" duration="1621000" />
+      <workItem from="1597281972215" duration="47180000" />
+      <workItem from="1597553007217" duration="18764000" />
+      <workItem from="1597767238307" duration="3423000" />
+      <workItem from="1600756915925" duration="11375000" />
+      <workItem from="1600784935709" duration="605000" />
+      <workItem from="1601389328837" duration="5675000" />
+      <workItem from="1602650508133" duration="250000" />
+      <workItem from="1617557270093" duration="1321000" />
+      <workItem from="1623316066735" duration="665000" />
+      <workItem from="1624201334933" duration="2866000" />
+      <workItem from="1625371401765" duration="11330000" />
+      <workItem from="1625960727979" duration="22699000" />
+      <workItem from="1626279168576" duration="4885000" />
+      <workItem from="1633486665119" duration="1493000" />
+      <workItem from="1643202462204" duration="1000" />
+      <workItem from="1646885092798" duration="100000" />
+      <workItem from="1648607754591" duration="810000" />
+      <workItem from="1650420175517" duration="678000" />
+      <workItem from="1650849652708" duration="412000" />
+      <workItem from="1650850074396" duration="14000" />
+      <workItem from="1650850093977" duration="332000" />
+      <workItem from="1650852788868" duration="2737000" />
+      <workItem from="1651903069666" duration="2469000" />
+      <workItem from="1652075624407" duration="769000" />
+      <workItem from="1652845953251" duration="812000" />
+      <workItem from="1653450945958" duration="288000" />
+      <workItem from="1656904876323" duration="2415000" />
+      <workItem from="1657504114923" duration="1048000" />
+      <workItem from="1657674672846" duration="1000" />
+      <workItem from="1657682483620" duration="1000" />
+      <workItem from="1671596974526" duration="706000" />
+    </task>
+    <task id="LOCAL-00001" summary="ignoreファイルコミット忘れ...">
+      <created>1594352680577</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1594352680577</updated>
+    </task>
+    <task id="LOCAL-00002" summary="ディレクトリ名変更">
+      <created>1594352997173</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1594352997173</updated>
+    </task>
+    <task id="LOCAL-00003" summary="ignoreファイル追加">
+      <created>1595170984487</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1595170984487</updated>
+    </task>
+    <task id="LOCAL-00004" summary="ファイル整理。ディレクトリ構成の変更">
+      <created>1595205602727</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1595205602727</updated>
+    </task>
+    <task id="LOCAL-00005" summary="autoloader対応のためcomposer.jsonの場所変更">
+      <created>1595751990809</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1595751990809</updated>
+    </task>
+    <task id="LOCAL-00006" summary="htaccess追加（テストディレクトリとcomposer関連ファイルのアクセス禁止のため）">
+      <created>1595754461235</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1595754461235</updated>
+    </task>
+    <task id="LOCAL-00007" summary="PSR-4対応のためファイル名変更">
+      <created>1595754734159</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1595754734159</updated>
+    </task>
+    <task id="LOCAL-00008" summary="composer のオートロードのため読み込みコード部分を全体的に変更">
+      <created>1596349844931</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1596349844931</updated>
+    </task>
+    <task id="LOCAL-00009" summary="node modules を yarn で管理するように変更">
+      <created>1596358247463</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1596358247463</updated>
+    </task>
+    <task id="LOCAL-00010" summary="ignoreディレクトリ追加">
+      <created>1597474715643</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1597474715643</updated>
+    </task>
+    <task id="LOCAL-00011" summary="不要なファイルを削除">
+      <created>1597572031037</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1597572031037</updated>
+    </task>
+    <task id="LOCAL-00012" summary="ファイルアップロードに関するテスト環境の設定不具合を修正">
+      <created>1597572133572</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1597572133572</updated>
+    </task>
+    <task id="LOCAL-00013" summary="E2Eテスト用にサンプルフォームを修正">
+      <created>1597572190972</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1597572190972</updated>
+    </task>
+    <task id="LOCAL-00014" summary="不要なconsole.logを削除">
+      <created>1597767153815</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1597767153815</updated>
+    </task>
+    <task id="LOCAL-00015" summary="jest-puppeteer による E2E テストの実装">
+      <created>1597767205178</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1597767205178</updated>
+    </task>
+    <task id="LOCAL-00016" summary="テストのためサンプルページのjqueryのバージョンを3系に変更">
+      <created>1600757712827</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1600757712827</updated>
+    </task>
+    <task id="LOCAL-00017" summary="deprecatedメソッド size() を使用していたためjQuery3で動作しなかった箇所を修正">
+      <created>1600770315747</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1600770315747</updated>
+    </task>
+    <task id="LOCAL-00018" summary="不要なライブラリファイルを削除">
+      <created>1600774099139</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1600774099139</updated>
+    </task>
+    <task id="LOCAL-00019" summary="サンプルフォーム修正に伴うテストコード修正">
+      <created>1600774589663</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1600774589663</updated>
+    </task>
+    <task id="LOCAL-00020" summary="domain_suggest.jsのバグ修正。email要素に適用した時もエラーが出ないようにした。">
+      <created>1600783072002</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1600783072002</updated>
+    </task>
+    <task id="LOCAL-00021" summary="依存ライブラリアップデート">
+      <created>1601390743767</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1601390743767</updated>
+    </task>
+    <task id="LOCAL-00022" summary="依存ライブラリアップデート">
+      <created>1601424753238</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1601424753238</updated>
+    </task>
+    <task id="LOCAL-00023" summary="テスト対象サイト追加">
+      <created>1601425612882</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1601425612882</updated>
+    </task>
+    <task id="LOCAL-00024" summary="FormErrorクラスのロード設定していなかった件を修正">
+      <created>1601425655413</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1601425655413</updated>
+    </task>
+    <task id="LOCAL-00025" summary="PHPMailer のバージョンアップに伴う Google OAuth 認証の修正">
+      <created>1625986016585</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1625986016585</updated>
+    </task>
+    <task id="LOCAL-00026" summary="DockerでSSHを使用しないためポートバインディングを削除">
+      <created>1625986081837</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1625986081837</updated>
+    </task>
+    <task id="LOCAL-00027" summary="バージョン番号の変更">
+      <created>1625986094360</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1625986094360</updated>
+    </task>
+    <task id="LOCAL-00028" summary="gmailの送信テストのために from を変更">
+      <created>1626019001545</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1626019001545</updated>
+    </task>
+    <task id="LOCAL-00029" summary="デバッグフラグを設定するメソッドを実装し各送信メソッドのデバッグを一括で制御するようにした">
+      <created>1626019052109</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1626019052109</updated>
+    </task>
+    <task id="LOCAL-00030" summary="送信テスト用のサンプルフォームを実装">
+      <created>1626019068303</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1626019068303</updated>
+    </task>
+    <task id="LOCAL-00031" summary="不要なファイルを削除">
+      <created>1626019074402</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1626019074402</updated>
+    </task>
+    <task id="LOCAL-00032" summary="例外発生をデフォルトのエラーログに出力するように修正">
+      <created>1651904896764</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1651904896764</updated>
+    </task>
+    <task id="LOCAL-00033" summary="フォーム処理パラメータの事前検証機能を実装">
+      <created>1652060366521</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1652060366521</updated>
+    </task>
+    <task id="LOCAL-00034" summary="CSVダウンロードページの表示オプションを追加">
+      <created>1652076588366</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1652076588366</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="composer のオートロードのため読み込みコード部分を全体的に変更" />
+    <MESSAGE value="node modules を yarn で管理するように変更" />
+    <MESSAGE value="ignoreディレクトリ追加" />
+    <MESSAGE value="ファイルアップロードに関するテスト環境の設定不具合を修正" />
+    <MESSAGE value="E2Eテスト用にサンプルフォームを修正" />
+    <MESSAGE value="不要なconsole.logを削除" />
+    <MESSAGE value="jest-puppeteer による E2E テストの実装" />
+    <MESSAGE value="テストのためサンプルページのjqueryのバージョンを3系に変更" />
+    <MESSAGE value="deprecatedメソッド size() を使用していたためjQuery3で動作しなかった箇所を修正" />
+    <MESSAGE value="不要なライブラリファイルを削除" />
+    <MESSAGE value="サンプルフォーム修正に伴うテストコード修正" />
+    <MESSAGE value="domain_suggest.jsのバグ修正。email要素に適用した時もエラーが出ないようにした。" />
+    <MESSAGE value="依存ライブラリアップデート" />
+    <MESSAGE value="テスト対象サイト追加" />
+    <MESSAGE value="FormErrorクラスのロード設定していなかった件を修正" />
+    <MESSAGE value="PHPMailer のバージョンアップに伴う Google OAuth 認証の修正" />
+    <MESSAGE value="DockerでSSHを使用しないためポートバインディングを削除" />
+    <MESSAGE value="バージョン番号の変更" />
+    <MESSAGE value="gmailの送信テストのために from を変更" />
+    <MESSAGE value="デバッグフラグを設定するメソッドを実装し各送信メソッドのデバッグを一括で制御するようにした" />
+    <MESSAGE value="送信テスト用のサンプルフォームを実装" />
+    <MESSAGE value="不要なファイルを削除" />
+    <MESSAGE value="例外発生をデフォルトのエラーログに出力するように修正" />
+    <MESSAGE value="フォーム処理パラメータの事前検証機能を実装" />
+    <MESSAGE value="CSVダウンロードページの表示オプションを追加" />
+    <option name="LAST_COMMIT_MESSAGE" value="CSVダウンロードページの表示オプションを追加" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
