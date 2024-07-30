@@ -1,6 +1,8 @@
 
 const fs = require('fs');
 const json = JSON.parse(fs.readFileSync(__dirname + '/testUrl.json', 'utf8'));
+const setTimeout = require("node:timers/promises").setTimeout;
+
 
 Object.keys(json.urls).forEach((phpVersion) => {
 
@@ -27,22 +29,23 @@ Object.keys(json.urls).forEach((phpVersion) => {
 
             await inputUploadHandle.uploadFile(fileToUpload);
 
-            await page.waitFor(500);
-
+            await setTimeout(500);
+            
             // アップロード後のサムネイル表示ができるか
             await expect(page.$('span.oznform-uploaded-thumbnail img')).resolves.toBeTruthy();
             await expect(page.$('span.oznform-uploaded-filename')).resolves.toBeTruthy();
             
             await page.click('button.oznform-delete-file')
 
-            await page.waitFor(500);
+            await setTimeout(500);
+
 
             // アップロード後のサムネイル表示が削除されているか
             await expect(page.$('span.oznform-uploaded-thumbnail img')).resolves.toBeFalsy();
             await expect(page.$('span.oznform-uploaded-filename')).resolves.toBeFalsy();
 
 
-        });
+        }, 10000);
 
         it('ファイルアップロード後、確認画面が正しく表示されるか', async () => {
             await page.type('[name="customer_name"]', '名前');
@@ -58,7 +61,7 @@ Object.keys(json.urls).forEach((phpVersion) => {
             await inputUploadHandle1.uploadFile(fileToUpload);
             await inputUploadHandle2.uploadFile(fileToUpload);
 
-            await page.waitFor(750);
+            await setTimeout(750);
             
             // アップロード後のサムネイル表示ができるか
             await expect(page.$('span.oznform-uploaded-thumbnail img')).resolves.toBeTruthy();
@@ -67,11 +70,11 @@ Object.keys(json.urls).forEach((phpVersion) => {
             await page.screenshot({ path: __dirname + '/snapshots/'+phpVersion+'_ファイルアップロード.png', fullPage: true });
             
             await page.click('button[type="submit"]');
-            await page.waitFor(500);
+            await setTimeout(500);
 
             await expect(page.$eval('[data-insert="attachment1[]"]', item => RegExp("^attachment1.*.jpg$").test(item.innerText))).resolves.toBeTruthy();
             
-        });
+        }, 10000);
     });
 });
 

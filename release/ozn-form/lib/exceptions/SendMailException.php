@@ -6,6 +6,8 @@ namespace OznForm\lib\exceptions;
  */
 class SendMailException extends \Exception
 {
+    
+    private $isAdminMail;
 
     // 例外を再定義し、メッセージをオプションではなくする
     public function __construct($adminMailFlag, $message, $code = 0, \Exception $previous = null) {

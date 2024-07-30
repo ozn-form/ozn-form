@@ -56,7 +56,6 @@ $gmail_password = "YourGmailPassword";
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
 
-sleep(3);
 
 // 管理者宛メールの設定
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -110,7 +109,7 @@ TEXT;
 
 
 // OznForm 実行ファイル読み込み
-require '../../../release/ozn-form.php';
+require '../../release/ozn-form/ozn-form.php';
 
 ?>
 

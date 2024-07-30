@@ -10,6 +10,8 @@ namespace OznForm\lib;
 class GoogleReCAPTCHA
 {
 
+    public $config;
+    
     public function __construct($config)
     {
         $this->config = $config;
@@ -42,7 +44,7 @@ class GoogleReCAPTCHA
     {
         $siteKey = $this->config['reCAPTCHA']['site_key'];
 
-        $tag = "<script src=\"https://www.google.com/recaptcha/api.js?render=${siteKey}\"></script>";
+        $tag = "<script src=\"https://www.google.com/recaptcha/api.js?render={$siteKey}\"></script>";
 
         if(PAGE_ROLE === 'confirm') {
             $tag .= <<< HTML
@@ -54,7 +56,7 @@ class GoogleReCAPTCHA
           var targetForm = $(this);
           
           grecaptcha.ready(function() {
-              grecaptcha.execute('${siteKey}', {action: 'oznform'}).then(function(token) {
+              grecaptcha.execute('{$siteKey}', {action: 'oznform'}).then(function(token) {
                  targetForm.append('<input type="hidden" name="g-recaptcha-response" value="'+token+'">');
                  targetForm.submit();
               });

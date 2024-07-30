@@ -4,7 +4,7 @@
 $config_path = __DIR__ . '/no_confirm.json';
 
 // OznForm 実行ファイル読み込み
-require '../../../release/ozn-form/ozn-form.php';
+require '../../release/ozn-form/ozn-form.php';
 
 
 ?>
