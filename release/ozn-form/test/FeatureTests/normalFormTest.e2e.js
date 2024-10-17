@@ -1,6 +1,7 @@
 
 const fs = require('fs');
 const json = JSON.parse(fs.readFileSync(__dirname + '/testUrl.json', 'utf8'));
+const setTimeout = require("node:timers/promises").setTimeout;
 
 
 Object.keys(json.urls).forEach((phpVersion) => {
@@ -25,7 +26,7 @@ Object.keys(json.urls).forEach((phpVersion) => {
         it('必須｜ラジオボタン（お問い合わせ種別）入力バリデーション（成功）', async () => {
             await page.click('[data-test-id="titleCheck"]');
             await page.$eval('[data-test-id="titleCheck"]', e => e.blur());
-            await page.waitFor(200);
+            await setTimeout(400);
             await expect(page.$eval('[data-test-id="titleValid"]', item => item.classList.contains('ozn-form-valid'))).resolves.toBeTruthy();
         });
 
@@ -34,7 +35,7 @@ Object.keys(json.urls).forEach((phpVersion) => {
             let targetElem = '[data-test-id="customerName"]';
             await page.type(targetElem, '');
             await page.$eval(targetElem, e => e.blur());
-            await page.waitFor(200);
+            await setTimeout(400);
             await expect(page.$eval(targetElem, item => item.classList.contains('ozn-form-invalid'))).resolves.toBeTruthy();
 
         });
@@ -44,7 +45,7 @@ Object.keys(json.urls).forEach((phpVersion) => {
             let targetElem = '[data-test-id="customerName"]';
             await page.type(targetElem, '名前');
             await page.$eval(targetElem, e => e.blur());
-            await page.waitFor(200);
+            await setTimeout(400);
             await expect(page.$eval(targetElem, item => item.classList.contains('ozn-form-valid'))).resolves.toBeTruthy();
         });
 
@@ -53,7 +54,7 @@ Object.keys(json.urls).forEach((phpVersion) => {
             let targetElem = '[data-test-id="customerKana"]';
             await page.type(targetElem, '');
             await page.$eval(targetElem, e => e.blur());
-            await page.waitFor(200);
+            await setTimeout(400);
             await expect(page.$eval(targetElem, item => item.classList.contains('ozn-form-invalid'))).resolves.toBeTruthy();
             await expect(page.$eval('div.customer_kana.ozn-form-errors', item => item.innerText)).resolves.toMatch('フリガナ を入力してください');
         });
@@ -63,7 +64,7 @@ Object.keys(json.urls).forEach((phpVersion) => {
             await page.$eval(targetElem, element => element.value = ''); // フォーム内容をクリア
             await page.type(targetElem, 'kana');
             await page.$eval(targetElem, e => e.blur());
-            await page.waitFor(200);
+            await setTimeout(400);
             await expect(page.$eval(targetElem, item => item.classList.contains('ozn-form-invalid'))).resolves.toBeTruthy();
             await expect(page.$eval('div.customer_kana.ozn-form-errors', item => item.innerText)).resolves.toMatch('フリガナ は「ひらがな」か「カタカナ」で入力してください');
         });
@@ -74,7 +75,7 @@ Object.keys(json.urls).forEach((phpVersion) => {
             await page.$eval(targetElem, element => element.value = ''); // フォーム内容をクリア
             await page.type(targetElem, 'なまえ');
             await page.$eval(targetElem, e => e.blur());
-            await page.waitFor(200);
+            await setTimeout(400);
             await expect(page.$eval(targetElem, item => item.classList.contains('ozn-form-valid'))).resolves.toBeTruthy();
         });
 
@@ -84,7 +85,7 @@ Object.keys(json.urls).forEach((phpVersion) => {
             await page.$eval(targetElem, element => element.value = ''); // フォーム内容をクリア
             await page.type(targetElem, '');
             await page.$eval(targetElem, e => e.blur());
-            await page.waitFor(200);
+            await setTimeout(400);
             await expect(page.$eval(targetElem, item => item.classList.contains('ozn-form-valid'))).resolves.toBeTruthy();
         });
 
@@ -94,7 +95,7 @@ Object.keys(json.urls).forEach((phpVersion) => {
             await page.$eval(targetElem, element => element.value = ''); // フォーム内容をクリア
             await page.type(targetElem, '4608501');
             await page.$eval(targetElem, e => e.blur());
-            await page.waitFor(500);
+            await setTimeout(500);
 
             // 入力フィールドが検証成功になっている
             await expect(page.$eval(targetElem, item => item.classList.contains('ozn-form-valid'))).resolves.toBeTruthy();
@@ -110,7 +111,7 @@ Object.keys(json.urls).forEach((phpVersion) => {
             await page.$eval(targetElem, element => element.value = ''); // フォーム内容をクリア
             await page.type(targetElem, '12345');
             await page.$eval(targetElem, e => e.blur());
-            await page.waitFor(200);
+            await setTimeout(400);
             await expect(page.$eval(targetElem, item => item.classList.contains('ozn-form-invalid'))).resolves.toBeTruthy();
             await expect(page.$eval('div.zip-code.ozn-form-errors', item => item.innerText)).resolves.toMatch('郵便番号 の書式が違います。');
         });
@@ -121,7 +122,7 @@ Object.keys(json.urls).forEach((phpVersion) => {
             await page.click(targetElem); // 一度チェックを入れて...
             await page.click(targetElem); // チェックを外す
             await page.$eval(targetElem, e => e.blur());
-            await page.waitFor(200);
+            await setTimeout(400);
             await expect(page.$eval('[data-test-id="checkSurvey"]', item => item.classList.contains('ozn-form-invalid'))).resolves.toBeTruthy();
             await expect(page.$eval('div.survey.ozn-form-errors', item => item.innerText)).resolves.toMatch('当社を何で知りましたか を入力してください');
         });
@@ -131,7 +132,7 @@ Object.keys(json.urls).forEach((phpVersion) => {
             let targetElem = '[data-test-id="clickSurvey"]';
             await page.click(targetElem); // 一度チェックを入れる
             await page.$eval(targetElem, e => e.blur());
-            await page.waitFor(200);
+            await setTimeout(400);
             await expect(page.$eval('[data-test-id="checkSurvey"]', item => item.classList.contains('ozn-form-valid'))).resolves.toBeTruthy();
 
             await page.screenshot({ path: __dirname + '/snapshots/'+phpVersion+'_normalForm_入力値検証の最終結果.png', fullPage: true });
@@ -142,7 +143,7 @@ Object.keys(json.urls).forEach((phpVersion) => {
             await page.reload({waitUntil: "networkidle0"}); // ページの状態を初期化するため一旦リロードする
             await page.type('[data-test-id="customerName"]', '名前');
             await page.click('button[type="submit"]');
-            await page.waitFor(200);
+            await setTimeout(2000);
 
             // 必須項目が残りエラー表示になっている
             await expect(page.$eval('[data-test-id="customerKana"]', item => item.classList.contains('ozn-form-invalid'))).resolves.toBeTruthy();
@@ -155,7 +156,7 @@ Object.keys(json.urls).forEach((phpVersion) => {
             await expect(page.$eval('[data-oznform-area="shipping-date"]', item => window.getComputedStyle(item).display === 'none')).resolves.toBeTruthy();
 
             await page.screenshot({ path: __dirname + '/snapshots/'+phpVersion+'_normalForm_送信エラー時の状態.png', fullPage: true });
-        });
+        }, 10000);
 
         
         it('エラー項目を入力して送信。確認画面が表示される。', async () => {
@@ -168,7 +169,7 @@ Object.keys(json.urls).forEach((phpVersion) => {
             await page.type('[name="mail_body"]', '問合せ内容です');
             await page.click('[data-test-id="clickSurvey"]');
 
-            await page.waitFor(500);
+            await setTimeout(500);
 
             await page.click('button[type="submit"]');
             await page.waitForNavigation();

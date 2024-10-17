@@ -157,7 +157,7 @@ class FormSession
 
     public function h($str)
     {
-        return str_replace("\n", '<br>', htmlspecialchars($str, ENT_QUOTES));
+        return str_replace("\n", '<br>', htmlspecialchars($str ?? '', ENT_QUOTES));
     }
 
     /**

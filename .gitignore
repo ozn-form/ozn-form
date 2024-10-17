@@ -8,6 +8,7 @@ node_modules/
 !/release/ozn-form/upload/files/thumbnail/.keep
 
 .env
+.idea
 
 # sqlite database
 /release/ozn-form/db/*.db

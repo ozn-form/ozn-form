@@ -1,7 +1,7 @@
 {
 
   "form_name": "no_confirm",
-  "form_root": "/test/samples/no_confirm/index.php",
+  "form_root": "/samples/no_confirm/index.php",
 
   "validation": {
     "show_icon": false,

@@ -68,7 +68,7 @@ class MailTemplate
         foreach ($this->params as $key => $v) {
             if(is_array($v)) {$v = join('、', $v);}
             $key = preg_quote($key);
-            $template = preg_replace("/<%\s*$key\s*%>/", $v, $template);
+            $template = preg_replace("/<%\s*$key\s*%>/", $v ?? '', $template);
         }
 
         return $template;

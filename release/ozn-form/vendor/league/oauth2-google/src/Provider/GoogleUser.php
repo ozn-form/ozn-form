@@ -19,37 +19,47 @@ class GoogleUser implements ResourceOwnerInterface
 
     public function getId()
     {
-        return $this->response['id'];
+        return $this->response['sub'];
     }
 
     /**
-     * Get perferred display name.
+     * Get preferred display name.
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
-        return $this->response['displayName'];
+        return $this->response['name'];
     }
 
     /**
-     * Get perferred first name.
+     * Get preferred first name.
      *
-     * @return string
+     * @return string|null
      */
-    public function getFirstName()
+    public function getFirstName(): ?string
     {
-        return $this->response['name']['givenName'];
+        return $this->getResponseValue('given_name');
     }
 
     /**
-     * Get perferred last name.
+     * Get preferred last name.
      *
-     * @return string
+     * @return string|null
      */
-    public function getLastName()
+    public function getLastName(): ?string
     {
-        return $this->response['name']['familyName'];
+        return $this->getResponseValue('family_name');
+    }
+
+    /**
+     * Get locale.
+     *
+     * @return string|null
+     */
+    public function getLocale(): ?string
+    {
+        return $this->getResponseValue('locale');
     }
 
     /**
@@ -57,11 +67,19 @@ class GoogleUser implements ResourceOwnerInterface
      *
      * @return string|null
      */
-    public function getEmail()
+    public function getEmail(): ?string
     {
-        if (!empty($this->response['emails'])) {
-            return $this->response['emails'][0]['value'];
-        }
+        return $this->getResponseValue('email');
+    }
+
+    /**
+     * Get hosted domain.
+     *
+     * @return string|null
+     */
+    public function getHostedDomain(): ?string
+    {
+        return $this->getResponseValue('hd');
     }
 
     /**
@@ -69,11 +87,9 @@ class GoogleUser implements ResourceOwnerInterface
      *
      * @return string|null
      */
-    public function getAvatar()
+    public function getAvatar(): ?string
     {
-        if (!empty($this->response['image']['url'])) {
-            return $this->response['image']['url'];
-        }
+        return $this->getResponseValue('picture');
     }
 
     /**
@@ -81,8 +97,13 @@ class GoogleUser implements ResourceOwnerInterface
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return $this->response;
+    }
+
+    private function getResponseValue($key)
+    {
+        return $this->response[$key] ?? null;
     }
 }
