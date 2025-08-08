@@ -1,0 +1,55 @@
+{
+    "is_debug": false,
+    "form_name": "datepicker_demo",
+    "form_root": "/samples/datepicker_demo/index.php",
+    "validation": {
+        "show_icon": true,
+        "shift_scroll_position": -50
+    },
+
+    "mail": {
+        "send_flag": false
+    },
+
+    "pages": {
+        "index": {
+            "role": "form",
+            "forms": {
+                "default-date": {
+                    "label": "デフォルトの日付"
+                },
+                "japanese-date": {
+                    "label": "日本語フォーマットの日付",
+                    "datepicker_options": {
+                        "dateFormat": "yy年mm月dd日"
+                    }
+                },
+                "limited-date": {
+                    "label": "期間制限付きの日付",
+                    "datepicker_options": {
+                        "dateFormat": "yy年mm月dd日",
+                        "minDate": 0,
+                        "maxDate": "+1Y"
+                    }
+                },
+                "dropdown-date": {
+                    "label": "月・年選択の日付",
+                    "datepicker_options": {
+                        "dateFormat": "yy/mm/dd",
+                        "changeMonth": true,
+                        "changeYear": true,
+                        "yearRange": "1900:2030"
+                    }
+                },
+                "multiple-date": {
+                    "label": "複数月表示の日付",
+                    "datepicker_options": {
+                        "dateFormat": "yy-mm-dd",
+                        "numberOfMonths": 3,
+                        "showButtonPanel": true
+                    }
+                }
+            }
+        }
+    }
+}
