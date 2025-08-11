@@ -37,9 +37,10 @@ date_default_timezone_set('Asia/Tokyo');
  * @note 2.6.0 PSR-4 AutoLoader 対応
  *       2.7.0 PHPMailer ver.6 アップデート 及び 依存ライブラリ最新化 (2021.7)
  *       2.8.0 PHP7.3 ~ PHP8.3まで対応・PHPMailer ver.6.9.4 アップデート 及び google OAUth ライブラリ最新化 (2024.7)　PHP7.1非対応
+ *       2.9.0 PHP7.4 ~ PHP8.4まで対応・依存ライブラリアップデート (2025.1)
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-const VERSION = '2.8.0';
+const VERSION = '2.9.0';
 
 
 /**

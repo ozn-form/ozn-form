@@ -1,7 +1,7 @@
 <?php namespace OznForm;
 
-require dirname(__FILE__) . "/../release/vendor/autoload.php";
-require dirname(__FILE__) . "/../release/lib/custom_validation_rules.php";
+require dirname(__FILE__) . "/../vendor/autoload.php";
+require dirname(__FILE__) . "/../lib/custom_validation_rules.php";
 
 
 call_user_func(function(){

@@ -2,8 +2,8 @@
 
 use OznForm\MailTemplate;
 
-require dirname(__FILE__) . "/../release/vendor/autoload.php";
-require dirname(__FILE__) . "/../release/lib/MailTemplate.class.php";
+require dirname(__FILE__) . "/../vendor/autoload.php";
+require dirname(__FILE__) . "/../lib/MailTemplate.php";
 
 
 /**
