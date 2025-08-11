@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'ozone-notes/ozn-form',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-copilot/fix-19',
+        'version' => 'dev-copilot/fix-19',
+        'reference' => 'cb7b6906aa48fcfbcf8618f4ccdd08946d7246f4',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -56,9 +56,9 @@
             'dev_requirement' => false,
         ),
         'ozone-notes/ozn-form' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-copilot/fix-19',
+            'version' => 'dev-copilot/fix-19',
+            'reference' => 'cb7b6906aa48fcfbcf8618f4ccdd08946d7246f4',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
