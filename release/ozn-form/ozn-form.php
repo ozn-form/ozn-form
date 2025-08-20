@@ -181,12 +181,12 @@ if(PAGE_ROLE === 'form') {
      */
 
     if($config->ajaxZipOption()) {
-        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/ajaxzip3.js"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/ajaxzip3.js?v='.VERSION.'"></script>';
     }
 
     if($config->jqueryUIOption()) {
-        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jquery-ui.min.js"></script>';
-        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/datepicker-ja.js"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jquery-ui.min.js?v='.VERSION.'"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/datepicker-ja.js?v='.VERSION.'"></script>';
     }
 
     // google reCAPTCHA
@@ -196,22 +196,22 @@ if(PAGE_ROLE === 'form') {
 
     // ファイルアップロード関連
     if($config->isUploadFileForm()) {
-        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/load-image.all.min.js"></script>';
-        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/vendor/jquery.ui.widget.js"></script>';
-        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/jquery.iframe-transport.js"></script>';
-        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/jquery.fileupload.js"></script>';
-        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/canvas-to-blob.min.js"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/load-image.all.min.js?v='.VERSION.'"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/vendor/jquery.ui.widget.js?v='.VERSION.'"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/jquery.iframe-transport.js?v='.VERSION.'"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/jquery.fileupload.js?v='.VERSION.'"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/canvas-to-blob.min.js?v='.VERSION.'"></script>';
 
-        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/jquery.fileupload-process.js"></script>';
-        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/jquery.fileupload-image.js"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/jquery.fileupload-process.js?v='.VERSION.'"></script>';
+        $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jQuery-File-Upload-9.14.2/js/jquery.fileupload-image.js?v='.VERSION.'"></script>';
     }
 
-    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jquery.autoKana.js"></script>';
-    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/domain_suggest.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/jquery.autoKana.js?v='.VERSION.'"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/domain_suggest.js?v='.VERSION.'"></script>';
 
-    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/utilities.js"></script>';
-    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/config/oznform_config.js"></script>';
-    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/ozn-form.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/utilities.js?v='.VERSION.'"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/config/oznform_config.js?v='.VERSION.'"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/ozn-form.js?v='.VERSION.'"></script>';
 
     $ozn_form_javascript = implode("\n", $ozn_form_javascript);
 
@@ -266,8 +266,8 @@ if(PAGE_ROLE === 'form') {
         $ozn_form_javascript[] = $config->reCAPTCHA()->scriptTag();
     }
 
-    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/utilities.js"></script>';
-    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/ozn-form-confirm.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/utilities.js?v='.VERSION.'"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/ozn-form-confirm.js?v='.VERSION.'"></script>';
 
     $ozn_form_javascript = implode("\n", $ozn_form_javascript);
 
@@ -317,7 +317,7 @@ if(PAGE_ROLE === 'form') {
     $ozn_form_javascript[] = '<script type="application/javascript">';
     $ozn_form_javascript[] = '  OznForm = {};';
     $ozn_form_javascript[] = '</script>';
-    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/utilities.js"></script>';
+    $ozn_form_javascript[] = '<script src="'.DOCUMENT_PATH.'/js/utilities.js?v='.VERSION.'"></script>';
 
     $ozn_form_javascript = implode("\n", $ozn_form_javascript);
 
