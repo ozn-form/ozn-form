@@ -95,7 +95,12 @@
                     "validates": ["required"]
                 },
                 "shipping-date": {
-                    "label": "ご希望納期"
+                    "label": "ご希望納期",
+                    "datepicker_options": {
+                        "dateFormat": "yy年mm月dd日",
+                        "minDate": 0,
+                        "maxDate": "+1Y"
+                    }
                 },
                 "mail_body": {
                     "label": "お問い合わせ詳細",

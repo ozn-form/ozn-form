@@ -249,7 +249,18 @@ jQuery(function ($) {
     /**
      * Datepickerを適用する
      */
-    $('[data-of_datepicker]').each(function () { $(this).datepicker(); });
+    $('[data-of_datepicker]').each(function () { 
+        var $element = $(this);
+        var fieldName = $element.attr('name');
+        var options = {};
+        
+        // 設定ファイルからdatepickerオプションを取得
+        if (OznForm.datepicker_options && OznForm.datepicker_options[fieldName]) {
+            options = OznForm.datepicker_options[fieldName];
+        }
+        
+        $element.datepicker(options);
+    });
 
     /**
      * フォーム検証処理

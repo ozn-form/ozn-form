@@ -146,6 +146,16 @@ if(PAGE_ROLE === 'form') {
     // 出力JSタグの定義
     $forms_json     = json_encode($config->pageForms(PAGE_NAME));
     $form_data_json = json_encode($session->getPageData(PAGE_NAME));
+    
+    // datepicker設定の抽出
+    $datepicker_options = array();
+    $page_forms = $config->pageForms(PAGE_NAME);
+    foreach ($page_forms as $form_name => $form_config) {
+        if (isset($form_config['datepicker_options'])) {
+            $datepicker_options[$form_name] = $form_config['datepicker_options'];
+        }
+    }
+    $datepicker_options_json = json_encode($datepicker_options);
 
 
     $ozn_form_javascript = array();
@@ -160,6 +170,7 @@ if(PAGE_ROLE === 'form') {
     $ozn_form_javascript[] = '  OznForm.furl      = "'.DOCUMENT_PATH.'/upload/index.php";';
     $ozn_form_javascript[] = '  OznForm.vsetting  = ' . json_encode($config->validationSetting());
     $ozn_form_javascript[] = '  OznForm.forms     = '.$forms_json.';';
+    $ozn_form_javascript[] = '  OznForm.datepicker_options = '.$datepicker_options_json.';';
     $ozn_form_javascript[] = '  OznForm.reCAPTCHA = '. ($config->reCAPTCHA()->enabled() ? 'true':'false') .';';
     $ozn_form_javascript[] = '  OznForm.reCAPTCHA_sitekey = "'.$config->reCAPTCHA()->siteKey().'";';
 
