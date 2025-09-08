@@ -175,3 +175,25 @@ namespace OznForm\lib;
         return 1 <= $params[0];
     }
 }, "は%sつ以下で選択してください。");
+
+
+/**
+ *  フォームの値が指定値のいずれかと同じ（主に検証条件に使用）
+ *  複数の値は | で区切って指定 (例: "value1|value2|value3")
+ */
+\Valitron\Validator::addRule('equals_any_value', function($field, $value, array $params, array $fields) {
+    $allowedValues = explode('|', $params[0]);
+    return in_array($value, $allowedValues);
+}, "は指定されたいずれかの値である必要があります。");
+
+
+/**
+ *  フォームの値が指定文字列を部分的に含む（主に検証条件に使用）
+ */
+\Valitron\Validator::addRule('partial_match_value', function($field, $value, array $params, array $fields) {
+    // 空の値の場合は true を返す（検証条件では空の場合は条件不成立として扱う）
+    if (empty($value)) {
+        return true;
+    }
+    return mb_strpos($value, $params[0]) !== false;
+}, "は「%s」を含む必要があります。");

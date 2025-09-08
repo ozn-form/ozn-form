@@ -1,0 +1,32 @@
+{
+    "pages": {
+        "index": {
+            "forms": {
+                "materials": {
+                    "label": "興味のある商品"
+                },
+                "materials-etc-multiple": {
+                    "label": "備考欄（複数値指定例）",
+                    "validate_condition": {
+                        "materials": ["required", "equals_any_value:りんごパイ|りんごジャム"]
+                    },
+                    "validates": ["required"]
+                },
+                "materials-etc-partial": {
+                    "label": "備考欄（部分一致例）",
+                    "validate_condition": {
+                        "materials": ["required", "partial_match_value:りんご"]
+                    },
+                    "validates": ["required"]
+                },
+                "materials-etc-original": {
+                    "label": "備考欄（従来の単一値例）",
+                    "validate_condition": {
+                        "materials": ["required", "equals_value:その他"]
+                    },
+                    "validates": ["required"]
+                }
+            }
+        }
+    }
+}
