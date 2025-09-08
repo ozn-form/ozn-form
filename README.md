@@ -24,21 +24,27 @@ ozn-form（オゾン・フォーム）は、いわゆる「EFO（入力フォー
 
 ## 変更履歴
 
-### [v2.9.0] - 2025-01-22
+### [v2.9.0] - 2025-09-08
 
-- Changed:    動作要件を PHP7.4〜8.4.x に変更
+- Changed:    動作要件を PHP 7.4〜8.4.x に変更
 - Changed:    推奨要件にPHP 8.0以上・jQuery 3.x を追加
+- Changed:    内部ライブラリ群のバージョンアップ
+- Fixed:      出力するCSS, JSにプログラムバージョンをパラメータとして付与するように変更（ブラウザキャッシュ対策）
+- Fixed:      フォームバリデーション時、特定の条件下でWarningが出て次のステップに進めないことがあった点を修正
+- Added:      validate_condition の条件の複数指定・部分一致指定を可能に
+- Added:      Datepicker の設定をjsonファイルで指定できるように変更
+- Added:      マニュアル内「validate_condition」「Datepickerの設定方法」項目改訂
 
 ### [v2.8.0] - 2025-01-22
 
 - Changed:    内部ライブラリ群のバージョンアップ
-- Changed:    動作要件を PHP7.3.0〜8.3.x に変更
+- Changed:    動作要件を PHP 7.3.0〜8.3.x に変更
 - Deprecated: GmailのSMTP接続機能を廃止
 
 ### [v2.7.0] - 2021-08-16
 
 - Changed: 内部ライブラリ群のバージョンアップ
-- Changed: 動作要件を PHP7.0.0〜8.0.x に変更
+- Changed: 動作要件を PHP 7.0.0〜8.0.x に変更
 
 ### [v2.6.1] - 2020-12-15
 
