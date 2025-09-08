@@ -29,7 +29,7 @@ if(isset($_POST['validate'])) {
         isset($_POST['error_messages']) ? $_POST['error_messages'] : array()
     );
 
-    $target_value = $postValue[$_POST['name']];
+    $target_value = isset($postValue[$_POST['name']]) ? $postValue[$_POST['name']] : '';
 
     if($is_valid) {
 
