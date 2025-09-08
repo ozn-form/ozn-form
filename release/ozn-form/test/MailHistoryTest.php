@@ -1,9 +1,9 @@
 <?php namespace OznForm;
 
 require_once dirname(__FILE__) . '/lib/MinimaTest.class.php';
-require_once dirname(__FILE__) . '/../release/lib/FormConfig.class.php';
-require_once dirname(__FILE__) . '/../release/lib/FormSession.class.php';
-require_once dirname(__FILE__) . '/../release/lib/MailHistory.class.php';
+require_once dirname(__FILE__) . '/../lib/FormConfig.class.php';
+require_once dirname(__FILE__) . '/../lib/FormSession.class.php';
+require_once dirname(__FILE__) . '/../lib/MailHistory.class.php';
 
 /**
  * Class MailHistoryTest
