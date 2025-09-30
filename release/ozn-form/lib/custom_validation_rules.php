@@ -16,17 +16,40 @@ namespace OznForm\lib;
 
 
 /**
- * 電話番号検証
+ * 電話番号検証（日本の電話番号形式）
+ * 
+ * - 数字部分が9-11桁であること（ハイフン等を除く）
+ * - 国際電話形式（+付き）は不可
  */
 \Valitron\Validator::addRule('tel', function($field, $value, array $params, array $fields) {
-    if(empty($value))
-    {
+    // 空文字列またはnullの場合のみtrueを返す（"0"は空ではない）
+    if ($value === '' || $value === null) {
         return TRUE;
     }
-    else
-    {
-        return preg_match("/^[-ー−0-9０-９（）\(\)\s]{9,}$/u", $value) ? true : false;
+    
+    // 全角文字を半角に変換
+    $value = mb_convert_kana($value, 'n', 'UTF-8');
+    
+    // 国際電話形式（+で始まる）を除外
+    if (preg_match('/^\+/', $value)) {
+        return false;
     }
+    
+    // 許可された文字のみで構成されていることを確認
+    if (!preg_match('/^[0-9\-ー−－‐()（）\s]+$/u', $value)) {
+        return false;
+    }
+    
+    // 数字のみを抽出
+    $digits = preg_replace('/[^0-9]/', '', $value);
+    
+    // 数字が9桁以上11桁以下であることを確認
+    $digit_count = strlen($digits);
+    if ($digit_count < 9 || $digit_count > 11) {
+        return false;
+    }
+    
+    return true;
 }, "は市外局番を含む数字またはハイフンの組み合わせで入力してください");
 
 /**
