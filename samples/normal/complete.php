@@ -149,7 +149,7 @@ require __DIR__ . '/../../release/ozn-form/ozn-form.php';
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ozn-form Documents - ノーマル</title>
