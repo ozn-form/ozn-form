@@ -112,7 +112,7 @@ require __DIR__ . '/../../release/ozn-form/ozn-form.php';
                     </dl>
                     <dl>
                         <dt><label for="pref">都道府県 <span class="ozn-label required">必須</span></label></dt>
-                        <dd><input name="pref" id="pref" class="ozn-input pc-30 tb-50" placeholder="例）愛知県" data-oznform-pref="address" autocomplete="address-level1" aria-required="true">
+                        <dd><input type="text" name="pref" id="pref" class="ozn-input pc-30 tb-50" placeholder="例）愛知県" data-oznform-pref="address" autocomplete="address-level1" aria-required="true">
                         </dd>
                     </dl>
                     <dl>
@@ -136,14 +136,14 @@ require __DIR__ . '/../../release/ozn-form/ozn-form.php';
                 <div class="th" role="rowheader"><label for="email">メールアドレス <span class="ozn-label required">必須</span></label></div>
                 <div class="td" role="cell">
                     <div class="ozn-form-suggest-wrapper">
-                        <input data-domain-suggest="true" type="text" name="email" id="email" style="ime-mode:inactive;" class="ozn-input" placeholder="例）yamada@example.com" aria-required="true">
+                        <input data-domain-suggest="true" type="email" name="email" id="email" style="ime-mode:inactive;" class="ozn-input" placeholder="例）yamada@example.com" aria-required="true">
                     </div>
                 </div>
             </div>
             <div class="tr" data-oznform-area="materials" role="row">
                 <div class="th" role="rowheader"><label for="materials">興味のある商品 <span class="ozn-label optional">任意</span></label></div>
                 <div class="td" role="cell">
-                    <select name="materials" id="materials" class="ozn-input pc-50 tb-50">
+                    <select name="materials" id="materials" class="ozn-input pc-50 tb-50" aria-describedby="materials-instruction">
                         <option value="">お選びください</option>
                         <optgroup label="お菓子">
                             <option value="ケーキ">ケーキ</option>
@@ -157,7 +157,7 @@ require __DIR__ . '/../../release/ozn-form/ozn-form.php';
                         </optgroup>
                         <option value="その他">その他</option>
                     </select>
-                    <p>以下は「その他」を選んだ方のみ必須</p>
+                    <p id="materials-instruction">以下は「その他」を選んだ方のみ必須</p>
                     <dl>
                         <dt><label for="materials-etc">その他の商品名</label></dt>
                         <dd><input type="text" name="materials-etc" id="materials-etc" class="ozn-input" placeholder="例）マカロン"></dd>
