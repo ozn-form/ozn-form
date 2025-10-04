@@ -65,7 +65,7 @@ require __DIR__ . '/../../release/ozn-form/ozn-form.php';
 </div>
 
 <div class="ozn-form-container">
-    <form action="confirm.php" method="post">
+    <form action="confirm.php" method="post" aria-label="お問い合わせフォーム">
 
         <?php echo $oznFormToken->csrfTag(); ?>
 
@@ -87,7 +87,7 @@ require __DIR__ . '/../../release/ozn-form/ozn-form.php';
                             <input type="radio" name="title" value="その他のお問い合わせ"> その他のお問い合わせ
                         </label>
                     </div>
-                    <div class="title-error"></div>
+                    <div class="title-error" role="alert" aria-live="polite"></div>
                 </div>
             </div>
             <div class="tr" data-oznform-area="customer_name" role="row">

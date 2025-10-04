@@ -119,7 +119,7 @@ require_once __DIR__ . '/../../release/ozn-form/ozn-form.php';
         </div>
     </div>
 
-    <form action="complete.php" method="post">
+    <form action="complete.php" method="post" aria-label="確認フォーム">
         <?php echo $oznFormToken->csrfTag(); ?>
     <div class="ozn-form-buttons">
         <span><button type="submit" class="ozn-btn ozn-form-nav submit">この内容で送信する →</button></span>
