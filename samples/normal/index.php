@@ -69,10 +69,10 @@ require __DIR__ . '/../../release/ozn-form/ozn-form.php';
 
         <?php echo $oznFormToken->csrfTag(); ?>
 
-        <div class="ozn-form-inner">
-            <div class="tr" data-oznform-area="title">
-                <div class="th"><span id="title-label">お問い合わせ種別 <span class="ozn-label required">必須</span></span></div>
-                <div class="td">
+        <div class="ozn-form-inner" role="table" aria-label="お問い合わせフォーム">
+            <div class="tr" data-oznform-area="title" role="row">
+                <div class="th" role="rowheader"><span id="title-label">お問い合わせ種別 <span class="ozn-label required">必須</span></span></div>
+                <div class="td" role="cell">
                     <div class="ozn-check vertical" data-test-id="titleValid" role="radiogroup" aria-labelledby="title-label" aria-required="true">
                         <label>
                             <input type="radio" name="title" value="見積りのご依頼"> 見積りのご依頼
@@ -90,21 +90,21 @@ require __DIR__ . '/../../release/ozn-form/ozn-form.php';
                     <div class="title-error"></div>
                 </div>
             </div>
-            <div class="tr" data-oznform-area="customer_name">
-                <div class="th"><label for="customer_name">お名前 <span class="ozn-label required">必須</span></label></div>
-                <div class="td">
+            <div class="tr" data-oznform-area="customer_name" role="row">
+                <div class="th" role="rowheader"><label for="customer_name">お名前 <span class="ozn-label required">必須</span></label></div>
+                <div class="td" role="cell">
                     <input type="text" name="customer_name" class="ozn-input" id="customer_name" data-test-id="customerName" data-autoruby="customer_name" placeholder="例）山田 太郎" autocomplete="name" aria-required="true">
                 </div>
             </div>
-            <div class="tr" data-oznform-area="customer_kana">
-                <div class="th"><label for="customer_kana">フリガナ <span class="ozn-label required">必須</span></label></div>
-                <div class="td">
+            <div class="tr" data-oznform-area="customer_kana" role="row">
+                <div class="th" role="rowheader"><label for="customer_kana">フリガナ <span class="ozn-label required">必須</span></label></div>
+                <div class="td" role="cell">
                     <input type="text" name="customer_kana" class="ozn-input" id="customer_kana" data-test-id="customerKana" data-autoruby-katakana="customer_name" placeholder="例）ヤマダ タロウ" autocomplete="" aria-required="true">
                 </div>
             </div>
-            <div class="tr" data-oznform-area="pref">
-                <div class="th"><span id="address-label">ご住所</span></div>
-                <div class="td">
+            <div class="tr" data-oznform-area="pref" role="row">
+                <div class="th" role="rowheader"><span id="address-label">ご住所</span></div>
+                <div class="td" role="cell">
                     <dl>
                         <dt><label for="zip-code">郵便番号 <span class="ozn-label optional">任意</span></label></dt>
                         <dd><input type="text" name="zip-code" id="zip-code" class="ozn-input pc-30 tb-50" style="ime-mode:inactive;" placeholder="例）432-3332" data-oznform-zip="address" autocomplete="postal-code">
@@ -125,24 +125,24 @@ require __DIR__ . '/../../release/ozn-form/ozn-form.php';
                     </dl>
                 </div>
             </div>
-            <div class="tr" data-oznform-area="tel">
-                <div class="th"><label for="tel">電話番号 <span class="ozn-label required">必須</span></label></div>
-                <div class="td">
+            <div class="tr" data-oznform-area="tel" role="row">
+                <div class="th" role="rowheader"><label for="tel">電話番号 <span class="ozn-label required">必須</span></label></div>
+                <div class="td" role="cell">
                     <input type="tel" name="tel" id="tel" class="ozn-input" style="ime-mode:inactive;" placeholder="例）000-111-2222" autocomplete="tel-national" aria-required="true" aria-describedby="tel-notice">
                     <p class="ozn-notice" id="tel-notice">日中にご連絡の取りやすい番号をご記入ください。</p>
                 </div>
             </div>
-            <div class="tr" data-oznform-area="email">
-                <div class="th"><label for="email">メールアドレス <span class="ozn-label required">必須</span></label></div>
-                <div class="td">
+            <div class="tr" data-oznform-area="email" role="row">
+                <div class="th" role="rowheader"><label for="email">メールアドレス <span class="ozn-label required">必須</span></label></div>
+                <div class="td" role="cell">
                     <div class="ozn-form-suggest-wrapper">
                         <input data-domain-suggest="true" type="text" name="email" id="email" style="ime-mode:inactive;" class="ozn-input" placeholder="例）yamada@example.com" aria-required="true">
                     </div>
                 </div>
             </div>
-            <div class="tr" data-oznform-area="materials">
-                <div class="th"><label for="materials">興味のある商品 <span class="ozn-label optional">任意</span></label></div>
-                <div class="td">
+            <div class="tr" data-oznform-area="materials" role="row">
+                <div class="th" role="rowheader"><label for="materials">興味のある商品 <span class="ozn-label optional">任意</span></label></div>
+                <div class="td" role="cell">
                     <select name="materials" id="materials" class="ozn-input pc-50 tb-50">
                         <option value="">お選びください</option>
                         <optgroup label="お菓子">
@@ -164,21 +164,21 @@ require __DIR__ . '/../../release/ozn-form/ozn-form.php';
                     </dl>
                 </div>
             </div>
-            <div class="tr" data-oznform-area="shipping-date">
-                <div class="th"><label for="shipping-date">ご希望納期 <span class="ozn-label optional">任意</span></label></div>
-                <div class="td">
+            <div class="tr" data-oznform-area="shipping-date" role="row">
+                <div class="th" role="rowheader"><label for="shipping-date">ご希望納期 <span class="ozn-label optional">任意</span></label></div>
+                <div class="td" role="cell">
                     <input type="text" name="shipping-date" id="shipping-date" class="ozn-input pc-50 tb-50" data-of_datepicker="true" placeholder="例）2017年10月10日"><br class=" visible-xs-inline">までに必要
                 </div>
             </div>
-            <div class="tr" data-oznform-area="mail_body">
-                <div class="th"><label for="mail_body">お問い合わせ内容 <span class="ozn-label required">必須</span></label></div>
-                <div class="td">
+            <div class="tr" data-oznform-area="mail_body" role="row">
+                <div class="th" role="rowheader"><label for="mail_body">お問い合わせ内容 <span class="ozn-label required">必須</span></label></div>
+                <div class="td" role="cell">
                     <textarea name="mail_body" id="mail_body" rows="10" class="ozn-input" placeholder="例）＊＊＊＊製品の見積希望" aria-required="true"></textarea>
                 </div>
             </div>
-            <div class="tr" data-oznform-area="survey[]">
-                <div class="th"><span id="survey-label">当社を何で知りましたか <span class="ozn-label required">必須</span></span></div>
-                <div class="td">
+            <div class="tr" data-oznform-area="survey[]" role="row">
+                <div class="th" role="rowheader"><span id="survey-label">当社を何で知りましたか <span class="ozn-label required">必須</span></span></div>
+                <div class="td" role="cell">
                     <div class="ozn-check horizontal" data-test-id="checkSurvey" role="group" aria-labelledby="survey-label" aria-required="true">
                         <label>
                             <input type="checkbox" name="survey[]" value="ウェブ検索"> ウェブ検索
