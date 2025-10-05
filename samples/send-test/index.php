@@ -100,7 +100,7 @@ require '../../release/ozn-form/ozn-form.php';
                 <div class="tr">
                     <div class="th">メールアドレス<span class="ozn-label required">必須</span></div>
                     <div class="td">
-                        <input data-domain-suggest="true" type="text" name="email" id="email" class="form-control" placeholder="例）xxxx@gmail.jp">
+                        <input data-domain-suggest="true" type="text" inputmode="email" name="email" id="email" class="form-control" placeholder="例）xxxx@gmail.jp">
                     </div>
                 </div>
 

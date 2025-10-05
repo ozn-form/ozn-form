@@ -136,7 +136,7 @@ require __DIR__ . '/../../release/ozn-form/ozn-form.php';
                 <div class="th">メールアドレス <span class="ozn-label required">必須</span></div>
                 <div class="td">
                     <div class="ozn-form-suggest-wrapper">
-                        <input data-domain-suggest="true" type="text" name="email" style="ime-mode:inactive;" class="ozn-input" placeholder="例）yamada@example.com">
+                        <input data-domain-suggest="true" type="text" inputmode="email" name="email" style="ime-mode:inactive;" class="ozn-input" placeholder="例）yamada@example.com">
                     </div>
                 </div>
             </div>
