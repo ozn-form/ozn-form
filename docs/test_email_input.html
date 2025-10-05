@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メールアドレス入力フィールド - 動作確認テスト</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-section {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .test-section h2 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #999;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .suggest-wrapper {
+            position: relative;
+        }
+        .suggest-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-top: none;
+            display: none;
+            z-index: 9999;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .suggest-dropdown.show {
+            display: block;
+        }
+        .suggest-item {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .suggest-item:hover {
+            background-color: #f0f0f0;
+        }
+        .info-box {
+            background-color: #e7f3ff;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .info-box h3 {
+            margin-top: 0;
+        }
+        .code {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-family: monospace;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        .status.good {
+            background-color: #d4fdc9;
+            color: #1b7704;
+        }
+        .status.warning {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <h1>メールアドレス入力フィールド - 動作確認テスト</h1>
+    
+    <div class="info-box">
+        <h3>テストの目的</h3>
+        <p>本ページは、メールアドレス入力フィールドの改善内容を視覚的に確認するためのテストページです。</p>
+        <ul>
+            <li><code>type="text" inputmode="email"</code> の動作確認</li>
+            <li>カスタムドメインサジェストの表示確認（簡易実装）</li>
+            <li>ブラウザのオートコンプリートとの競合確認</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 1: 改善後の実装 <span class="status good">推奨</span></h2>
+        <p><strong>実装内容:</strong> <code>type="text" inputmode="email"</code></p>
+        <div class="form-group">
+            <label for="email1">メールアドレス</label>
+            <div class="suggest-wrapper">
+                <input type="text" inputmode="email" id="email1" name="email1" 
+                       placeholder="例）yamada@example.com" autocomplete="off"
+                       style="ime-mode:inactive;">
+                <div class="suggest-dropdown" id="suggest1">
+                    <div class="suggest-item" data-domain="gmail.com">gmail.com</div>
+                    <div class="suggest-item" data-domain="yahoo.co.jp">yahoo.co.jp</div>
+                    <div class="suggest-item" data-domain="hotmail.com">hotmail.com</div>
+                    <div class="suggest-item" data-domain="outlook.com">outlook.com</div>
+                </div>
+            </div>
+        </div>
+        <div class="code">
+&lt;input type="text" inputmode="email" autocomplete="off" ...&gt;
+        </div>
+        <p><strong>期待される動作:</strong></p>
+        <ul>
+            <li>モバイルデバイスでメール用キーボードが表示される</li>
+            <li>@記号の後にドメインサジェストが表示される（簡易実装）</li>
+            <li>ブラウザのオートコンプリートは抑制される（autocomplete="off"）</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: type="email" の場合 <span class="status warning">非推奨</span></h2>
+        <p><strong>実装内容:</strong> <code>type="email"</code></p>
+        <div class="form-group">
+            <label for="email2">メールアドレス</label>
+            <div class="suggest-wrapper">
+                <input type="email" id="email2" name="email2" 
+                       placeholder="例）yamada@example.com" autocomplete="off"
+                       style="ime-mode:inactive;">
+                <div class="suggest-dropdown" id="suggest2">
+                    <div class="suggest-item" data-domain="gmail.com">gmail.com</div>
+                    <div class="suggest-item" data-domain="yahoo.co.jp">yahoo.co.jp</div>
+                    <div class="suggest-item" data-domain="hotmail.com">hotmail.com</div>
+                    <div class="suggest-item" data-domain="outlook.com">outlook.com</div>
+                </div>
+            </div>
+        </div>
+        <div class="code">
+&lt;input type="email" autocomplete="off" ...&gt;
+        </div>
+        <p><strong>問題点:</strong></p>
+        <ul>
+            <li>ブラウザによっては autocomplete="off" が無視される</li>
+            <li>ブラウザのオートコンプリートとカスタムサジェストが競合する可能性</li>
+            <li>過去に入力したメールアドレスがブラウザから提示される</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>属性の比較表</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>実装</th>
+                    <th>type属性</th>
+                    <th>inputmode属性</th>
+                    <th>モバイルキーボード</th>
+                    <th>オートコンプリート回避</th>
+                    <th>カスタムサジェスト</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>改善後</strong></td>
+                    <td>text</td>
+                    <td>email</td>
+                    <td>✅ 表示される</td>
+                    <td>✅ 回避可能</td>
+                    <td>✅ 正常動作</td>
+                </tr>
+                <tr>
+                    <td><strong>type="email"</strong></td>
+                    <td>email</td>
+                    <td>-</td>
+                    <td>✅ 表示される</td>
+                    <td>❌ 回避困難</td>
+                    <td>⚠️ 競合の可能性</td>
+                </tr>
+                <tr>
+                    <td><strong>従来</strong></td>
+                    <td>text</td>
+                    <td>-</td>
+                    <td>❌ 表示されない</td>
+                    <td>✅ 回避可能</td>
+                    <td>✅ 正常動作</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="test-section">
+        <h2>操作方法</h2>
+        <ol>
+            <li>各入力フィールドに <code>test@</code> と入力してください</li>
+            <li>@記号の後に文字を入力すると、ドメインサジェストが表示されます（簡易実装）</li>
+            <li>モバイルデバイスの場合、キーボードの種類を確認してください</li>
+            <li>Test 2 では、過去に入力したメールアドレスがブラウザから表示される可能性があります</li>
+        </ol>
+    </div>
+
+    <script>
+        // 簡易的なドメインサジェスト機能の実装（デモ用）
+        function setupSuggest(inputId, suggestId) {
+            const input = document.getElementById(inputId);
+            const suggest = document.getElementById(suggestId);
+            const items = suggest.querySelectorAll('.suggest-item');
+
+            input.addEventListener('input', function() {
+                const value = this.value;
+                const atIndex = value.indexOf('@');
+                
+                if (atIndex !== -1 && atIndex < value.length - 1) {
+                    const domain = value.substring(atIndex + 1);
+                    let hasMatch = false;
+                    
+                    items.forEach(item => {
+                        const itemDomain = item.getAttribute('data-domain');
+                        if (itemDomain.startsWith(domain) && domain.length > 0) {
+                            item.style.display = 'block';
+                            hasMatch = true;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    suggest.classList.toggle('show', hasMatch);
+                } else {
+                    suggest.classList.remove('show');
+                }
+            });
+
+            items.forEach(item => {
+                item.addEventListener('click', function() {
+                    const domain = this.getAttribute('data-domain');
+                    const value = input.value;
+                    const atIndex = value.indexOf('@');
+                    if (atIndex !== -1) {
+                        input.value = value.substring(0, atIndex + 1) + domain;
+                    }
+                    suggest.classList.remove('show');
+                });
+            });
+
+            // フィールド外をクリックしたら閉じる
+            document.addEventListener('click', function(e) {
+                if (!input.contains(e.target) && !suggest.contains(e.target)) {
+                    suggest.classList.remove('show');
+                }
+            });
+        }
+
+        setupSuggest('email1', 'suggest1');
+        setupSuggest('email2', 'suggest2');
+
+        // デバッグ情報の表示
+        console.log('Test page loaded');
+        console.log('Input 1 attributes:', document.getElementById('email1').attributes);
+        console.log('Input 2 attributes:', document.getElementById('email2').attributes);
+    </script>
+</body>
+</html>
