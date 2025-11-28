@@ -97,9 +97,6 @@ window.OznForm.utilities = {
             // ナビ要素にもクラスを付与する
             $('.ozn-form-nav').addClass('ozn-form-sending');
 
-            // ローディングオーバーレイを表示
-            OznForm.utilities.showLoadingOverlay();
-
         })
     },
 
@@ -412,43 +409,6 @@ window.OznForm.utilities = {
 
         return $.map(obj, function(value, key) { return key; });
 
-    },
-
-    // ローディングオーバーレイ要素のキャッシュ
-    _loadingOverlay: null,
-
-    /**
-     * 送信時のローディングオーバーレイを表示する
-     * 体感待ち時間を改善するために、フォーム送信時に即座にオーバーレイを表示
-     */
-    showLoadingOverlay: function () {
-        // すでに表示中の場合は何もしない
-        if (this._loadingOverlay && this._loadingOverlay.hasClass('active')) {
-            return;
-        }
-
-        // オーバーレイ要素が存在しない場合は作成
-        if (!this._loadingOverlay || !this._loadingOverlay.length) {
-            var overlayHtml = [
-                '<div class="ozn-form-loading-overlay">',
-                '  <div class="ozn-form-loading-spinner"></div>',
-                '  <p class="ozn-form-loading-text">送信中です…しばらくお待ちください</p>',
-                '</div>'
-            ].join('');
-            $('body').append(overlayHtml);
-            this._loadingOverlay = $('.ozn-form-loading-overlay');
-        }
-        // オーバーレイを表示
-        this._loadingOverlay.addClass('active');
-    },
-
-    /**
-     * ローディングオーバーレイを非表示にする
-     */
-    hideLoadingOverlay: function () {
-        if (this._loadingOverlay) {
-            this._loadingOverlay.removeClass('active');
-        }
     }
 
 };

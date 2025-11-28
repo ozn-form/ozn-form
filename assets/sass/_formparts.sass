@@ -221,38 +221,3 @@
     &.over
       // マウスオーバ時のスタイル
       background-color: #99CCFF
-
-// Loading overlay for form submission
-.ozn-form-loading-overlay
-  display: none
-  position: fixed
-  top: 0
-  left: 0
-  width: 100%
-  height: 100%
-  background-color: rgba(255, 255, 255, 0.85)
-  z-index: 99999
-  justify-content: center
-  align-items: center
-  flex-direction: column
-  &.active
-    display: flex
-
-.ozn-form-loading-spinner
-  width: 50px
-  height: 50px
-  border: 5px solid $light-gray
-  border-top-color: $link
-  border-radius: 50%
-  animation: ozn-form-spin 1s linear infinite
-
-.ozn-form-loading-text
-  margin-top: 20px
-  font-size: 1.1em
-  color: $dark-gray
-
-@keyframes ozn-form-spin
-  0%
-    transform: rotate(0deg)
-  100%
-    transform: rotate(360deg)
