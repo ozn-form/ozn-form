@@ -430,12 +430,22 @@ if(PAGE_ROLE === 'form') {
             $send_option['smtp_options'] = $smtp_options;
             break;
 
+        case 'Gmail SMTP':
+            // 後方互換性: "Gmail SMTP" は "Gmail SMTP With OAuth" として処理
+            // Google側の仕様変更により、パスワード認証は廃止されました
+            // OAuth認証の設定が必要です
+            if (empty($gmail_user) || empty($oauth_id) || empty($oauth_secret) || empty($oauth_refresh_token)) {
+                throw new FormError(
+                    '[設定エラー] "Gmail SMTP" はGoogleの仕様変更により廃止されました。' .
+                    'OAuth認証への移行が必要です。$gmail_user, $oauth_id, $oauth_secret, $oauth_refresh_token を設定してください。'
+                );
+            }
+            // fall through to 'Gmail SMTP With OAuth'
         case 'Gmail SMTP With OAuth':
             $send_option['account']             = $gmail_user;
             $send_option['oauth_id']            = $oauth_id;
             $send_option['oauth_secret']        = $oauth_secret;
             $send_option['oauth_refresh_token'] = $oauth_refresh_token;
-
             break;
     }
 

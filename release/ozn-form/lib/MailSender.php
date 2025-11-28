@@ -44,6 +44,9 @@ class MailSender {
             case 'SMTP':
                 $this->sendSMTP($options['account'], $options['password'], $options['host'], $options['smtp_options']);
                 break;
+            case 'Gmail SMTP':
+                // 後方互換性: "Gmail SMTP" は "Gmail SMTP With OAuth" として処理
+                // Google側の仕様変更により、パスワード認証は廃止されました
             case 'Gmail SMTP With OAuth':
                 $this->sendGmailSMTPWithOAuth($options['account'], $options['oauth_id'], $options['oauth_secret'], $options['oauth_refresh_token']);
                 break;
@@ -69,6 +72,7 @@ class MailSender {
 
             case 'sendmail':
             case 'SMTP':
+            case 'Gmail SMTP':
             case 'Gmail SMTP With OAuth':
                 $this->phpmailer = new PHPMailer();
                 break;

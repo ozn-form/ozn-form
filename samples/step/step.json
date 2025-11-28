@@ -16,7 +16,7 @@
   "mail": {
 
     "send_flag": false,
-    "send_by": "sendmail",
+    "send_by": "Gmail SMTP",
     "redirect_to": "",
 
     "admin": {
