@@ -20,6 +20,9 @@ jQuery(function ($) {
     });
 
     // 送信ボタン押下時にローディングオーバーレイを表示
+    // .ozn-form-send クラスがあるボタンは setSendmailButtonEvent 経由で表示されるが、
+    // .ozn-form-nav.submit のみのボタンに対応するため、ここでも表示を行う
+    // showLoadingOverlay は重複呼び出しに対応しているため安全
     $(".ozn-form-nav.submit").on('click', function () {
         OznForm.utilities.showLoadingOverlay();
     });
