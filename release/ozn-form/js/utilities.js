@@ -409,6 +409,32 @@ window.OznForm.utilities = {
 
         return $.map(obj, function(value, key) { return key; });
 
+    },
+
+    /**
+     * 送信時のローディングオーバーレイを表示する
+     * 体感待ち時間を改善するために、フォーム送信時に即座にオーバーレイを表示
+     */
+    showLoadingOverlay: function () {
+        // オーバーレイ要素が存在しない場合は作成
+        if ($('.ozn-form-loading-overlay').length === 0) {
+            var overlayHtml = [
+                '<div class="ozn-form-loading-overlay">',
+                '  <div class="ozn-form-loading-spinner"></div>',
+                '  <p class="ozn-form-loading-text">送信中です…しばらくお待ちください</p>',
+                '</div>'
+            ].join('');
+            $('body').append(overlayHtml);
+        }
+        // オーバーレイを表示
+        $('.ozn-form-loading-overlay').addClass('active');
+    },
+
+    /**
+     * ローディングオーバーレイを非表示にする
+     */
+    hideLoadingOverlay: function () {
+        $('.ozn-form-loading-overlay').removeClass('active');
     }
 
 };

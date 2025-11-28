@@ -19,6 +19,10 @@ jQuery(function ($) {
         $(window).off('beforeunload', showUnloadMessage);
     });
 
+    // 送信ボタン押下時にローディングオーバーレイを表示
+    $(".ozn-form-nav.submit").on('click', function () {
+        OznForm.utilities.showLoadingOverlay();
+    });
 
     // IFタグの処理
     $.each($('[data-if]'), function () {
