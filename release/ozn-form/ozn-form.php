@@ -414,7 +414,6 @@ if(PAGE_ROLE === 'form') {
      * @var array  $smtp_options <送信オプション>
      *
      * @var string $gmail_user     <GMailアカウント>
-     * @var string $gmail_password <GMailパスワード>
      *
      * @var string $oauth_id     <OAuth ID>
      * @var string $oauth_secret <OAuth Secret>
@@ -430,11 +429,6 @@ if(PAGE_ROLE === 'form') {
             $send_option['password']     = $password;
             $send_option['host']         = $host;
             $send_option['smtp_options'] = $smtp_options;
-            break;
-
-        case 'Gmail SMTP':
-            $send_option['account']  = $gmail_user;
-            $send_option['password'] = $gmail_password;
             break;
 
         case 'Gmail SMTP With OAuth':

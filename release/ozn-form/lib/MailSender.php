@@ -44,9 +44,6 @@ class MailSender {
             case 'SMTP':
                 $this->sendSMTP($options['account'], $options['password'], $options['host'], $options['smtp_options']);
                 break;
-            case 'Gmail SMTP':
-                $this->sendSMTP($options['account'], $options['password'], 'smtp.gmail.com');
-                break;
             case 'Gmail SMTP With OAuth':
                 $this->sendGmailSMTPWithOAuth($options['account'], $options['oauth_id'], $options['oauth_secret'], $options['oauth_refresh_token']);
                 break;
@@ -72,7 +69,6 @@ class MailSender {
 
             case 'sendmail':
             case 'SMTP':
-            case 'Gmail SMTP':
             case 'Gmail SMTP With OAuth':
                 $this->phpmailer = new PHPMailer();
                 break;
