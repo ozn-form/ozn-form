@@ -413,8 +413,7 @@ if(PAGE_ROLE === 'form') {
      * @var string $host         <ホスト>
      * @var array  $smtp_options <送信オプション>
      *
-     * @var string $gmail_user     <GMailアカウント>
-     *
+     * @var string $gmail_user     <GMailアカウント（OAuth認証用）>
      * @var string $oauth_id     <OAuth ID>
      * @var string $oauth_secret <OAuth Secret>
      * @var string $oauth_refresh_token <OAuth Refresh Token>
