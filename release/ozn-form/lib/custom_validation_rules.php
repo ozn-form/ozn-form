@@ -16,19 +16,25 @@ namespace OznForm\lib;
 
 
 /**
- * 電話番号検証（日本の電話番号形式）
+ * 電話番号形式の簡易検証
  * 
  * - 数字部分が9-11桁であること（ハイフン等を除く）
  * - 国際電話形式（+付き）は不可
+ *   ※先頭が0で始まることや、市外局番・携帯番号などの詳細なパターンは検証しません
  */
 \Valitron\Validator::addRule('tel', function($field, $value, array $params, array $fields) {
     // 空文字列またはnullの場合のみtrueを返す（"0"は空ではない）
     if ($value === '' || $value === null) {
         return TRUE;
     }
-    
+
+    // 非スカラー値（配列・オブジェクトなど）は不正とする
+    if (!is_scalar($value)) {
+        return false;
+    }
+
     // 全角文字を半角に変換
-    $value = mb_convert_kana($value, 'n', 'UTF-8');
+    $value = mb_convert_kana((string)$value, 'n', 'UTF-8');
     
     // 国際電話形式（+で始まる）を除外
     if (preg_match('/^\+/', $value)) {
