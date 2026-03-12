@@ -23,12 +23,6 @@ $smtp_options = array(
 );
 
 
-// Gmail アカウント設定（Gmail SMTP 経由で送信する時のみ）
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-//$gmail_user     = "oznform@gmail.com";
-//$gmail_password = "";
-
 // Gmail API設定（Gmail SMTP [OAuth認証] 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
