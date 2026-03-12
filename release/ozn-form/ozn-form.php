@@ -39,9 +39,10 @@ date_default_timezone_set('Asia/Tokyo');
  *       2.8.0 PHP7.3 ~ PHP8.3まで対応・PHPMailer ver.6.9.4 アップデート 及び google OAUth ライブラリ最新化 (2024.7)　PHP7.1非対応
  *       2.9.0 PHP7.4 ~ PHP8.4まで対応・依存ライブラリアップデート (2025.9)
  *       2.9.1 samples/normal/ アクセシビリティ改善 (2025.10)
+ *       2.9.2 電話番号バリデーション改善 (2026.03)
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-const VERSION = '2.9.1';
+const VERSION = '2.9.2';
 
 
 /**
