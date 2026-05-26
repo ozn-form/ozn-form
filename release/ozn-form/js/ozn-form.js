@@ -256,8 +256,25 @@ jQuery(function ($) {
         
         // 設定ファイルからdatepickerオプションを取得
         if (OznForm.datepicker_options && OznForm.datepicker_options[fieldName]) {
-            options = OznForm.datepicker_options[fieldName];
+            // 共有オブジェクトを破壊的に変更しないようシャローコピーする
+            options = $.extend({}, OznForm.datepicker_options[fieldName]);
         }
+
+        // Datepickerで日付選択した際にも入力値検証を実行する
+        var originalOnClose = options.onClose;
+        options.onClose = function (dateText, inst) {
+            if ($.isFunction(originalOnClose)) {
+                originalOnClose.call(this, dateText, inst);
+            }
+
+            // OznForm.forms 未登録フィールドのクラッシュ防止、および日付未選択時の誤フラグ立てを防ぐ
+            // Datepicker内部で値反映された後に検証するため、次のイベントループで実行する
+            if (OznForm.forms[fieldName] && dateText) {
+                setTimeout(function () {
+                    validateForm.call($element[0], fieldName);
+                }, 0);
+            }
+        };
         
         $element.datepicker(options);
     });
