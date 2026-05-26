@@ -258,6 +258,18 @@ jQuery(function ($) {
         if (OznForm.datepicker_options && OznForm.datepicker_options[fieldName]) {
             options = OznForm.datepicker_options[fieldName];
         }
+
+        // Datepickerで日付選択した際にも入力値検証を実行する
+        var originalOnClose = options.onClose;
+        options.onClose = function (dateText, inst) {
+            if ($.isFunction(originalOnClose)) {
+                originalOnClose.call(this, dateText, inst);
+            }
+
+            setTimeout(function () {
+                validateForm(fieldName);
+            }, 0);
+        };
         
         $element.datepicker(options);
     });
