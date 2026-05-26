@@ -266,6 +266,7 @@ jQuery(function ($) {
                 originalOnClose.call(this, dateText, inst);
             }
 
+            // Datepicker内部で値反映された後に検証するため、次のイベントループで実行する
             setTimeout(function () {
                 validateForm(fieldName);
             }, 0);
