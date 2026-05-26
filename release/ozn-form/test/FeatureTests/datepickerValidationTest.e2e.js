@@ -23,7 +23,8 @@ Object.keys(json.urls).forEach((phpVersion) => {
                 $element.trigger('blur');
 
                 // Datepicker選択を模擬して値を設定し、closeイベントを実行
-                $element.datepicker('setDate', new Date(2026, 4, 26));
+                // minDate:0 / maxDate:+1Y の範囲に常に収まるよう相対日付（翌日）を使用する
+                $element.datepicker('setDate', new Date(Date.now() + 86400000));
                 const inst = $element.data('datepicker');
                 if (inst && inst.settings && typeof inst.settings.onClose === 'function') {
                     inst.settings.onClose.call(element, $element.val(), inst);
