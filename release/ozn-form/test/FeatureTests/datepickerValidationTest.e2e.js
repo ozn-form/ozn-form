@@ -13,8 +13,8 @@ Object.keys(json.urls).forEach((phpVersion) => {
 
         it('Datepicker選択後に未入力エラーが残らない', async () => {
             await page.$eval(targetElem, (element) => {
-                // 既存サンプルに必須・数値検証を一時的に付与して再現条件を作る
-                window.OznForm.forms['shipping-date'].validates = ['required', 'numeric'];
+                // 既存サンプルに必須検証を一時的に付与して再現条件を作る
+                window.OznForm.forms['shipping-date'].validates = ['required'];
 
                 const $element = $(element);
                 $element.val('');

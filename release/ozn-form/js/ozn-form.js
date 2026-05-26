@@ -256,7 +256,8 @@ jQuery(function ($) {
         
         // 設定ファイルからdatepickerオプションを取得
         if (OznForm.datepicker_options && OznForm.datepicker_options[fieldName]) {
-            options = OznForm.datepicker_options[fieldName];
+            // 共有オブジェクトを破壊的に変更しないようシャローコピーする
+            options = Object.assign({}, OznForm.datepicker_options[fieldName]);
         }
 
         // Datepickerで日付選択した際にも入力値検証を実行する
@@ -268,7 +269,7 @@ jQuery(function ($) {
 
             // Datepicker内部で値反映された後に検証するため、次のイベントループで実行する
             setTimeout(function () {
-                validateForm(fieldName);
+                validateForm.call($element[0], fieldName);
             }, 0);
         };
         
