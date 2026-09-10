@@ -50,7 +50,7 @@
         },
         "mail_body": {
           "label": "お問い合わせ詳細",
-          "validates": []
+          "validates": ["lengthMax:300"]
         },
         
         "email": {
