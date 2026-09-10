@@ -23,13 +23,6 @@ $smtp_options = array(
 );
 
 
-// Gmail アカウント設定（Gmail SMTP 経由で送信する時のみ）
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-//$gmail_user     = "yourGmailAccountName";
-//$gmail_password = "yourGmailPassword";
-
-
 // Gmail API設定（Gmail SMTP [OAuth認証] 経由で送信する時のみ）
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
