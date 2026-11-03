@@ -41,9 +41,10 @@ date_default_timezone_set('Asia/Tokyo');
  *       2.9.1 samples/normal/ アクセシビリティ改善 (2025.10)
  *       2.9.2 電話番号バリデーション改善 (2026.03)
  *       2.9.3 DatePicker選択直後の誤バリデーションを防ぐため、onClose後に対象フィールドを再検証 (2026.05)
+ *       2.9.4 PHP8.4でOAuthトークン未取得時に発生するDeprecatedを修正 (2026.11)
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
-const VERSION = '2.9.3';
+const VERSION = '2.9.4';
 
 
 /**
